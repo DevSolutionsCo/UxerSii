@@ -39,7 +39,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `uxersii`.`hogar` (
   `id_Hogar` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(255) NULL DEFAULT NULL,
+  `nombreH` VARCHAR(255) NULL DEFAULT NULL,
   `apellidoPaterno` VARCHAR(255) NULL DEFAULT NULL,
   `apellidoMaterno` VARCHAR(255) NULL DEFAULT NULL,
   `fechaNacimiento` DATE NULL DEFAULT NULL,
@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `uxersii`.`hogar` (
   `genero` VARCHAR(255) NULL DEFAULT NULL,
   `descripH` TEXT NULL DEFAULT NULL,
   `codigoPostal` VARCHAR(10) NULL DEFAULT NULL,
+  `nombUserH` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id_Hogar`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
