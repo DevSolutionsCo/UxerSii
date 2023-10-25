@@ -65,7 +65,7 @@ body {
   border-color: #fff;
 }
 
-.container form {
+.container article {
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -232,11 +232,24 @@ body {
   outline: none;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.signup-form {
+  width: 300px;
 }
-input[type="number"] {
-  -moz-appearance: textfield;
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
