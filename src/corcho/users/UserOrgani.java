@@ -10,96 +10,103 @@ package corcho.users;
  */
 public class UserOrgani {
     
-    private int id_Organi;
-    private String correo;
-    private String nombre_organi;
-    private String direccion;
-    private String contrasena;
-    private String contactos;
-    private String redes;
-    private String id_oficial;
-    private String url_foto;
-    private String descrip;
+    private int id_ofc;
+    private String correo_org;
+    private String nombre_org;
+    private String ubi_org;
+    private String contra_org;
+    private String tel_org;
+    private String link_org;
+    private String tipo_redorg;
+    private String desc_org;
 
-    public int getId_Organi() {
-        return id_Organi;
+    public UserOrgani(int id_ofc, String correo_org, String nombre_org, String ubi_org, String contra_org, String tel_org, String link_org, String tipo_redorg, String desc_org) {
+        this.id_ofc = id_ofc;
+        this.correo_org = correo_org;
+        this.nombre_org = nombre_org;
+        this.ubi_org = ubi_org;
+        this.contra_org = contra_org;
+        this.tel_org = tel_org;
+        this.link_org = link_org;
+        this.tipo_redorg = tipo_redorg;
+        this.desc_org = desc_org;
     }
 
-    public void setId_Organi(int id_Organi) {
-        this.id_Organi = id_Organi;
+    public int getId_ofc() {
+        return id_ofc;
     }
 
-    public String getDescrip() {
-        return descrip;
+    public void setId_ofc(int id_ofc) {
+        this.id_ofc = id_ofc;
     }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
+    public String getCorreo_org() {
+        return correo_org;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setCorreo_org(String correo_org) {
+        this.correo_org = correo_org;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getNombre_org() {
+        return nombre_org;
     }
 
-    public String getNombre_organi() {
-        return nombre_organi;
+    public void setNombre_org(String nombre_org) {
+        this.nombre_org = nombre_org;
     }
 
-    public void setNombre_organi(String nombre_organi) {
-        this.nombre_organi = nombre_organi;
+    public String getUbi_org() {
+        return ubi_org;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public void setUbi_org(String ubi_org) {
+        this.ubi_org = ubi_org;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public String getContra_org() {
+        return contra_org;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public void setContra_org(String contra_org) {
+        this.contra_org = contra_org;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public String getTel_org() {
+        return tel_org;
     }
 
-    public String getContactos() {
-        return contactos;
+    public void setTel_org(String tel_org) {
+        this.tel_org = tel_org;
     }
 
-    public void setContactos(String contactos) {
-        this.contactos = contactos;
+    public String getLink_org() {
+        return link_org;
     }
 
-    public String getRedes() {
-        return redes;
+    public void setLink_org(String link_org) {
+        this.link_org = link_org;
     }
 
-    public void setRedes(String redes) {
-        this.redes = redes;
+    public String getTipo_redorg() {
+        return tipo_redorg;
     }
 
-    public String getId_oficial() {
-        return id_oficial;
+    public void setTipo_redorg(String tipo_redorg) {
+        this.tipo_redorg = tipo_redorg;
     }
 
-    public void setId_oficial(String id_oficial) {
-        this.id_oficial = id_oficial;
+    public String getDesc_org() {
+        return desc_org;
     }
 
-    public String getUrl_foto() {
-        return url_foto;
+    public void setDesc_org(String desc_org) {
+        this.desc_org = desc_org;
     }
 
-    public void setUrl_foto(String url_foto) {
-        this.url_foto = url_foto;
-    }
+    
+    
+    
     
     
     

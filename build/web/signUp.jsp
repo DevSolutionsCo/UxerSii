@@ -4,6 +4,7 @@
     Author     : javis
 --%>
 
+<%@page import="corcho.services.PerfilHogar"%>
 <%@page import="java.util.Date"%>
 <%@page import="corcho.services.HogarService"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -29,7 +30,6 @@
          String correoH = request.getParameter("correoH");
          String passwH = request.getParameter("passwH");
          String genero = request.getParameter("genero");
-         String nombUserH = request.getParameter("nombUserH");
          String descH = request.getParameter("descH");
          String CPH = request.getParameter("CPH");
          
@@ -43,9 +43,12 @@
          
          
          
-         HogarService obj  = new HogarService();
-         obj.agregarHogar(correoH, nombH, apellidoP, apellidoM, descH, sqlDate, genero, passwH, nombUserH, CPH);
-    
+         PerfilHogar obj = new PerfilHogar();
+         obj.registroHog(correoH, nombH, apellidoP, apellidoM, descH, sqlDate, genero, passwH, CPH);
+
+          response.sendRedirect("index.jsp");
+        
+         
     %>
     </body>
     
