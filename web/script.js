@@ -209,7 +209,6 @@ document.addEventListener("DOMContentLoaded", function () {
       var correoH = document.getElementsByName("correoH")[0].value;
       var passwH = document.getElementsByName("passwH")[0].value;
       var genero = document.getElementsByName("genero")[0].value;
-      var nombUserH = document.getElementsByName("nombUserH")[0].value;
       var descH = document.getElementsByName("descH")[0].value;
       var CPH = document.getElementsByName("CPH")[0].value;
 
@@ -221,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       soli.onreadystatechange = function () {
         if (soli.readyState == 4 && soli.status == 200) {
-          console.log(soli.responseText);
+          window.location.href = "index.jsp";
         }
       };
       var params =
@@ -238,9 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "&passwH=" +
         encodeURIComponent(passwH) +
         "&genero=" +
-        encodeURIComponent(genero) +
-        "&nombUserH=" +
-        encodeURIComponent(nombUserH) +
+        encodeURIComponent(genero)  +
         "&descH=" +
         encodeURIComponent(descH) +
         "&CPH=" +

@@ -1,8 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 25 oct. 2023, 19:48:00
+    Author     : javis
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
   <head>
     <title>UxerSii</title>

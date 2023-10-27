@@ -10,79 +10,104 @@ package corcho.users;
  */
 public class UserEstablec {
     
-    private int id_Estable;
-    private String correo;
-    private String nombre;
-    private String contrasena;
-    private String nombre_user;
-    private String url_foto;
-    private String redes;
-    private String descrip;
+    private int id_Est;
+    private String correo_Est;
+    private String nomb_Est;
+    private String contra_Est;
+    private String tipo_redest;
+    private String link_redest;
+    private String desc_Est;
+    private String ubi_Est;
+    private String tel_Est;
 
-
-    public int getId_Estable() {
-        return id_Estable;
+    public UserEstablec(int id_Est, String correo_Est, String nomb_Est, String contra_Est, String tipo_redest, String link_redest, String desc_Est, String ubi_Est, String tel_Est) {
+        this.id_Est = id_Est;
+        this.correo_Est = correo_Est;
+        this.nomb_Est = nomb_Est;
+        this.contra_Est = contra_Est;
+        this.tipo_redest = tipo_redest;
+        this.link_redest = link_redest;
+        this.desc_Est = desc_Est;
+        this.ubi_Est = ubi_Est;
+        this.tel_Est = tel_Est;
     }
 
-    public void setId_Estable(int id_hogar) {
-        this.id_Estable = id_hogar;
+    public int getId_Est() {
+        return id_Est;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setId_Est(int id_Est) {
+        this.id_Est = id_Est;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getCorreo_Est() {
+        return correo_Est;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setCorreo_Est(String correo_Est) {
+        this.correo_Est = correo_Est;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNomb_Est() {
+        return nomb_Est;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public void setNomb_Est(String nomb_Est) {
+        this.nomb_Est = nomb_Est;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public String getContra_Est() {
+        return contra_Est;
     }
 
-    public String getNombre_user() {
-        return nombre_user;
+    public void setContra_Est(String contra_Est) {
+        this.contra_Est = contra_Est;
     }
 
-    public void setNombre_user(String nombre_user) {
-        this.nombre_user = nombre_user;
+    public String getTipo_redest() {
+        return tipo_redest;
     }
 
-    public String getUrl_foto() {
-        return url_foto;
+    public void setTipo_redest(String tipo_redest) {
+        this.tipo_redest = tipo_redest;
     }
 
-    public void setUrl_foto(String url_foto) {
-        this.url_foto = url_foto;
+    public String getLink_redest() {
+        return link_redest;
     }
 
-    public String getRedes() {
-        return redes;
+    public void setLink_redest(String link_redest) {
+        this.link_redest = link_redest;
     }
 
-    public void setRedes(String redes) {
-        this.redes = redes;
+    public String getDesc_Est() {
+        return desc_Est;
     }
 
-    public String getDescrip() {
-        return descrip;
+    public void setDesc_Est(String desc_Est) {
+        this.desc_Est = desc_Est;
     }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
+    public String getUbi_Est() {
+        return ubi_Est;
     }
+
+    public void setUbi_Est(String ubi_Est) {
+        this.ubi_Est = ubi_Est;
+    }
+
+    public String getTel_Est() {
+        return tel_Est;
+    }
+
+    public void setTel_Est(String tel_Est) {
+        this.tel_Est = tel_Est;
+    }
+
     
+    
+    
+
+   
     
 }
