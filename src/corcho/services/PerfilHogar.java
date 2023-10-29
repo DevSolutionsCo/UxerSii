@@ -27,7 +27,7 @@ public class PerfilHogar extends UserHogar{
    
     
     public boolean registroHog(String correoH, String nombH,
-            String apellidoPaterno, String apellidoMaterno, String descripH, java.sql.Date fechaNacimiento,
+            String apellidoPaterno, String apellidoMaterno, String nombUserH, java.sql.Date fechaNacimiento,
             String genero, String contrasenaH, String codigoPostal) throws SQLException, ClassNotFoundException{
         UserHogar userhogar = new UserHogar();
         Connection conn = null;
@@ -47,13 +47,13 @@ public class PerfilHogar extends UserHogar{
         
              
         
-        String query = "insert into hogar( correoH, nombreH, apellidoPaterno, apellidoMaterno, descripH, fechaNacimiento, genero, contrasenaH, codigoPostal) values(?,?,?,?,?,?,?,?,?)";
+        String query = "insert into hogar( correoH, nombreH, apellidoPaterno, apellidoMaterno, nombUserH, fechaNacimiento, genero, contrasenaH, codigoPostal) values(?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, correoH);
         stmt.setString(2, nombH);
         stmt.setString(3, apellidoPaterno);
         stmt.setString(4, apellidoMaterno);
-        stmt.setString(5, descripH);
+        stmt.setString(5, nombUserH);
         stmt.setDate(6, (java.sql.Date) fechaNacimiento);
         stmt.setString(7, genero);
         stmt.setString(8, contrasenaH);

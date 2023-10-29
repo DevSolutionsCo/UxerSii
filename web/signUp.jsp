@@ -30,7 +30,7 @@
          String correoH = request.getParameter("correoH");
          String passwH = request.getParameter("passwH");
          String genero = request.getParameter("genero");
-         String descH = request.getParameter("descH");
+         String nombUserH = request.getParameter("nombUserH");
          String CPH = request.getParameter("CPH");
          
          
@@ -44,7 +44,7 @@
          
          
          PerfilHogar obj = new PerfilHogar();
-         obj.registroHog(correoH, nombH, apellidoP, apellidoM, descH, sqlDate, genero, passwH, CPH);
+         obj.registroHog(correoH, nombH, apellidoP, apellidoM, nombUserH, sqlDate, genero, passwH, CPH);
 
           response.sendRedirect("index.jsp");
         
