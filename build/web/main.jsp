@@ -11,7 +11,7 @@
     <title>UxerSii</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
+    <link rel="stylesheet" href="styles/MainStyle.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -46,6 +46,6 @@
         <li><a href="#">Configuración</a></li>
       </ul>
     </div>
-    <script src="indexJS.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
