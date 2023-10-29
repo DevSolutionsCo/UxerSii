@@ -50,7 +50,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
              
         
-        String query = "insert into hogar( correoH, nombreH, apellidoPaterno, apellidoMaterno, descripH, fechaNacimiento, genero, contrasenaH, nombUserH, codigoPostal) values(?,?,?,?,?,?,?,?,?,?)";
+        String query = "insert into usuario_hogar( correo_hog, nombre_hog, apellido_pat, apellido_mat, desc_hog, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values(?,?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, correoH);
         stmt.setString(2, nombH);
