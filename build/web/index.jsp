@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index.jsp
+    Created on : 29 oct. 2023, 11:14:36
+    Author     : javis
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
