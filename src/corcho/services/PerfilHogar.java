@@ -47,19 +47,19 @@ public class PerfilHogar extends UserHogar{
         
              
         
-        String query = "insert into hogar( correoH, nombreH, apellidoPaterno, apellidoMaterno, nombUserH, fechaNacimiento, genero, contrasenaH, codigoPostal) values(?,?,?,?,?,?,?,?,?)";
+                String query = "insert into usuario_hogar( correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values(?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, correoH);
-        stmt.setString(2, nombH);
+        stmt.setString(2, nombH);   
         stmt.setString(3, apellidoPaterno);
         stmt.setString(4, apellidoMaterno);
-        stmt.setString(5, nombUserH);
-        stmt.setDate(6, (java.sql.Date) fechaNacimiento);
-        stmt.setString(7, genero);
-        stmt.setString(8, contrasenaH);
+        stmt.setDate(5, (java.sql.Date) (Date) fechaNacimiento);
+        stmt.setString(6, genero);
+        stmt.setString(7, contrasenaH);
+        stmt.setString(8, nombUserH);
         stmt.setString(9, codigoPostal);
         
-            row = stmt.executeUpdate();
+                row = stmt.executeUpdate();
             si = 1;
                         
     } catch (Exception e) {

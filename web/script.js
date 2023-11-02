@@ -425,8 +425,18 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       soli.onreadystatechange = function () {
         if (soli.readyState == 4 && soli.status == 200) {
-          window.location.href = "main.jsp";
-        }
+        console.log(soli.responseText)
+              var jsonResponse = JSON.parse(soli.responseText);                    
+        
+              if (jsonResponse.con1){
+                        window.alert("correo ya registrado");
+                    }else if (jsonResponse.con2){
+                        window.alert("nombre de usuario ya registrado");
+                    }else if (jsonResponse.con3){
+                       window.location.href = "main.jsp";
+                    }
+
+          }
       };
       var params =
         "nombH=" +
