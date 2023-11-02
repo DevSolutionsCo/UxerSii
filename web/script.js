@@ -1,5 +1,3 @@
-
-
 const container = document.getElementById("container");
 const registerBtn = document.getElementById("register");
 const loginBtn = document.getElementById("login");
@@ -37,97 +35,104 @@ function validateNombre(nombreInput) {
     return true;
   }
 }
-
-
-function validaApellidos(apelliInput){
-    if (apelliInput.value === ""){
-        apelliInput.classList.add("invalid-input");
-        return false;
-    }else{
-        apelliInput.classList.remove("invalid-input");
-        return true;
-    }
+function validateNombreORG(NombOrg) {
+  if (NombOrg.value === "" && NombOrg.value.length < 3) {
+    NombOrg.classList.add("invalid-input");
+    return false;
+  } else {
+    NombOrg.classList.remove("invalid-input");
+    return true;
+  }
+}
+function validaApellidos(apelliInput) {
+  if (apelliInput.value === "") {
+    apelliInput.classList.add("invalid-input");
+    return false;
+  } else {
+    apelliInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaFech(fechNacInput){
-    if (fechNacInput.value === ""){
-        fechNacInput.classList.add("invalid-input");
-        return false;
-    }else{
-        fechNacInput.classList.remove("invalid-input");
-        return true;
-    }
+function validaFech(fechNacInput) {
+  if (fechNacInput.value === "") {
+    fechNacInput.classList.add("invalid-input");
+    return false;
+  } else {
+    fechNacInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaCorreo(correoHInput){
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+function validaCorreo(correoHInput) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (emailPattern.test(correoHInput.value)) {
-      correoHInput.classList.remove("invalid-input");
-      return true;
-    } else {
-      correoHInput.classList.add("invalid-input");
-      return false;
-    }
+  if (emailPattern.test(correoHInput.value)) {
+    correoHInput.classList.remove("invalid-input");
+    return true;
+  } else {
+    correoHInput.classList.add("invalid-input");
+    return false;
+  }
 }
 
-function validaPass(passwHInput){
-    if (passwHInput.value.length < 6 || passwHInput.value.length > 20){
-        passwHInput.classList.add("invalid-input");
-        return false;
-    }else{
-        passwHInput.classList.remove("invalid-input");
-        return true;
-    }
+function validaPass(passwHInput) {
+  if (passwHInput.value.length < 6 || passwHInput.value.length > 20) {
+    passwHInput.classList.add("invalid-input");
+    return false;
+  } else {
+    passwHInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaGen(generoInput){
-    if (generoInput.value === "Selecciona tu genero"){
-        generoInput.classList.add("invalid-input");
-        return false;
-    }else{
-        generoInput.classList.remove("invalid-input");
-        return true;
-    }
+function validaGen(generoInput) {
+  if (generoInput.value === "Selecciona tu genero") {
+    generoInput.classList.add("invalid-input");
+    return false;
+  } else {
+    generoInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaGen(generoInput){
-    if (generoInput.value === "Selecciona tu genero"){
-        generoInput.classList.add("invalid-input");
-        return false;
-    }else{
-        generoInput.classList.remove("invalid-input");
-        return true;
-    }
+function validaGen(generoInput) {
+  if (generoInput.value === "Selecciona tu genero") {
+    generoInput.classList.add("invalid-input");
+    return false;
+  } else {
+    generoInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaNombUser(nombUserH){
-    if (nombUserH.value === ""){
-        nombUserH.classList.add("invalid-input");
-        return false;
-    }else{
-        nombUserH.classList.remove("invalid-input");
-        return true;
-    }
+function validaNombUser(nombUserH) {
+  if (nombUserH.value === "") {
+    nombUserH.classList.add("invalid-input");
+    return false;
+  } else {
+    nombUserH.classList.remove("invalid-input");
+    return true;
+  }
 }
 
-function validaCP(CPHInput){
-    if (CPHInput.value === ""){
-        CPHInput.classList.add("invalid-input");
-        return false;
-    }else{
-        CPHInput.classList.remove("invalid-input");
-        return true;
-    }
+function validaCP(CPHInput) {
+  if (CPHInput.value === "") {
+    CPHInput.classList.add("invalid-input");
+    return false;
+  } else {
+    CPHInput.classList.remove("invalid-input");
+    return true;
+  }
 }
-
 
 // Función para avanzar al siguiente paso
 function nextStep(currentStepId, nextStepId) {
-    
   const currentStepElement = document.getElementById(currentStepId);
   const nextStepElement = document.getElementById(nextStepId);
   var nombreInput = document.getElementById("nombH");
+  var NombOrg = document.getElementById("NombOrg");
+  var Ubicacion = document.getElementById("Ubicacion");
   var apelliPInput = document.getElementById("apelliP");
   var apelliMInput = document.getElementById("apelliM");
   var fechNacInput = document.getElementById("fechNac");
@@ -136,114 +141,107 @@ function nextStep(currentStepId, nextStepId) {
   var generoInput = document.getElementById("genero");
   var nombUserH = document.getElementById("nombUserH");
   var CPHInput = document.getElementById("CPH");
-  var validacionRealizada1 = false;
-  
+  var validacionRealizada1 = true;
+
   // Verificar si la validación ya se ha realizado
-  while (!validacionRealizada1) {
-      
-      
-        if (currentStep === 1){
-    if (!validateNombre(nombreInput)) {
+  /*   while (!validacionRealizada1) {
+    if (currentStep === 1) {
+      if (!validateNombre(nombreInput) || !validateNombreORG(NombOrg)) {
         window.alert("ingresa un nombre valido");
-            break;
-    }else{
+        break;
+      } else {
         validacionRealizada1 = true; // Marcar que la validación se ha realizado
-            break;
-    }
-        }
-        
-    if (currentStep === 2){
-        if (!validaApellidos(apelliPInput)){
-            window.alert("ingresa apellido valido");
-            break;
-        }else{
-            validacionRealizada1 = true;
-            break;
-        }
-    }
-    
-    
-        if (currentStep === 3){
-            if (!validaApellidos(apelliMInput)){
-                window.alert("ingresa apellido valido");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        } 
-        
-    if (currentStep === 4){
-            if (!validaFech(fechNacInput)){
-                window.alert("ingresa una fecha valida");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-    if (currentStep === 5){
-            if (!validaCorreo(correoHInput)){
-                window.alert("ingresa un correo valido");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-    
-    if (currentStep === 6){
-            if (!validaPass(passwHInput)){
-                window.alert("ingresa una contraseña de 6 - 20 caracteres");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-    if (currentStep === 7){
-            if (!validaGen(generoInput)){
-                window.alert("selecciona un genero");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-    if (currentStep === 8){
-            if (!validaNombUser(nombUserH)){
-                window.alert("ingresa un nombre de usuario valido");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-    if (currentStep === 9){
-            if (!validaNombUser(nombUserH)){
-                window.alert("ingresa un codigo postal valido");
-                break;
-            }else{
-                validacionRealizada1 = true;
-                break;
-            }
-        }
-        
-  
-        
-    }
-    if (validacionRealizada1){
-        if (currentStepElement && nextStepElement) {
-          currentStepElement.classList.remove("active");
-          nextStepElement.classList.add("active");
-        }
-        if (currentStepId !== nextStepId) {
-          currentStep++;
-          validacionRealizada1 = false;
-        }
-          }
+        break;
+      }
     }
 
+    if (currentStep === 2) {
+      if (!validaApellidos(apelliPInput) || !validaApellidos(Ubicacion)) {
+        window.alert("ingresa campo valido");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+
+    if (currentStep === 3) {
+      if (!validaApellidos(apelliMInput)) {
+        window.alert("ingresa apellido valido");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+
+    if (currentStep === 4) {
+      if (!validaFech(fechNacInput)) {
+        window.alert("ingresa una fecha valida");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+    if (currentStep === 5) {
+      if (!validaCorreo(correoHInput)) {
+        window.alert("ingresa un correo valido");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+
+    if (currentStep === 6) {
+      if (!validaPass(passwHInput)) {
+        window.alert("ingresa una contraseña de 6 - 20 caracteres");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+    if (currentStep === 7) {
+      if (!validaGen(generoInput)) {
+        window.alert("selecciona un genero");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+    if (currentStep === 8) {
+      if (!validaNombUser(nombUserH)) {
+        window.alert("ingresa un nombre de usuario valido");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+    if (currentStep === 9) {
+      if (!validaNombUser(nombUserH)) {
+        window.alert("ingresa un codigo postal valido");
+        break;
+      } else {
+        validacionRealizada1 = true;
+        break;
+      }
+    }
+  } */
+  if (validacionRealizada1) {
+    if (currentStepElement && nextStepElement) {
+      currentStepElement.classList.remove("active");
+      nextStepElement.classList.add("active");
+    }
+    if (currentStepId !== nextStepId) {
+      currentStep++;
+      validacionRealizada1 = false;
+    }
+  }
+}
 
 function previousStep(currentStepId, prevStepId) {
   const currentStepElement = document.getElementById(currentStepId);
@@ -404,10 +402,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     formContainerhog.appendChild(formulario);
-    
-    
-   
-
 
     formulario.addEventListener("submit", function (submitEvent) {
       submitEvent.preventDefault();
@@ -448,7 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "&passwH=" +
         encodeURIComponent(passwH) +
         "&genero=" +
-        encodeURIComponent(genero)  +
+        encodeURIComponent(genero) +
         "&nombUserH=" +
         encodeURIComponent(nombUserH) +
         "&CPH=" +
@@ -465,37 +459,142 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //logica de organizacion
 
-document.addEventListener("DOMContentLoaded", function () {
-  botonOrg.addEventListener("click", function (event) {
-    event.preventDefault();
+botonOrg.addEventListener("click", function (event) {
+  event.preventDefault();
 
-    var formulario = document.createElement("form");
-    formulario.id = "registro-org";
-    formulario.action = "/tu/endpoint"; // Agrega el atributo action
+  var formulario = document.createElement("form");
+  formulario.id = "registro-org";
+  formulario.action = "/signUp.jsp"; // Agrega el atributo action
 
-    formulario.innerHTML = `
-      <input type="text" placeholder="Nombre Organizacion">
-      <input type="text" placeholder="Ubicacion">
-      <input type="email" placeholder="Correo electrónico">
-      <input type="password" placeholder="Contraseña">
-      <input type="text" placeholder="Contactos">
-      <input type="text" placeholder="Redes">
-      <input type="number" placeholder="ID oficial">
-      <input type="number" placeholder="Descripcion ">
-      <button type="submit">Enviar</button>
-          `;
+  formulario.innerHTML = `
+  <div class="form-step active" id="step1">
+    <h2>Nombre de la organizacion</h2>
+    <input type="text" id="NombOrg" placeholder="Nombre de la organizacion" name="NombOrg">
+    <button onclick="nextStep('step1', 'step2')" type="button">Siguiente</button>
+    <button onclick="reloadPage()" type="button">Regresar</button>
+    </div>
 
-    formContainerorg.appendChild(formulario);
-    formulario.addEventListener("submit", function (submitEvent) {
-      submitEvent.preventDefault();
-      // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
-    });
+  <div class="form-step" id="step2">
+    <h2>Ubicacion </h2>
+    <input type="text" id="Ubicacion" placeholder="Ubicacion" name="Ubicacion">
+    <button  onclick="nextStep('step2', 'step3')" type="button">Siguiente</button>
+  </div>
 
-    botonHogar.remove();
-    botonOrg.remove();
-    botonEst.remove();
-    text.remove();
-  });
+  <div class="form-step" id="step3">
+    <h2>Contraseña</h2>
+    <input type="password" id="" placeholder="Contraseña" name="">
+    <button  onclick="nextStep('step3', 'step4')" type="button">Siguiente</button>
+  </div>
+  <div class="form-step" id="step4">
+    <h2>Correo electronico</h2>
+    <input type="email" id="" placeholder="Correo electrónico" name="">
+    <button  onclick="nextStep('step4', 'step5')" type="button">Siguiente</button>
+  </div>
+  <div class="form-step" id="step5">
+    <h2>Contactos</h2>
+    <input type="text" id="" placeholder="Contactos" name="">
+    <button  onclick="nextStep('step5', 'step6')" type="button">Siguiente</button>
+  </div>
+
+  <div class="form-step" id="step6">
+  <h2>Redes</h2>
+  <input type="text" id="" placeholder="Redes" name="">
+  <button  onclick="nextStep('step6', 'pasito7')" type="button">Siguiente</button>
+</div>
+
+<div class="form-step" id="pasito7">
+<h2>ID oficial</h2>
+<input type="text" id="" placeholder="ID oficial" name="">
+
+          <button type="submit">Enviar</button>
+          <button onclick="previousStep('pasito7', 'step6')" type="button">Regresar</button>
+
+</div>
+
+
+
+
+`;
+
+  // Cambiar el tipo de botón a 'button' para evitar el envío del formulario
+  var buttons = formulario.getElementsByTagName("button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].type = "button";
+  }
+
+  var submitButton = formulario.querySelector(
+    "div#pasito7 button[type='button']"
+  );
+  if (submitButton) {
+    submitButton.type = "submit";
+  }
+
+  var submitButton = formulario.querySelector(
+    "div#step9 button[type='button']"
+  );
+  if (submitButton) {
+    submitButton.type = "submit";
+  }
+
+  var backButton2 = formulario.querySelector("div#step2 button[type='button']");
+  backButton2.insertAdjacentHTML(
+    "afterend",
+    `<button onclick="previousStep('step2', 'step1')" type="button">Regresar</button>`
+  );
+
+  // Botón de regresar para el paso 3
+  var backButton3 = formulario.querySelector("div#step3 button[type='button']");
+  backButton3.insertAdjacentHTML(
+    "afterend",
+    `<button onclick="previousStep('step3', 'step2')" type='button'>Regresar</button>`
+  );
+
+  var backButton4 = formulario.querySelector("div#step4 button[type='button']");
+  backButton4.insertAdjacentHTML(
+    "afterend",
+    `<button onclick="previousStep('step4', 'step3')" type="button">Regresar</button>`
+  );
+
+  var backButton5 = formulario.querySelector("div#step5 button[type='button']");
+  backButton5.insertAdjacentHTML(
+    "afterend",
+    `<button onclick="previousStep('step5', 'step4')" type="button">Regresar</button>`
+  );
+
+  var backButton6 = formulario.querySelector("div#step6 button[type='button']");
+  backButton6.insertAdjacentHTML(
+    "afterend",
+    `<button onclick="previousStep('step6', 'step5')" type="button">Regresar</button>`
+  );
+  var backButton7 = formulario.querySelector(
+    "div#pasito7 button[type='button']"
+  );
+  var step7Element = document.getElementById("step8");
+
+  if (backButton7 && step7Element) {
+    backButton8.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('pasito7', 'step6')" type="button">Regresar</button>`
+    );
+  }
+
+  var backButton8 = formulario.querySelector("div#step8 button[type='button']");
+  var step8Element = document.getElementById("step8");
+
+  if (backButton8 && step8Element) {
+    backButton8.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('step8', 'step7')" type="button">Regresar</button>`
+    );
+  }
+
+  formulario.addEventListener("submit", function (submitEvent) {});
+  formContainerorg.appendChild(formulario);
+  botonHogar.remove();
+  botonOrg.remove();
+  botonEst.remove();
+  text.remove();
+  textacc.remove();
 });
 
 // Logica de establecimiento
@@ -505,29 +604,155 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     var formulario = document.createElement("form");
-    formulario.id = "registro-org";
+    formulario.id = "registro-est";
     formulario.action = "/tu/endpoint"; // Agrega el atributo action
 
     formulario.innerHTML = `
-        <input type="text" placeholder="Nombre Organizacion">
-        <input type="text" placeholder="Ubicacion">
-        <input type="email" placeholder="Correo electrónico">
-        <input type="password" placeholder="Contraseña">
-        <input type="text" placeholder="Contactos">
-        <input type="text" placeholder="Redes">
-        <input type="number" placeholder="Descripcion ">
-        <button type="submit">Enviar</button>
-            `;
+  <div class="form-step active" id="step1">
+    <h2>Nombre del establecimiento</h2>
+    <input type="text" id="" placeholder="Nombre del establecimiento" name="">
+    <button onclick="nextStep('step1', 'step2')" type="button">Siguiente</button>
+    <button onclick="reloadPage()" type="button">Regresar</button>
+    </div>
 
+  <div class="form-step" id="step2">
+    <h2>Ubicacion </h2>
+    <input type="text" id="Ubicacion" placeholder="Ubicacion" name="Ubicacion">
+    <button  onclick="nextStep('step2', 'step3')" type="button">Siguiente</button>
+  </div>
+
+  <div class="form-step" id="step3">
+    <h2>Contraseña</h2>
+    <input type="password" id="" placeholder="Contraseña" name="">
+    <button  onclick="nextStep('step3', 'step4')" type="button">Siguiente</button>
+  </div>
+  <div class="form-step" id="step4">
+    <h2>Correo electronico</h2>
+    <input type="email" id="" placeholder="Correo electrónico" name="">
+    <button  onclick="nextStep('step4', 'step5')" type="button">Siguiente</button>
+  </div>
+  <div class="form-step" id="step5">
+    <h2>Contactos</h2>
+    <input type="text" id="" placeholder="Contactos" name="">
+    <button  onclick="nextStep('step5', 'pasito6')" type="button">Siguiente</button>
+  </div>
+
+  <div class="form-step" id="pasito6">
+  <h2>Redes</h2>
+  <input type="text" id="" placeholder="Redes" name="">
+  <button type="submit">Enviar</button>
+  <button onclick="previousStep('pasito6', 'step5')" type="button">Regresar</button>
+</div>
+
+
+
+
+
+
+`;
+
+    // Cambiar el tipo de botón a 'button' para evitar el envío del formulario
+    var buttons = formulario.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].type = "button";
+    }
+
+    var submitButton = formulario.querySelector(
+      "div#pasito7 button[type='button']"
+    );
+    if (submitButton) {
+      submitButton.type = "submit";
+    }
+
+    var submitButton = formulario.querySelector(
+      "div#pasito6 button[type='button']"
+    );
+    if (submitButton) {
+      submitButton.type = "submit";
+    }
+
+    var submitButton = formulario.querySelector(
+      "div#step9 button[type='button']"
+    );
+    if (submitButton) {
+      submitButton.type = "submit";
+    }
+
+    var backButton2 = formulario.querySelector(
+      "div#step2 button[type='button']"
+    );
+    backButton2.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('step2', 'step1')" type="button">Regresar</button>`
+    );
+
+    // Botón de regresar para el paso 3
+    var backButton3 = formulario.querySelector(
+      "div#step3 button[type='button']"
+    );
+    backButton3.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('step3', 'step2')" type='button'>Regresar</button>`
+    );
+
+    var backButton4 = formulario.querySelector(
+      "div#step4 button[type='button']"
+    );
+    backButton4.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('step4', 'step3')" type="button">Regresar</button>`
+    );
+
+    var backButton5 = formulario.querySelector(
+      "div#step5 button[type='button']"
+    );
+    backButton5.insertAdjacentHTML(
+      "afterend",
+      `<button onclick="previousStep('step5', 'step4')" type="button">Regresar</button>`
+    );
+
+    var backButton6 = formulario.querySelector(
+      "div#pasito6 button[type='button']"
+    );
+    var step6Element = document.getElementById("step8");
+
+    if (backButton6 && step6Element) {
+      backButton8.insertAdjacentHTML(
+        "afterend",
+        `<button onclick="previousStep('pasito7', 'step6')" type="button">Regresar</button>`
+      );
+    }
+
+    var backButton7 = formulario.querySelector(
+      "div#pasito7 button[type='button']"
+    );
+    var step7Element = document.getElementById("step8");
+
+    if (backButton7 && step7Element) {
+      backButton8.insertAdjacentHTML(
+        "afterend",
+        `<button onclick="previousStep('pasito7', 'step6')" type="button">Regresar</button>`
+      );
+    }
+
+    var backButton8 = formulario.querySelector(
+      "div#step8 button[type='button']"
+    );
+    var step8Element = document.getElementById("step8");
+
+    if (backButton8 && step8Element) {
+      backButton8.insertAdjacentHTML(
+        "afterend",
+        `<button onclick="previousStep('step8', 'step7')" type="button">Regresar</button>`
+      );
+    }
+
+    formulario.addEventListener("submit", function (submitEvent) {});
     formContainerest.appendChild(formulario);
-    formulario.addEventListener("submit", function (submitEvent) {
-      submitEvent.preventDefault();
-      // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
-    });
-
     botonHogar.remove();
     botonOrg.remove();
     botonEst.remove();
     text.remove();
+    textacc.remove();
   });
 });
