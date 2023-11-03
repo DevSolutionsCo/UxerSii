@@ -731,10 +731,18 @@ document.addEventListener("DOMContentLoaded", function () {
         "application/x-www-form-urlencoded"
       );
       soli.onreadystatechange = function () {
-        if (soli.readyState == 4 && soli.status == 200) {
-          window.location.href = "main.jsp";
-        }
-      };
+        console.log(soli.responseText)
+              var jsonResponse = JSON.parse(soli.responseText);                    
+
+              if (jsonResponse.con1){
+                        window.alert("correo ya registrado");
+                    }else if (jsonResponse.con2){
+                        window.alert("nombre de usuario ya registrado");
+                    }else if (jsonResponse.con3){
+                       window.location.href = "main.jsp";
+                    }
+
+          };
       var params =
         "nombH=" +
         encodeURIComponent(nombre) +
@@ -753,7 +761,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "&nombUserH=" +
         encodeURIComponent(nombUserH) +
         "&CPH=" +
-        encodeURIComponent(CPH);
+        encodeURIComponent(CPH) + 
+        "&tipo=h";
       soli.send(params);
     });
 
@@ -907,7 +916,59 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
-    formulario.addEventListener("submit", function (submitEvent) {});
+    formulario.addEventListener("submit", function (submitEvent) {
+      submitEvent.preventDefault();
+
+      // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
+      var nombORG = document.getElementsByName("nombORG")[0].value;
+      var UbicacionORG = document.getElementsByName("UbicacionORG")[0].value;
+      var passwORG = document.getElementsByName("passwORG")[0].value;
+      var correoORG = document.getElementsByName("correoORG")[0].value;
+      var contactoORG = document.getElementsByName("contactoORG")[0].value;
+      var RedesORG = document.getElementsByName("RedesORG")[0].value;
+      var idORG = document.getElementsByName("idORG")[0].value;
+
+      var soli = new XMLHttpRequest();
+      soli.open("POST", "signUp.jsp", true);
+      soli.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      soli.onreadystatechange = function () {
+        console.log(soli.responseText)
+              var jsonResponse = JSON.parse(soli.responseText);                    
+
+              if (jsonResponse.con1){
+                        window.alert("correo ya registrado");
+                    }else if (jsonResponse.con2){
+                        window.alert("id de organizacion ya registrado o incorecto");
+                    }else if(jsonResponse.con3){
+                       window.location.href = "main.jsp";
+                    }
+
+          
+      };
+      var params =
+        "nombORG=" +
+        encodeURIComponent(nombORG) +
+        "&UbicacionORG=" +
+        encodeURIComponent(UbicacionORG) +
+        "&passwORG=" +
+        encodeURIComponent(passwORG) +
+        "&correoORG=" +
+        encodeURIComponent(correoORG) +
+        "&contactoORG=" +
+        encodeURIComponent(contactoORG) +
+        "&RedesORG=" +
+        encodeURIComponent(RedesORG) +
+        "&idORG=" +
+        encodeURIComponent(idORG) +
+        "&tipo=o";
+      soli.send(params);
+    });
+        
+        
+        
     formContainerorg.appendChild(formulario);
     botonHogar.remove();
     botonOrg.remove();

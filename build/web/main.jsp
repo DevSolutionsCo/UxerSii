@@ -11,12 +11,9 @@
     <title>UxerSii</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< Updated upstream:web/main.jsp
     <link rel="stylesheet" href="styles/MainStyle.css" />
-=======
     <link rel="stylesheet" href="indexStyle.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> Stashed changes:web/index.jsp
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"

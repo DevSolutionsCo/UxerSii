@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package corcho.users;
+package corcho.services;
 
 /**
  *
@@ -20,7 +20,8 @@ public class UserOrgani {
     private String tipo_redorg;
     private String desc_org;
 
-   
+    
+
     public int getId_ofc() {
         return id_ofc;
     }

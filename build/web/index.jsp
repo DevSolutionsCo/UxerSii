@@ -1,10 +1,3 @@
-<%-- 
-    Document   : index.jsp
-    Created on : 29 oct. 2023, 11:14:36
-    Author     : javis
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +10,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles/indexStyle.css" />
-    <title>Document</title>
+    <link
+      rel="shortcut icon"
+      href="resources/Logo-uxersii.svg"
+      type="image/x-icon"
+    />
+    <title>UxerSii</title>
   </head>
   <body>
     <!-- NAVBAR -->
@@ -82,12 +80,11 @@
     <!---->
 
     <section class="container my-5">
-      <h1>¿asdhasxdj</h1>
+      <h1>¿Que es UxerSii?</h1>
       <div class="contenedor">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor,
-          nisl a tincidunt dapibus, mi ligula efficitur mauris, nec condimentum
-          justo justo et nunc.
+          Es una aplicacion que busca crear un impacto en el medio ambiente
+          ayudando a que no se desperdicie tanta comida.
         </p>
         <img
           src="https://via.placeholder.com/200x200"
@@ -107,9 +104,9 @@
             alt="..."
           />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor,
-            nisl a tincidunt dapibus, mi ligula efficitur mauris, nec
-            condimentum justo justo et nunc.
+            Buscamos ayudar a concientizar del impacto ambiental que genera el
+            desperdiciar tanta comida, tambien se busca reducir drasticamente el
+            desperdicio de comida.
           </p>
         </div>
       </div>
