@@ -1,0 +1,38 @@
+body {
+  background: #f6f3e4;
+}
+
+.border-button {
+  background-color: #adc178; /* Color de fondo */
+  border: 2px solid #adc178; /* Borde del botón */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Decoración del texto (en este caso, ninguno) */
+  display: inline-block; /* Mostrar como bloque en línea */
+  font-size: 16px; /* Tamaño del texto */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
+  border-radius: 5px; /* Radio de los bordes para hacerlos redondeados */
+  font-weight: bold;
+}
+
+/* Cambio de estilo al pasar el mouse sobre el botón */
+.border-button:hover {
+  background-color: #dde5b6;
+  color: #adc178;
+  font-weight: bold;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  max-height: 300px;
+  min-height: 300px;
+}
+
+p {
+  font-size: 24px;
+}
