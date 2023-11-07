@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.DriverManager;
 import corcho.users.UserHogar;
-import corcho.conecction.Conexion;
 import java.text.SimpleDateFormat;
 
 /**
@@ -27,7 +26,11 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 // Convierte la fecha a String usando el formato especificado
 
-    
+        public String user = "root";
+    public String password = "1234";
+    public String db = "uxersii";
+    public String port = "3306";
+    public String dbURL = "jdbc:mysql://localhost:3306/uxersii";
     
     public void agregarHogar(String correoH, String nombH,
             String apellidoPaterno, String apellidoMaterno, String descripH, Date fechaNacimiento,
@@ -36,7 +39,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Conexion con = new Conexion() {};
         
         
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,7 +48,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
              
         int row =0;
         int si = 0;
-        conn = DriverManager.getConnection(con.getDbURL(), con.user , con.password);
+        conn = DriverManager.getConnection(dbURL, user , password);
         
              
         
