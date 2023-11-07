@@ -41,6 +41,8 @@ correo_hog nvarchar (50),
 contra_hog nvarchar (25),
 desc_hog text,
 genero nvarchar(15),
+nombUserH nvarchar(15),
+codigoPostal int(8),
 id_eve int,
 id_alim int,
 id_pryre int,
@@ -571,9 +573,6 @@ id_est int,
 foreign key (id_est) references usuario_establecimiento (id_est) on delete cascade on update cascade,
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
-
-
-
 
 
 
