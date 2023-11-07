@@ -4,7 +4,6 @@
  */
 package corcho.services;
 
-import corcho.conecction.Conexion;
 import corcho.users.UserHogar;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,7 +22,11 @@ public class PerfilHogar extends UserHogar{
     private ArrayList<String> insignias;
     private String datosEsta;
 
-    
+    public String user = "root";
+    public String password = "1234";
+    public String db = "uxersii";
+    public String port = "3306";
+    public String dbURL = "jdbc:mysql://localhost:3306/uxersii";
    
     
     public boolean registroHog(String correoH, String nombH,
@@ -33,7 +36,6 @@ public class PerfilHogar extends UserHogar{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Conexion con = new Conexion() {};
         
         
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -43,7 +45,7 @@ public class PerfilHogar extends UserHogar{
              
         int row =0;
         int si = 0;
-        conn = DriverManager.getConnection(con.getDbURL(), con.user , con.password);
+        conn = DriverManager.getConnection(dbURL, user , password);
         
              
         

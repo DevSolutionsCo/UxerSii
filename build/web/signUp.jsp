@@ -4,7 +4,6 @@
     Author     : javis
 --%>
 
-<%@page import="corcho.conecction.Conexion"%>
 <%@page import="corcho.services.PerfilHogar"%>
 <%@page import="corcho.services.PerfilOrgani"%>
 <%@page import="java.util.Date"%>
@@ -45,8 +44,11 @@
          Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Conexion con = new Conexion() {};
-        
+    String user = "root";
+    String password = "1234";
+    String db = "uxersii";
+    String port = "3306";
+    String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
         
         Class.forName("com.mysql.cj.jdbc.Driver");
          try {
@@ -55,7 +57,7 @@
              
         int row =0;
         int si = 0;
-        conn = DriverManager.getConnection(con.getDbURL(), con.user , con.password);
+        conn = DriverManager.getConnection(dbURL, user , password);
         
              
         
@@ -149,8 +151,11 @@
          Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Conexion con = new Conexion() {};
-        
+            String user = "root";
+    String password = "1234";
+    String db = "uxersii";
+     String port = "3306";
+     String dbURL = "jdbc:mysql://localhost:3306/uxersii";
         
         Class.forName("com.mysql.cj.jdbc.Driver");
          try {
@@ -159,7 +164,7 @@
              
         int row =0;
         int si = 0;
-        conn = DriverManager.getConnection(con.getDbURL(), con.user , con.password);
+        conn = DriverManager.getConnection(dbURL, user , password);
         
              
         
