@@ -4,7 +4,6 @@
  */
 package corcho.services;
 
-import corcho.conecction.Conexion;
 import corcho.users.UserHogar;
 import corcho.users.UserOrgani;
 import java.sql.Connection;
@@ -23,7 +22,11 @@ public class PerfilOrgani extends UserOrgani{
     
     private ArrayList<String> insignias;
     private String datosEsta;
-    
+        public String user = "root";
+    public String password = "1234";
+    public String db = "uxersii";
+    public String port = "3306";
+    public String dbURL = "jdbc:mysql://localhost:3306/uxersii";
    
     
     public boolean registroOrg(String nombORG, String UbicacionORG,
@@ -36,7 +39,6 @@ public class PerfilOrgani extends UserOrgani{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Conexion con = new Conexion() {};
         
         
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,7 +48,7 @@ public class PerfilOrgani extends UserOrgani{
              
         int row =0;
         int si = 0;
-        conn = DriverManager.getConnection(con.getDbURL(), con.user , con.password);
+        conn = DriverManager.getConnection(dbURL, user , password);
         
              System.out.println(nombORG);
         String query = "update usuario_organizacion set nombre_org=?, cp_org=?, contra_org=?, correo_org=?, tel_org=?, link_org=? where id_ofc=?";
