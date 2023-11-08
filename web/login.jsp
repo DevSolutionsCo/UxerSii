@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,11 +35,11 @@
       </div>
       <div class="form-container sign-in">
         <article>
-          <h1>Inicio de sesión</h1>
+          <h1>Inicio de sesiÃ³n</h1>
 
           <span>Ingresa tus credenciales</span>
           <input type="email" placeholder="Correo electronico" />
-          <input type="password" placeholder="Contraseña" />
+          <input type="password" placeholder="ContraseÃ±a" />
 
           <button>Inicio de sesion</button>
         </article>
@@ -47,13 +47,13 @@
       <div class="toggle-container">
         <div class="toggle">
           <div class="toggle-panel toggle-left">
-            <h1>¡Bienvenido de vuelta!</h1>
-            <p>Inicia sesión con una cuenta ya existente</p>
+            <h1>Â¡Bienvenido de vuelta!</h1>
+            <p>Inicia sesiÃ³n con una cuenta ya existente</p>
             <button class="hidden" id="login">Inicio de sesion</button>
           </div>
           <div class="toggle-panel toggle-right">
-            <h1>¡Hola!</h1>
-            <p>Registrate si aún no tienes una cuenta</p>
+            <h1>Â¡Hola!</h1>
+            <p>Registrate si aÃºn no tienes una cuenta</p>
             <button class="hidden" id="register">Crear cuenta</button>
           </div>
         </div>
