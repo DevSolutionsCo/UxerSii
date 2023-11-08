@@ -48,7 +48,7 @@
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item">
-              <a class="nav-link" href="#UsarApp">Â¿CÃ³mo usar la app?</a>
+              <a class="nav-link" href="#UsarApp">¿Como usar la app</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -80,7 +80,7 @@
     <!---->
 
     <section class="container my-5">
-      <h1>Â¿Que es UxerSii?</h1>
+      <h1>¿Qué es UxerSii?</h1>
       <div class="contenedor">
         <p>
           Es una aplicacion que busca crear un impacto en el medio ambiente
@@ -96,7 +96,7 @@
 
     <section class="bg-light py-5">
       <div class="container">
-        <h2 class="text-center">Â¿CuÃ¡l es el objetivo de UxerSii?</h2>
+        <h2 class="text-center">¿Cuál es el objetivo de UxerSii?</h2>
         <div class="contenedor">
           <img
             src="https://via.placeholder.com/200x200"
@@ -113,7 +113,7 @@
     </section>
 
     <section class="container my-5" id="UsarApp">
-      <h2 class="pb-4 text-center">Â¿CÃ³mo usar la app?</h2>
+      <h2 class="pb-4 text-center">¿Cómo usar la app?</h2>
 
       <!-- Agrega un enlace para descargar el PDF -->
       <div style="display: flex; justify-content: center">

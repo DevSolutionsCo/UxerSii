@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,7 +39,7 @@
 
           <span>Ingresa tus credenciales</span>
           <input type="email" placeholder="Correo electronico" />
-          <input type="password" placeholder="Contraseña" />
+          <input type="password" placeholder="ContraseÃ±a" />
 
           <button>Inicio de sesion</button>
         </article>
