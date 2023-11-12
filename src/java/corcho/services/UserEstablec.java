@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package corcho.users;
+package corcho.services;
 
 /**
  *
@@ -20,7 +20,18 @@ public class UserEstablec {
     private String ubi_Est;
     private String tel_Est;
 
-   
+    public UserEstablec(int id_Est, String correo_Est, String nomb_Est, String contra_Est, String tipo_redest, String link_redest, String desc_Est, String ubi_Est, String tel_Est) {
+        this.id_Est = id_Est;
+        this.correo_Est = correo_Est;
+        this.nomb_Est = nomb_Est;
+        this.contra_Est = contra_Est;
+        this.tipo_redest = tipo_redest;
+        this.link_redest = link_redest;
+        this.desc_Est = desc_Est;
+        this.ubi_Est = ubi_Est;
+        this.tel_Est = tel_Est;
+    }
+
     public int getId_Est() {
         return id_Est;
     }

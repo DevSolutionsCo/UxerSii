@@ -4,6 +4,7 @@
     Author     : javis
 --%>
 
+<%@page import="corcho.services.PerfilEstablec"%>
 <%@page import="corcho.services.PerfilHogar"%>
 <%@page import="corcho.services.PerfilOrgani"%>
 <%@page import="java.util.Date"%>
@@ -171,6 +172,7 @@
                 String consulta1 = "select count(*) from usuario_organizacion where correo_org = ?";
                 String consulta2 = "select count(*) from usuario_organizacion where nombre_org= ?";
                 String consulta3 = "select count(*) from usuario_organizacion where id_ofc= ?";
+                String consulta4 = "select count(correo_org) from usuario_organizacion where id_ofc= ?";
 
 
                 PreparedStatement pstmt1 = conn.prepareStatement(consulta1);
@@ -179,10 +181,13 @@
                 pstmt2.setString(1, nombORG);
                 PreparedStatement pstmt3 = conn.prepareStatement(consulta3);
                 pstmt3.setString(1, idORG);
+                PreparedStatement pstmt4 = conn.prepareStatement(consulta4);
+                pstmt4.setString(1, idORG);
 
                 ResultSet rs1 = pstmt1.executeQuery();
                 ResultSet rs2 = pstmt2.executeQuery();
                 ResultSet rs3 = pstmt3.executeQuery();
+                ResultSet rs4 = pstmt4.executeQuery();
 
                 rs1.next();
                 int count1 = rs1.getInt(1);
@@ -190,6 +195,8 @@
                 int count2 = rs2.getInt(1);
                 rs3.next();
                 int count3 = rs3.getInt(1);
+                rs4.next();
+                int count4 = rs4.getInt(1);
 
                
                 
@@ -214,6 +221,15 @@
                     String jsonResponse = "{ \"con2\": " + con2 + " }";
 
                     // Escribe la respuesta JSON
+                    response.getWriter().write(jsonResponse);
+                    }else if(count4 > 0){
+                        boolean con4 = true;
+                        
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    // Construye la respuesta JSON manualmente
+                    String jsonResponse = "{ \"con4\": " + con4 + " }";
                     response.getWriter().write(jsonResponse);
                     }else if(count3 > 0)
                       {
@@ -246,8 +262,119 @@
                     conn.close();
                 }
         }
-        }
+        
+        }else if("e".equals(tipo)){
+        
+        
+         String nombEST = request.getParameter("nombEST");
+         String UbicacionEST = request.getParameter("UbicacionEST");
+         String passEST = request.getParameter("passEST");
+         String correoEST = request.getParameter("correoEST");
+         String contactosEST = request.getParameter("contactosEST");
+         String redesEST = request.getParameter("redesEST");
          
+                      System.out.println(correoEST);
+
+
+         Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+            String user = "root";
+    String password = "1234";
+    String db = "uxersii";
+     String port = "3306";
+     String dbURL = "jdbc:mysql://localhost:3306/uxersii";
+        
+        Class.forName("com.mysql.cj.jdbc.Driver");
+         try {
+             
+             
+             
+        int row =0;
+        int si = 0;
+        conn = DriverManager.getConnection(dbURL, user , password);
+        
+             
+        
+                String consulta1 = "select count(*) from usuario_establecimiento where correo_est = ?";
+                String consulta2 = "select count(*) from usuario_establecimiento where nombre_est= ?";
+
+
+                PreparedStatement pstmt1 = conn.prepareStatement(consulta1);
+                pstmt1.setString(1, correoEST);
+                PreparedStatement pstmt2 = conn.prepareStatement(consulta2);
+                pstmt2.setString(1, nombEST);
+
+                ResultSet rs1 = pstmt1.executeQuery();
+                ResultSet rs2 = pstmt2.executeQuery();
+
+
+                rs1.next();
+                int count1 = rs1.getInt(1);
+                rs2.next();
+                int count2 = rs2.getInt(1);
+
+
+
+               
+                
+               
+                if (count1 > 0) {
+                    boolean con1 = true;
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    // Construye la respuesta JSON manualmente
+                    String jsonResponse = "{ \"con1\": " + con1 + " }";
+
+                    // Escribe la respuesta JSON
+                    response.getWriter().write(jsonResponse);
+                }else if (count2 > 0) {
+                    boolean con2 = true;
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    // Construye la respuesta JSON manualmente
+                    String jsonResponse = "{ \"con2\": " + con2 + " }";
+
+                    // Escribe la respuesta JSON
+                    response.getWriter().write(jsonResponse);
+                }else
+                      {
+                        boolean con3 = true;
+                            
+           
+                     PerfilEstablec obj = new PerfilEstablec();
+                     obj.registroEst(nombEST, UbicacionEST, passEST, correoEST, contactosEST, redesEST);
+                     
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    // Construye la respuesta JSON manualmente
+                    String jsonResponse = "{ \"con3\": " + con3 + " }";
+
+                    // Escribe la respuesta JSON
+                    response.getWriter().write(jsonResponse);
+                    }
+                    
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+        
+        }
+        }
+        
+        
+        
 
     %>
    

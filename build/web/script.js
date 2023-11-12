@@ -936,16 +936,17 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       soli.onreadystatechange = function () {
         console.log(soli.responseText)
-              var jsonResponse = JSON.parse(soli.responseText);                    
-
+              var jsonResponse = JSON.parse(soli.responseText); 
+              
               if (jsonResponse.con1){
                         window.alert("correo ya registrado");
                     }else if (jsonResponse.con2){
-                        window.alert("id de organizacion ya registrado o incorecto");
+                        window.alert("id de organizacion incorecto");
+                    }else if (jsonResponse.con4){
+                        window.alert("id de organizacion ya registrado");
                     }else if(jsonResponse.con3){
                        window.location.href = "main.jsp";
                     }
-
           
       };
       var params =
@@ -985,7 +986,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var formulario = document.createElement("form");
     formulario.id = "registro-est";
-    formulario.action = "/tu/endpoint"; // Agrega el atributo action
+    formulario.action = "/signUp.jsp"; // Agrega el atributo action
 
     formulario.innerHTML = `
   <div class="form-step active" id="step1">
@@ -1127,7 +1128,51 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
-    formulario.addEventListener("submit", function (submitEvent) {});
+    formulario.addEventListener("submit", function (submitEvent) {
+        var nombEST = document.getElementsByName("nombEST")[0].value;
+      var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
+      var passEST = document.getElementsByName("passEST")[0].value;
+      var correoEST = document.getElementsByName("correoEST")[0].value;
+      var contactosEST = document.getElementsByName("contactosEST")[0].value;
+      var redesEST = document.getElementsByName("redesEST")[0].value;
+
+      var soli = new XMLHttpRequest();
+      soli.open("POST", "signUp.jsp", true);
+      soli.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      soli.onreadystatechange = function () {
+        console.log(soli.responseText)
+              var jsonResponse = JSON.parse(soli.responseText);                    
+
+              if (jsonResponse.con1){
+                        window.alert("correo ya registrado");
+                    }else if (jsonResponse.con2){
+                        window.alert("nombre de establecimiento ya registrado");
+                    }else if (jsonResponse.con3){
+                       window.location.href = "main.jsp";
+                    }
+
+          };
+      var params =
+        "nombEST=" +
+        encodeURIComponent(nombEST) +
+        "&UbicacionEST=" +
+        encodeURIComponent(UbicacionEST) +
+        "&passEST=" +
+        encodeURIComponent(passEST) +
+        "&correoEST=" +
+        encodeURIComponent(correoEST) +
+        "&contactosEST=" +
+        encodeURIComponent(contactosEST) +
+        "&redesEST=" +
+        encodeURIComponent(redesEST) +
+        "&tipo=e";
+      soli.send(params);
+        
+        
+    });
     formContainerest.appendChild(formulario);
     botonHogar.remove();
     botonOrg.remove();
