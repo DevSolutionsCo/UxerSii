@@ -20,6 +20,9 @@
     />
   </head>
   <body>
+      <%
+          String user = (String) session.getAttribute("user");
+      %>
     <div class="navbar">
       <div class="burger-icon" id="burger-icon">
         <i class="material-icons">menu</i>
@@ -29,7 +32,7 @@
           <i class="material-icons">notifications</i>
           <i class="material-icons">chat</i>
           <img src=" asa" class="user-avatar" />
-          <div class="user-name">Hola, UxerSiito</div>
+          <div class="user-name">Hola, <%=user%></div>
           <button class="dropdown-button">
             <i class="material-icons" style="padding: 0px 0px"
               >keyboard_arrow_down</i

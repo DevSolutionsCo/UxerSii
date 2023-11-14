@@ -20,6 +20,7 @@
   </head>
 
   <body>
+      
     <div class="container" id="container">
       <div class="form-container sign-up">
         <article id="form-container">
@@ -30,6 +31,8 @@
           <button id="viewform-org">Organizacion</button>
           <div id="form-org"></div>
           <button id="viewform-est">Establecimiento</button>
+          
+          
           <div id="form-est"></div>
         </article>
       </div>

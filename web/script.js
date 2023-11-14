@@ -13,6 +13,7 @@ loginBtn.addEventListener("click", () => {
 var botonHogar = document.getElementById("viewform-hogar");
 var botonOrg = document.getElementById("viewform-org");
 var botonEst = document.getElementById("viewform-est");
+var botonSAL = document.getElementById("viewform-SAL");
 var text = document.getElementById("textitoborra");
 var formContainer = document.getElementById("form-container");
 
@@ -1129,6 +1130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     formulario.addEventListener("submit", function (submitEvent) {
+        submitEvent.preventDefault();
         var nombEST = document.getElementsByName("nombEST")[0].value;
       var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
       var passEST = document.getElementsByName("passEST")[0].value;
@@ -1142,6 +1144,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Content-type",
         "application/x-www-form-urlencoded"
       );
+      
+      
       soli.onreadystatechange = function () {
         console.log(soli.responseText)
               var jsonResponse = JSON.parse(soli.responseText);                    
@@ -1155,10 +1159,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
           };
-      var params =
+        
+        var params =
         "nombEST=" +
         encodeURIComponent(nombEST) +
-        "&UbicacionEST=" +
+        "&ubicacionEST=" +
         encodeURIComponent(UbicacionEST) +
         "&passEST=" +
         encodeURIComponent(passEST) +
@@ -1170,7 +1175,6 @@ document.addEventListener("DOMContentLoaded", function () {
         encodeURIComponent(redesEST) +
         "&tipo=e";
       soli.send(params);
-        
         
     });
     formContainerest.appendChild(formulario);
