@@ -110,6 +110,13 @@
                      PerfilHogar obj = new PerfilHogar();
                      obj.registroHog(correoH, nombH, apellidoP, apellidoM, nombUserH, sqlDate, genero, passwH, CPH);
                      
+                     session.setAttribute("nombUserH", nombUserH);
+                     session.setAttribute("apellidoP", apellidoP);
+                     session.setAttribute("nombH", nombH);
+                     session.setAttribute("apellidoM", apellidoM);
+                     session.setAttribute("genero", genero);
+                     session.setAttribute("passwH", passwH);
+                     session.setAttribute("correoH", correoH);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -238,7 +245,13 @@
                            
                      PerfilOrgani obj = new PerfilOrgani();
                      obj.registroOrg(nombORG, UbicacionORG, passwORG, correoORG, contactoORG, RedesORG, idORG);
-                     
+                     session.setAttribute("nombORG", nombORG);
+                     session.setAttribute("UbicacionORG", UbicacionORG);
+                     session.setAttribute("passwORG", passwORG);
+                     session.setAttribute("correoORG", correoORG);
+                     session.setAttribute("contactoORG", contactoORG);
+                     session.setAttribute("RedesORG", RedesORG);
+                     session.setAttribute("idORG", idORG);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -267,13 +280,13 @@
         
         
          String nombEST = request.getParameter("nombEST");
-         String UbicacionEST = request.getParameter("UbicacionEST");
+         String ubicacionEST = request.getParameter("ubicacionEST");
          String passEST = request.getParameter("passEST");
          String correoEST = request.getParameter("correoEST");
          String contactosEST = request.getParameter("contactosEST");
          String redesEST = request.getParameter("redesEST");
          
-                      System.out.println(correoEST);
+                      System.out.println(contactosEST);
 
 
          Connection conn = null;
@@ -294,27 +307,27 @@
         int si = 0;
         conn = DriverManager.getConnection(dbURL, user , password);
         
-             
         
-                String consulta1 = "select count(*) from usuario_establecimiento where correo_est = ?";
-                String consulta2 = "select count(*) from usuario_establecimiento where nombre_est= ?";
+            String consulta1 = "select count(*) from usuario_establecimiento where correo_est = ?";
+            String consulta2 = "select count(*) from usuario_establecimiento where nombre_est= ?";
+
 
 
                 PreparedStatement pstmt1 = conn.prepareStatement(consulta1);
                 pstmt1.setString(1, correoEST);
                 PreparedStatement pstmt2 = conn.prepareStatement(consulta2);
                 pstmt2.setString(1, nombEST);
+               
 
                 ResultSet rs1 = pstmt1.executeQuery();
                 ResultSet rs2 = pstmt2.executeQuery();
-
+                
 
                 rs1.next();
                 int count1 = rs1.getInt(1);
                 rs2.next();
                 int count2 = rs2.getInt(1);
-
-
+                
 
                
                 
@@ -329,33 +342,39 @@
 
                     // Escribe la respuesta JSON
                     response.getWriter().write(jsonResponse);
-                }else if (count2 > 0) {
-                    boolean con2 = true;
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
-
-                    // Construye la respuesta JSON manualmente
-                    String jsonResponse = "{ \"con2\": " + con2 + " }";
-
-                    // Escribe la respuesta JSON
-                    response.getWriter().write(jsonResponse);
                 }else
-                      {
+                    if(count2 > 0){
+                        boolean con2 = true;
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+
+                        // Construye la respuesta JSON manualmente
+                        String jsonResponse = "{ \"con2\": " + con2 + " }";
+
+                        // Escribe la respuesta JSON
+                        response.getWriter().write(jsonResponse);
+                        }else{
                         boolean con3 = true;
-                            
-           
-                     PerfilEstablec obj = new PerfilEstablec();
-                     obj.registroEst(nombEST, UbicacionEST, passEST, correoEST, contactosEST, redesEST);
-                     
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
 
-                    // Construye la respuesta JSON manualmente
-                    String jsonResponse = "{ \"con3\": " + con3 + " }";
+                        // Construye la respuesta JSON manualmente
+                        String jsonResponse = "{ \"con3\": " + con3 + " }";
 
-                    // Escribe la respuesta JSON
-                    response.getWriter().write(jsonResponse);
-                    }
+                        // Escribe la respuesta JSON
+                        response.getWriter().write(jsonResponse);
+                        
+                        PerfilEstablec obj = new PerfilEstablec();
+                        obj.registroEst(nombEST, ubicacionEST, passEST, correoEST, contactosEST, redesEST);
+                        session.setAttribute("nombEST", nombEST);
+                        session.setAttribute("ubicacionEST", ubicacionEST);
+                        session.setAttribute("passEST", passEST);
+                        session.setAttribute("correoEST", correoEST);
+                        session.setAttribute("contactosEST", contactosEST);
+                        session.setAttribute("redesEST", redesEST);
+    
+                        
+                        }
                     
             } catch (Exception e) {
                 e.printStackTrace();
@@ -369,8 +388,8 @@
                 if (conn != null) {
                     conn.close();
                 }
-        
         }
+        
         }
         
         

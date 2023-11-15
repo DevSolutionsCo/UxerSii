@@ -13,6 +13,7 @@ loginBtn.addEventListener("click", () => {
 var botonHogar = document.getElementById("viewform-hogar");
 var botonOrg = document.getElementById("viewform-org");
 var botonEst = document.getElementById("viewform-est");
+var botonSAL = document.getElementById("viewform-SAL");
 var text = document.getElementById("textitoborra");
 var formContainer = document.getElementById("form-container");
 
@@ -275,7 +276,7 @@ function nextStepH(currentStepId, nextStepId) {
       if (!validaPass(passwHInput)) {
         Toast.fire({
           icon: "error",
-          title: "Ingresa una contraseña de 6 - 20 caracteres",
+          title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
         });
         break;
       } else {
@@ -377,7 +378,7 @@ function nextStepO(currentStepId, nextStepId) {
       if (!validaPass(passwORGInput)) {
         Toast.fire({
           icon: "error",
-          title: "Ingresa una contraseña de 6 - 20 caracteres",
+          title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
         });
         break;
       } else {
@@ -491,7 +492,7 @@ function nextStepE(currentStepId, nextStepId) {
       if (!validaPass(passEST)) {
         Toast.fire({
           icon: "error",
-          title: "Ingresa una contraseña de 6 - 20 caracteres",
+          title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
         });
         break;
       } else {
@@ -600,14 +601,14 @@ document.addEventListener("DOMContentLoaded", function () {
       <button  onclick="nextStepH('step4', 'step5')" type="button">Siguiente</button>
     </div>
     <div class="form-step" id="step5">
-      <h2>Correo Electrónico</h2>
-      <input type="email" id="correoH" placeholder="Correo electrónico" name="correoH">
+      <h2>Correo Electronico</h2>
+      <input type="email" id="correoH" placeholder="Correo electronico" name="correoH">
       <button  onclick="nextStepH('step5', 'step6')" type="button">Siguiente</button>
     </div>
 
     <div class="form-step" id="step6">
-    <h2>Contraseña</h2>
-    <input type="password" id="passwH" placeholder="Contraseña" name="passwH">
+    <h2>Contrase&#241;a</h2>
+    <input type="password" id="passwH" placeholder="Contrase&#241;a" name="passwH">
     <button  onclick="nextStepH('step6', 'step7')" type="button">Siguiente</button>
   </div>
 
@@ -798,8 +799,8 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   <div class="form-step" id="step3">
-    <h2>Contraseña</h2>
-    <input type="password" id="passwORG" placeholder="Contraseña" name="passwORG">
+    <h2>Contrase&#241;a</h2>
+    <input type="password" id="passwORG" placeholder="Contrase&#241;a" name="passwORG">
     <button  onclick="nextStepO('step3', 'step4')" type="button">Siguiente</button>
   </div>
   <div class="form-step" id="step4">
@@ -1003,8 +1004,8 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   <div class="form-step" id="step3">
-    <h2>Contraseña</h2>
-    <input type="password" id="passEST" placeholder="Contraseña" name="passEST">
+    <h2>Contrase&#241;a</h2>
+    <input type="password" id="passEST" placeholder="Contrase&#241;a" name="passEST">
     <button  onclick="nextStepE('step3', 'step4')" type="button">Siguiente</button>
   </div>
   <div class="form-step" id="step4">
@@ -1129,6 +1130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     formulario.addEventListener("submit", function (submitEvent) {
+        submitEvent.preventDefault();
         var nombEST = document.getElementsByName("nombEST")[0].value;
       var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
       var passEST = document.getElementsByName("passEST")[0].value;
@@ -1142,6 +1144,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Content-type",
         "application/x-www-form-urlencoded"
       );
+      
+      
       soli.onreadystatechange = function () {
         console.log(soli.responseText)
               var jsonResponse = JSON.parse(soli.responseText);                    
@@ -1155,10 +1159,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
           };
-      var params =
+        
+        var params =
         "nombEST=" +
         encodeURIComponent(nombEST) +
-        "&UbicacionEST=" +
+        "&ubicacionEST=" +
         encodeURIComponent(UbicacionEST) +
         "&passEST=" +
         encodeURIComponent(passEST) +
@@ -1170,7 +1175,6 @@ document.addEventListener("DOMContentLoaded", function () {
         encodeURIComponent(redesEST) +
         "&tipo=e";
       soli.send(params);
-        
         
     });
     formContainerest.appendChild(formulario);
