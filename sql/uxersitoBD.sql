@@ -42,16 +42,7 @@ contra_hog nvarchar (25),
 desc_hog text,
 genero nvarchar(15),
 nombUserH nvarchar(15),
-codigoPostal int(8),
-id_eve int,
-id_alim int,
-id_pryre int,
-id_dona int,
-foreign key (id_eve) references eventos (id_eve) on delete cascade on update cascade,
-foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade,
-foreign key (id_pryre) references chatbot (id_pryre) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
-);
+codigoPostal int(8));
 
 create table hogar_eve(
 id_eve int,
@@ -90,16 +81,7 @@ correo_est nvarchar(50),
 tel_est nvarchar(20),
 desc_est text,
 tipo_redest nvarchar(12),
-link_redest nvarchar(250),
-id_eve int,
-id_alim int,
-id_pryre int,
-id_dona int,
-foreign key (id_eve) references eventos (id_eve) on delete cascade on update cascade,
-foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade,
-foreign key (id_pryre) references chatbot (id_pryre) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
-);
+link_redest nvarchar(250));
 
 create table estable_eve(
 id_est int,
@@ -138,14 +120,7 @@ correo_org nvarchar(50),
 desc_org text,
 tel_org nvarchar(20),
 tipo_redorg nvarchar(12),
-link_org nvarchar(250),
-id_eve int,
-id_alim int,
-id_dona int,
-foreign key (id_eve) references eventos (id_eve) on delete cascade on update cascade,
-foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
-);
+link_org nvarchar(250));
 
 
 insert into usuario_organizacion (id_ofc) values 

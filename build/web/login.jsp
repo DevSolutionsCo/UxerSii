@@ -39,7 +39,7 @@
 
           <span>Ingresa tus credenciales</span>
           <input type="email" placeholder="Correo electronico" />
-          <input type="password" placeholder="ContraseÃ±a" />
+          <input type="password" placeholder="Contraseña" />
 
           <button>Inicio de sesion</button>
         </article>
