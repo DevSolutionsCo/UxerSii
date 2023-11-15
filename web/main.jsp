@@ -100,7 +100,7 @@
           <% }else if (tipo==3){ %>
           <div class="user-name">Hola, <%=userE%></div>
           <% }else{ response.sendRedirect("login.jsp"); } %>
-          <div class="user-name">Hola, UxerSiito</div>
+          
           <button class="dropdown-button" id="drop">
             <i class="material-icons" style="padding: 0px 0px"
               >keyboard_arrow_down</i
