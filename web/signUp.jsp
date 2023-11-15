@@ -109,7 +109,14 @@
                             
                      PerfilHogar obj = new PerfilHogar();
                      obj.registroHog(correoH, nombH, apellidoP, apellidoM, nombUserH, sqlDate, genero, passwH, CPH);
-                     session.setAttribute("user", nombUserH);
+                     
+                     session.setAttribute("nombUserH", nombUserH);
+                     session.setAttribute("apellidoP", apellidoP);
+                     session.setAttribute("nombH", nombH);
+                     session.setAttribute("apellidoM", apellidoM);
+                     session.setAttribute("genero", genero);
+                     session.setAttribute("passwH", passwH);
+                     session.setAttribute("correoH", correoH);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -238,7 +245,13 @@
                            
                      PerfilOrgani obj = new PerfilOrgani();
                      obj.registroOrg(nombORG, UbicacionORG, passwORG, correoORG, contactoORG, RedesORG, idORG);
-                     session.setAttribute("user", nombORG);
+                     session.setAttribute("nombORG", nombORG);
+                     session.setAttribute("UbicacionORG", UbicacionORG);
+                     session.setAttribute("passwORG", passwORG);
+                     session.setAttribute("correoORG", correoORG);
+                     session.setAttribute("contactoORG", contactoORG);
+                     session.setAttribute("RedesORG", RedesORG);
+                     session.setAttribute("idORG", idORG);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -353,7 +366,13 @@
                         
                         PerfilEstablec obj = new PerfilEstablec();
                         obj.registroEst(nombEST, ubicacionEST, passEST, correoEST, contactosEST, redesEST);
-                        session.setAttribute("user", nombEST);
+                        session.setAttribute("nombEST", nombEST);
+                        session.setAttribute("ubicacionEST", ubicacionEST);
+                        session.setAttribute("passEST", passEST);
+                        session.setAttribute("correoEST", correoEST);
+                        session.setAttribute("contactosEST", contactosEST);
+                        session.setAttribute("redesEST", redesEST);
+    
                         
                         }
                     
