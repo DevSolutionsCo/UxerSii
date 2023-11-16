@@ -80,10 +80,12 @@
 
                   <p>Desperdicio cero</p>
                   <div class="center">
-                    <div class="box">
-                      <h2>Mi perfil</h2>
+                    <a class="perfilillo-link" href="perfil.html" style="text-decoration: none;">
+                      <div class="box">
+                      <h2>Ver perfil</h2>
                       <p>Configuracion de cuenta</p>
-                    </div>
+                      </div>
+                    </a>
                   </div>
                   <button class="btn">Cerrar sesion</button>
                 </div>
