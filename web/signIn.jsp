@@ -10,14 +10,21 @@
 <%@page import="java.sql.Connection"%>
 <%
     
-    String correoIN = (String) request.getParameter("correoIN");
-    String passIN = (String) request.getParameter("passIN");
+    String correoIN = request.getParameter("correoIN");
+    String passIN = request.getParameter("passIN");
+    
+    System.out.println(correoIN);
+    System.out.println(passIN);
     
     
     if(correoIN != null){
         Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement pstmt1 = null;
+        PreparedStatement pstmt2 = null;
+        PreparedStatement pstmt3 = null;
+        ResultSet rs1 = null;
+        ResultSet rs2 = null;
+        ResultSet rs3 = null;
         String user = "root";
         String password = "1234";
         String db = "uxersii";
@@ -35,27 +42,27 @@
         
              
         
-                String consulta1 = "select * from usuario_hogar where correo_est = ? and contra_hog = ?";
+                String consulta1 = "select * from usuario_hogar where correo_hog = ? and contra_hog = ?";
                 String consulta2 = "select * from usuario_establecimiento where correo_est = ? and contra_est = ?";
                 String consulta3 = "select * from usuario_organizacion where correo_org = ? and contra_org = ?";
 
 
-                PreparedStatement pstmt1 = conn.prepareStatement(consulta1);
+                pstmt1 = conn.prepareStatement(consulta1);
                 pstmt1.setString(1, correoIN);
                 pstmt1.setString(2, passIN);
                 
-                PreparedStatement pstmt2 = conn.prepareStatement(consulta2);
+                pstmt2 = conn.prepareStatement(consulta2);
                 pstmt2.setString(1, correoIN);
                 pstmt2.setString(2, passIN);
                 
-                PreparedStatement pstmt3 = conn.prepareStatement(consulta3);
+                pstmt3 = conn.prepareStatement(consulta3);
                 pstmt3.setString(1, correoIN);
                 pstmt3.setString(2, passIN);
                 
 
-                ResultSet rs1 = pstmt1.executeQuery();
-                ResultSet rs2 = pstmt2.executeQuery();
-                ResultSet rs3 = pstmt3.executeQuery();               
+                rs1 = pstmt1.executeQuery();
+                rs2 = pstmt2.executeQuery();
+                rs3 = pstmt3.executeQuery();               
 
                
                 
@@ -101,7 +108,7 @@
                     String contra_est = rs2.getString("contra_est");
                     String link_redest = rs2.getString("link_redest");
                     String desc_est = rs2.getString("desc_est");
-                    String cp_est = rs1.getString("cp_est");
+                    String cp_est = rs2.getString("cp_est");
                     
                     
                         session.setAttribute("nombEST", nombre_est);
@@ -125,14 +132,14 @@
                     }else
                       if(rs3.next()){
                     
-                      String id_ofc = rs2.getString("id_ofc");
-                    String nombre_org = rs2.getString("nombre_org");
-                    String cp_org = rs2.getString("cp_org");
-                    String contra_org = rs2.getString("contra_org");
-                    String correo_org = rs2.getString("correo_org");
-                    String desc_org = rs2.getString("desc_org");
-                    String tel_org = rs1.getString("tel_org");
-                    String link_org = rs1.getString("link_org");
+                      String id_ofc = rs3.getString("id_ofc");
+                    String nombre_org = rs3.getString("nombre_org");
+                    String cp_org = rs3.getString("cp_org");
+                    String contra_org = rs3.getString("contra_org");
+                    String correo_org = rs3.getString("correo_org");
+                    String desc_org = rs3.getString("desc_org");
+                    String tel_org = rs3.getString("tel_org");
+                    String link_org = rs3.getString("link_org");
                     
                     session.setAttribute("nombORG", nombre_org);
                      session.setAttribute("UbicacionORG", cp_org);
@@ -172,11 +179,23 @@
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                if (rs != null) {
-                    rs.close();
+                if (rs1 != null) {
+                    rs1.close();
                 }
-                if (stmt != null) {
-                    stmt.close();
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (pstmt1 != null) {
+                    pstmt1.close();
+                }
+                if (pstmt2 != null) {
+                    pstmt2.close();
+                }
+                if (pstmt3 != null) {
+                    pstmt3.close();
                 }
                 if (conn != null) {
                     conn.close();

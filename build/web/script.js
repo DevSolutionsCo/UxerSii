@@ -1203,7 +1203,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
       var correoIN = document.getElementsByName("correoIN")[0].value;
       var passIN = document.getElementsByName("passIN")[0].value;
-      
+      console.log(correoIN);
 
       var soli = new XMLHttpRequest();
       soli.open("POST", "signIn.jsp", true);
@@ -1231,7 +1231,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "correoIN=" +
         encodeURIComponent(correoIN) +
         "&passIN=" +
-        encodeURIComponent(passIN) +
+        encodeURIComponent(passIN);
         
       soli.send(params);
     });
