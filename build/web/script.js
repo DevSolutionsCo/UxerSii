@@ -13,13 +13,13 @@ loginBtn.addEventListener("click", () => {
 var botonHogar = document.getElementById("viewform-hogar");
 var botonOrg = document.getElementById("viewform-org");
 var botonEst = document.getElementById("viewform-est");
-var botonSAL = document.getElementById("viewform-SAL");
 var text = document.getElementById("textitoborra");
 var formContainer = document.getElementById("form-container");
 
 var formContainerhog = document.getElementById("form-hogar");
 var formContainerorg = document.getElementById("form-org");
 var formContainerest = document.getElementById("form-est");
+var formContainerIN = document.getElementById("signIn");
 var textacc = document.getElementById("Create-acc");
 
 // Logica de hogar
@@ -1184,4 +1184,62 @@ document.addEventListener("DOMContentLoaded", function () {
     text.remove();
     textacc.remove();
   });
+});
+
+
+//logica signIn
+var bsignIN = document.getElementById("bsignIN");
+document.addEventListener("DOMContentLoaded", function () {
+    event.preventDefault();
+    bsignIN.addEventListener("click", function (event) {
+
+    var formulario = document.getElementById("signIn");
+    
+    
+
+    formulario.addEventListener("submit", function (submitEvent) {
+      submitEvent.preventDefault();
+
+      // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
+      var correoIN = document.getElementsByName("correoIN")[0].value;
+      var passIN = document.getElementsByName("passIN")[0].value;
+      console.log(correoIN);
+
+      var soli = new XMLHttpRequest();
+      soli.open("POST", "signIn.jsp", true);
+      soli.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      soli.onreadystatechange = function () {
+        console.log(soli.responseText)
+              var jsonResponse = JSON.parse(soli.responseText);                    
+
+              if (jsonResponse.con1){
+                        window.location.href = "main.jsp";
+                    }else if (jsonResponse.con2){
+                        window.location.href = "main.jsp";
+                    }else if (jsonResponse.con3){
+                       window.location.href = "main.jsp";
+                    }else if (jsonResponse.con4) {
+                        window.alert("Contraseña o correo incorrectos");
+                }
+
+
+          };
+      var params =
+        "correoIN=" +
+        encodeURIComponent(correoIN) +
+        "&passIN=" +
+        encodeURIComponent(passIN);
+        
+      soli.send(params);
+    });
+
+    botonHogar.remove();
+    botonOrg.remove();
+    botonEst.remove();
+    text.remove();
+    textacc.remove();
+});
 });

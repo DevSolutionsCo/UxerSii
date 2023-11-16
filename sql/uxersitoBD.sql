@@ -533,16 +533,35 @@ foreign key (id_est) references usuario_establecimiento (id_est) on delete casca
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
 
-create table admin(
+create table administrador(
 id_admin int primary key not null,
-correo nvarchar(50),
+correo_admin nvarchar(50),
 contra_admin nvarchar(20),
 nombre_admin nvarchar(30));
 
-insert into admin values 
+insert into administrador values 
 (1, "reyna.juarez.javier@gmail.com","MTBobkF3Zk9hZk9ud0g=","Javier"),
 (2, "ruiz.lopez.victormanuelr@gmail.com","MTBobkF3Zk9hZk9ud0g=","Victor"),
 (3, "molina.fernandez.cristopherian@gmial.com","MTBobkF3Zk9hZk9ud0g=","Cris"),
 (4, "jara.hernandez.carlossebastian@gmail.com","MTBobkF3Zk9hZk9ud0g=","Sebastian");
+
+create table administrador_hog(
+id_hog int,
+id_admin int,
+foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
+foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade);
+
+create table administrador_est(
+id_admin int,
+id_est int,
+foreign key (id_est) references usuario_establecimiento (id_est) on delete cascade on update cascade,
+foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade);
+
+create table administrador_org(
+id_admin int,
+id_ofc nvarchar (15),
+foreign key (id_ofc) references usuario_organizacion (id_ofc) on delete cascade on update cascade,
+foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade);
+
 
 
