@@ -48,6 +48,14 @@ function cambiarTema(opcion) {
     icono.classList.add("claro");
   } else if (opcion === "oscuro") {
     document.body.style.backgroundColor = "rgb(32, 35, 42)";
+    barraNavegacion.classList.remove("navbar-clara");
+    barraNavegacion.classList.add("navbar");
+    dropdown.classList.remove("dropdown-button-claro");
+    dropdown.classList.add("dropdown-button");
+    side.classList.remove("sidebar-clara");
+    side.classList.add("sidebar");
+    icono.classList.add("oscuro");
+    icono.classList.remove("claro");
   }
 
   closeModalconf();

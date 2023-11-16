@@ -39,16 +39,18 @@
       <div class="form-container sign-in">
         <article>
           <h1>Inicio de sesión</h1>
-
+          <form action="signIn.jsp" id="signIn">
           <span>Ingresa tus credenciales</span>
-          <input type="email" placeholder="Correo electronico" />
-          <input type="password" placeholder="Contraseña" />
+          <input type="email" placeholder="Correo electronico" name="correoIN"/>
+          <input type="password" placeholder="Contraseña" name="passIN"/>
 
-          <button>Inicio de sesion</button>
+          <button type="submit" id="bsignIN">Inicio de sesion</button>
+        </form>
         </article>
       </div>
       <div class="toggle-container">
         <div class="toggle">
+            
           <div class="toggle-panel toggle-left">
             <h1>¡Bienvenido de vuelta!</h1>
             <p>Inicia sesión con una cuenta ya existente</p>
@@ -59,6 +61,7 @@
             <p>Registrate si aún no tienes una cuenta</p>
             <button class="hidden" id="register">Crear cuenta</button>
           </div>
+           
         </div>
       </div>
     </div>
