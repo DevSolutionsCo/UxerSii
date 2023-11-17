@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/perfil.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-    <title> </title>
+    <script src="https://kit.fontawesome.com/83ffb1b5fc.js" crossorigin="anonymous"></script>
+    <title>Perfil</title>
 </head>
 <body>
     <section class="seccion-perfil-usuario">
@@ -19,28 +19,34 @@
                     </button>
                 </div>
                 <button type="button" class="boton-portada">
-                    <i class="far fa-image"></i> Cambiar fondo
+                    <i class="fa-solid fa-pen" style="color: #ffffff;"></i> Editar Perfil
                 </button>
             </div>
         </div>
         <div class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
                 <h3 class="titulo">Cristopher Molinita</h3>
-                <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="texto">Siempre he preferido no desperdiciar comida, porque no logro tirar nada con facilidad, prefiero regalarlo</p>
             </div>
-            <div class="perfil-usuario-footer">
+            <div class="perfil-usuario-footer hogar">
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-signs"></i> Direccion de usuario:</li>
-                    <li><i class="icono fas fa-phone-alt"></i> Telefono:</li>
-                    <li><i class="icono fas fa-briefcase"></i> Trabaja en.</li>
-                    <li><i class="icono fas fa-building"></i> Cargo</li>
+                    <li><input type="text" id="nombH" placeholder="Nombre" name="nombH" class="container"></li>
+                    <li><input type="text" id="apelliP" placeholder="Apellido paterno" name="apelliP" class="container"></li>
+                    <li><input type="text" id="apelliM" placeholder="Apellido materno" name="apelliM" class="container"></li>
+                    <li><input type="date" id="fechNac" placeholder="Fecha de nacimiento" min="1922-01-01" max="2008-12-31" name="fechNac" class="container"></li>
+                    <li><input type="email" id="correoH" placeholder="Correo electronico" name="correoH" class="container"></li>
                 </ul>
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-marker-alt"></i> Ubicacion.</li>
-                    <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento.</li>
-                    <li><i class="icono fas fa-user-check"></i> Registro.</li>
-                    <li><i class="icono fas fa-share-alt"></i> Redes sociales.</li>
+                    <li><input type="password" id="passwH" placeholder="Contraseña" name="passwH" class="container"></li>
+                    <li><select name="genero" id="genero" class="genero container">
+                        <option value="Selecciona tu genero">Selecciona tu genero</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="No binario">No binario</option>
+                        <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                      </select></li>
+                    <li><input type="text" id="nombUserH" placeholder="Ingresa tu nombre de usuario" name="nombUserH" class="container"></li>
+                    <li><input type="number" id="CPH" placeholder="Codigo postal" name="CPH" class="container"></li>
                 </ul>
             </div>
             <div class="perfil-usuario-footer">
