@@ -80,7 +80,7 @@
 
                   <p>Desperdicio cero</p>
                   <div class="center">
-                    <a class="perfilillo-link" href="perfil.html" style="text-decoration: none;">
+                    <a class="perfilillo-link" href="perfil.jsp" style="text-decoration: none;">
                       <div class="box">
                       <h2>Ver perfil</h2>
                       <p>Configuracion de cuenta</p>
