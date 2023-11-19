@@ -1,38 +1,264 @@
 body {
-  background: #f6f3e4;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 
-.border-button {
-  background-color: #adc178; /* Color de fondo */
-  border: 2px solid #adc178; /* Borde del botón */
-  color: white; /* Color del texto */
-  padding: 10px 20px; /* Espaciado interno del botón */
-  text-align: center; /* Alineación del texto */
-  text-decoration: none; /* Decoración del texto (en este caso, ninguno) */
-  display: inline-block; /* Mostrar como bloque en línea */
-  font-size: 16px; /* Tamaño del texto */
-  cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
-  border-radius: 5px; /* Radio de los bordes para hacerlos redondeados */
-  font-weight: bold;
-}
-
-/* Cambio de estilo al pasar el mouse sobre el botón */
-.border-button:hover {
-  background-color: #dde5b6;
-  color: #adc178;
-  font-weight: bold;
-}
-
-.contenedor {
+.navbar {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #778258;
+}
+
+.logo {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 60px;
-  max-height: 300px;
-  min-height: 300px;
+
+  & span {
+    font-family: Korolev, Arial Black, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+  }
 }
 
-p {
-  font-size: 24px;
+.logo-container {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fffdfd;
+  padding-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 180px;
+
+  & a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: block;
+    font-family: Korolev, Arial Black, sans-serif;
+  }
+
+  & ul {
+    list-style: none;
+    padding: 14px;
+    margin: 0px;
+  }
+}
+
+.logo-container:hover .menu {
+  display: block;
+}
+
+.middle-text {
+  font-family: Korolev, Arial Black, sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+
+  & a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+}
+
+.account-button {
+  min-width: 21%;
+  font-family: Korolev, Arial Black, sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+  display: flex;
+  justify-content: safe;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+
+  & a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.sub-botonH {
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.sub-botonE {
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.containerF {
+  padding-top: 80px;
+  max-width: 100%;
+  height: 48vh;
+  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url(../resources/98.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  overflow: hidden;
+}
+
+.texto {
+  position: absolute;
+  font-family: Korolev, Arial Black, sans-serif;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+
+  & span {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+  }
+  & p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.containerO {
+  padding-top: 80px;
+  max-width: 100%;
+  height: 48vh;
+  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url(../resources/desperdicio-alimentario.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  overflow: hidden;
+}
+
+.Cards-informativo {
+  display: flex;
+  min-height: 30vh;
+  background-color: rgb(255, 255, 255);
+  justify-content: space-between;
+  margin: 0px 10%;
+}
+
+.parallax {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  padding: 20px 20px;
+  min-width: 33%;
+  background-color: #adc178;
+  text-align: center;
+
+  & h2 {
+    font-family: Korolev, Arial Black, sans-serif;
+    font-size: 20px;
+  }
+
+  & p {
+    font-family: Korolev, Arial Black, sans-serif;
+    font-size: 15px;
+  }
+  & span {
+    text-align: center;
+    font-size: 60px;
+  }
+}
+
+.text-infor {
+  min-height: 20 px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: Korolev, Arial Black, sans-serif;
+  margin: 0px 0px;
+  padding: 10px;
+  padding-top: 40px;
+}
+
+.informativo {
+  background-color: #adc178;
+}
+
+.container-How {
+  display: flex;
+  min-height: 30vh;
+  text-align: center;
+  background-color: #adc178;
+  justify-content: center;
+  align-items: center;
+
+  & p {
+    font-family: Korolev, Arial Black, sans-serif;
+    font-size: 50px;
+    margin: 0px 0px;
+  }
+}
+
+.containerC {
+  padding-top: 80px;
+  max-width: 100%;
+  height: 48vh;
+  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url(../resources/charity-donation-volunteering-concept-happy-600nw-2143458973.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  overflow: hidden;
 }

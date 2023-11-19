@@ -393,3 +393,8 @@ body {
 .claro {
   color: black;
 }
+
+.perfilillo-link{
+  text-decoration: none;
+  color: white;
+}
