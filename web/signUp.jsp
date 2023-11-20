@@ -117,6 +117,8 @@
                      session.setAttribute("genero", genero);
                      session.setAttribute("passwH", passwH);
                      session.setAttribute("correoH", correoH);
+                     session.setAttribute("fechNac", fechNac);
+                     session.setAttribute("CPH", CPH);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -283,10 +285,10 @@
          String ubicacionEST = request.getParameter("ubicacionEST");
          String passEST = request.getParameter("passEST");
          String correoEST = request.getParameter("correoEST");
-         String contactosEST = request.getParameter("contactosEST");
+         String tel_est = request.getParameter("tel_est");
          String redesEST = request.getParameter("redesEST");
          
-                      System.out.println(contactosEST);
+                     
 
 
          Connection conn = null;
@@ -365,12 +367,12 @@
                         response.getWriter().write(jsonResponse);
                         
                         PerfilEstablec obj = new PerfilEstablec();
-                        obj.registroEst(nombEST, ubicacionEST, passEST, correoEST, contactosEST, redesEST);
+                        obj.registroEst(nombEST, ubicacionEST, passEST, correoEST, tel_est, redesEST);
                         session.setAttribute("nombEST", nombEST);
                         session.setAttribute("ubicacionEST", ubicacionEST);
                         session.setAttribute("passEST", passEST);
                         session.setAttribute("correoEST", correoEST);
-                        session.setAttribute("contactosEST", contactosEST);
+                        session.setAttribute("tel_est", tel_est);
                         session.setAttribute("redesEST", redesEST);
     
                         

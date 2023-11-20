@@ -35,7 +35,7 @@ public class PerfilEstablec extends UserEstablec{
    
     
     public boolean registroEst(String nombEST, String UbicacionEST,
-            String passEST, String correoEST, String contactosEST, String redesEST) throws SQLException, ClassNotFoundException{
+            String passEST, String correoEST, String tel_est, String redesEST) throws SQLException, ClassNotFoundException{
         UserEstablec userestable = new UserEstablec();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -59,7 +59,7 @@ public class PerfilEstablec extends UserEstablec{
         stmt.setString(2, UbicacionEST);   
         stmt.setString(3, passEST);
         stmt.setString(4, correoEST);
-        stmt.setString(5, contactosEST);
+        stmt.setString(5, tel_est);
         stmt.setString(6, redesEST);
         
                 row = stmt.executeUpdate();
@@ -88,9 +88,56 @@ public class PerfilEstablec extends UserEstablec{
 
     }
     
-    public void modificacionEst(){
-        
+   public boolean actualizarEST(String nombEST, String UbicacionEST,
+        String passEST, String correoEST, String tel_est, String redesEST) throws SQLException, ClassNotFoundException {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+
+    try {
+        // Carga del controlador de la base de datos
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // Establece la conexión con la base de datos
+        conn = DriverManager.getConnection(dbURL, user, password);
+
+        // Query de actualización
+        String query = "update usuario_establecimiento set cp_est=?, contra_est=?, tel_est=?, link_redest=?, nombre_est=? where correo_est=?";
+
+        // Preparación de la sentencia SQL
+        stmt = conn.prepareStatement(query);
+
+        // Establece los parámetros de la consulta con los valores proporcionados
+        stmt.setString(1, UbicacionEST);
+        stmt.setString(2, passEST);
+        stmt.setString(3, tel_est);
+        stmt.setString(4, redesEST);
+        stmt.setString(5, nombEST);
+        stmt.setString(6, correoEST);
+        //stmt.setString(7, desc);
+
+        // Ejecuta la consulta de actualización
+        int filasActualizadas = stmt.executeUpdate();
+
+        // Verifica si se realizaron actualizaciones
+        return filasActualizadas > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        // Cierra los recursos
+        if (rs != null) {
+            rs.close();
+        }
+        if (stmt != null) {
+            stmt.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
     }
+    return false;
+}
+
     
     public void LlenadoInfoEst(){
         

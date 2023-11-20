@@ -78,6 +78,7 @@
                     String genero = rs1.getString("genero");
                     String nombUserH = rs1.getString("nombUserH");
                     String codigoPostal = rs1.getString("codigoPostal");
+                    String fechNac = rs1.getString("fecha_nac");
                     
                     
                      session.setAttribute("nombUserH", nombUserH);
@@ -88,8 +89,9 @@
                      session.setAttribute("passwH", contra_hog);
                      session.setAttribute("correoH", correo_hog);
                      session.setAttribute("desc_hog", desc_hog);
-                     session.setAttribute("codigoPostal", codigoPostal);
-                     
+                     session.setAttribute("fechNac", fechNac);
+                     session.setAttribute("CPH", codigoPostal);
+                    
                     boolean con1 = true;
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
@@ -109,6 +111,7 @@
                     String link_redest = rs2.getString("link_redest");
                     String desc_est = rs2.getString("desc_est");
                     String cp_est = rs2.getString("cp_est");
+                   
                     
                     
                         session.setAttribute("nombEST", nombre_est);
