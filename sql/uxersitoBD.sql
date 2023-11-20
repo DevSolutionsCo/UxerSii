@@ -35,7 +35,7 @@ fecha_nac date,
 correo_hog nvarchar (50),
 contra_hog nvarchar (25),
 desc_hog nvarchar(100),
-genero nvarchar(15),
+genero nvarchar(20),
 nombUserH nvarchar(15),
 codigoPostal int(8),
 fotoH text);
