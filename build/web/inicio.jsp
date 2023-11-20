@@ -28,7 +28,7 @@
           </div>
           <div class="textito-card">
             <span>Ingresa Productos</span>
-            <p>Productos</p>
+            <p>Alimentos</p>
           </div>
         </div>
         <div class="card-mini">

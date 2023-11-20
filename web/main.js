@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#productos-card", function () {
-      $("#main-content").load("alimentos-main.jsp");
+      $("#main-content").load("alimentos-gestion.jsp");
     });
   });
 
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     if (textillo === "Vamos a ello!") {
       console.log("clicsiloo");
-      $("#main-content").load("inicio.jsp");
+      $("#main-content").load("alimentos-gestion.jsp");
     } else {
     }
   });
