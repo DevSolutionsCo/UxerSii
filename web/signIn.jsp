@@ -26,7 +26,7 @@
         ResultSet rs2 = null;
         ResultSet rs3 = null;
         String user = "root";
-        String password = "n0m3l0";
+        String password = "1234";
         String db = "uxersii";
         String port = "3306";
         String dbURL = "jdbc:mysql://localhost:3306/uxersii";        

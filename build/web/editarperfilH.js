@@ -108,9 +108,9 @@ function guardarH(){
         encodeURIComponent(nombUserH) +
         "&CPH=" +
         encodeURIComponent(CPH) + 
-        "&tipo=h" +
+        "&desc_hog=" +
         encodeURIComponent(desc_hog) +
-        "&desc_hog=";
+        "&tipo=h";
       soli.send(params);
     }
 

@@ -48,7 +48,7 @@
         PreparedStatement stmt = null;
         ResultSet rs = null;
     String user = "root";
-    String password = "n0m3l0";
+    String password = "1234";
     String db = "uxersii";
     String port = "3306";
     String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
@@ -130,7 +130,7 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
         PreparedStatement stmt = null;
         ResultSet rs = null;
     String user = "root";
-    String password = "n0m3l0";
+    String password = "1234";
     String db = "uxersii";
     String port = "3306";
     String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
