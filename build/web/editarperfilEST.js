@@ -54,7 +54,7 @@ function guardarEST(){
   var correoESTInput = document.getElementById("correoEST");
   var tel_estInput = document.getElementById("tel_est");
   var redesESTInput = document.getElementById("redesEST");
-  //var desc_est = document.getElementById("desc_est");
+  var desc_estInput = document.getElementById("desc_est");
   
   var nombEST = document.getElementsByName("nombEST")[0].value;
       var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
@@ -62,7 +62,7 @@ function guardarEST(){
       var correoEST = document.getElementsByName("correoEST")[0].value;
       var tel_est = document.getElementsByName("tel_est")[0].value;
       var redesEST = document.getElementsByName("redesEST")[0].value;
-      //var desc_est = document.getElementsByName("desc_est")[0].value;
+      var desc_est = document.getElementsByName("desc_est")[0].value;
 
       var soli = new XMLHttpRequest();
       soli.open("POST", "editarPerfil.jsp", true);
@@ -97,9 +97,9 @@ function guardarEST(){
         encodeURIComponent(tel_est) +
         "&redesEST=" +
         encodeURIComponent(redesEST) +
-        "&tipo=e"; //+ 
-        //encodeURIComponent(desc_est) +
-        //"&desc_est=";
+        "&desc_est=" +
+        encodeURIComponent(desc_est) +
+        "&tipo=e"; 
       soli.send(params);
         
         }

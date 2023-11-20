@@ -48,7 +48,7 @@
         PreparedStatement stmt = null;
         ResultSet rs = null;
     String user = "root";
-    String password = "1234";
+    String password = "n0m3l0";
     String db = "uxersii";
     String port = "3306";
     String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
@@ -124,13 +124,13 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
          String passEST = request.getParameter("passEST");
          String correoEST = request.getParameter("correoEST");
          String tel_est = request.getParameter("tel_est");
-         //String desc_est = request.getParameter("desc_est");
+         String desc_est = request.getParameter("desc_est");
          String redesEST = request.getParameter("redesEST");
          Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
     String user = "root";
-    String password = "1234";
+    String password = "n0m3l0";
     String db = "uxersii";
     String port = "3306";
     String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
@@ -169,14 +169,14 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
     response.getWriter().write(jsonResponse);
     }
     PerfilEstablec obj = new PerfilEstablec();
-    obj.actualizarEST(nombEST, ubicacionEST, passEST, correoEST, tel_est, redesEST);
+    obj.actualizarEST(nombEST, ubicacionEST, passEST, correoEST, tel_est, redesEST, desc_est);
     session.setAttribute("nombEST", nombEST);
     session.setAttribute("ubicacionEST", ubicacionEST);
     session.setAttribute("passEST", passEST);
     session.setAttribute("correoEST", correoEST);
     session.setAttribute("tel_est", tel_est);
     session.setAttribute("redesEST", redesEST);
-   // session.setAttribute("desc_est", desc_est);
+    session.setAttribute("desc_est", desc_est);
         }catch (Exception e) {
         e.printStackTrace();
         } finally {

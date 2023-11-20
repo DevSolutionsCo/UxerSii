@@ -46,7 +46,7 @@
         PreparedStatement stmt = null;
         ResultSet rs = null;
     String user = "root";
-    String password = "1234";
+    String password = "n0m3l0";
     String db = "uxersii";
     String port = "3306";
     String dbURL = "jdbc:mysql://localhost:3306/uxersii";        
@@ -162,7 +162,7 @@
         PreparedStatement stmt = null;
         ResultSet rs = null;
             String user = "root";
-    String password = "1234";
+    String password = "n0m3l0";
     String db = "uxersii";
      String port = "3306";
      String dbURL = "jdbc:mysql://localhost:3306/uxersii";
@@ -295,7 +295,7 @@
         PreparedStatement stmt = null;
         ResultSet rs = null;
             String user = "root";
-    String password = "1234";
+    String password = "n0m3l0";
     String db = "uxersii";
      String port = "3306";
      String dbURL = "jdbc:mysql://localhost:3306/uxersii";

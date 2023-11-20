@@ -58,8 +58,12 @@
         passw = (String) session.getAttribute("passEST"); 
         correo = (String) session.getAttribute("correoEST"); 
         contacto = (String) session.getAttribute("tel_est");
-        Redes = (String) session.getAttribute("redesEST"); 
-        desc= (String) session.getAttribute("desc_est");
+        Redes = (String) session.getAttribute("redesEST");
+        if (session.getAttribute("desc_est")==null) {
+                desc = "";
+            }else{
+        desc = (String) session.getAttribute("desc_est");
+            }
         tipo = 2;  
         }
         System.out.println(fecha);

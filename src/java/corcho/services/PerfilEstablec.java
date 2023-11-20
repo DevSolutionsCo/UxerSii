@@ -23,7 +23,7 @@ public class PerfilEstablec extends UserEstablec{
     private String datosEsta;
     
         public String user = "root";
-    public String password = "1234";
+    public String password = "n0m3l0";
     public String db = "uxersii";
     public String port = "3306";
     public String dbURL = "jdbc:mysql://localhost:3306/uxersii";
@@ -89,7 +89,7 @@ public class PerfilEstablec extends UserEstablec{
     }
     
    public boolean actualizarEST(String nombEST, String UbicacionEST,
-        String passEST, String correoEST, String tel_est, String redesEST) throws SQLException, ClassNotFoundException {
+        String passEST, String correoEST, String tel_est, String redesEST, String desc) throws SQLException, ClassNotFoundException {
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
@@ -102,7 +102,7 @@ public class PerfilEstablec extends UserEstablec{
         conn = DriverManager.getConnection(dbURL, user, password);
 
         // Query de actualización
-        String query = "update usuario_establecimiento set cp_est=?, contra_est=?, tel_est=?, link_redest=?, nombre_est=? where correo_est=?";
+        String query = "update usuario_establecimiento set cp_est=?, contra_est=?, tel_est=?, link_redest=?, nombre_est=?, desc_est=? where correo_est=?";
 
         // Preparación de la sentencia SQL
         stmt = conn.prepareStatement(query);
@@ -113,8 +113,8 @@ public class PerfilEstablec extends UserEstablec{
         stmt.setString(3, tel_est);
         stmt.setString(4, redesEST);
         stmt.setString(5, nombEST);
-        stmt.setString(6, correoEST);
-        //stmt.setString(7, desc);
+        stmt.setString(6, desc);
+        stmt.setString(7, correoEST);
 
         // Ejecuta la consulta de actualización
         int filasActualizadas = stmt.executeUpdate();
