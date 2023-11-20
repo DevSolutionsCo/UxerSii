@@ -55,6 +55,7 @@
           session.getAttribute("contactoORG"); idORG = (String)
           session.getAttribute("idORG"); Redes = (String)
           session.getAttribute("RedesORG"); tipo = 2; }else if(userE != null){
+          nomb = (String) session.getAttribute("nombEST");
           ubicacion = (String) session.getAttribute("ubicacionEST"); passw =
           (String) session.getAttribute("passEST"); correo = (String)
           session.getAttribute("correoEST"); contacto = (String)

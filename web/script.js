@@ -455,7 +455,7 @@ function nextStepE(currentStepId, nextStepId) {
   var Ubicacion = document.getElementById("UbicacionEST");
   var passEST = document.getElementById("passEST");
   var correoEST = document.getElementById("correoEST");
-  var contactosEST = document.getElementById("contactosEST");
+  var contactosEST = document.getElementById("tel_est");
   var redesEST = document.getElementById("redesEST");
   var validacionRealizada1 = false;
 
@@ -1015,7 +1015,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
   <div class="form-step" id="step5">
     <h2>Contactos</h2>
-    <input type="text" id="contactosEST" placeholder="Contactos" name="contactosEST">
+    <input type="text" id="tel_est" placeholder="Contactos" name="tel_est">
     <button  onclick="nextStepE('step5', 'pasito6')" type="button">Siguiente</button>
   </div>
 
@@ -1135,7 +1135,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
       var passEST = document.getElementsByName("passEST")[0].value;
       var correoEST = document.getElementsByName("correoEST")[0].value;
-      var contactosEST = document.getElementsByName("contactosEST")[0].value;
+      var contactosEST = document.getElementsByName("tel_est")[0].value;
       var redesEST = document.getElementsByName("redesEST")[0].value;
 
       var soli = new XMLHttpRequest();
@@ -1169,7 +1169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         encodeURIComponent(passEST) +
         "&correoEST=" +
         encodeURIComponent(correoEST) +
-        "&contactosEST=" +
+        "&tel_est=" +
         encodeURIComponent(contactosEST) +
         "&redesEST=" +
         encodeURIComponent(redesEST) +

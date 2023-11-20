@@ -55,6 +55,7 @@
           session.getAttribute("contactoORG"); idORG = (String)
           session.getAttribute("idORG"); Redes = (String)
           session.getAttribute("RedesORG"); tipo = 2; }else if(userE != null){
+          nomb = (String) session.getAttribute("nombEST");
           ubicacion = (String) session.getAttribute("ubicacionEST"); passw =
           (String) session.getAttribute("passEST"); correo = (String)
           session.getAttribute("correoEST"); contacto = (String)
@@ -80,10 +81,12 @@
 
                   <p>Desperdicio cero</p>
                   <div class="center">
-                    <div class="box">
-                      <h2>Mi perfil</h2>
+                    <a class="perfilillo-link" href="perfil.jsp" style="text-decoration: none;">
+                      <div class="box">
+                      <h2>Ver perfil</h2>
                       <p>Configuracion de cuenta</p>
-                    </div>
+                      </div>
+                    </a>
                   </div>
                   <button class="btn">Cerrar sesion</button>
                 </div>
