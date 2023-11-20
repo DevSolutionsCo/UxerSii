@@ -27,7 +27,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 // Convierte la fecha a String usando el formato especificado
 
         public String user = "root";
-    public String password = "n0m3l0";
+    public String password = "1234";
     public String db = "uxersii";
     public String port = "3306";
     public String dbURL = "jdbc:mysql://localhost:3306/uxersii";
