@@ -61,7 +61,7 @@
           session.getAttribute("contactosEST"); Redes = (String)
           session.getAttribute("redesEST"); tipo = 3; } %>
           <button class="b-perfil-ma" id="abrirModalBtn">
-            <img src=" asa" class="user-avatar" />
+            <img src="resources/Logo-uxersii.svg" class="user-avatar" />
           </button>
           <div id="miModal" class="modal">
             <div class="modal-contenido">
@@ -80,10 +80,16 @@
 
                   <p>Desperdicio cero</p>
                   <div class="center">
-                    <div class="box">
-                      <h2>Mi perfil</h2>
-                      <p>Configuracion de cuenta</p>
-                    </div>
+                    <a
+                      class="perfilillo-link"
+                      href="perfil.jsp"
+                      style="text-decoration: none"
+                    >
+                      <div class="box">
+                        <h2>Ver perfil</h2>
+                        <p>Configuracion de cuenta</p>
+                      </div>
+                    </a>
                   </div>
                   <button class="btn">Cerrar sesion</button>
                 </div>
@@ -100,7 +106,7 @@
           <% }else if (tipo==3){ %>
           <div class="user-name">Hola, <%=userE%></div>
           <% }else{ response.sendRedirect("login.jsp"); } %>
-          
+
           <button class="dropdown-button" id="drop">
             <i class="material-icons" style="padding: 0px 0px"
               >keyboard_arrow_down</i
@@ -173,44 +179,7 @@
     </div>
 
     <!--Contenedor de la main-->
-    <div class="main-content" id="main-content"></div>
-    <button class="config-button" onclick="openModalconf()">
-      <span class="material-symbols-outlined"> settings </span>
-    </button>
-
-    <div id="modal-config" class="modal-config">
-      <div class="modal-content-config">
-        <h2>Configuración</h2>
-        <ul class="checklist">
-          <li class="checklist-item">
-            <label>
-              <input
-                type="radio"
-                name="tema"
-                id="temaOscuroRadio"
-                onclick="cambiarTema('oscuro')"
-              />
-              Tema Oscuro
-            </label>
-          </li>
-          <li class="checklist-item">
-            <label>
-              <input
-                type="radio"
-                name="tema"
-                id="temaClaroRadio"
-                onclick="cambiarTema('claro')"
-              />
-              Tema Claro
-            </label>
-          </li>
-        </ul>
-
-        <button class="close-button-config" onclick="closeModalconf()">
-          Cerrar
-        </button>
-      </div>
-    </div>
+    <div class="tamoActivo" id="main-content"></div>
 
     <script src="ventana-perfil.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

@@ -1,3 +1,5 @@
+// Inicio js Hogar
+
 function habilitarInputs() {
     // Obtén los elementos de input por su ID
     var nombH = document.getElementById('nombH');
@@ -27,6 +29,28 @@ function habilitarInputs() {
     red_link_hogar.disabled = false;
 }
 
+function mostrarInput_hogar() {
+  var opcionesSelect = document.getElementById('red_hogar');
+  var inputContainer = document.getElementById('container_input_red');
+  var campoDeTexto = document.getElementById('red_link_hogar');
+
+  // Obtén el valor seleccionado
+  var opcionSeleccionada = opcionesSelect.value;
+
+  // Muestra u oculta el campo de texto según la opción seleccionada
+  if (opcionSeleccionada === 'ninguna') {
+    inputContainer.style.display = 'none';
+    campoDeTexto.value = '';  // Limpia el valor del campo de texto si está oculto
+  } else {
+    inputContainer.style.display = 'list-item'; 
+    campoDeTexto.focus();  // Coloca el foco en el campo de texto
+  }
+}
+
+//Fin hogar
+
+//Inicio est
+
 function habilitarInputs() {
     // Obtén los elementos de input por su ID
     var nombEST = document.getElementById('nombEST');
@@ -47,3 +71,23 @@ function habilitarInputs() {
     red_esta.disabled = false;
     red_link_esta.disabled = false;
 }
+
+function mostrarInput_est() {
+      var opcionesSelect = document.getElementById('red_esta');
+      var inputContainer = document.getElementById('container_input_red');
+      var campoDeTexto = document.getElementById('red_link_esta');
+
+      // Obtén el valor seleccionado
+      var opcionSeleccionada = opcionesSelect.value;
+
+      // Muestra u oculta el campo de texto según la opción seleccionada
+      if (opcionSeleccionada === 'ninguna') {
+        inputContainer.style.display = 'none';
+        campoDeTexto.value = '';  // Limpia el valor del campo de texto si está oculto
+      } else {
+        inputContainer.style.display = 'list-item'; 
+        campoDeTexto.focus();  // Coloca el foco en el campo de texto
+      }
+    }
+
+//fin est

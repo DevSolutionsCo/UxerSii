@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.top-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 50px;
+  margin-top: 90px;
+  color: white;
+}
+
+.card-mini {
+  background-color: rgb(51, 55, 62);
+  min-height: 30vh;
+  min-width: 24%;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: start;
+}
+
+.iconito-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5% 5%;
+  border-radius: 50%;
+  font-size: 40px;
+  margin-top: 15px;
+  margin-left: 10%;
+
+  & span {
+    font-size: 2rem;
+  }
+}
+
+.azul {
+  color: rgb(77, 169, 249);
+}
+
+.bg-azul {
+  background-color: rgb(155, 187, 215);
+}
+
+.naranja {
+  color: rgb(232, 200, 140);
+}
+
+.bg-naranja {
+  background-color: orange;
+}
+
+.rojo {
+  color: rgb(150, 21, 79);
+}
+
+.bg-rojo {
+  background-color: rgb(231, 195, 201);
+}
+
+.verde {
+  color: rgb(14, 95, 14);
+}
+
+.bg-verde {
+  background-color: rgb(188, 237, 188);
+}
+
+.textito-card {
+  display: flex;
+  padding-left: 10%;
+  padding-top: 15%;
+  flex-direction: column;
+  font-size: 17px;
+  font-weight: bold;
+
+  & p {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
