@@ -21,6 +21,7 @@
         
         String tipo = request.getParameter("tipo");
         
+        System.out.println(tipo);
         
         if("h".equals(tipo)){
         UserHogar userhogar;

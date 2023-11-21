@@ -1,4 +1,5 @@
 console.log("Script cargado");
+
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -12,6 +13,8 @@ const Toast = Swal.mixin({
 });
 
 function validarFormulario() {
+  // Lógica de validación del formulario
+
   var nombreInput = document.getElementById("nombH");
   var fechNac = document.getElementById("fechNac");
   var correo = document.getElementById("correoH");
@@ -20,59 +23,58 @@ function validarFormulario() {
   var nombUs = document.getElementById("nombUserH");
   var CP = document.getElementById("CPH");
 
-  if (!validateNombre(nombreInput)) {
-    // Muestra la alerta de SweetAlert2
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa un nombre valido",
-    });
-    return false; // Evita que se envíe el formulario si hay errores
-  } else if (!validaFech(fechNac)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa una fecha valida",
-    });
-    return false;
-  } else if (!validaCorreo(correo)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa un correo valido",
-    });
-    return false;
-  } else if (!validaPass(pass)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
-    });
-    return false;
-  } else if (!validaGen(genero)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa un genero",
-    });
-    return false;
-  } else if (!validaNombUser(nombUs)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa un nombre de usuario valido",
-    });
-    return false;
-  } else if (!validaCP(CP)) {
-    Toast.fire({
-      icon: "error",
-      title: "Ingresa un Codigo postal valido",
-    });
-    return false;
-  }
+    if (!validateNombre(nombreInput)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa un nombre valido",
+        });
+        return false; 
+    }else if (!validaFech(fechNac)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa una fecha valida",
+        });
+        return false; 
+    }else if (!validaCorreo(correo)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa un correo valido",
+        });
+        return false; 
+    }else if (!validaPass(pass)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
+        });
+        return false; 
+    }else if (!validaGen(genero)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa un genero",
+        });
+        return false; 
+    }else if (!validaNombUser(nombUs)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa un nombre de usuario valido",
+        });
+        return false; 
+    }else if (!validaCP(CP)) {
+        Toast.fire({
+           icon: "error",
+           title: "Ingresa un Codigo postal valido",
+        });
+        return false; 
+    }
+  
+    // Evita que se envíe el formulario si hay errores
+  
 
-  var formulario = document.getElementById("registro-hogar");
-  formulario.submit();
   return true;
 }
-document.addEventListener("DOMContentLoaded", function () {});
 
 function validateNombre(nombreInput) {
-  if (nombreInput.value === "" || nombreInput.value.length < 3) {
+  if (!nombreInput || !nombreInput.value || nombreInput.value.length < 3) {
     nombreInput.classList.add("invalid-input");
     return false;
   } else {
@@ -82,7 +84,7 @@ function validateNombre(nombreInput) {
 }
 
 function validaFech(fechNacInput) {
-  if (fechNacInput.value === "") {
+  if (!fechNacInput || !fechNacInput.value) {
     fechNacInput.classList.add("invalid-input");
     return false;
   } else {
@@ -94,17 +96,27 @@ function validaFech(fechNacInput) {
 function validaCorreo(correoHInput) {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  if (emailPattern.test(correoHInput.value)) {
+  if (
+    correoHInput &&
+    correoHInput.value &&
+    emailPattern.test(correoHInput.value)
+  ) {
     correoHInput.classList.remove("invalid-input");
     return true;
   } else {
-    correoHInput.classList.add("invalid-input");
+    if (correoHInput) {
+      correoHInput.classList.add("invalid-input");
+    }
     return false;
   }
 }
 
 function validaPass(passwHInput) {
-  if (passwHInput.value.length < 6 || passwHInput.value.length > 20) {
+  if (
+    !passwHInput ||
+    passwHInput.value.length < 6 ||
+    passwHInput.value.length > 20
+  ) {
     passwHInput.classList.add("invalid-input");
     return false;
   } else {
@@ -114,17 +126,10 @@ function validaPass(passwHInput) {
 }
 
 function validaGen(generoInput) {
-  if (generoInput.value === "Selecciona tu genero") {
-    generoInput.classList.add("invalid-input");
-    return false;
-  } else {
-    generoInput.classList.remove("invalid-input");
-    return true;
-  }
-}
-
-function validaGen(generoInput) {
-  if (generoInput.value === "Selecciona tu genero") {
+  if (
+    !generoInput ||
+    generoInput.value === "Selecciona tu genero"
+  ) {
     generoInput.classList.add("invalid-input");
     return false;
   } else {
@@ -134,7 +139,7 @@ function validaGen(generoInput) {
 }
 
 function validaNombUser(nombUserH) {
-  if (nombUserH.value === "") {
+  if (!nombUserH || !nombUserH.value) {
     nombUserH.classList.add("invalid-input");
     return false;
   } else {
@@ -144,7 +149,7 @@ function validaNombUser(nombUserH) {
 }
 
 function validaCP(CPHInput) {
-  if (CPHInput.value === "") {
+  if (!CPHInput || !CPHInput.value) {
     CPHInput.classList.add("invalid-input");
     return false;
   } else {
@@ -153,67 +158,86 @@ function validaCP(CPHInput) {
   }
 }
 
-//Logica de hogar
+// Logica de hogar
+
+var botonEnvio = document.getElementById("envio");
 
 document.addEventListener("DOMContentLoaded", function () {
-  var botonEnvio = document.getElementById("envio");
   botonEnvio.addEventListener("click", function (event) {
     event.preventDefault();
-    // Cambiar el tipo de botón a 'button' para evitar el envío del formulario
 
-       // Aquí puedes agregar lógica para manejar el envío del formulario, como realizar una solicitud AJAX. alch no entendi que dice gpt aqui, no se si arruine todo
-      var nombre = document.getElementsByName("nombH")[0].value;
-      var apellidoPat = document.getElementsByName("apelliP")[0].value;
-      var apellidoMat = document.getElementsByName("apelliM")[0].value;
-      var fechNac = document.getElementsByName("fechNac")[0].value;
-      var correoH = document.getElementsByName("correoH")[0].value;
-      var passwH = document.getElementsByName("passwH")[0].value;
-      var genero = document.getElementsByName("genero")[0].value;
-      var nombUserH = document.getElementsByName("nombUserH")[0].value;
-      var CPH = document.getElementsByName("CPH")[0].value;
+    // Obtener referencias a los elementos
+    var nombre = document.getElementsByName("nombH")[0].value;
+    var apellidoPat = document.getElementsByName("apelliP")[0].value;
+    var apellidoMat = document.getElementsByName("apelliM")[0].value;
+    var fechNac = document.getElementsByName("fechNac")[0].value;
+    var correoH = document.getElementsByName("correoH")[0].value;
+    var passwH = document.getElementsByName("passwH")[0].value;
+    var genero = document.getElementsByName("genero")[0].value;
+    var nombUserH = document.getElementsByName("nombUserH")[0].value;
+    var CPH = document.getElementsByName("CPH")[0].value;
 
-   var soli = new XMLHttpRequest();
-      soli.open("POST", "signUp.jsp", true);
-      soli.setRequestHeader(
-        "Content-type",
-        "application/x-www-form-urlencoded"
-      );
-      soli.onreadystatechange = function () {
-        console.log(soli.responseText)
-              var jsonResponse = JSON.parse(soli.responseText);                    
+    // Validar el formulario
+    var formularioValido = validarFormulario();
 
-              if (jsonResponse.con1){
-                        window.alert("correo ya registrado");
-                    }else if (jsonResponse.con2){
-                        window.alert("nombre de usuario ya registrado");
-                    }else if (jsonResponse.con3){
-                       window.location.href = "main.jsp";
-                    }
-
-          };
-      var params =
-        "nombH=" +
-        encodeURIComponent(nombre) +
-        "&apellidoP=" +
-        encodeURIComponent(apellidoPat) +
-        "&apellidoM=" +
-        encodeURIComponent(apellidoMat) +
-        "&fechNac=" +
-        encodeURIComponent(fechNac) +
-        "&correoH=" +
-        encodeURIComponent(correoH) +
-        "&passwH=" +
-        encodeURIComponent(passwH) +
-        "&genero=" +
-        encodeURIComponent(genero) +
-        "&nombUserH=" +
-        encodeURIComponent(nombUserH) +
-        "&CPH=" +
-        encodeURIComponent(CPH) + 
-        "&tipo=h";
-      soli.send(params);
-    });
+    if (formularioValido) {
+      // Si el formulario es válido, realizar la solicitud AJAX
+      enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH, passwH, genero, nombUserH, CPH);
+    } else {
+      // Si el formulario no es válido, puedes mostrar un mensaje o realizar otra acción
+      console.log("Formulario no válido");
+    }
+  });
 });
+
+function enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH, passwH, genero, nombUserH, CPH) {
+  var soli = new XMLHttpRequest();
+  soli.open("POST", "signUp.jsp", true);
+  soli.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  soli.onreadystatechange = function () {
+    console.log(soli.responseText);
+    var jsonResponse = JSON.parse(soli.responseText);
+
+    if (jsonResponse.con1) {
+      Toast.fire({
+           icon: "error",
+           title: "Correo ya registrado",
+        });
+    } else if (jsonResponse.con2) {
+      Toast.fire({
+           icon: "error",
+           title: "Nombre de usuario ya registrado",
+        });
+    } else if (jsonResponse.con3) {
+      window.location.href = "main.jsp";
+    }
+  };
+
+  // Construir los parámetros
+  var params =
+    "nombH=" +
+    encodeURIComponent(nombre) +
+    "&apellidoP=" +
+    encodeURIComponent(apellidoPat) +
+    "&apellidoM=" +
+    encodeURIComponent(apellidoMat) +
+    "&fechNac=" +
+    encodeURIComponent(fechNac) +
+    "&correoH=" +
+    encodeURIComponent(correoH) +
+    "&passwH=" +
+    encodeURIComponent(passwH) +
+    "&genero=" +
+    encodeURIComponent(genero) +
+    "&nombUserH=" +
+    encodeURIComponent(nombUserH) +
+    "&CPH=" +
+    encodeURIComponent(CPH) +
+    "&tipo=h";
+
+  // Enviar la solicitud
+  soli.send(params);
+}
 
 //logica signIn
 /*
