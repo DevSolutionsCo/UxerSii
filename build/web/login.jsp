@@ -38,27 +38,27 @@
       </div>
       <div class="form-container sign-in">
         <article>
-          <h1>Inicio de sesión</h1>
+          <h1>Inicio de sesiï¿½n</h1>
           <form action="signIn.jsp" id="signIn">
           <span>Ingresa tus credenciales</span>
           <input type="email" placeholder="Correo electronico" name="correoIN"/>
-          <input type="password" placeholder="Contraseña" name="passIN"/>
+          <input type="password" placeholder="Contraseï¿½a" name="passIN"/>
 
           <button type="submit" id="bsignIN">Inicio de sesion</button>
         </form>
-        </article>
+        </article> 
       </div>
       <div class="toggle-container">
         <div class="toggle">
             
           <div class="toggle-panel toggle-left">
-            <h1>¡Bienvenido de vuelta!</h1>
-            <p>Inicia sesión con una cuenta ya existente</p>
+            <h1>ï¿½Bienvenido de vuelta!</h1>
+            <p>Inicia sesiï¿½n con una cuenta ya existente</p>
             <button class="hidden" id="login">Inicio de sesion</button>
           </div>
           <div class="toggle-panel toggle-right">
-            <h1>¡Hola!</h1>
-            <p>Registrate si aún no tienes una cuenta</p>
+            <h1>ï¿½Hola!</h1>
+            <p>Registrate si aï¿½n no tienes una cuenta</p>
             <button class="hidden" id="register">Crear cuenta</button>
           </div>
            
