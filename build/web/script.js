@@ -23,52 +23,51 @@ function validarFormulario() {
   var nombUs = document.getElementById("nombUserH");
   var CP = document.getElementById("CPH");
 
-    if (!validateNombre(nombreInput)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa un nombre valido",
-        });
-        return false; 
-    }else if (!validaFech(fechNac)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa una fecha valida",
-        });
-        return false; 
-    }else if (!validaCorreo(correo)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa un correo valido",
-        });
-        return false; 
-    }else if (!validaPass(pass)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
-        });
-        return false; 
-    }else if (!validaGen(genero)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa un genero",
-        });
-        return false; 
-    }else if (!validaNombUser(nombUs)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa un nombre de usuario valido",
-        });
-        return false; 
-    }else if (!validaCP(CP)) {
-        Toast.fire({
-           icon: "error",
-           title: "Ingresa un Codigo postal valido",
-        });
-        return false; 
-    }
-  
-    // Evita que se envíe el formulario si hay errores
-  
+  if (!validateNombre(nombreInput)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa un nombre valido",
+    });
+    return false;
+  } else if (!validaFech(fechNac)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa una fecha valida",
+    });
+    return false;
+  } else if (!validaCorreo(correo)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa un correo valido",
+    });
+    return false;
+  } else if (!validaPass(pass)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
+    });
+    return false;
+  } else if (!validaGen(genero)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa un genero",
+    });
+    return false;
+  } else if (!validaNombUser(nombUs)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa un nombre de usuario valido",
+    });
+    return false;
+  } else if (!validaCP(CP)) {
+    Toast.fire({
+      icon: "error",
+      title: "Ingresa un Codigo postal valido",
+    });
+    return false;
+  }
+
+  // Evita que se envíe el formulario si hay errores
 
   return true;
 }
@@ -126,10 +125,7 @@ function validaPass(passwHInput) {
 }
 
 function validaGen(generoInput) {
-  if (
-    !generoInput ||
-    generoInput.value === "Selecciona tu genero"
-  ) {
+  if (!generoInput || generoInput.value === "Selecciona tu genero") {
     generoInput.classList.add("invalid-input");
     return false;
   } else {
@@ -182,7 +178,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (formularioValido) {
       // Si el formulario es válido, realizar la solicitud AJAX
-      enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH, passwH, genero, nombUserH, CPH);
+      enviarSolicitudAjax(
+        nombre,
+        apellidoPat,
+        apellidoMat,
+        fechNac,
+        correoH,
+        passwH,
+        genero,
+        nombUserH,
+        CPH
+      );
     } else {
       // Si el formulario no es válido, puedes mostrar un mensaje o realizar otra acción
       console.log("Formulario no válido");
@@ -190,7 +196,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH, passwH, genero, nombUserH, CPH) {
+function enviarSolicitudAjax(
+  nombre,
+  apellidoPat,
+  apellidoMat,
+  fechNac,
+  correoH,
+  passwH,
+  genero,
+  nombUserH,
+  CPH
+) {
   var soli = new XMLHttpRequest();
   soli.open("POST", "signUp.jsp", true);
   soli.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -200,14 +216,14 @@ function enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH,
 
     if (jsonResponse.con1) {
       Toast.fire({
-           icon: "error",
-           title: "Correo ya registrado",
-        });
+        icon: "error",
+        title: "Correo ya registrado",
+      });
     } else if (jsonResponse.con2) {
       Toast.fire({
-           icon: "error",
-           title: "Nombre de usuario ya registrado",
-        });
+        icon: "error",
+        title: "Nombre de usuario ya registrado",
+      });
     } else if (jsonResponse.con3) {
       window.location.href = "main.jsp";
     }
@@ -239,8 +255,89 @@ function enviarSolicitudAjax(nombre, apellidoPat, apellidoMat, fechNac, correoH,
   soli.send(params);
 }
 
+var Envio = document.getElementById("envioE");
+document.addEventListener("DOMContentLoaded", function () {
+  Envio.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Obtener referencias a los elementos
+    var nombEST = document.getElementsByName("nombEST")[0].value;
+    var UbicacionEST = document.getElementsByName("UbicacionEST")[0].value;
+    var passEST = document.getElementsByName("passEST")[0].value;
+    var correoEST = document.getElementsByName("correoEST")[0].value;
+    var contactosEST = document.getElementsByName("contactosEST")[0].value;
+    var redesEST = document.getElementsByName("redesEST")[0].value;
+
+    // Validar el formulario
+    var formularioValido = validarFormulario();
+
+    if (formularioValido) {
+      // Si el formulario es válido, realizar la solicitud AJAX
+      enviarSolicitudAjax(
+        nombEST,
+        UbicacionEST,
+        passEST,
+        correoEST,
+        contactosEST,
+        redesEST
+      );
+    } else {
+      // Si el formulario no es válido, puedes mostrar un mensaje o realizar otra acción
+      console.log("Formulario no válido");
+    }
+  });
+});
+
+function enviarSolicitudAjax(
+  nombEST,
+  UbicacionEST,
+  passEST,
+  correoEST,
+  contactosEST,
+  redesEST
+) {
+  var soli = new XMLHttpRequest();
+  soli.open("POST", "signUp.jsp", true);
+  soli.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  soli.onreadystatechange = function () {
+    console.log(soli.responseText);
+    var jsonResponse = JSON.parse(soli.responseText);
+
+    if (jsonResponse.con1) {
+      Toast.fire({
+        icon: "error",
+        title: "Correo ya registrado",
+      });
+    } else if (jsonResponse.con2) {
+      Toast.fire({
+        icon: "error",
+        title: "Nombre de usuario ya registrado",
+      });
+    } else if (jsonResponse.con3) {
+      window.location.href = "main.jsp";
+    }
+  };
+
+  // Construir los parámetros
+  var params =
+    "nombEST=" +
+    encodeURIComponent(nombEST) +
+    "&ubicacionEST=" +
+    encodeURIComponent(UbicacionEST) +
+    "&passEST=" +
+    encodeURIComponent(passEST) +
+    "&correoEST=" +
+    encodeURIComponent(correoEST) +
+    "&contactosEST=" +
+    encodeURIComponent(contactosEST) +
+    "&redesEST=" +
+    encodeURIComponent(redesEST) +
+    "&tipo=e";
+  soli.send(params);
+}
+
 //logica signIn
-/*
+
 var bsignIN = document.getElementById("bsignIN");
 document.addEventListener("DOMContentLoaded", function () {
   event.preventDefault();
@@ -283,12 +380,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
       soli.send(params);
     });
-
-    botonHogar.remove();
-    botonOrg.remove();
-    botonEst.remove();
-    text.remove();
-    textacc.remove();
   });
 });
-*/

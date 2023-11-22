@@ -29,102 +29,61 @@
           <div class="col-md-6 right">
             <div class="input-box">
               <header>Crea tu cuenta</header>
-              <form id="registro-hogar">
+              <form id="registro-est">
                 <div class="input-field">
                   <input
-                    id="nombH"
-                    name="nombH"
                     type="text"
+                    id="nombEST"
                     class="input"
-                    required
-                    placeholder="Nombre"
+                    placeholder="Nombre del establecimiento"
+                    name="nombEST"
                   />
                 </div>
                 <div class="input-field">
                   <input
-                    id="apelliP"
-                    name="apelliP"
                     type="text"
+                    id="UbicacionEST"
+                    placeholder="Ubicacion"
+                    name="UbicacionEST"
                     class="input"
-                    required
-                    placeholder="Apellido Paterno"
                   />
                 </div>
                 <div class="input-field">
                   <input
-                    id="apelliM"
-                    name="apelliM"
-                    type="text"
+                    type="password"
+                    id="passEST"
+                    placeholder="Contrase&#241;a"
+                    name="passEST"
                     class="input"
-                    required
-                    placeholder="Apellido Materno"
                   />
-                </div>
-
-                <div class="input-field">
-                  <input
-                    type="date"
-                    id="fechNac"
-                    min="1922-01-01"
-                    max="2006-12-31"
-                    name="fechNac"
-                    class="input"
-                    onclick="clicksillo()"
-                  />
-                  <span class="Fecha" id="span-fecha">Fecha de nacimiento</span>
                 </div>
 
                 <div class="input-field">
                   <input
                     type="email"
-                    id="correoH"
-                    placeholder="Correo electronico"
-                    name="correoH"
-                    class="input"
-                    required
-                  />
-                </div>
-
-                <div class="input-field">
-                  <input
-                    type="password"
-                    id="passwH"
-                    placeholder="Contrase&#241;a"
-                    name="passwH"
+                    id="correoEST"
+                    placeholder="Correo electrónico"
+                    name="correoEST"
                     class="input"
                   />
-                </div>
-
-                <div class="input-field">
-                  <select name="genero" id="genero" name="genero" class="input">
-                    <option value="Selecciona tu genero">
-                      Selecciona tu genero
-                    </option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="No binario">No binario</option>
-                    <option value="Prefiero no decirlo">
-                      Prefiero no decirlo
-                    </option>
-                  </select>
                 </div>
 
                 <div class="input-field">
                   <input
                     type="text"
-                    id="nombUserH"
-                    placeholder="Nombre de usuario"
-                    name="nombUserH"
+                    id="contactosEST"
+                    placeholder="Contactos"
+                    name="contactosEST"
                     class="input"
                   />
                 </div>
 
                 <div class="input-field">
                   <input
-                    type="number"
-                    id="CPH"
-                    placeholder="Codigo postal"
-                    name="CPH"
+                    type="text"
+                    id="redesEST"
+                    placeholder="Redes"
+                    name="redesEST"
                     class="input"
                   />
                 </div>
@@ -134,7 +93,7 @@
                     type="submit"
                     class="boton"
                     onclick="validarFormulario()"
-                    id="envio"
+                    id="envioE"
                   >
                     Enviar
                   </button>
