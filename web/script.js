@@ -12,7 +12,7 @@ const Toast = Swal.mixin({
   },
 });
 
-function validarFormulario() {
+function validarFormularioH() {
   // Lógica de validación del formulario
 
   var nombreInput = document.getElementById("nombH");
@@ -156,7 +156,7 @@ function validaCP(CPHInput) {
 
 // Logica de hogar
 
-var botonEnvio = document.getElementById("envio");
+var botonEnvio = document.getElementById("envioH");
 
 document.addEventListener("DOMContentLoaded", function () {
   botonEnvio.addEventListener("click", function (event) {
@@ -174,9 +174,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var CPH = document.getElementsByName("CPH")[0].value;
 
     // Validar el formulario
-    var formularioValido = validarFormulario();
+    var formularioValidoH = validarFormularioH();
 
-    if (formularioValido) {
+    if (formularioValidoH) {
       // Si el formulario es válido, realizar la solicitud AJAX
       enviarSolicitudAjaxH(
         nombre,
@@ -249,9 +249,119 @@ function enviarSolicitudAjaxH(nombre,apellidoPat,apellidoMat,fechNac,correoH,pas
 
 function validaFormularioE(){
     var nombESTInput = document.getElementById("nombEST");
-    var ubicacaionESTInput = document.getElementById("UbicacionEST");
-    var passESTInput = document.getElementById("nombEST");
-    var nombESTInput = document.getElementById("nombEST");
+    var ubicacionESTInput = document.getElementById("UbicacionEST");
+    var passESTInput = document.getElementById("passEST");
+    var correoESTInput = document.getElementById("correoEST");
+    var contactosESTInput = document.getElementById("contactosEST");
+    var redesESTInput = document.getElementById("redesEST");
+    
+    
+    if (!validateNombreE(nombESTInput)) {
+        Toast.fire({
+      icon: "error",
+      title: "Ingresa un nombre valido",
+    });
+    return false;
+    }else if (!validaUbicacion(ubicacionESTInput)) {
+        Toast.fire({
+      icon: "error",
+      title: "Ingresa una ubicación valida",
+    });
+    return false;
+    }else if (!validaPassE(passESTInput)) {
+       Toast.fire({
+      icon: "error",
+      title: "Ingresa una contrase&#241;a de 6 - 20 caracteres",
+    });
+    return false;
+    }else if (!validaCorreoE(correoESTInput)) {
+        Toast.fire({
+      icon: "error",
+      title: "Ingresa un correo valido",
+    });
+    return false;
+    }else if (!validaContactosE(contactosESTInput)) {
+        Toast.fire({
+      icon: "error",
+      title: "Ingresa un contacto valido",
+    });
+    return false;
+    }else if (!validaRedesEST(redesESTInput)) {
+        Toast.fire({
+      icon: "error",
+      title: "Ingresa una red valido",
+    });
+    return false;
+    }
+
+return true;
+
+}
+
+
+function validateNombreE(nombESTInput) {
+  if (!nombESTInput || !nombESTInput.value || nombESTInput.value.length < 3) {
+    nombESTInput.classList.add("invalid-input");
+    return false;
+  } else {
+    nombESTInput.classList.remove("invalid-input");
+    return true;
+  }
+}
+function validaUbicacion(ubicacionESTInput) {
+  if (ubicacionESTInput === "") {
+    ubicacionESTInput.classList.add("invalid-input");
+    return false;
+  } else {
+    ubicacionESTInput.classList.remove("invalid-input");
+    return true;
+  }
+}
+function validaPassE(passwESTInput) {
+  if (!passwESTInput ||
+    passwESTInput.value.length < 6 ||
+    passwESTInput.value.length > 20) {
+    passwESTInput.classList.add("invalid-input");
+    return false;
+  } else {
+    passwESTInput.classList.remove("invalid-input");
+    return true;
+  }
+}
+function validaCorreoE(correoESTInput) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (
+    correoESTInput &&
+    correoESTInput.value &&
+    emailPattern.test(correoESTInput.value)
+  ) {
+    correoESTInput.classList.remove("invalid-input");
+    return true;
+  } else {
+    if (correoESTInput) {
+      correoESTInput.classList.add("invalid-input");
+    }
+    return false;
+  }
+}
+function validaContactosE(contactosESTInput) {
+  if (contactosESTInput === "") {
+    contactosESTInput.classList.add("invalid-input");
+    return false;
+  } else {
+    contactosESTInput.classList.remove("invalid-input");
+    return true;
+  }
+}
+function validaRedesEST(redesESTInput) {
+  if (redesESTInput === "") {
+    redesESTInput.classList.add("invalid-input");
+    return false;
+  } else {
+    redesESTInput.classList.remove("invalid-input");
+    return true;
+  }
 }
 
 
@@ -269,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var redesEST = document.getElementsByName("redesEST")[0].value;
 
     // Validar el formulario
-    var formularioValidoE = validarFormulario();
+    var formularioValidoE = validaFormularioE();
 
     if (formularioValidoE) {
       // Si el formulario es válido, realizar la solicitud AJAX
@@ -287,6 +397,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
 
 function enviarSolicitudAjaxE(
   nombEST,
@@ -328,7 +440,7 @@ function enviarSolicitudAjaxE(
     encodeURIComponent(passEST) +
     "&correoEST=" +
     encodeURIComponent(correoEST) +
-    "&contactosEST=" +
+    "&tel_est=" +
     encodeURIComponent(contactosEST) +
     "&redesEST=" +
     encodeURIComponent(redesEST) +
@@ -342,7 +454,7 @@ var bsignIN = document.getElementById("bsignIN");
 document.addEventListener("DOMContentLoaded", function () {
   event.preventDefault();
   bsignIN.addEventListener("click", function (event) {
-    var formulario = document.getElementById("signIn");
+    var formulario = document.getElementById("registro-est");
 
     formulario.addEventListener("submit", function (submitEvent) {
       submitEvent.preventDefault();
@@ -369,7 +481,10 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (jsonResponse.con3) {
           window.location.href = "main.jsp";
         } else if (jsonResponse.con4) {
-          window.alert("Contraseña o correo incorrectos");
+          Toast.fire({
+        icon: "error",
+        title: "Correo u contraseña incorrectos",
+      });
         }
       };
       var params =
