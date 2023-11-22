@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (formularioValido) {
       // Si el formulario es válido, realizar la solicitud AJAX
-      enviarSolicitudAjax(
+      enviarSolicitudAjaxH(
         nombre,
         apellidoPat,
         apellidoMat,
@@ -196,17 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function enviarSolicitudAjax(
-  nombre,
-  apellidoPat,
-  apellidoMat,
-  fechNac,
-  correoH,
-  passwH,
-  genero,
-  nombUserH,
-  CPH
-) {
+function enviarSolicitudAjaxH(nombre,apellidoPat,apellidoMat,fechNac,correoH,passwH,genero,nombUserH,CPH) {
   var soli = new XMLHttpRequest();
   soli.open("POST", "signUp.jsp", true);
   soli.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -255,6 +245,16 @@ function enviarSolicitudAjax(
   soli.send(params);
 }
 
+//Logica Establecimiento
+
+function validaFormularioE(){
+    var nombESTInput = document.getElementById("nombEST");
+    var ubicacaionESTInput = document.getElementById("UbicacionEST");
+    var passESTInput = document.getElementById("nombEST");
+    var nombESTInput = document.getElementById("nombEST");
+}
+
+
 var Envio = document.getElementById("envioE");
 document.addEventListener("DOMContentLoaded", function () {
   Envio.addEventListener("click", function (event) {
@@ -269,11 +269,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var redesEST = document.getElementsByName("redesEST")[0].value;
 
     // Validar el formulario
-    var formularioValido = validarFormulario();
+    var formularioValidoE = validarFormulario();
 
-    if (formularioValido) {
+    if (formularioValidoE) {
       // Si el formulario es válido, realizar la solicitud AJAX
-      enviarSolicitudAjax(
+      enviarSolicitudAjaxE(
         nombEST,
         UbicacionEST,
         passEST,
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function enviarSolicitudAjax(
+function enviarSolicitudAjaxE(
   nombEST,
   UbicacionEST,
   passEST,
