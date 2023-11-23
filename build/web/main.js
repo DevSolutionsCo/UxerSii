@@ -35,6 +35,8 @@ $(document).ready(function () {
       $("#main-content").load("inicio.jsp");
     } else if (linkText === "Alimentos") {
       $("#main-content").load("alimentos-main.jsp");
+    } else if (linkText === "Puntos Moviles") {
+      $("#main-content").load("punto-movil.html");
     }
   });
   //Botoncillos de inicio osea las cards chiquillas
