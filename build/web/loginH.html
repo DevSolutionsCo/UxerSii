@@ -29,7 +29,7 @@
           <div class="col-md-6 right">
             <div class="input-box">
               <header>Crea tu cuenta</header>
-              <form id="registro-hogar" >
+              <form id="registro-hogar">
                 <div class="input-field">
                   <input
                     id="nombH"
@@ -40,7 +40,7 @@
                     placeholder="Nombre"
                   />
                 </div>
-                  <div class="input-field">
+                <div class="input-field">
                   <input
                     id="apelliP"
                     name="apelliP"
@@ -50,7 +50,7 @@
                     placeholder="Apellido Paterno"
                   />
                 </div>
-                  <div class="input-field">
+                <div class="input-field">
                   <input
                     id="apelliM"
                     name="apelliM"
@@ -96,13 +96,7 @@
                 </div>
 
                 <div class="input-field">
-                  <select
-                    name="genero"
-                    id="genero"
-                    name="genero"
-                    class="input"
-                    
-                  >
+                  <select name="genero" id="genero" name="genero" class="input">
                     <option value="Selecciona tu genero">
                       Selecciona tu genero
                     </option>
@@ -137,17 +131,19 @@
 
                 <div class="nose">
                   <button
-                      type="submit"
+                    type="submit"
+                    id="envioH"
                     class="boton"
-                    onclick="validarFormulario()"
-                    id="envio"
+                    onclick="validarFormularioH()"
+                    
                   >
                     Enviar
                   </button>
                 </div>
                 <div class="signin">
                   <span
-                    >Ya tienes una cuenta? <a href="">Iniciar Sesion</a></span
+                    >Ya tienes una cuenta?
+                    <a href="signUp.html">Iniciar Sesion</a></span
                   >
                 </div>
               </form>

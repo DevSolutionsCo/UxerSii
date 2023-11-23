@@ -280,8 +280,3 @@ body {
   /* Ajusta según el tamaño de la sidebar */
   transition: margin-left 0.3s; /* Agrega una transición para animar cambios en el margen izquierdo */
 }
-
-.perfilillo-link{
-  text-decoration: none;
-  color: white;
-}
