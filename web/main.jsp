@@ -55,9 +55,9 @@
           session.getAttribute("contactoORG"); idORG = (String)
           session.getAttribute("idORG"); Redes = (String)
           session.getAttribute("RedesORG"); tipo = 2; }else if(userE != null){
-          nomb = (String) session.getAttribute("nombEST");
-          ubicacion = (String) session.getAttribute("ubicacionEST"); passw =
-          (String) session.getAttribute("passEST"); correo = (String)
+          nomb = (String) session.getAttribute("nombEST"); ubicacion = (String)
+          session.getAttribute("ubicacionEST"); passw = (String)
+          session.getAttribute("passEST"); correo = (String)
           session.getAttribute("correoEST"); contacto = (String)
           session.getAttribute("contactosEST"); Redes = (String)
           session.getAttribute("redesEST"); tipo = 3; } %>
@@ -167,13 +167,8 @@
         </li>
         <li>
           <div class="sidebar-icons">
-            <span
-              class="material-symbols-outlined oscuro"
-              style="padding-right: 8px"
-              id="icono"
-            >
-              library_books </span
-            ><a href="#" class="textito">Informate</a>
+            <span class="material-symbols-outlined"> home_pin </span
+            ><a href="#" class="textito">Puntos Moviles</a>
           </div>
         </li>
       </ul>
