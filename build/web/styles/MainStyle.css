@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
 }
 
-.navbar {
+.naVbar {
   background-color: #333;
   color: white;
   display: flex;
@@ -88,7 +88,7 @@ body {
 }
 
 .sidebar a:hover {
-  color: #00bcd4;
+  color: rgb(122, 122, 122);
 }
 
 .content {
@@ -239,7 +239,7 @@ body {
 .box:hover {
   background-color: rgba(128, 128, 128, 0.137);
 }
-.btn {
+.btnn {
   width: 95%;
   padding: 10px;
   border-radius: 10px;

@@ -29,7 +29,7 @@
     ></script>
   </head>
   <body>
-    <div class="navbar" id="navBar">
+    <div class="naVbar" id="navBar">
       <div class="burger-icon" id="burger-icon">
         <i class="material-icons">menu</i>
       </div>
@@ -92,7 +92,7 @@
                       </div>
                     </a>
                   </div>
-                  <button class="btn">Cerrar sesion</button>
+                  <button class="btnn">Cerrar sesion</button>
                 </div>
               </div>
             </div>

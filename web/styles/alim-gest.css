@@ -4,10 +4,11 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: rgba(32, 35, 42, 255);
 }
 
 .TODOwriteContent {
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -16,11 +17,12 @@ body {
 
 .div-tabla {
   margin: 10px;
-  background-color: rgba(255, 255, 255, 0.434);
   border-radius: 25px;
   padding: 24px;
   overflow: hidden;
   max-height: 80%;
+  background-color: rgb(255, 255, 255);
+  width: 80%;
 }
 
 .tablita {

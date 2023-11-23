@@ -8,7 +8,23 @@ sebas --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <link rel="stylesheet" href="styles/alimentos-gestion.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="styles/alim-gest.css" />
     <title>Gestion de alimentos</title>
   </head>
   <body>
@@ -19,69 +35,118 @@ sebas --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
           <span>Inventario</span>
         </div>
         <div class="tablita">
-          <table>
+          <table class="table table-hover">
             <thead>
               <tr>
-                <th></th>
-                <th>Nombre</th>
-                <th>Fecha de caducidad</th>
-                <th>Estatus</th>
-                <th>Cantidad</th>
+                <th scope="col"></th>
+                <th scope="col">Nombre del alimento</th>
+                <th scope="col">Fecha de caducidad</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Cantidad</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
+                <th scope="row">
                   <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-warning">
+                    Pronto a expirar
+                  </button>
                 </td>
-                <td>Vacia</td>
-                <td>03/12/2005</td>
-                <td>Pendiente</td>
-                <td>0</td>
+                <td>5</td>
               </tr>
               <tr>
-                <td>
+                <th scope="row">
                   <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-success">
+                    Consumible
+                  </button>
                 </td>
-                <td>Tomate</td>
-                <td>24/08/1995</td>
-                <td>Caducado</td>
-                <td>23</td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </th>
+                <td>Maruchan</td>
+                <td>22/22/22</td>
+                <td class="center-vertical">
+                  <button type="button" class="btn btn-danger">Expirado</button>
+                </td>
+                <td>5</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="formulario">
-        <form action="">
-          <div class="in-form">
-            <h2 style="text-align: center; color: white">Agrega productos</h2>
-            <div class="container-inputs">
-              <div class="inputs">
-                <input
-                  type="text"
-                  name="nomb_alim"
-                  id="nomb_alim"
-                  placeholder="Nombre del producto"
-                />
-              </div>
-              <div class="inputss">
-                <label for="fecha_cad">Fecha de caducidad: </label>
-                <input type="date" name="fecha_cad" id="fecha_cad" />
-              </div>
-              <div class="inputs">
-                <input
-                  type="text"
-                  name="cantidad"
-                  id="cantidad"
-                  placeholder="Cantidad"
-                />
-              </div>
-            </div>
-
-            <button>Agrega</button>
-          </div>
-        </form>
       </div>
     </div>
   </body>
