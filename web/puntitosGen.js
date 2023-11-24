@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Dinámico</title>
-    <style>
-        /* Estilo opcional para el contenedor del mapa */
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-
-</head>
-<body>
-
-<!-- Contenedor para el mapa -->
-<div id="map"></div>
-
-<!-- Script para la API de Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3WWoaZWJZUVIs8i4Y9s2GcxXrSVs_iic&libraries=places&callback=initMap" async defer></script>
-
-<script>
-    
-       function distanciaHaversine(coord1, coord2) {
+function distanciaHaversine(coord1, coord2) {
         const radioTierra = 6371; // Radio medio de la Tierra en kilómetros
     
         const [lat1, lon1] = coord1;
@@ -113,7 +87,7 @@ function kmeans(datos, k) {
     }
 
     // Agrega nombres a los centroides
-    const centroidesConNombres = centroides.map((centroide, index) => ({ name: `Cluster ${index + 1}`, coordenadas: centroide }));
+    const centroidesConNombres = centroides.map((centroide, index) => ({ nombre: `Cluster ${index + 1}`, coordenadas: centroide }));
 
     return centroidesConNombres;
 
@@ -232,73 +206,4 @@ var jsonData = JSON.stringify(centroidesKMeans);
 
 // Llamar a la función para pasar los datos al otro script
 pasarDatosAlOtroScript(jsonData);
-
-   
-   var map;
-// Variables globales para el mapa y marcadores
-var map;
-var markers = [];
-
-// Función para recibir datos del otro script
-function pasarDatosAlOtroScript(jsonData) {
-    // Convertir el JSON de nuevo a un objeto
-    var lugares = JSON.parse(jsonData);
-
-    // Inicializar el mapa si aún no se ha hecho
-    if (!map) {
-        initMap();
-    }
-
-    // Llamar a una función para manejar los datos y agregar marcadores
-    manejarDatos(lugares);
-}
-
-// Función para manejar los datos recibidos y agregar marcadores
-function manejarDatos(lugares) {
-    // Limpiar marcadores existentes si los hay
-    clearMarkers();
-
-    // Agregar marcadores para cada lugar
-    lugares.forEach(function(lugar) {
-        var marker = new google.maps.Marker({
-            position: { lat: lugar.lat, lng: lugar.lng },
-            map: map,
-            title: lugar.name
-        });
-
-        // Almacenar el marcador en el array markers
-        markers.push(marker);
-    });
-}
-
-// Función para limpiar los marcadores del mapa
-function clearMarkers() {
-    markers.forEach(function(marker) {
-        marker.setMap(null);
-    });
-    markers = [];
-}
-
-// Función para inicializar el mapa
-function initMap() {
-    // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
-    var centerCoordinates = { lat: -34.397, lng: 150.644 };
-
-        // Configuración inicial del mapa
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: centerCoordinates,
-            zoom: 8
-        });
-}
-
-// En un escenario real, podrías llamar a pasarDatosAlOtroScript después de cargar script2.js
-// pasarDatosAlOtroScript(jsonData);
-
-
-
-</script>
-
-
-</body>
-</html>
 
