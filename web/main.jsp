@@ -39,28 +39,29 @@
           <i class="material-icons">chat</i>
           <!-- INCIO DE MODAL PERFIL -->
           <% String apellidoP = null, apellidoM, nomb = null, genero, passw,
-          correo; String ubicacion, contacto, idORG, Redes; int tipo = 0; String
-          userH = (String) session.getAttribute("nombUserH"); String userO =
-          (String) session.getAttribute("nombORG"); String userE = (String)
-          session.getAttribute("nombEST"); if(userH != null){ apellidoP =
-          (String) session.getAttribute("apellidoP"); apellidoM = (String)
-          session.getAttribute("apellidoM"); nomb = (String)
-          session.getAttribute("nombH"); genero = (String)
-          session.getAttribute("genero"); passw = (String)
-          session.getAttribute("passwH"); correo = (String)
-          session.getAttribute("correoH"); tipo = 1; }else if(userO != null){
-          ubicacion = (String) session.getAttribute("UbicacionORG"); passw =
-          (String) session.getAttribute("passwORG"); correo = (String)
-          session.getAttribute("correoORG"); contacto = (String)
-          session.getAttribute("contactoORG"); idORG = (String)
-          session.getAttribute("idORG"); Redes = (String)
-          session.getAttribute("RedesORG"); tipo = 2; }else if(userE != null){
-          nomb = (String) session.getAttribute("nombEST"); ubicacion = (String)
-          session.getAttribute("ubicacionEST"); passw = (String)
-          session.getAttribute("passEST"); correo = (String)
-          session.getAttribute("correoEST"); contacto = (String)
-          session.getAttribute("contactosEST"); Redes = (String)
-          session.getAttribute("redesEST"); tipo = 3; } %>
+          correo; 
+          String ubicacion, contacto, idORG, Redes; 
+          int tipo = 0; 
+          String userH = (String) session.getAttribute("nombUserH"); 
+          String userA = (String) session.getAttribute("nombre_admin"); 
+          String userE = (String) session.getAttribute("nombEST"); 
+          if(userH != null){ 
+                apellidoP = (String) session.getAttribute("apellidoP"); apellidoM = (String)
+                session.getAttribute("apellidoM"); 
+                nomb = (String) session.getAttribute("nombH");
+                genero = (String) session.getAttribute("genero"); 
+                passw = (String) session.getAttribute("passwH"); 
+                correo = (String) session.getAttribute("correoH"); tipo = 1; 
+          }else if(userA != null){
+                 nomb = (String) session.getAttribute("nombre_admin");
+                 tipo = 2;
+              }else if(userE != null){
+                nomb = (String) session.getAttribute("nombEST"); ubicacion = (String)
+                session.getAttribute("ubicacionEST"); passw = (String)
+                session.getAttribute("passEST"); correo = (String)
+                session.getAttribute("correoEST"); contacto = (String)
+                session.getAttribute("contactosEST"); Redes = (String)
+                session.getAttribute("redesEST"); tipo = 3; } %>
           <button class="b-perfil-ma" id="abrirModalBtn">
             <img src="resources/Logo-uxersii.svg" class="user-avatar" />
           </button>
@@ -103,10 +104,12 @@
           <% if (tipo==1){ %>
           <div class="user-name">Hola, <%=userH%></div>
           <% }else if (tipo==2){ %>
-          <div class="user-name">Hola, <%=userO%></div>
+          <div class="user-name">Hola, <%=userA%></div>
           <% }else if (tipo==3){ %>
           <div class="user-name">Hola, <%=userE%></div>
-          <% }else{ response.sendRedirect("login.jsp"); } %>
+          <% }else{ 
+
+        response.sendRedirect("login.jsp"); } %>
 
           <button class="dropdown-button" id="drop">
             <i class="material-icons" style="padding: 0px 0px"

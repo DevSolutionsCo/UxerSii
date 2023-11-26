@@ -1,3 +1,12 @@
+<%-- 
+    Document   : index
+    Created on : 25 nov. 2023, 19:11:05
+    Author     : javis
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -18,6 +27,14 @@
     <title>UxerSii</title>
   </head>
   <body>
+      
+      <%
+
+    // Verificar si la sesión existe antes de invalidarla
+    
+        session.invalidate();
+        
+      %>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
