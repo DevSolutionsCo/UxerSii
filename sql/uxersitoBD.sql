@@ -575,6 +575,19 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade
 );
 
+create table puntos_colecta (
+id_punto int auto_increment primary key not null,
+nomb_punto nvarchar(255),
+latitud decimal(10,6),
+longitud decimal(10,6),
+responsable nvarchar(255),
+almacenamiento decimal(10,2),
+horario time,
+fecha_de_creacion date,
+estado nvarchar(10),
+descripcion TEXT);
+    
+    
 insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values
 ("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954);
 
