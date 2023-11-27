@@ -1,4 +1,13 @@
-   function distanciaHaversine(coord1, coord2) {
+function initMap() {
+    // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
+    var centerCoordinates = { lat: 19.454513245250173, lng: -99.17524305989036 };
+        // Configuración inicial del mapa
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: centerCoordinates,
+            zoom: 8
+        });
+}
+       function distanciaHaversine(coord1, coord2) {
         const radioTierra = 6371; // Radio medio de la Tierra en kilómetros
     
         const [lat1, lon1] = coord1;
@@ -87,7 +96,10 @@ function kmeans(datos, k) {
     }
 
     // Agrega nombres a los centroides
-    const centroidesConNombres = centroides.map((centroide, index) => ({ name: `Cluster ${index + 1}`, coordenadas: centroide }));
+    const centroidesConNombres = centroides.map((centroide, index) => {
+        const [lat, lng] = centroide;
+        return { lat, lng, name: `Lugar ${index + 1}` };
+    });
 
     return centroidesConNombres;
 
@@ -188,7 +200,7 @@ console.log("Etiquetas DBSCAN:", clustersDBSCAN);
 
 // Aplica K-means para encontrar el punto central
 const cantidadClustersDBSCAN = Math.max(...clustersDBSCAN);
-console.log("canti:", cantidadClustersDBSCAN )
+console.log("canti:", cantidadClustersDBSCAN );
 
 var centroidesKMeans = kmeans(conjuntoPuntos, cantidadClustersDBSCAN);
 console.log("Centroide encontrado:", centroidesKMeans);
@@ -228,7 +240,7 @@ function pasarDatosAlOtroScript(jsonData) {
 }
 
 // Función para manejar los datos recibidos y agregar marcadores
-function manejarDatos(lugares) {
+function manejarDatos(centroidesKMeans) {
     // Limpiar marcadores existentes si los hay
     clearMarkers();
 
@@ -252,20 +264,3 @@ function clearMarkers() {
     });
     markers = [];
 }
-
-// Función para inicializar el mapa
-function initMap() {
-    // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
-    var centerCoordinates = { lat: -34.397, lng: 150.644 };
-
-        // Configuración inicial del mapa
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: centerCoordinates,
-            zoom: 8
-        });
-}
-
-// En un escenario real, podrías llamar a pasarDatosAlOtroScript después de cargar script2.js
-// pasarDatosAlOtroScript(jsonData);
-
-

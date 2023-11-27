@@ -12,7 +12,7 @@
             width: 100%;
         }
     </style>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3WWoaZWJZUVIs8i4Y9s2GcxXrSVs_iic&callback=initMap"></script>
 </head>
 <body>
 
@@ -20,19 +20,20 @@
 <div id="map"></div>
 
 <!-- Script para la API de Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3WWoaZWJZUVIs8i4Y9s2GcxXrSVs_iic&libraries=places&callback=initMap" async defer></script>
+    
 
 <script>
     function initMap() {
+        
     // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
-    var centerCoordinates = { lat: -34.397, lng: 150.644 };
-
+    var centerCoordinates = { lat: 40.7589, lng: -73.9851 };
         // Configuración inicial del mapa
         map = new google.maps.Map(document.getElementById('map'), {
             center: centerCoordinates,
             zoom: 8
         });
-}
+        manejarDatos(centroidesKMeans);
+        }
        function distanciaHaversine(coord1, coord2) {
         const radioTierra = 6371; // Radio medio de la Tierra en kilómetros
     
@@ -122,7 +123,10 @@ function kmeans(datos, k) {
     }
 
     // Agrega nombres a los centroides
-    const centroidesConNombres = centroides.map((centroide, index) => ({ name: `Cluster ${index + 1}`, coordenadas: centroide }));
+    const centroidesConNombres = centroides.map((centroide, index) => {
+        const [lat, lng] = centroide;
+        return { lat, lng, name: `Lugar ${index + 1}` };
+    });
 
     return centroidesConNombres;
 
@@ -223,7 +227,7 @@ console.log("Etiquetas DBSCAN:", clustersDBSCAN);
 
 // Aplica K-means para encontrar el punto central
 const cantidadClustersDBSCAN = Math.max(...clustersDBSCAN);
-console.log("canti:", cantidadClustersDBSCAN )
+console.log("canti:", cantidadClustersDBSCAN );
 
 var centroidesKMeans = kmeans(conjuntoPuntos, cantidadClustersDBSCAN);
 console.log("Centroide encontrado:", centroidesKMeans);
@@ -240,13 +244,13 @@ var data = [
 var jsonData = JSON.stringify(centroidesKMeans);
 
 // Llamar a la función para pasar los datos al otro script
-pasarDatosAlOtroScript(jsonData);
+
 
    
-   var map;
 // Variables globales para el mapa y marcadores
 var map;
 var markers = [];
+
 
 // Función para recibir datos del otro script
 function pasarDatosAlOtroScript(jsonData) {
@@ -262,18 +266,39 @@ function pasarDatosAlOtroScript(jsonData) {
     manejarDatos(lugares);
 }
 
-// Función para manejar los datos recibidos y agregar marcadores
-function manejarDatos(centroidesKMeans) {
-    // Limpiar marcadores existentes si los hay
-    clearMarkers();
 
+// Función para manejar los datos recibidos y agregar marcadores
+function manejarDatos(lugares) {
+    var marker;
+    var markers = [];
+    var cuantos = 0;
+    var openInfoWindow;
     // Agregar marcadores para cada lugar
     lugares.forEach(function(lugar) {
-        var marker = new google.maps.Marker({
+        cuantos++;
+         marker =  new google.maps.Marker({
             position: { lat: lugar.lat, lng: lugar.lng },
             map: map,
             title: lugar.name
         });
+        var infoWindow = new google.maps.InfoWindow({
+        content: '<h3>' + lugar.name + '</h3><p>' + 'El punto ' + cuantos  + '</p>'
+        });
+
+        // Agrega un evento 'click' al marcador para mostrar el InfoWindow
+        marker.addListener('click', function() {
+        // Cierra cualquier InfoWindow abierto anteriormente
+        if (openInfoWindow) {
+            openInfoWindow.close();
+        }
+
+        // Abre el InfoWindow del marcador actual
+        infoWindow.setContent('<h3>' + lugar.name + '</h3><p>' + 'El punto ' + cuantos  + '</p>');
+
+        infoWindow.open(map, marker);
+        // Almacena la referencia al InfoWindow abierto actualmente
+        openInfoWindow = infoWindow;
+    });
 
         // Almacenar el marcador en el array markers
         markers.push(marker);
@@ -289,16 +314,7 @@ function clearMarkers() {
 }
 
 // Función para inicializar el mapa
-function initMap() {
-    // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
-    var centerCoordinates = { lat: -34.397, lng: 150.644 };
 
-        // Configuración inicial del mapa
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: centerCoordinates,
-            zoom: 8
-        });
-}
 
 // En un escenario real, podrías llamar a pasarDatosAlOtroScript después de cargar script2.js
 // pasarDatosAlOtroScript(jsonData);
