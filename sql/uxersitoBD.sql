@@ -563,5 +563,32 @@ id_ofc nvarchar (15),
 foreign key (id_ofc) references usuario_organizacion (id_ofc) on delete cascade on update cascade,
 foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade);
 
+create table mensajes(
+id_mens int auto_increment primary key not null,
+mensaje text,
+hora_men datetime,
+usuario_envia nvarchar(50),
+tipo_usuario nvarchar(20),
+id_hog int,
+id_admin int,
+foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
+foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade
+);
+
+create table puntos_colecta (
+id_punto int auto_increment primary key not null,
+nomb_punto nvarchar(255),
+latitud decimal(10,6),
+longitud decimal(10,6),
+responsable nvarchar(255),
+almacenamiento decimal(10,2),
+horario time,
+fecha_de_creacion date,
+estado nvarchar(10),
+descripcion TEXT);
+    
+    
+insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values
+("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954);
 
 

@@ -1,39 +1,12 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Dinámico</title>
-    <style>
-        /* Estilo opcional para el contenedor del mapa */
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3WWoaZWJZUVIs8i4Y9s2GcxXrSVs_iic&callback=initMap"></script>
-</head>
-<body>
-
-<!-- Contenedor para el mapa -->
-<div id="map"></div>
-
-<!-- Script para la API de Google Maps -->
-    
-
-<script>
-    function initMap() {
-        
+function initMap() {
     // Coordenadas del centro del mapa (puedes ajustar estas coordenadas)
-    var centerCoordinates = { lat: 40.7589, lng: -73.9851 };
+    var centerCoordinates = { lat: 19.454513245250173, lng: -99.17524305989036 };
         // Configuración inicial del mapa
         map = new google.maps.Map(document.getElementById('map'), {
             center: centerCoordinates,
             zoom: 8
         });
-        manejarDatos(centroidesKMeans);
-        }
+}
        function distanciaHaversine(coord1, coord2) {
         const radioTierra = 6371; // Radio medio de la Tierra en kilómetros
     
@@ -244,13 +217,13 @@ var data = [
 var jsonData = JSON.stringify(centroidesKMeans);
 
 // Llamar a la función para pasar los datos al otro script
-
+pasarDatosAlOtroScript(jsonData);
 
    
+   var map;
 // Variables globales para el mapa y marcadores
 var map;
 var markers = [];
-
 
 // Función para recibir datos del otro script
 function pasarDatosAlOtroScript(jsonData) {
@@ -266,39 +239,18 @@ function pasarDatosAlOtroScript(jsonData) {
     manejarDatos(lugares);
 }
 
-
 // Función para manejar los datos recibidos y agregar marcadores
-function manejarDatos(lugares) {
-    var marker;
-    var markers = [];
-    var cuantos = 0;
-    var openInfoWindow;
+function manejarDatos(centroidesKMeans) {
+    // Limpiar marcadores existentes si los hay
+    clearMarkers();
+
     // Agregar marcadores para cada lugar
     lugares.forEach(function(lugar) {
-        cuantos++;
-         marker =  new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: { lat: lugar.lat, lng: lugar.lng },
             map: map,
             title: lugar.name
         });
-        var infoWindow = new google.maps.InfoWindow({
-        content: '<h3>' + lugar.name + '</h3><p>' + 'El punto ' + cuantos  + '</p>'
-        });
-
-        // Agrega un evento 'click' al marcador para mostrar el InfoWindow
-        marker.addListener('click', function() {
-        // Cierra cualquier InfoWindow abierto anteriormente
-        if (openInfoWindow) {
-            openInfoWindow.close();
-        }
-
-        // Abre el InfoWindow del marcador actual
-        infoWindow.setContent('<h3>' + lugar.name + '</h3><p>' + 'El punto ' + cuantos  + '</p>');
-
-        infoWindow.open(map, marker);
-        // Almacena la referencia al InfoWindow abierto actualmente
-        openInfoWindow = infoWindow;
-    });
 
         // Almacenar el marcador en el array markers
         markers.push(marker);
@@ -312,18 +264,3 @@ function clearMarkers() {
     });
     markers = [];
 }
-
-// Función para inicializar el mapa
-
-
-// En un escenario real, podrías llamar a pasarDatosAlOtroScript después de cargar script2.js
-// pasarDatosAlOtroScript(jsonData);
-
-
-
-</script>
-
-
-</body>
-</html>
-

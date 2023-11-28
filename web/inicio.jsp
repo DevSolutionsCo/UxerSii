@@ -31,7 +31,7 @@
             <p>Alimentos</p>
           </div>
         </div>
-        <div class="card-mini">
+        <div class="card-mini" id="soporte-card">
           <div class="iconito-card rojo bg-rojo">
             <span class="material-symbols-outlined"> 3p </span>
           </div>

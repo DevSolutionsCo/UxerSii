@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Cris/Prepa.%20Ian/Semestre%205/UxerSii/UxerSii/web/index.html</file>
             <file>file:/D:/Cris/Prepa.%20Ian/Semestre%205/UxerSii/UxerSii/web/main.js</file>
             <file>file:/D:/Cris/Prepa.%20Ian/Semestre%205/UxerSii/UxerSii/web/perfil.jsp</file>
             <file>file:/D:/Cris/Prepa.%20Ian/Semestre%205/UxerSii/UxerSii/web/styles/MainStyle.css</file>
             <file>file:/D:/Cris/Prepa.%20Ian/Semestre%205/UxerSii/UxerSii/web/styles/indexStyle.css</file>
+=======
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/src/java/corcho/chat/MessageDAO.java</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/chatuser.jsp</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/signIn.jsp</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/src/java/corcho/chat/Message.java</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/GuardarMensaje.jsp</file>
+>>>>>>> 42b32b45f569d43d93260258e808440ad7292aec
         </group>
     </open-files>
 </project-private>

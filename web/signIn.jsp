@@ -44,7 +44,7 @@
         
                 String consulta1 = "select * from usuario_hogar where correo_hog = ? and contra_hog = ?";
                 String consulta2 = "select * from usuario_establecimiento where correo_est = ? and contra_est = ?";
-                String consulta3 = "select * from usuario_organizacion where correo_org = ? and contra_org = ?";
+                String consulta3 = "select * from administrador where correo_admin = ? and contra_admin = ?";
 
 
                 pstmt1 = conn.prepareStatement(consulta1);
@@ -69,6 +69,7 @@
                
                 if (rs1.next()) {
                 
+                    int id_hog = rs1.getInt("id_hog");
                     String nombre_hog = rs1.getString("nombre_hog");
                     String apellido_mat = rs1.getString("apellido_mat");
                     String apellido_pat = rs1.getString("apellido_pat");
@@ -80,7 +81,9 @@
                     String codigoPostal = rs1.getString("codigoPostal");
                     String fechNac = rs1.getString("fecha_nac");
                     
-                    
+                    String tipoUser = "hogar";
+                     session.setAttribute("id_user", id_hog);
+                     session.setAttribute("tipoUser", tipoUser);
                      session.setAttribute("nombUserH", nombUserH);
                      session.setAttribute("apellidoP", apellido_pat);
                      session.setAttribute("nombH", nombre_hog);
@@ -104,6 +107,7 @@
                 }else
                     if(rs2.next()){
                     
+                    String id_est = rs2.getString("id_est");
                     String nombre_est = rs2.getString("nombre_est");
                     String tel_est = rs2.getString("tel_est");
                     String correo_est = rs2.getString("correo_est");
@@ -113,7 +117,9 @@
                     String cp_est = rs2.getString("cp_est");
                    
                     
-                    
+                    String tipoUser = "establecimiento";
+                        session.setAttribute("id_user", id_est);
+                        session.setAttribute("tipoUser", tipoUser);
                         session.setAttribute("nombEST", nombre_est);
                         session.setAttribute("ubicacionEST", cp_est);
                         session.setAttribute("passEST", contra_est);
@@ -135,23 +141,18 @@
                     }else
                       if(rs3.next()){
                     
-                      String id_ofc = rs3.getString("id_ofc");
-                    String nombre_org = rs3.getString("nombre_org");
-                    String cp_org = rs3.getString("cp_org");
-                    String contra_org = rs3.getString("contra_org");
-                    String correo_org = rs3.getString("correo_org");
-                    String desc_org = rs3.getString("desc_org");
-                    String tel_org = rs3.getString("tel_org");
-                    String link_org = rs3.getString("link_org");
+                      int id_admin = rs3.getInt("id_admin");
+                    String correo_admin = rs3.getString("correo_admin");
+                    String contra_admin = rs3.getString("contra_admin");
+                    String nombre_admin = rs3.getString("nombre_admin");
+                   
                     
-                    session.setAttribute("nombORG", nombre_org);
-                     session.setAttribute("UbicacionORG", cp_org);
-                     session.setAttribute("passwORG", contra_org);
-                     session.setAttribute("correoORG", correo_org);
-                     session.setAttribute("contactoORG", tel_org);
-                     session.setAttribute("RedesORG", link_org);
-                     session.setAttribute("id_ofc", id_ofc);
-                     session.setAttribute("desc_org", desc_org);
+                    session.setAttribute("id_admin", id_admin);
+                     session.setAttribute("correo_admin", correo_admin);
+                     session.setAttribute("contra_admin", contra_admin);
+                     session.setAttribute("nombre_admin", nombre_admin);
+                     session.setAttribute("id_admin", id_admin);
+                    
                     
                       
                         boolean con3 = true;
