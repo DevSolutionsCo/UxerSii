@@ -540,8 +540,8 @@ contra_admin nvarchar(20),
 nombre_admin nvarchar(30));
 
 insert into administrador values 
-(1, "reyna.juarez.javier@gmail.com","MTBobkF3Zk9hZk9ud0g=","Javier"),
-(2, "ruiz.lopez.victormanuelr@gmail.com","MTBobkF3Zk9hZk9ud0g=","Victor"),
+(1, "reyna.juarez.javier@gmail.com","javi","Javier"),
+(2, "ruiz.lopez.victormanuelr@gmail.com","vic","Victor"),
 (3, "molina.fernandez.cristopherian@gmial.com","MTBobkF3Zk9hZk9ud0g=","Cris"),
 (4, "jara.hernandez.carlossebastian@gmail.com","MTBobkF3Zk9hZk9ud0g=","Sebastian");
 

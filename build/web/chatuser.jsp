@@ -86,7 +86,7 @@
         </div>
                         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    function sendMessage() {
+/*    function sendMessage() {
         var messageContent = $('#messageInput').val();
 
         // Validar que el contenido del mensaje no esté vacío
@@ -114,6 +114,45 @@
         // Limpiar el contenido del textarea después de enviar el mensaje
         $('#messageInput').val('');
     }
+     * 
+ */
+var socket = new WebSocket("ws:192.168.20.36:8080/UxerSiito/chat");
+
+socket.onopen = function(event) {
+    // La conexión se ha abierto
+};
+
+socket.onmessage = function(event) {
+    // Manejar el mensaje recibido y actualizar la interfaz de usuario
+    // Por ejemplo, puedes agregar el mensaje a la lista de mensajes en el chat.
+    console.log("Mensaje recibido:", event.data);
+};
+
+socket.onclose = function(event) {
+    // Manejar el cierre de la conexión
+};
+
+// Para enviar un mensaje al servidor
+function sendMessage(idUser) {
+    var messageContent = $('#messageInput').val();
+    
+    // Validar que el contenido del mensaje no esté vacío
+    if (messageContent.trim() === "") {
+        alert("Por favor, escribe un mensaje antes de enviar.");
+        return;
+    }
+
+    // Enviar el mensaje a través de la conexión WebSocket
+    var message = {
+        content: messageContent,
+        iduser: idUser
+    };
+    socket.send(JSON.stringify(message));
+
+    // Limpiar el contenido del textarea después de enviar el mensaje
+    $('#messageInput').val('');
+}
+
 </script>
 
     </section>
