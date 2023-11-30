@@ -86,23 +86,10 @@
                     <i class="ri-chat-3-line"></i>
                     <p>Hola admin selecciona un chat!</p>
                 </div>
-                    <div class="conversation-top">
-                        <button type="button" class="conversation-back"><i class="ri-arrow-left-line"></i></button>
-                        <div class="conversation-user">
-                            <img class="conversation-user-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">
-                            <div>
-                                <div class="conversation-user-name">Uxersiito 1</div>
-                            </div>
-                        </div>
-                        <div class="conversation-buttons">
-                            <button type="button" class="conversation-form-button" style="width: 200px; height: 40px;"><i class="fa-regular fa-square-check" ></i> &nbsp; Finalizar chat </button>
-                            <button type="button"><i class="ri-information-line"></i></button>
-                        </div>
-                    </div>
                     <% for (AdminUser adminUser : adminUsers) { %>
                 <div class="conversation" id="conversation-<%= adminUser.getName() %>">
                     <div class="conversation-top">
-                        <!-- Puedes mostrar información adicional sobre el usuario aquí -->
+                        <!-- Puedes mostrar informaciï¿½n adicional sobre el usuario aquï¿½ -->
                         <div class="conversation-user">
                             <img class="conversation-user-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">
                             <div>
@@ -153,7 +140,7 @@
 /*function sendMessage(idUser) {
         var messageContent = $('#messageInput').val();
 
-        // Validar que el contenido del mensaje no esté vacío
+        // Validar que el contenido del mensaje no estï¿½ vacï¿½o
         if (messageContent.trim() === "") {
             alert("Por favor, escribe un mensaje antes de enviar.");
             return;
@@ -167,7 +154,7 @@
                     iduser: idUser
                     },
             success: function(response) {
-                // Lógica de éxito (opcional)
+                // Lï¿½gica de ï¿½xito (opcional)
                 console.log('Mensaje enviado correctamente');
             },
             error: function(error) {
@@ -176,7 +163,7 @@
             }
         });
 
-        // Limpiar el contenido del textarea después de enviar el mensaje
+        // Limpiar el contenido del textarea despuï¿½s de enviar el mensaje
         $('#messageInput').val('');
     }
 */
@@ -184,7 +171,7 @@
 var socket = new WebSocket("ws:192.168.20.36:8080/UxerSiito/chat");
 
 socket.onopen = function(event) {
-    // La conexión se ha abierto
+    // La conexiï¿½n se ha abierto
 };
 
 socket.onmessage = function(event) {
@@ -194,27 +181,27 @@ socket.onmessage = function(event) {
 };
 
 socket.onclose = function(event) {
-    // Manejar el cierre de la conexión
+    // Manejar el cierre de la conexiï¿½n
 };
 
 // Para enviar un mensaje al servidor
 function sendMessage(idUser) {
     var messageContent = $('#messageInput').val();
     
-    // Validar que el contenido del mensaje no esté vacío
+    // Validar que el contenido del mensaje no estï¿½ vacï¿½o
     if (messageContent.trim() === "") {
         alert("Por favor, escribe un mensaje antes de enviar.");
         return;
     }
 
-    // Enviar el mensaje a través de la conexión WebSocket
+    // Enviar el mensaje a travï¿½s de la conexiï¿½n WebSocket
     var message = {
         content: messageContent,
         iduser: idUser
     };
     socket.send(JSON.stringify(message));
 
-    // Limpiar el contenido del textarea después de enviar el mensaje
+    // Limpiar el contenido del textarea despuï¿½s de enviar el mensaje
     $('#messageInput').val('');
 }
 
