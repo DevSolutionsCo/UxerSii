@@ -575,7 +575,7 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade
 );
 
-create table puntos_colecta (
+create table puntos_colectaFijos (
 id_punto int auto_increment primary key not null,
 nomb_punto nvarchar(255),
 latitud decimal(10,6),
@@ -586,7 +586,18 @@ horario time,
 fecha_de_creacion date,
 estado nvarchar(10),
 descripcion TEXT);
-    
+
+INSERT INTO puntos_colectaFijos (nomb_punto, latitud, longitud, responsable, almacenamiento, horario, fecha_de_creacion, estado, descripcion) VALUES 
+  ('Centro Histórico - Zócalo', 19.4326, -99.1332, 'Responsable1', 100.00, '08:00:00', '2023-11-27', 'Activo', 'Un lugar céntrico y muy transitado.'),
+  ('Cerca de la Universidad Nacional Autónoma de México (UNAM)', 19.3228, -99.1866, 'Responsable2', 150.50, '09:00:00', '2023-11-27', 'Activo', 'Una zona con alta población estudiantil.'),
+  ('Iztapalapa - Cerca del Metro Constitución de 1917', 19.3742, -99.0721, 'Responsable3', 80.75, '10:00:00', '2023-11-27', 'Activo', 'Una zona con alta densidad poblacional.'),
+  ('Ecatepec - Cerca de la estación de metro Ciudad Azteca', 19.5345, -99.0279, 'Responsable4', 120.25, '11:00:00', '2023-11-27', 'Activo', 'Para servir a las áreas más alejadas del centro.'),
+  ('Santa Fe - Parque La Mexicana', 19.3598, -99.2713, 'Responsable5', 200.00, '12:00:00', '2023-11-27', 'Activo', 'Un área con muchas oficinas y flujo de personas.'),
+  ('Parque de los Venados', 19.3800, -99.1556, 'Responsable6', 90.50, '13:00:00', '2023-11-27', 'Activo', 'Un parque popular en la delegación Benito Juárez.'),
+  ('Plaza Universidad', 19.3622, -99.1677, 'Responsable7', 180.75, '14:00:00', '2023-11-27', 'Activo', 'Un centro comercial grande y muy frecuentado.'),
+  ('Centro Comercial Santa Fe', 19.3599, -99.2780, 'Responsable8', 250.00, '15:00:00', '2023-11-27', 'Activo', 'En una de las zonas de negocios más importantes de la ciudad.'),
+  ('Bosque de Chapultepec', 19.4200, -99.1919, 'Responsable9', 130.25, '16:00:00', '2023-11-27', 'Activo', 'Un área verde extensa y muy visitada.'),
+  ('Plaza de las Tres Culturas, Tlatelolco', 19.4550, -99.1320, 'Responsable10', 160.50, '17:00:00', '2023-11-27', 'Activo', 'Un lugar histórico y de gran importancia cultural.');
     
 insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values
 ("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954);

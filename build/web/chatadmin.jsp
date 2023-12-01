@@ -179,6 +179,8 @@ function sendMessage(idUser) {
         // Limpiar el contenido del textarea después de enviar el mensaje
         $('#messageInput').val('');
     }
+    
+    
 
 </script> 
     </section>
