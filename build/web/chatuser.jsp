@@ -116,17 +116,59 @@
     }
      * 
  */
-var socket = new WebSocket("ws:192.168.20.64:8080/UxerSiito/chat");
+var socket = new WebSocket("ws:192.168.20.71:8080/UxerSiito/chat");
 
 socket.onopen = function(event) {
     // La conexi�n se ha abierto
 };
 
+let messageCounter = 0; // Variable para llevar la cuenta de los mensajes
+
 socket.onmessage = function(event) {
-    // Manejar el mensaje recibido y actualizar la interfaz de usuario
-    // Por ejemplo, puedes agregar el mensaje a la lista de mensajes en el chat.
-    console.log("Mensaje recibido:", event.data);
+    try {
+        var eventData = JSON.parse(event.data);
+        console.log("Parsed data:", eventData);
+
+        // Incrementamos el contador de mensajes
+        messageCounter++;
+
+        var mensaje = document.createElement("li");
+        mensaje.classList.add("conversation-item");
+
+        var spanId = "messageContentSpan" + messageCounter;
+
+        // Obtener la fecha y hora actual sin segundos
+        var currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'numeric', day: 'numeric', year: 'numeric' });
+
+        mensaje.innerHTML = 
+            '<div class="conversation-item-side">' +
+                '<img class="conversation-item-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">' +
+            '</div>' +
+            '<div class="conversation-item-content">' +
+                '<div class="conversation-item-wrapper">' +
+                    '<div class="conversation-item-box">' +
+                        '<div class="conversation-item-text">' +
+                            '<span id="' + spanId + '"></span>' +
+                            '<div class="conversation-item-time">' + currentTime + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+
+        // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
+        $('.conversation-wrapper').append(mensaje);
+
+        // Ahora intentamos insertar el contenido en el span
+        document.getElementById(spanId).innerText = eventData.content;
+    } catch (error) {
+        console.error('Error parsing event data:', error);
+    }
 };
+
+
+
+
+
 
 socket.onclose = function(event) {
     // Manejar el cierre de la conexi�n
