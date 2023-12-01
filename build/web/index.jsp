@@ -23,8 +23,11 @@
           <h1 class="texto-grande">Sumate a frenar el desperdicio</h1>
           <p class="span">de comida en la Ciudad de Mexico</p>
         </div>
-        <div class="texto-main">
-Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimentos aprovechables; lo que representa el 20% de los restos de alimentos en buen estado a nivel nacional. De acuerdo con la Organización de las Naciones Unidas para la Alimentación y la Agricultura (FAO), los alimentos que nunca se consumen representan un desperdicio de recursos, como tierra, agua, energía, suelo, semillas y otros insumos utilizados en su producción. Y no lo es todo, el Programa de las Naciones Unidas para el Medio Ambiente calcula que entre el 8 % y el 10 % de las emisiones mundiales de gases de efecto invernadero están asociadas a alimentos que nunca se consumieron a perder.
+        <div class="texto-main">|
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. At id
+            earum saepe impedit nemo exercitationem, consequatur, error
+            consectetur tempore perspiciatis praesentium a ut accusamus, aperiam
+            sint necessitatibus non aut amet.
         </div>
       </div>
       <div class="botones">
@@ -40,7 +43,7 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimen
         </div>
       </div>
     </section>
-<<<<<<< HEAD
+
     <section class="cardsillas_content">
       <h2 class="titulo_cardsillas">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -93,7 +96,6 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimen
     </section>
   </body>
 </html>
-=======
 
     <section class="section_card_alimentillos">
         <div class="container_card_alimentillos">
@@ -105,4 +107,3 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimen
 
 </body>
 </html>
->>>>>>> 88f04cf699cb19b88baa46c56995c5c1adcdbf02
