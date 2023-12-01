@@ -54,6 +54,7 @@ body {
   margin-left: 15px;
 }
 
+<<<<<<< HEAD
 p {
   display: block;
   margin-block-start: 1em;
@@ -195,3 +196,68 @@ p {
 .menu-desplegable a:hover {
   background-color: #f0f0f0;
 }
+=======
+p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-left: 23px;
+    padding-right: 23px;
+    text-align:justify ;
+}
+
+.section_card_alimentillos{
+    width: 100%;
+    max-width: 1196px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.container_card_alimentillos{
+    display: block;
+    position: relative;
+    text-align: left;
+    background-color: #c9e265;
+    color: #009640;
+    padding: 10px 40px 40px 40px;
+    border-radius: 20px;
+
+}
+
+.titulo_card_alimentillo{
+    max-width: 50%;
+    margin-bottom: 3.5rem;
+}
+
+.img_card_alimentillos{
+    margin: 0;
+    transform: none;
+    position: absolute;
+    right: 1rem;
+    bottom: -1rem;
+    width: 213px;
+    max-width: 100%;
+    height: auto;
+}
+
+.a_card_alimentillos{
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    color: #009640;
+    background-color: white;
+    border-radius: 24px;
+    padding: 10px 20px;
+    font-weight: 700;
+}
+
+.a_card_alimentillos:hover{
+    background-color: #009640;
+    color: white;
+    transition: 0.5s;
+}
+>>>>>>> 88f04cf699cb19b88baa46c56995c5c1adcdbf02

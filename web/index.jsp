@@ -40,6 +40,7 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimen
         </div>
       </div>
     </section>
+<<<<<<< HEAD
     <section class="cardsillas_content">
       <h2 class="titulo_cardsillas">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -92,3 +93,16 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alimen
     </section>
   </body>
 </html>
+=======
+
+    <section class="section_card_alimentillos">
+        <div class="container_card_alimentillos">
+            <h2 class="titulo_card_alimentillo">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h2>
+            <a href="#" class="a_card_alimentillos">Alimentillos</a>
+            <img src="https://cdn-icons-png.flaticon.com/512/1813/1813392.png" alt="" class="img_card_alimentillos">
+        </div>
+    </section>
+
+</body>
+</html>
+>>>>>>> 88f04cf699cb19b88baa46c56995c5c1adcdbf02
