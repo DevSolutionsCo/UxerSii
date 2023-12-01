@@ -93,7 +93,6 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alime
     </section>
   </body>
 </html>
-=======
 
     <section class="section_card_alimentillos">
         <div class="container_card_alimentillos">
@@ -105,4 +104,3 @@ Todos los días se desperdician en la CDMX, entre 13 y 14 mil toneladas de alime
 
 </body>
 </html>
->>>>>>> 88f04cf699cb19b88baa46c56995c5c1adcdbf02
