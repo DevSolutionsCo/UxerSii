@@ -31,14 +31,14 @@
         </div>
       </div>
       <div class="botones">
-        <a href="signUp.html">
+        <a href="login.jsp">
           <button class="botoncitos-main">Iniciar sesion</button></a
         >
         <div class="contenedor-menu">
           <button class="botoncitos-main">Crear cuenta</button>
           <div class="menu-desplegable">
-            <a href="loginH.html">Hogar</a>
-            <a href="loginE.html">Establecimiento</a>
+            <a href="signUpH.jsp">Hogar</a>
+            <a href="signUpE.html">Establecimiento</a>
           </div>
         </div>
       </div>
