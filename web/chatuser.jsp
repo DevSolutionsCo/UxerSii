@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/chatuser.css">
     <link rel="shortcut icon" href="resources/Logo-uxersii.svg">
     <title>Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 </head>
 <body>
     
@@ -77,7 +79,7 @@
                         <div class="conversation-form-group">
                             <textarea id="messageInput" class="conversation-form-input" rows="1" placeholder="Escribe un mensaje..."></textarea>
                         </div>
-                        <button type="button" class="conversation-form-button conversation-form-submit" onclick="sendMessage()"><i class="ri-send-plane-2-line"></i></button>
+                        <button type="button" class="conversation-form-button conversation-form-submit" onclick="sendMessage('<%= nombUser %>')"><i class="ri-send-plane-2-line"></i></button>
                     </div>
                 </div>
                 <!-- end: Conversation -->
@@ -116,7 +118,7 @@
     }
      * 
  */
-var socket = new WebSocket("ws:192.168.20.71:8080/UxerSiito/chat");
+var socket = new WebSocket("ws:192.168.100.13:8080/UxerSiito/chat");
 
 socket.onopen = function(event) {
     // La conexi�n se ha abierto
@@ -130,33 +132,60 @@ socket.onmessage = function(event) {
         console.log("Parsed data:", eventData);
 
         // Incrementamos el contador de mensajes
-        messageCounter++;
-
-        var mensaje = document.createElement("li");
-        mensaje.classList.add("conversation-item");
-
-        var spanId = "messageContentSpan" + messageCounter;
+        messageCounter++;    
+        
 
         // Obtener la fecha y hora actual sin segundos
         var currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'numeric', day: 'numeric', year: 'numeric' });
+        
+        var idUserActual = '<%= nomb %>';
+        
+        if(idUserActual === eventData.iduser){
+            var mensaje = document.createElement("li");
+             mensaje.classList.add('conversation-item', 'me');
+            
 
-        mensaje.innerHTML = 
-            '<div class="conversation-item-side">' +
-                '<img class="conversation-item-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">' +
-            '</div>' +
-            '<div class="conversation-item-content">' +
-                '<div class="conversation-item-wrapper">' +
-                    '<div class="conversation-item-box">' +
-                        '<div class="conversation-item-text">' +
-                            '<span id="' + spanId + '"></span>' +
-                            '<div class="conversation-item-time">' + currentTime + '</div>' +
+            var spanId = "messageContentSpan" + messageCounter;
+            mensaje.innerHTML = 
+                '<div class="conversation-item-side">' +
+                    '<img class="conversation-item-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">' +
+                '</div>' +
+                '<div class="conversation-item-content">' +
+                    '<div class="conversation-item-wrapper">' +
+                        '<div class="conversation-item-box">' +
+                            '<div class="conversation-item-text">' +
+                                '<span id="' + spanId + '"></span>' +
+                                '<div class="conversation-item-time">' + currentTime + '</div>' +
+                            '</div>' +
                         '</div>' +
                     '</div>' +
-                '</div>' +
-            '</div>';
+                '</div>';
 
-        // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
-        $('.conversation-wrapper').append(mensaje);
+            // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
+            $('.conversation-wrapper').append(mensaje);
+        }else{
+            var mensaje = document.createElement("li");
+            mensaje.classList.add("conversation-item");
+
+            var spanId = "messageContentSpan" + messageCounter;
+            mensaje.innerHTML = 
+                '<div class="conversation-item-side">' +
+                    '<img class="conversation-item-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">' +
+                '</div>' +
+                '<div class="conversation-item-content">' +
+                    '<div class="conversation-item-wrapper">' +
+                        '<div class="conversation-item-box">' +
+                            '<div class="conversation-item-text">' +
+                                '<span id="' + spanId + '"></span>' +
+                                '<div class="conversation-item-time">' + currentTime + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+
+            // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
+            $('.conversation-wrapper').append(mensaje);
+        }
 
         // Ahora intentamos insertar el contenido en el span
         document.getElementById(spanId).innerText = eventData.content;
@@ -187,12 +216,39 @@ function sendMessage(idUser) {
     // Enviar el mensaje a trav�s de la conexi�n WebSocket
     var message = {
         content: messageContent,
-        iduser: idUser
+        nombUser: idUser
     };
     socket.send(JSON.stringify(message));
 
     // Limpiar el contenido del textarea despu�s de enviar el mensaje
     $('#messageInput').val('');
+    // Obtener la fecha y hora actual sin segundos
+        var currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'numeric', day: 'numeric', year: 'numeric' });
+        // Obtener la fecha y hora actual
+        var currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
+
+        var parsedDate = new Date(currentTime);
+
+        // Formatear la fecha y hora seg�n el formato de MySQL
+        var formattedDateTime = parsedDate.toISOString().slice(0, 19).replace("T", " ");
+        // Formatear la fecha y hora seg�n el formato de MySQL
+
+    $.ajax({
+            type: 'POST',
+            url: 'GuardarMensaje.jsp',  // Reemplaza 'GuardarMensaje.jsp' con la URL de tu servlet o JSP que maneje el guardado del mensaje
+            data: { content: messageContent,
+                    time: currentDate
+                    },
+            success: function(response) {
+                // L�gica de �xito (opcional)
+                console.log('Mensaje enviado correctamente');
+            },
+            error: function(error) {
+                // Manejo de errores (opcional)
+                console.error('Error al enviar el mensaje:', error);
+            }
+        });
+
 }
 
 </script>

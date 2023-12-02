@@ -20,8 +20,8 @@
             idAdmin = new Random().nextInt(4) + 1;
             session.setAttribute("idAdmin", idAdmin);
         }
-        
-    if(userH != null){
+
+        if(userH != null){
          sender = userH;
          tipoU = "hogar";
     }else if(userE != null){
@@ -29,11 +29,12 @@
          tipoU = "establecimiento";
     }
     String messageContent = request.getParameter("content");
-
+    String time = request.getParameter("time");
+    System.out.println(time);
     if (messageContent != null && !messageContent.trim().isEmpty()) {
         // Guardar el mensaje en la base de datos utilizando tu clase MessageDAO
         MessageDAO messageDAO = new MessageDAO();
-        messageDAO.saveMessage(sender, messageContent, tipoU, id_user, idAdmin);
+        messageDAO.saveMessage(sender, messageContent, tipoU, id_user, idAdmin, time);
 
         // Puedes imprimir un mensaje de éxito o redirigir a una página de éxito
         out.println("Mensaje guardado correctamente");

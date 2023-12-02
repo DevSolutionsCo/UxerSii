@@ -22,12 +22,14 @@
          tipoU = "hogar";
     }
     String messageContent = request.getParameter("content");
+    String time = request.getParameter("time");
+    System.out.println(time);
     int iduser = Integer.parseInt(request.getParameter("iduser"));
 
     if (messageContent != null && !messageContent.trim().isEmpty()) {
         // Guardar el mensaje en la base de datos utilizando tu clase MessageDAO
         MessageDAO messageDAO = new MessageDAO();
-        messageDAO.saveMessage(sender, messageContent, tipoU, iduser, id_user);
+        messageDAO.saveMessage(sender, messageContent, tipoU, iduser, id_user, time);
 
         // Puedes imprimir un mensaje de éxito o redirigir a una página de éxito
         out.println("Mensaje guardado correctamente");

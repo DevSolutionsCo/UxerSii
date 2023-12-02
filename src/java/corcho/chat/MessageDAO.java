@@ -9,10 +9,14 @@ package corcho.chat;
  * @author javis
  */
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,17 +58,27 @@ public class MessageDAO {
         return messages;
     }
     
-    public void saveMessage(String sender, String content, String tipoUser, int id_user, int idAdmin) {
+    public void saveMessage(String sender, String content, String tipoUser, int id_user, int idAdmin, String time) throws ParseException {
+            // Definir el formato de fecha y hora
+            SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.util.Date utilDate = formatoFechaHora.parse(time);
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            
+
+            // Convertir a java.sql.Timestamp (puedes usar java.sql.Date si no necesitas la parte de tiempo)
+            Timestamp timestamp = new Timestamp(sqlDate.getTime());
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(dbURL, user, password);
-            String query = "insert into mensajes (usuario_envia, mensaje, tipo_usuario, id_hog, id_admin) VALUES (?, ?, ?, ?, ?)";
+            String query = "insert into mensajes (usuario_envia, mensaje, tipo_usuario, id_hog, id_admin, hora_men) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, sender);
             preparedStatement.setString(2, content);
             preparedStatement.setString(3, tipoUser);
             preparedStatement.setInt(4, id_user);
             preparedStatement.setInt(5, idAdmin);
+            preparedStatement.setTimestamp(6, timestamp);
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
@@ -88,9 +102,10 @@ public class MessageDAO {
 
             while (resultSet.next()) {
                 int userId = resultSet.getInt("id_hog");
+                int idAdmin = resultSet.getInt("id_admin");
                 String userName = resultSet.getString("usuario_envia");
 
-                AdminUser adminUser = new AdminUser(userId, userName);
+                AdminUser adminUser = new AdminUser(userId, idAdmin, userName );
                 adminUser.setMessages(getMessagesForUser(userId)); // Obtener mensajes para este usuario
 
                 adminUsers.add(adminUser);
