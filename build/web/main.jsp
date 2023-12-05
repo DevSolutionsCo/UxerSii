@@ -59,7 +59,7 @@
           <button class="b-perfil-ma" id="abrirModalBtn">
             <img src="resources/Logo-uxersii.svg" class="user-avatar" />
           </button>
-          <div id="miModal" class="modal">
+          <div id="miModal" class="modalitoPerfil">
             <div class="modal-contenido">
               <span class="cerrar" onclick="cerrarModal()">&times;</span>
               <p class="text-perfil">Perfil</p>
