@@ -24,15 +24,79 @@ sebas --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <link rel="stylesheet" href="styles/alim-gest.css" />
+    <link rel="stylesheet" href="styles/amin-gestion.css" />
     <title>Gestion de alimentos</title>
   </head>
   <body>
     <div class="TODOwriteContent">
       <div class="div-tabla">
         <div class="textos">
-          <p>Productos disponibles</p>
+          <div class="botondivgest">
+            <p>Productos disponibles</p>
+            <button type="button" class="btn btn-outline-dark" id="customBtn">
+              Agregar alimento
+            </button>
+          </div>
           <span>Inventario</span>
+        </div>
+        <div
+          class="modal fade"
+          id="customModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="customModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="customModalLabel">
+                  Agregar Alimento
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Formulario aquí -->
+                <form id="customForm">
+                  <div class="form-group">
+                    <label for="customNombre">Nombre del Alimento:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="customNombre"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="customFecha">Fecha de Caducidad:</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="customFecha"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="customCantidad">Cantidad:</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="customCantidad"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tablita">
           <table class="table table-hover">
@@ -149,5 +213,14 @@ sebas --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
         </div>
       </div>
     </div>
+    <script>
+      // Agrega el código JavaScript para mostrar el modal al hacer clic en el botón
+      document
+        .getElementById("customBtn")
+        .addEventListener("click", function () {
+          $("#customModal").modal("show");
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

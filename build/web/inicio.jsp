@@ -40,13 +40,13 @@
             <p>Chat</p>
           </div>
         </div>
-        <div class="card-mini">
+        <div class="card-mini" id="puntos-card">
           <div class="iconito-card verde bg-verde">
-            <span class="material-symbols-outlined"> developer_guide </span>
+            <span class="material-symbols-outlined"> home_pin </span>
           </div>
           <div class="textito-card">
-            <span>Como funciona la app</span>
-            <p>Manuales</p>
+            <span>Puntos moviles</span>
+            <p>Visita los puntos moviles mas cercanos</p>
           </div>
         </div>
       </div>

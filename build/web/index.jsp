@@ -16,7 +16,7 @@
         <div class="links">Quienes somos?</div>
         <div class="links">Contactanos</div>
       </div>
-    </header>
+    </header> 
     <section class="TODOWriteMain">
       <div class="text">
         <div class="title">

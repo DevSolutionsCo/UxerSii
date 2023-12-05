@@ -112,7 +112,7 @@ body {
   border: none;
 }
 
-.modal {
+.modalitoPerfil {
   display: none;
   position: fixed;
   z-index: 1;
@@ -279,4 +279,8 @@ body {
   margin-top: 60px; /* Ajusta según el tamaño de la navbar */
   /* Ajusta según el tamaño de la sidebar */
   transition: margin-left 0.3s; /* Agrega una transición para animar cambios en el margen izquierdo */
+}
+
+.itemSelectedSideBar {
+  background: rgb(51 51 51);
 }
