@@ -17,14 +17,19 @@ document.getElementById("burger-icon").addEventListener("click", function () {
     document.getElementById("main-content").classList.add("main-content");
   }
 });
+// y asigna un evento de clic a cada uno
+var inici = document.getElementById("sidebar-Inicio");
+var social = document.getElementById("sidebar-social");
+
+var alim = document.getElementById("sidebar-alimentos");
+var puntos = document.getElementById("sidebar-puntos");
 
 $(document).ready(function () {
   // Espera a que el documento HTML esté completamente cargado y listo
   $("#main-content").load("inicio.jsp");
-
+  inici.classList.add("itemSelectedSideBar");
   $(".sidebar a").on("click", function (e) {
     // Selecciona todos los elementos <a> dentro de elementos con la clase 'sidebar'
-    // y asigna un evento de clic a cada uno
 
     e.preventDefault(); // Evita el comportamiento predeterminado del enlace, que es la navegación a otra página
 
@@ -33,9 +38,24 @@ $(document).ready(function () {
 
     if (linkText === "Inicio") {
       $("#main-content").load("inicio.jsp");
+      inici.classList.add("itemSelectedSideBar");
+      social.classList.remove("itemSelectedSideBar");
+
+      alim.classList.remove("itemSelectedSideBar");
+      puntos.classList.remove("itemSelectedSideBar");
     } else if (linkText === "Alimentos") {
       $("#main-content").load("alimentos-main.jsp");
+      inici.classList.remove("itemSelectedSideBar");
+      social.classList.remove("itemSelectedSideBar");
+
+      alim.classList.add("itemSelectedSideBar");
+      puntos.classList.remove("itemSelectedSideBar");
     } else if (linkText === "Puntos Moviles") {
+      inici.classList.remove("itemSelectedSideBar");
+      social.classList.remove("itemSelectedSideBar");
+
+      alim.classList.remove("itemSelectedSideBar");
+      puntos.classList.add("itemSelectedSideBar");
       $("#main-content").load("punto-movil.html");
     }
   });
@@ -47,10 +67,14 @@ $(document).ready(function () {
     $(document).on("click", "#donativo-card", function () {
       $("#main-content").load("alimentos-main.jsp");
     });
+    $(document).on("click", "#puntos-card", function () {
+      $("#main-content").load("punto-movil.html");
+    });
 
     $(document).on("click", "#productos-card", function () {
       $("#main-content").load("alimentos-gestion.jsp");
-    });    $(document).on("click", "#soporte-card", function () {
+    });
+    $(document).on("click", "#soporte-card", function () {
       $("#main-content").load("chatuser.jsp");
     });
   });
