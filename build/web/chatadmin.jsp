@@ -91,7 +91,7 @@
                     <% for (AdminUser adminUser : adminUsers) { %>
                 <div class="conversation" id="conversation-<%= adminUser.getName() %>">
                     <div class="conversation-top">
-                        <!-- Puedes mostrar informaci�n adicional sobre el usuario aqu� -->
+                        <!-- Puedes mostrar informaciï¿½n adicional sobre el usuario aquï¿½ -->
                         <div class="conversation-user">
                             <img class="conversation-user-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">
                             <div>
@@ -142,7 +142,7 @@
 /*function sendMessage(idUser) {
         var messageContent = $('#messageInput').val();
 
-        // Validar que el contenido del mensaje no est� vac�o
+        // Validar que el contenido del mensaje no estï¿½ vacï¿½o
         if (messageContent.trim() === "") {
             alert("Por favor, escribe un mensaje antes de enviar.");
             return;
@@ -156,7 +156,7 @@
                     iduser: idUser
                     },
             success: function(response) {
-                // L�gica de �xito (opcional)
+                // Lï¿½gica de ï¿½xito (opcional)
                 console.log('Mensaje enviado correctamente');
             },
             error: function(error) {
@@ -165,15 +165,15 @@
             }
         });
 
-        // Limpiar el contenido del textarea despu�s de enviar el mensaje
+        // Limpiar el contenido del textarea despuï¿½s de enviar el mensaje
         $('#messageInput').val('');
     }
 */
 
-var socket = new WebSocket("ws:192.168.100.13:8080/UxerSiito/chat");
+const socket = new WebSocket('ws://devsolutions.gerdoc.com/UxerSiito/chat');
 
 socket.onopen = function(event) {
-    // La conexi�n se ha abierto
+    // La conexiï¿½n se ha abierto
 };
 
 let messageCounterA = 0; // Variable para llevar la cuenta de los mensajes
@@ -215,7 +215,7 @@ socket.onmessage = function(event) {
                     '</div>' +
                 '</div>';
 
-            // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
+            // Cambio importante: asegÃºrate de que el contenido del mensaje estÃ© siendo agregado correctamente
             $('.conversation-wrapper').append(mensaje);
         }else{
             var mensaje = document.createElement("li");
@@ -238,7 +238,7 @@ socket.onmessage = function(event) {
                     '</div>' +
                 '</div>';
 
-            // Cambio importante: asegúrate de que el contenido del mensaje esté siendo agregado correctamente
+            // Cambio importante: asegÃºrate de que el contenido del mensaje estÃ© siendo agregado correctamente
             $('.conversation-wrapper').append(mensaje);
         }
 
@@ -251,14 +251,14 @@ socket.onmessage = function(event) {
 
 
 socket.onclose = function(event) {
-    // Manejar el cierre de la conexi�n
+    // Manejar el cierre de la conexiï¿½n
 };
 
 // Para enviar un mensaje al servidor
 function sendMessage(idUser) {
     var messageContent = $('#messageInput').val();
     
-    // Validar que el contenido del mensaje no est� vac�o
+    // Validar que el contenido del mensaje no estï¿½ vacï¿½o
     if (messageContent.trim() === "") {
         alert("Por favor, escribe un mensaje antes de enviar.");
         return;
@@ -266,14 +266,14 @@ function sendMessage(idUser) {
     
     
 
-    // Enviar el mensaje a trav�s de la conexi�n WebSocket
+    // Enviar el mensaje a travï¿½s de la conexiï¿½n WebSocket
     var message = {
         content: messageContent,
         iduser: idUser
     };
     socket.send(JSON.stringify(message));
 
-    // Limpiar el contenido del textarea despu�s de enviar el mensaje
+    // Limpiar el contenido del textarea despuï¿½s de enviar el mensaje
     $('#messageInput').val('');
      var currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'numeric', day: 'numeric', year: 'numeric' });
         // Obtener la fecha y hora actual
@@ -281,9 +281,9 @@ function sendMessage(idUser) {
 
         var parsedDate = new Date(currentTime);
 
-        // Formatear la fecha y hora seg�n el formato de MySQL
+        // Formatear la fecha y hora según el formato de MySQL
         var formattedDateTime = parsedDate.toISOString().slice(0, 19).replace("T", " ");
-        // Formatear la fecha y hora seg�n el formato de MySQL
+        // Formatear la fecha y hora según el formato de MySQL
 
     $.ajax({
             type: 'POST',
@@ -293,7 +293,7 @@ function sendMessage(idUser) {
                     iduser: idUser
                     },
             success: function(response) {
-                // L�gica de �xito (opcional)
+                // Lï¿½gica de ï¿½xito (opcional)
                 console.log('Mensaje enviado correctamente');
             },
             error: function(error) {
