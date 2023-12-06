@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  *
  * @author javis
  */
-@WebServlet("/mapaServelet")
+@WebServlet("/mapa")
 public class mapaServelet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,15 +45,18 @@ public class mapaServelet extends HttpServlet {
             puntosJson.append("\"id\":").append(punto.getId()).append(",");
             puntosJson.append("\"nombre\":\"").append(punto.getNombre()).append("\",");
             puntosJson.append("\"latitud\":").append(punto.getLatitud()).append(",");
-            puntosJson.append("\"longitud\":").append(punto.getLongitud()).append(",");
+            puntosJson.append("\"longitud\":").append(punto.getLongitud());
             // ... otros campos ...
-            puntosJson.append("},");
-        }
-        // Elimina la coma adicional al final
-        if (puntos.size() > 0) {
-            puntosJson.setLength(puntosJson.length() - 1);
+
+            // No agregues la coma si es el último objeto en la lista
+            if (puntos.indexOf(punto) == puntos.size() - 1) {
+                puntosJson.append("}");
+            } else {
+                puntosJson.append("},");
+            }
         }
         puntosJson.append("]");
+
 
         System.out.println("puntosColectaJson: " + puntosJson.toString());
 

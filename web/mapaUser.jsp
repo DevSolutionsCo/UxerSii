@@ -43,7 +43,38 @@
             center: centerCoordinates,
             zoom: 8
         });
-        //manejarDatos(centroidesKMeans);
+        
+        //var puntosColectaJson = document.getElementById('puntosColectaJson').textContent;
+
+        
+        var data =[];
+        // Convierte la cadena JSON a un objeto JavaScript
+         var puntosColecta = '<%= request.getAttribute("puntosColectaJson") %>';
+         var puntosColectaJson = JSON.parse(puntosColecta);
+
+         console.log(puntosColectaJson);
+        // Itera sobre los puntos de colecta y agrégales a data
+        for (var i = 0; i < puntosColectaJson.length; i++) {
+            var punto = puntosColectaJson[i];
+            console.log(puntosColectaJson[i]);
+            // Crea un nuevo objeto lugar y agrégalo a data
+            var nuevoLugar = {
+                "lat": punto.latitud,
+                "lng": punto.longitud,
+                "name": punto.nombre
+                // Puedes agregar más propiedades si es necesario
+            };
+            data.push(nuevoLugar);
+        }
+
+        // Itera sobre la lista completa de lugares y realiza las operaciones necesarias
+        for (var i = 0; i < data.length; i++) {
+            var lugar = data[i];
+            //console.log(lugar);
+            // Aquí puedes realizar operaciones con los datos en JavaScript
+        }
+        
+        manejarDatos(data);
         }
         
        function distanciaHaversine(coord1, coord2) {
@@ -215,19 +246,7 @@ function kmeans(datos, k) {
     }
 }
 
-var puntosColectaJson = document.getElementById('puntosColectaJson').textContent;
 
-console.log(puntosColectaJson);
-
-        // Convierte la cadena JSON a un objeto JavaScript
-         var puntosColectaJson = '<%= request.getAttribute("puntosColectaJson") %>';
-
-        // Itera sobre la lista y realiza las operaciones necesarias
-        for (var i = 0; i < puntosColecta.length; i++) {
-            var punto = puntosColecta[i];
-            console.log(punto);
-            // Aquí puedes realizar operaciones con los datos en JavaScript
-        }
        
 const datos = [[40.7128, -74.0060], // Times Square
 [40.7589, -73.9851], // Central Park
@@ -259,12 +278,12 @@ var centroidesKMeans = kmeans(conjuntoPuntos, cantidadClustersDBSCAN);
 console.log("Centroide encontrado:", centroidesKMeans);
 
     // Generar o modificar datos
-var data = [
+/*var data = [
     { "lat": -34.4, "lng": 150.7, "name": "Lugar A" },
     { "lat": -34.5, "lng": 150.8, "name": "Lugar B" },
     { "lat": -34.6, "lng": 150.9, "name": "Lugar C" }
     // Puedes agregar más lugares aquí
-];
+];*/
 
 // Convertir datos a formato JSON
 var jsonData = JSON.stringify(centroidesKMeans);

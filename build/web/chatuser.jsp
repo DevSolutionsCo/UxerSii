@@ -118,7 +118,7 @@
     }
      * 
  */
-const socket = new WebSocket('ws://devsolutions.gerdoc.com/UxerSiito/chat');
+var socket = new WebSocket("ws://localhost:8080/UxerSiito/chat/gerdoc");
 
 
 socket.onopen = function(event) {
@@ -139,11 +139,11 @@ socket.onmessage = function(event) {
         // Obtener la fecha y hora actual sin segundos
         var currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'numeric', day: 'numeric', year: 'numeric' });
         
-        var idUserActual = '<%= nomb %>';
+        var idUserActual = '<%= nombUser %>';
         
-        if(idUserActual === eventData.iduser){
+        if(idUserActual === eventData.sender){
             var mensaje = document.createElement("li");
-             mensaje.classList.add('conversation-item', 'me');
+             mensaje.classList.add("conversation-item");
             
 
             var spanId = "messageContentSpan" + messageCounter;
@@ -166,7 +166,8 @@ socket.onmessage = function(event) {
             $('.conversation-wrapper').append(mensaje);
         }else{
             var mensaje = document.createElement("li");
-            mensaje.classList.add("conversation-item");
+            
+            mensaje.classList.add('conversation-item', 'me');
 
             var spanId = "messageContentSpan" + messageCounter;
             mensaje.innerHTML = 
@@ -215,9 +216,10 @@ function sendMessage(idUser) {
     }
 
     // Enviar el mensaje a travï¿½s de la conexiï¿½n WebSocket
-    var message = {
+     var message = {
         content: messageContent,
-        nombUser: idUser
+        iduser: idUser,
+        sender: '<%= nombUser %>'
     };
     socket.send(JSON.stringify(message));
 
