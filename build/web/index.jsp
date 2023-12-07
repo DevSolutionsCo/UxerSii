@@ -23,11 +23,8 @@
           <h1 class="texto-grande">Sumate a frenar el desperdicio</h1>
           <p class="span">de comida en la Ciudad de Mexico</p>
         </div>
-        <div class="texto-main">|
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. At id
-            earum saepe impedit nemo exercitationem, consequatur, error
-            consectetur tempore perspiciatis praesentium a ut accusamus, aperiam
-            sint necessitatibus non aut amet.
+        <div class="texto-main">
+          En la Ciudad de México se desperdician cerca 13 mil toneladas de comida diariamente, por ello es fundamental el encontrar soluciones alternativas para reducir el desaprovechamiento de los alimentos que a su vez tiene un impacto ambiental.Si tu como nosotros quieres saber más acerca de como podemos frenar el desperdicio de la comida en CDMX, te invitamos a q te registres o inicies sesión para poder sumarte a enfrentar el desperdicio de alimentos.
         </div>
       </div>
       <div class="botones">
@@ -60,10 +57,7 @@
             class="imagensillas_cards"
           />
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. At id
-            earum saepe impedit nemo exercitationem, consequatur, error
-            consectetur tempore perspiciatis praesentium a ut accusamus, aperiam
-            sint necessitatibus non aut amet.
+            Uno de los primeros datos que encontramos dentro de las consecuencias de la pérdida de alimentos es el volumen de agua desperdiciada para su producción. A esto se suman los 3.300 millones de toneladas de gases de efecto invernadero que se descargan a la atmósfera del planeta durante el proceso, más los producidos con el vertido de los mismos.
           </p>
         </div>
         <div class="cardsillas_desp">
@@ -73,10 +67,7 @@
             class="imagensillas_cards"
           />
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. At id
-            earum saepe impedit nemo exercitationem, consequatur, error
-            consectetur tempore perspiciatis praesentium a ut accusamus, aperiam
-            sint necessitatibus non aut amet.
+              Según la FAO, la Organización de las Naciones Unidas para la Alimentación y la Agricultura, además de estos impactos ambientales, estos desperdicios alimentarios suponen una pérdida de más de 75.0000 millones de dólares cada año.
           </p>
         </div>
         <div class="cardsillas_desp">
@@ -86,10 +77,7 @@
             class="imagensillas_cards"
           />
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. At id
-            earum saepe impedit nemo exercitationem, consequatur, error
-            consectetur tempore perspiciatis praesentium a ut accusamus, aperiam
-            sint necessitatibus non aut amet.
+            El problema de los desperdicios alimentarios se encuentra mucho más cerca de nosotros de lo que creemos. Solo en España, más de dos millones de personas se alimentan exclusivamente de comedores sociales. De ellos, la mayoría son menores que, una vez terminado el curso escolar, no cuentan con los alimentos necesarios para su crecimiento y salud.
           </p>
         </div>
       </div>

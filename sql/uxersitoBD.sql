@@ -542,8 +542,8 @@ nombre_admin nvarchar(30));
 insert into administrador values 
 (1, "reyna.juarez.javier@gmail.com","javi","Javier"),
 (2, "ruiz.lopez.victormanuelr@gmail.com","vic","Victor"),
-(3, "molina.fernandez.cristopherian@gmial.com","MTBobkF3Zk9hZk9ud0g=","Cris"),
-(4, "jara.hernandez.carlossebastian@gmail.com","MTBobkF3Zk9hZk9ud0g=","Sebastian");
+(3, "molina.fernandez.cristopherian@gmial.com","cris","Cris"),
+(4, "jara.hernandez.carlossebastian@gmail.com","jara","Sebastian");
 
 create table administrador_hog(
 id_hog int,
@@ -603,6 +603,10 @@ VALUES
     
     
 insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values
-("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954);
+("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954),
+("cris26@gmail.com", "Cris", "Molina", "Fernandez", "2006-03-26", "Masculino", "holamoon", "crisito", 54954),
+("vic26@gmail.com", "Vic", "Ruiz", "Lopez", "2006-03-26", "Masculino", "holamoon", "vicsito", 54954),
+("jara26@gmail.com", "Jara", "Hernandez", "Carlos", "2006-03-26", "Masculino", "holamoon", "jarita", 54954);
+
 
 
