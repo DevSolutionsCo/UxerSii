@@ -16,7 +16,7 @@ import javax.websocket.server.ServerEndpoint;
  *
  * @author Alumno
  */
-@ServerEndpoint( value = "/chat/{username}")
+@ServerEndpoint( value = "/UxerSiito/chat/{username}")
 public class WebSocket {
     
 
