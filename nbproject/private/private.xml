@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/src/java/corcho/mapa/mapaServelet.java</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/src/java/corcho/chat/WebSocket.java</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/chatuser.jsp</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/mapaUser.jsp</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/web/chatadmin.jsp</file>
+            <file>file:/C:/Users/javis/OneDrive/Documentos/GitHub/UxerSiito/src/java/corcho/chat/AdminUser.java</file>
+        </group>
     </open-files>
 </project-private>
