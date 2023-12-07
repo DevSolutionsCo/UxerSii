@@ -24,8 +24,7 @@
           <p class="span">de comida en la Ciudad de Mexico</p>
         </div>
         <div class="texto-main">
-          En la Ciudad de M√©xico se desperdician cerca 13 mil toneladas de comida diariamente, por ello es fundamental el encontrar soluciones alternativas para reducir el desaprovechamiento de los alimentos que a su vez tiene un impacto ambiental.Si tu como nosotros quieres saber m√°s acerca de como podemos frenar el desperdicio de la comida en CDMX, te invitamos a q te registres o inicies sesi√≥n para poder sumarte a enfrentar el desperdicio de alimentos.
-        </div>
+    Si quieres saber m·s acerca de como podemos frenar el desperdicio de la comida en CDMX, te invitamos a q te registres o inicies sesiÛn para poder mantenerte al tanto de que puedes hacer para frenar esto   </div>
       </div>
       <div class="botones">
         <a href="login.jsp">
@@ -43,11 +42,10 @@
 
     <section class="cardsillas_content">
       <h2 class="titulo_cardsillas">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+       Problemas medioambientales
       </h2>
       <p class="texto_dec_cardsillas">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe expedita
-        sapiente vel aliquid dolore nesciunt eaque tenetur eum.
+
       </p>
       <div class="cardsillas_desp_content">
         <div class="cardsillas_desp">
@@ -57,8 +55,7 @@
             class="imagensillas_cards"
           />
           <p>
-            Uno de los primeros datos que encontramos dentro de las consecuencias de la p√©rdida de alimentos es el volumen de agua desperdiciada para su producci√≥n. A esto se suman los 3.300 millones de toneladas de gases de efecto invernadero que se descargan a la atm√≥sfera del planeta durante el proceso, m√°s los producidos con el vertido de los mismos.
-          </p>
+     Uno de los primeros datos que encontramos dentro de las consecuencias de la pÈrdida de alimentos es el volumen de agua desperdiciada para su producciÛn. Hablamos de un total de 8.060 m≥/s cada aÒo. A esto se suman los 3.300 millones de toneladas de gases de efecto invernadero que se descargan a la atmÛsfera del planeta durante el proceso, m·s los producidos con el vertido de los mismos.    </p>
         </div>
         <div class="cardsillas_desp">
           <img
@@ -67,8 +64,7 @@
             class="imagensillas_cards"
           />
           <p>
-              Seg√∫n la FAO, la Organizaci√≥n de las Naciones Unidas para la Alimentaci√≥n y la Agricultura, adem√°s de estos impactos ambientales, estos desperdicios alimentarios suponen una p√©rdida de m√°s de 75.0000 millones de d√≥lares cada a√±o.
-          </p>
+        Seg˙n la FAO, la OrganizaciÛn de las Naciones Unidas para la AlimentaciÛn y la Agricultura, adem·s de estos impactos ambientales, estos desperdicios alimentarios suponen una pÈrdida de m·s de 75.0000 millones de dÛlares cada aÒo.   </p>
         </div>
         <div class="cardsillas_desp">
           <img
@@ -77,8 +73,7 @@
             class="imagensillas_cards"
           />
           <p>
-            El problema de los desperdicios alimentarios se encuentra mucho m√°s cerca de nosotros de lo que creemos. Solo en Espa√±a, m√°s de dos millones de personas se alimentan exclusivamente de comedores sociales. De ellos, la mayor√≠a son menores que, una vez terminado el curso escolar, no cuentan con los alimentos necesarios para su crecimiento y salud.
-          </p>
+         El problema de los desperdicios alimentarios se encuentra mucho m·s cerca de nosotros de lo que creemos. Solo en EspaÒa, m·s de dos millones de personas se alimentan exclusivamente de comedores sociales. De ellos, la mayorÌa son menores que, una vez terminado el curso escolar, no cuentan con los alimentos necesarios para su crecimiento y salud. </p>
         </div>
       </div>
     </section>
@@ -92,6 +87,6 @@
             <img src="https://cdn-icons-png.flaticon.com/512/1813/1813392.png" alt="" class="img_card_alimentillos">
         </div>
     </section>
-
+<<script src="scripts/indexjs.js"></script>
 </body>
 </html>
