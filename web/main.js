@@ -91,3 +91,19 @@ $(document).ready(function () {
     }
   });
 });
+
+
+function cerrarsesion(){
+    var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Redirige a la página de inicio de sesión u otra página después de cerrar la sesión
+                window.location.href = "index.jsp";
+            }
+        };
+
+        // Abre la conexión y envía la solicitud al servidor
+        xhr.open("GET", "cerrarSesion.jsp", true);
+        xhr.send();
+}

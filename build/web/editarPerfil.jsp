@@ -36,6 +36,7 @@
          String genero = request.getParameter("genero");
          String nombUserH = request.getParameter("nombUserH");
          String CPH = request.getParameter("CPH");
+         String fotoH = request.getParameter("fotoH");
          
          
          
@@ -81,8 +82,8 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
     boolean con2 = true;
     System.out.println(desc_hog);
     PerfilHogar obj = new PerfilHogar();
-    obj.actualizarHogar(correoH, nombH, apellidoP, apellidoM, nombUserH, sqlDate, genero, passwH, CPH, desc_hog);
-    
+      obj.actualizarHogar(correoH, nombH, apellidoP, apellidoM, nombUserH, sqlDate, genero, passwH, CPH, desc_hog, fotoH); // Añade el parámetro de la imagen
+
     session.setAttribute("nombUserH", nombUserH);
                      session.setAttribute("apellidoP", apellidoP);
                      session.setAttribute("nombH", nombH);
@@ -93,6 +94,7 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
                      session.setAttribute("fechNac", fechNac);
                      session.setAttribute("CPH", CPH);
                     session.setAttribute("desc_hog", desc_hog);
+                    session.setAttribute("fotoH", fotoH);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
 
@@ -118,7 +120,8 @@ pstmt1.setString(2, (String) session.getAttribute("nombUserH"));
             
     
             }
-    }else if ("e".equals(tipo)) {
+    }
+    else if ("e".equals(tipo)) {
    String nombEST = request.getParameter("nombEST");
          String ubicacionEST = request.getParameter("ubicacionEST");
          String passEST = request.getParameter("passEST");

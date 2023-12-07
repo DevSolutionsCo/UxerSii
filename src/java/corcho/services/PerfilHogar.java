@@ -89,7 +89,7 @@ public class PerfilHogar extends UserHogar{
     
     public boolean actualizarHogar(String correoH, String nombH,
             String apellidoPaterno, String apellidoMaterno, String nombUserH, java.sql.Date fechaNacimiento,
-            String genero, String contrasenaH, String codigoPostal, String desc) throws SQLException, ClassNotFoundException {
+            String genero, String contrasenaH, String codigoPostal, String desc, String FotoH) throws SQLException, ClassNotFoundException {
         System.out.println(desc);
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -103,7 +103,7 @@ public class PerfilHogar extends UserHogar{
         conn = DriverManager.getConnection(dbURL, user, password);
 
         // Query de actualización
-        String query = "update usuario_hogar set nombre_hog=?, apellido_pat=?, apellido_mat=?, fecha_nac=?, genero=?, contra_hog=?, codigoPostal=?, nombUserH=?, desc_hog=? where correo_hog=?";
+        String query = "update usuario_hogar set nombre_hog=?, apellido_pat=?, apellido_mat=?, fecha_nac=?, genero=?, contra_hog=?, codigoPostal=?, nombUserH=?, desc_hog=?, fotoH=?  where correo_hog=?";
 
         // Preparación de la sentencia SQL
         stmt = conn.prepareStatement(query);
@@ -118,8 +118,8 @@ public class PerfilHogar extends UserHogar{
         stmt.setString(7, codigoPostal);
         stmt.setString(8, nombUserH);
         stmt.setString(9, desc);
-        stmt.setString(10, correoH);
-
+        stmt.setString(10, FotoH);
+        stmt.setString(11, correoH);
         // Ejecuta la consulta de actualización
         int filasActualizadas = stmt.executeUpdate();
 

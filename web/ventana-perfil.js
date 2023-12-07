@@ -4,6 +4,8 @@ var abrirModalBtn = document.getElementById('abrirModalBtn');
 abrirModalBtn.addEventListener('click', function() {
     modal.style.display = 'block';
     modal.style.animation = 'fadeIn 0.5s';
+    
+    localStorage.setItem("recargarPagina", "true");
 });
 
 function cerrarModal() {
@@ -12,4 +14,6 @@ function cerrarModal() {
         modal.style.display = 'none';
         modal.style.animation = '';
     }, 500);
+      
 }
+

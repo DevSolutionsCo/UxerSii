@@ -70,6 +70,7 @@
                 if (rs1.next()) {
                 
                     int id_hog = rs1.getInt("id_hog");
+                    String fotoH = rs1.getString("fotoH");
                     String nombre_hog = rs1.getString("nombre_hog");
                     String apellido_mat = rs1.getString("apellido_mat");
                     String apellido_pat = rs1.getString("apellido_pat");
@@ -94,7 +95,7 @@
                      session.setAttribute("desc_hog", desc_hog);
                      session.setAttribute("fechNac", fechNac);
                      session.setAttribute("CPH", codigoPostal);
-                    
+                    session.setAttribute("fotoH", fotoH);
                     boolean con1 = true;
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
