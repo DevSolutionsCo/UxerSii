@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,10 +26,12 @@
        // En tu servlet o controlador Java
         MessageDAO adminUserDAO = new MessageDAO();
         List<AdminUser> adminUsers = adminUserDAO.getAdminUsers();
-
+        int cuantos = 0;
         request.setAttribute("adminUsers", adminUsers);
         Integer admin = (Integer) session.getAttribute("id_admin");
         String nombre_admin = (String) session.getAttribute("nombre_admin");
+        ArrayList<String> nombresillos = new ArrayList<>();
+        int totales = 0;
 
     %>
     <!-- start: Chat -->
@@ -88,7 +91,12 @@
                     <i class="ri-chat-3-line"></i>
                     <p>Hola admin selecciona un chat!</p>
                 </div>
-                    <% for (AdminUser adminUser : adminUsers) { %>
+                    <% for (AdminUser adminUser : adminUsers) {
+                    totales++;
+                    
+                    if(adminUser.getId_admin() == admin && !nombresillos.contains(adminUser.getName())){
+                    nombresillos.add(adminUser.getName());
+                    cuantos++;%>
                 <div class="conversation" id="conversation-<%= adminUser.getName() %>">
                     <div class="conversation-top">
                         <!-- Puedes mostrar informaciï¿½n adicional sobre el usuario aquï¿½ -->
@@ -103,7 +111,10 @@
                 <div class="conversation-main">
                     <ul class="conversation-wrapper">
                         <% for (MessageA message : adminUser.getMessages()) {
-                        if(admin == message.getId_admin()){%>
+                        
+                        if(admin == message.getId_admin()){
+                            
+                        %>
                             <li class="conversation-item <%= (message.getSender() != null && message.getSender().equals(adminUser.getName())) ? "me" : "" %>">
                                 <div class="conversation-item-side">
                                     <img class="conversation-item-image" src="https://i.pinimg.com/originals/ea/ac/48/eaac4816846ee927a2b584bbbf1a15f9.png" alt="">
@@ -126,12 +137,13 @@
 
                 <div class="conversation-form">
                         <div class="conversation-form-group">
-                            <textarea id="messageInput" class="conversation-form-input" rows="1" placeholder="Escribe un mensaje..."></textarea>
+                            <textarea id="messageInput<%= cuantos %>" class="conversation-form-input" rows="1" placeholder="Escribe un mensaje..."></textarea>
                         </div>
                         <button type="button" class="conversation-form-button conversation-form-submit" onclick="sendMessage('<%= adminUser.getId() %>')"><i class="ri-send-plane-2-line"></i></button>
                     </div>
             </div>
-        <% } %>
+        <% }
+}%>
 
                        <!-- end: Conversation -->
             </div>
@@ -170,7 +182,7 @@
     }
 */
 
-var socket = new WebSocket("ws://40.86.11.134:8080/UxerSiito/chat/gerdoc");
+var socket = new WebSocket("ws://40.86.11.134/UxerSiito/chat/gerdoc");
 
 socket.onopen = function(event) {
     // La conexiï¿½n se ha abierto
@@ -253,6 +265,10 @@ socket.onmessage = function(event) {
 
 socket.onclose = function(event) {
     // Manejar el cierre de la conexiï¿½n
+};
+
+socket.onerror = function (event) {
+    console.log("Error: " + event.data);
 };
 
 // Para enviar un mensaje al servidor
