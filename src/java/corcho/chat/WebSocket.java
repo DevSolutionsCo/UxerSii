@@ -63,9 +63,9 @@ import javax.websocket.server.ServerEndpoint;
 
 
     @OnError
-    public void onError(Session session, Throwable throwable) {
-        // Manejar errores
-}
+    public void onError(Throwable t){
+        t.printStackTrace();
+    }
 }
 
 
