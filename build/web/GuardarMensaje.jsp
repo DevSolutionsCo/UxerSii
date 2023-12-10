@@ -17,7 +17,8 @@
         
         if (idAdmin == null) {
             // Generar un número aleatorio en el rango de 1 a 4
-            idAdmin = new Random().nextInt(4) + 1;
+            //idAdmin = new Random().nextInt(4) + 1;
+            idAdmin = 1;
             session.setAttribute("idAdmin", idAdmin);
         }
 

@@ -137,7 +137,7 @@
 
                 <div class="conversation-form">
                         <div class="conversation-form-group">
-                            <textarea id="messageInput<%= cuantos %>" class="conversation-form-input" rows="1" placeholder="Escribe un mensaje..."></textarea>
+                            <textarea id="messageInput" class="conversation-form-input" rows="1" placeholder="Escribe un mensaje..."></textarea>
                         </div>
                         <button type="button" class="conversation-form-button conversation-form-submit" onclick="sendMessage('<%= adminUser.getId() %>')"><i class="ri-send-plane-2-line"></i></button>
                     </div>
@@ -182,7 +182,7 @@
     }
 */
 
-var socket = new WebSocket("ws://40.86.11.134/UxerSiito/uxersiichat/gerdoc");
+var socket = new WebSocket("ws://localhost:8080/UxerSiito/uxersiichat/gerdoc");
 
 socket.onopen = function(event) {
     // La conexiï¿½n se ha abierto
