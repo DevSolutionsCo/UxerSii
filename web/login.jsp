@@ -41,7 +41,7 @@
                 <div class="input-field">
                   <input
                     type="password"
-                    placeholder="ContraseÃ±a"
+                    placeholder="Contraseña"
                     name="passIN"
                     class="input"
                   />

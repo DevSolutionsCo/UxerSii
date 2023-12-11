@@ -25,7 +25,10 @@
                         rel="stylesheet"
                         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
                         />
-
+                    <link
+                      rel="stylesheet"
+                      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+                    />
                     <script
                         src="https://kit.fontawesome.com/83ffb1b5fc.js"
                         crossorigin="anonymous"
@@ -403,7 +406,7 @@
                                     name="fotoH"
                                     value="<%=fotoH%>"
                                     />
-                                <button type="submit" class="boton-portada btn-guardar-cam boton" onclick="guardarH(); habilitarInputsH(); validarFormularioH()" style="display: none;" id="envioH">
+                                <button type="submit" class="boton-portada btn-guardar-cam boton" onclick="guardarH(); habilitarInputsH()" style="display: none;" id="envioH" onclick="validarFormularioH()">
                                     Guardar Cambios
                                 </button>
                             </div>
