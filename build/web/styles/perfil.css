@@ -35,7 +35,7 @@ Copiar esto
     
     display: flex;
     justify-content: center;
-    background: url(https://cdn.pixabay.com/photo/2020/04/20/08/43/cornfield-5067210_1280.jpg);
+    background: url(../resources/fondo-perfil.jpg);
     width: 85%;
     height: 100%;
     background-position: center center;

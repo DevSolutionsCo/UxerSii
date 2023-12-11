@@ -21,10 +21,10 @@
       <div class="text">
         <div class="title">
           <h1 class="texto-grande">Sumate a frenar el desperdicio</h1>
-          <p class="span">de comida en la Ciudad de Mexico</p>
+          <p class="span">de comida en la Ciudad de MÃ©xico</p>
         </div>
         <div class="texto-main">
-    Si quieres saber más acerca de como podemos frenar el desperdicio de la comida en CDMX, te invitamos a q te registres o inicies sesión para poder mantenerte al tanto de que puedes hacer para frenar esto   </div>
+    Si quieres saber mÃ¡s acerca de como podemos frenar el desperdicio de la comida en CDMX, te invitamos a q te registres o inicies sesiÃ³n para poder mantenerte al tanto de que puedes hacer para unirte a esta causa</div>
       </div>
       <div class="botones">
         <a href="login.jsp">
@@ -55,7 +55,7 @@
             class="imagensillas_cards"
           />
           <p>
-     Uno de los primeros datos que encontramos dentro de las consecuencias de la pérdida de alimentos es el volumen de agua desperdiciada para su producción. Hablamos de un total de 8.060 m³/s cada año. A esto se suman los 3.300 millones de toneladas de gases de efecto invernadero que se descargan a la atmósfera del planeta durante el proceso, más los producidos con el vertido de los mismos.    </p>
+     Uno de los primeros datos que encontramos dentro de las consecuencias de la pï¿½rdida de alimentos es el volumen de agua desperdiciada para su producciï¿½n. Hablamos de un total de 8.060 mï¿½/s cada aï¿½o. A esto se suman los 3.300 millones de toneladas de gases de efecto invernadero que se descargan a la atmï¿½sfera del planeta durante el proceso, mï¿½s los producidos con el vertido de los mismos.    </p>
         </div>
         <div class="cardsillas_desp">
           <img
@@ -64,7 +64,7 @@
             class="imagensillas_cards"
           />
           <p>
-        Según la FAO, la Organización de las Naciones Unidas para la Alimentación y la Agricultura, además de estos impactos ambientales, estos desperdicios alimentarios suponen una pérdida de más de 75.0000 millones de dólares cada año.   </p>
+        Segï¿½n la FAO, la Organizaciï¿½n de las Naciones Unidas para la Alimentaciï¿½n y la Agricultura, ademï¿½s de estos impactos ambientales, estos desperdicios alimentarios suponen una pï¿½rdida de mï¿½s de 75.0000 millones de dï¿½lares cada aï¿½o.   </p>
         </div>
         <div class="cardsillas_desp">
           <img
@@ -73,7 +73,7 @@
             class="imagensillas_cards"
           />
           <p>
-         El problema de los desperdicios alimentarios se encuentra mucho más cerca de nosotros de lo que creemos. Solo en España, más de dos millones de personas se alimentan exclusivamente de comedores sociales. De ellos, la mayoría son menores que, una vez terminado el curso escolar, no cuentan con los alimentos necesarios para su crecimiento y salud. </p>
+         El problema de los desperdicios alimentarios se encuentra mucho mï¿½s cerca de nosotros de lo que creemos. Solo en Espaï¿½a, mï¿½s de dos millones de personas se alimentan exclusivamente de comedores sociales. De ellos, la mayorï¿½a son menores que, una vez terminado el curso escolar, no cuentan con los alimentos necesarios para su crecimiento y salud. </p>
         </div>
       </div>
     </section>

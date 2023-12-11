@@ -109,13 +109,13 @@
                     <section class="seccion-perfil-usuario">
                         <div class="perfil-usuario-header">
                             <div class="perfil-usuario-portada">
-                                <div class="perfil-usuario-avatar" id="avatarClick">
+                                <div class="perfil-usuario-avatar" >
                                     <img
                                         src="<%=fotoH%>"
                                         alt="img-avatar"
                                         id="selectedImage"
                                         />
-                                    <button type="button" class="boton-avatar">
+                                    <button type="button" class="boton-avatar" id="avatarClick" disabled>
                                         <i class="far fa-image"></i>
                                     </button>
                                 </div>
@@ -491,17 +491,7 @@
                             </div>
                             <%}%>
                             <!-- Fin form Hogar -->
-                            <div class="redes-sociales">
-                                <a href="" class="boton-redes facebook fab fa-facebook-f"
-                                   ><i class="icon-facebook"></i
-                                    ></a>
-                                <a href="" class="boton-redes twitter fab fa-twitter"
-                                   ><i class="icon-twitter"></i
-                                    ></a>
-                                <a href="" class="boton-redes instagram fab fa-instagram"
-                                   ><i class="icon-instagram"></i
-                                    ></a>
-                            </div>
+
                         </div>
                     </section>
                     <!--====  End of html  ====-->
