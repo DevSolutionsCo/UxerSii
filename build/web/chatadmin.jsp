@@ -182,7 +182,8 @@
     }
 */
 
-var socket = new WebSocket("ws://devsolutions.gerdoc.com:8080/UxerSiito/uxersiichat/gerdoc");
+var urlsocket = "ws://" + document.location.host + document.location.pathname + "uxersiichat";
+var socket = new WebSocket(urlsocket);
 
 socket.onopen = function(event) {
     // La conexiï¿½n se ha abierto
