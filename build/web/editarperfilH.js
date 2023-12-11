@@ -14,6 +14,7 @@ function habilitarInputsH() {
     var red_link_hogar = document.getElementById('red_link_hogar');
     var descH = document.getElementById('desc_hog');
     var imagenH = document.getElementById('avatarClick');
+    var mostguar = document.getElementById('guardarH')
 
     // Habilita los inputs
     nombH.disabled = false;
@@ -30,6 +31,7 @@ function habilitarInputsH() {
     red_link_hogar.disabled = false;
     descH.disabled = false;
     imagenH.disabled = false;
+    mostguar.style.display = "block";
 }
 function seleccionarImagen(imagen) {
     // Obtiene la URL de la imagen seleccionada

@@ -200,6 +200,19 @@
                                 <%if (tipo == 1) {%>
                                 <button
                                     type="button"
+                                    class="boton-portada-regresar"
+                                    onclick="regresar()"
+                                    >
+                                    <i class="fa-solid fa-rotate-left" style="color: #ffffff;"></i>
+                                </button>
+                                <script>
+                                    function regresar() {
+                                        // Utiliza window.location.href para redirigir a la página deseada
+                                        window.location.href = 'main.jsp';
+                                    }
+                                </script>
+                                <button
+                                    type="button"
                                     class="boton-portada"
                                     onclick="habilitarInputsH()"
                                     >
@@ -388,9 +401,9 @@
                                     type="hidden"
                                     id="fotoH"
                                     name="fotoH"
-                                    value="https://static.vecteezy.com/system/resources/previews/020/911/746/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png"
+                                    value="<%=fotoH%>"
                                     />
-                                <button type="button" class="boton-portada" onclick="guardarH()">
+                                <button type="button" class="boton-portada btn-guardar-cam" onclick="guardarH(); habilitarInputsH()" style="display: none;" id="guardarH">
                                     Guardar Cambios
                                 </button>
                             </div>
