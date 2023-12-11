@@ -235,6 +235,8 @@ body {
   padding: 0px 30px;
   border-radius: 10px;
   text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 .box:hover {
   background-color: rgba(128, 128, 128, 0.137);
@@ -283,4 +285,11 @@ body {
 
 .itemSelectedSideBar {
   background: rgb(51 51 51);
+}
+
+.alineaditos-modal{
+  display: flex;
+  color: #ffffff;
+  flex-direction: row;
+  justify-content: center;
 }

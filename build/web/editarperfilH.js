@@ -14,7 +14,7 @@ function habilitarInputsH() {
     var red_link_hogar = document.getElementById('red_link_hogar');
     var descH = document.getElementById('desc_hog');
     var imagenH = document.getElementById('avatarClick');
-    var mostguar = document.getElementById('guardarH')
+    var mostguar = document.getElementById('envioH')
 
     // Habilita los inputs
     nombH.disabled = false;

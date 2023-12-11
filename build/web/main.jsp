@@ -77,8 +77,10 @@
                     </button>
                     <div id="miModal" class="modalitoPerfil">
                         <div class="modal-contenido">
-                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
-                            <p class="text-perfil">Perfil</p>
+                            <div class="alineaditos_modal">
+                                <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                                <p class="text-perfil">Perfil</p>
+                            </div>
                             <div class="card">
                                 <div class="fperfil">
                                     <img src="<%=fotoH%>" alt="" />
