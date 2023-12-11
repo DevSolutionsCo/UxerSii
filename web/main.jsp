@@ -35,7 +35,6 @@
             </div>
             <div class="user-info">
                 <div class="user-details">
-                    <i class="material-icons">notifications</i>
                     <i class="material-icons">chat</i>
                     <!-- INCIO DE MODAL PERFIL -->
                     <% String apellidoP = null, apellidoM, nomb = null, genero, passw,
@@ -72,8 +71,13 @@
                             Redes = (String) session.getAttribute("redesEST");
                   tipo = 3;
               } %>
-                    <button class="b-perfil-ma" id="abrirModalBtn">
+
                         <img src="<%=fotoH%>" class="user-avatar" />
+
+                        <button class="b-perfil-ma" id="abrirModalBtn" style="color: #fff">
+                        <i class="material-icons" style="padding: 0px 0px"
+                           >keyboard_arrow_down</i
+                        >
                     </button>
                     <div id="miModal" class="modalitoPerfil">
                         <div class="modal-contenido">
@@ -124,11 +128,7 @@
                   response.sendRedirect("login.jsp");
               }%>
 
-                    <button class="dropdown-button" id="drop">
-                        <i class="material-icons" style="padding: 0px 0px"
-                           >keyboard_arrow_down</i
-                        >
-                    </button>
+
                 </div>
             </div>
         </div>
