@@ -118,7 +118,7 @@
     }
      * 
  */
-var urlsocket = "ws://" + document.location.host + document.location.pathname + "uxersiichat";
+var urlsocket = "ws://" + document.location.host + "UxerSiito/" + "uxersiichat";
 var socket = new WebSocket(urlsocket);
 
 
