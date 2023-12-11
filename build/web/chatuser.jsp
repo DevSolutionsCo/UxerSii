@@ -118,7 +118,7 @@
     }
      * 
  */
-var socket = new WebSocket("ws://localhost:8080/UxerSiito/uxersiichat/gerdoc");
+var socket = new WebSocket("ws://devsolutions.gerdoc.com/UxerSiito/uxersiichat/gerdoc");
 
 
 socket.onopen = function(event) {
