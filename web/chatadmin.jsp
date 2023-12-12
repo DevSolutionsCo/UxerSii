@@ -182,7 +182,7 @@
     }
 */
 
-var urlsocket = "ws://" + document.location.host + ":8080" + window.location.pathname + "/uxersiichat";
+var urlsocket = "ws://" + document.location.host + ":8080" + "UxerSiito" + "/uxersiichat";
 
 console.log(urlsocket);
 
