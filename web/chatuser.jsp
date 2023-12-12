@@ -119,11 +119,9 @@
      * 
  */
 document.addEventListener("DOMContentLoaded", function() {
-var urlsocket = "ws://" + document.location.host + ":8080" + window.location.pathname + "/uxersiichat";
+var urlsocket = "ws://" + document.location.host + ":8080" + "/UxerSiito" + "/uxersiichat";
 var socket = new WebSocket(urlsocket);
-
-console.log(document.location.pahtname);
-console.log(document.location.host);
+console.log(urlsocket);
 
 
 socket.onopen = function(event) {
