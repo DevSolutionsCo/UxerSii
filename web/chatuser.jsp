@@ -118,11 +118,12 @@
     }
      * 
  */
-document.addEventListener("DOMContentLoaded", function() {
-var urlsocket = "ws://" + document.location.host + "/UxerSiito/chatuser.jsp/uxersiichat";
+
+var urlsocket = "ws://" + document.location.host + ":8080" + window.location.pathname + "/uxersiichat";
 var socket = new WebSocket(urlsocket);
 console.log(urlsocket);
 
+document.addEventListener("DOMContentLoaded", function() {
 
 socket.onopen = function(event) {
     // La conexiï¿½n se ha abierto
@@ -211,7 +212,7 @@ socket.onmessage = function(event) {
 socket.onclose = function(event) {
     // Manejar el cierre de la conexiï¿½n
 };
-
+)};
 // Para enviar un mensaje al servidor
 function sendMessage(idUser) {
     var messageContent = $('#messageInput').val();
@@ -260,7 +261,7 @@ function sendMessage(idUser) {
         });
 
 }
-});
+
 </script>
 
     </section>
