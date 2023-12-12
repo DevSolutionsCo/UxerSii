@@ -35,10 +35,12 @@
           <div class="iconito-card rojo bg-rojo">
             <span class="material-symbols-outlined"> 3p </span>
           </div>
+            <a href ="chatuser.jsp">
           <div class="textito-card">
             <span>Soporte Tecnico</span>
             <p>Chat</p>
           </div>
+                </a>
         </div>
         <div class="card-mini" id="puntos-card">
           <div class="iconito-card verde bg-verde">

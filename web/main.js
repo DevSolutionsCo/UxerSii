@@ -74,9 +74,7 @@ $(document).ready(function () {
     $(document).on("click", "#productos-card", function () {
       $("#main-content").load("alimentos-gestion.jsp");
     });
-    $(document).on("click", "#soporte-card", function () {
-      $("#main-content").load("chatuser.jsp");
-    });
+
   });
 
   //Botoncillos de Alimentos
