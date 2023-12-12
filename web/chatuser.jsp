@@ -118,7 +118,8 @@
     }
      * 
  */
-var urlsocket = "ws://" + document.location.host + ":8080/UxerSiito/uxersiichat";
+document.addEventListener("DOMContentLoaded", function() {
+var urlsocket = "ws://" + document.location.host + ":8080" + window.location.pathname + "uxersiichat";
 var socket = new WebSocket(urlsocket);
 
 console.log(document.location.pahtname);
@@ -261,7 +262,7 @@ function sendMessage(idUser) {
         });
 
 }
-
+});
 </script>
 
     </section>

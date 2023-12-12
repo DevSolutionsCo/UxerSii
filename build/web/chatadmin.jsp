@@ -181,8 +181,8 @@
         $('#messageInput').val('');
     }
 */
-
-var urlsocket = "ws://" + document.location.host + ":8080/UxerSiito/uxersiichat";
+document.addEventListener("DOMContentLoaded", function() {
+var urlsocket = "ws://" + document.location.host + ":8080" + window.location.pathname + "uxersiichat";
 var socket = new WebSocket(urlsocket);
 
 socket.onopen = function(event) {
@@ -322,7 +322,7 @@ function sendMessage(idUser) {
         });
 
 }
-
+});
 </script> 
     </section>
     <!-- end: Chat -->
