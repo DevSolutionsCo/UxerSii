@@ -23,7 +23,7 @@ import javax.websocket.server.ServerEndpoint;
  *
  * @author Alumno
  */
-    @ServerEndpoint( value = "/uxersiichat")
+    @ServerEndpoint( value = "/chatuser.jsp/uxersiichat")
         
      public class WebSocket implements Serializable{
     private Session session;
