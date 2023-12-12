@@ -188,7 +188,7 @@ console.log(urlsocket);
 
 var socket = new WebSocket(urlsocket);
 
-document.addEventListener("DOMContentLoaded", function() {
+
 socket.onopen = function(event) {
     // La conexiï¿½n se ha abierto
 };
@@ -274,8 +274,8 @@ socket.onclose = function(event) {
 
 socket.onerror = function (event) {
     console.log("Error: " + event.data);
-};
-)};
+    };
+
 // Para enviar un mensaje al servidor
 function sendMessage(idUser) {
     var messageContent = $('#messageInput').val();
