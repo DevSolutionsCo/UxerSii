@@ -182,7 +182,8 @@
     }
 */
 document.addEventListener("DOMContentLoaded", function() {
-var urlsocket = "ws://" + document.location.host + ":8080" + "/UxerSiito" + "/uxersiichat";
+var urlsocket = "ws://" + document.location.host + ":8080/UxerSiito/chatadmin.jsp/uxersiichat";
+
 console.log(urlsocket);
 
 var socket = new WebSocket(urlsocket);

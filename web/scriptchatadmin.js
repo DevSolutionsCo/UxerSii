@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function() {
+
 // start: Sidebar
 document.querySelector('.chat-sidebar-profile-toggle').addEventListener('click', function(e) {
     e.preventDefault()
@@ -55,4 +57,5 @@ document.querySelectorAll('.conversation-back').forEach(function(item) {
         document.querySelector('.conversation-default').classList.add('active')
     })
 })
+});
 // end: Coversation
