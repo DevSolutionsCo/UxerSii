@@ -119,7 +119,7 @@
      * 
  */
 
-var urlsocket = "ws://" + document.location.host + ":8080" + "UxerSiito" + "/uxersiichat";
+var urlsocket = "ws://" + document.location.host + ":8080" + "/UxerSiito" + "/uxersiichat";
 var socket = new WebSocket(urlsocket);
 console.log(urlsocket);
 
