@@ -1,55 +1,84 @@
-import logo from '../../assets/logo.svg';
+import darklogo from '../../assets/logoDarkMode.svg';
+import logo from '../../assets/logoLightTheme.svg';
 import BotonIndex from './Boton';
 import LinksNav from './LinksNav';
 
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Nabvar() {
   const [isOpen, setIsOpen] = useState(false); //El useState te genera dos cosas, en este caso mi variable se llama "isOpen" que hace referencia a cuando el menu esta abierto, aqui en la propiedad que esta despues "useState(false)" se declara la variable isOpen como un valor false predeterminado, esto con el fin de que el menu al inicio este cerrado, y con la funcion de la linea 38  "onClick={() => setIsOpen(!isOpen)}" se le cambia el estado para que en vez de ser false, sea true, en la linea 24 "${isOpen ? 'flex' : 'hidden'}" eso es equivalente a un ifelse, lo que esta despues del ? es lo que se ejecuta en la parte del if y lo que esta despues de : es lo que se ejecuta en el else, poniendo al inicio "isOpen" significa que isOpen === true, es practicamente lo mismo 
 
-  return (
-    <nav className="flex flex-col justify-between items-center mt-4 px-4 sm:px-10 sm:flex-row">
-      <div className="flex items-center">
-        <img className="h-24 w-24 cursor-pointer" src={logo} alt="Logo" />
-      </div>
+  const [theme, setTheme] = useState(() => {
+    if(window.matchMedia('(prefers-color-scheme:dark)').matches){
+      return 'dark'
+    }
+    return "light"
+  })
  
+ useEffect(() => {
+  if (theme == "dark"){
+    document.querySelector('html')?.classList.add('dark')
+  }else{
+    document.querySelector('html')?.classList.remove('dark')
+  }
+ }, [theme])
+ const handleChangeTheme = () => {
+  setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+};
+
+
+  return (
+    <nav className="flex flex-col justify-between items-center px-4 sm:px-10 sm:flex-row bg-slate-50 dark:bg-zinc-800">
+      <div className="flex items-center mt-4">
+      {theme === 'light' ? (
+        <img className="h-24 w-24 cursor-pointer" src={logo} alt="Logo" />
+      ) : (
+        <img className="h-24 w-24 cursor-pointer" src={darklogo} alt="Dark Logo" />
+      )}
+      </div>
+
       <div className={`sm:flex ${isOpen ? 'flex' : 'hidden'} flex-col sm:flex-row items-center `}>
-            <ul className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 gap-6 items-center font-semibold text-lg">
+            <ul className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 gap-6 items-center font-semibold text-lg dark:text-white">
           <LinksNav>Features</LinksNav>
           <LinksNav>Pricing</LinksNav>
-          <LinksNav>Community</LinksNav>
           <LinksNav>Support</LinksNav>
+
+
+          <BotonIndex newClassName="text-ms text-black px-4 py-1 dark:text-white"
+          
+          onClick ={handleChangeTheme} >
+            Cambiar de tema
+          </BotonIndex>
+
+
         </ul></div>
-      <div className={`sm:flex ${isOpen ? 'flex' : 'hidden'} flex-col sm:flex-row items-center`}>
+      <div className={`sm:flex  ${isOpen ? 'flex' : 'hidden'} flex-col sm:flex-row items-center`}>
 
 
         <div className="mt-4 sm:mt-0">
-          <BotonIndex newClassName="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10">
+          <BotonIndex newClassName="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
+          dark:text-white dark:bg-zinc-800
+          ">
             Log in
           </BotonIndex>
-          <BotonIndex newClassName="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-4">
+          <BotonIndex newClassName="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
+          dark:hover:bg-zinc-800 dark:hover:text-white
+          ">
             Register
           </BotonIndex>
         </div>
       </div>
 
       {/* Icono de menú para dispositivos móviles */}
-      <div className="sm:hidden cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          ></path>
-        </svg>
+      <div className="sm:hidden cursor-pointer my-5" onClick={() => setIsOpen(!isOpen)}>
+
+        {theme === 'dark'?(<span className="material-symbols-outlined text-white">
+menu
+</span>) : (<span className="material-symbols-outlined text-black">
+menu
+</span>) }
+
       </div>
     </nav>
   );
