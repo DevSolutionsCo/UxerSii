@@ -1,0 +1,14 @@
+.fondito {
+  background-image: url(../../assets/bg-lines.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: background-size 0.5s ease; /* Agrega una transición suave para background-size */
+}
+
+.custom-background {
+  @media (max-width: 640px) {
+    background-size: 260%;
+    background-position: center 30%;
+  }
+}

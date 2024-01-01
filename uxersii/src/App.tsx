@@ -5,9 +5,8 @@ function App() {
   return (
     <>
   <Nabvar/>
-    <MainScreen/>
+    <MainScreen />
     
-  
     </>
   )
 }

@@ -1,15 +1,16 @@
+import { ReactNode } from "react";
+import "./Bg.css";
 
-function Background() {
-  return (
-<div className="h-screen relative bg-gradient-to-b from-green-500 to-yellow-500 overflow-hidden">
-  <div className="absolute h-full w-px bg-green-500 transform -rotate-6"></div>
-  <div className="absolute h-full w-px bg-green-500 transform -rotate-6" style={{ left: '25%' }}></div>
-  <div className="absolute h-full w-px bg-yellow-500 transform -rotate-6" style={{ left: '50%' }}></div>
-  <div className="absolute h-full w-px bg-yellow-500 transform -rotate-6" style={{ left: '75%' }}></div>
-</div>
-
-
-  )
+interface Props {
+  children?: ReactNode;
 }
 
-export default Background
+function Background(props: Props) {
+  return (
+    <div className="fondito custom-background dark:bg-zinc-900 h-screen overflow-hidden">
+      {props.children}
+    </div>
+  );
+}
+
+export default Background;
