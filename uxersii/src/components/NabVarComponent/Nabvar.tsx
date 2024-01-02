@@ -49,13 +49,6 @@ function Nabvar() {
           <LinksNav>Features</LinksNav>
           <LinksNav>Pricing</LinksNav>
           <LinksNav>Support</LinksNav>
-
-          <BotonIndex
-            newClassName="text-ms text-black px-4 py-1 dark:text-white border-black dark:border-white"
-            onClick={handleChangeTheme}
-          >
-            Cambiar de tema
-          </BotonIndex>
         </ul>
       </div>
       <div
@@ -63,21 +56,41 @@ function Nabvar() {
           isOpen ? "flex" : "hidden"
         } flex-col sm:flex-row items-center`}
       >
-        <div className="mt-4 sm:mt-0">
-          <BotonIndex
-            newClassName="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
+        <div
+          className="mt-4 sm:mt-0 flex sm:flex-row sm:justify-between sm:items-center flex-col
+        "
+        >
+          {theme === "light" ? (
+            <BotonIndex
+              newClassName="text-ms text-black px-4 py-1 dark:text-white border-0 dark:border-0 "
+              onClick={handleChangeTheme}
+            >
+              <span className="material-symbols-outlined">dark_mode</span>
+            </BotonIndex>
+          ) : (
+            <BotonIndex
+              newClassName="text-ms text-black px-4 py-1 dark:text-white border-0 dark:border-0 "
+              onClick={handleChangeTheme}
+            >
+              <span className="material-symbols-outlined">brightness_7</span>
+            </BotonIndex>
+          )}
+          <div>
+            <BotonIndex
+              newClassName="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
           dark:text-white dark:bg-zinc-800
           "
-          >
-            Log in
-          </BotonIndex>
-          <BotonIndex
-            newClassName="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
+            >
+              Log in
+            </BotonIndex>
+            <BotonIndex
+              newClassName="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
           dark:hover:bg-zinc-800 dark:hover:text-white
           "
-          >
-            Register
-          </BotonIndex>
+            >
+              Register
+            </BotonIndex>
+          </div>
         </div>
       </div>
 

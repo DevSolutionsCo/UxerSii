@@ -1,14 +1,13 @@
-import MainScreen from './components/MainScreen/MainScreen'
-import Nabvar from './components/NabVarComponent/Nabvar'
+import MainScreen from "./components/MainScreen/MainScreen";
+import Nabvar from "./components/NabVarComponent/Nabvar";
 
 function App() {
   return (
     <>
-  <Nabvar/>
-    <MainScreen />
-    
+      <Nabvar />
+      <MainScreen />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

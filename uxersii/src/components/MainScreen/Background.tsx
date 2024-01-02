@@ -7,7 +7,7 @@ interface Props {
 
 function Background(props: Props) {
   return (
-    <div className="fondito custom-background dark:bg-zinc-900 h-screen overflow-hidden">
+    <div className="fondito custom-background dark:bg-zinc-900 overflow-hidden">
       {props.children}
     </div>
   );
