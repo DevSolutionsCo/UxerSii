@@ -35,15 +35,21 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-# on Windows, a path can contain colons and backslashes and has to be converted:
-if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
-    # transform D:\path\to\venv to /d/path/to/venv on MSYS
-    # and to /cygdrive/d/path/to/venv on Cygwin
-    export VIRTUAL_ENV=$(cygpath "C:\Users\sebas\OneDrive\Escritorio\UxerSii\uxersiiBack")
+# Get the current user's home directory
+USER_HOME=$(eval echo ~$USER)
+
+# Set the base path for the virtual environment
+BASE_VIRTUALENV="$USER_HOME/Desktop/UxerSii/uxersiiBack"
+
+# Check the operating system type
+if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]; then
+    # Transform the path for MSYS or Cygwin
+    export VIRTUAL_ENV=$(cygpath "$BASE_VIRTUALENV")
 else
-    # use the path as-is
-    export VIRTUAL_ENV="C:\Users\sebas\OneDrive\Escritorio\UxerSii\uxersiiBack"
+    # Use the path as-is
+    export VIRTUAL_ENV="$BASE_VIRTUALENV"
 fi
+
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"

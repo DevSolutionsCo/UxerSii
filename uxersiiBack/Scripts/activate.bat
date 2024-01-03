@@ -8,7 +8,18 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\sebas\OneDrive\Escritorio\UxerSii\uxersiiBack
+@echo off
+setlocal EnableDelayedExpansion
+
+rem Establecer la ruta base del entorno virtual (ajústala según tu estructura)
+set "BASE_VIRTUALENV=C:\Users\"
+
+rem Obtener el nombre de usuario actual
+for /f "tokens=*" %%U in ('whoami') do set "USERNAME=%%U"
+
+rem Configurar la ruta completa del entorno virtual
+set "VIRTUAL_ENV=!BASE_VIRTUALENV!!USERNAME!\Escritorio\UxerSii\uxersiiBack"
+
 
 if not defined PROMPT set PROMPT=$P$G
 
