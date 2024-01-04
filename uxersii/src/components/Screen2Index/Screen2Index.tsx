@@ -6,7 +6,7 @@ import hand from "../../assets/pics/box-hand.png";
 import CardsIndex from "./CardsIndex";
 function Screen2Index() {
   return (
-    <section className="dark:bg-zinc-900 dark:text-white pt-9 flex flex-col sm:flex-row-reverse ">
+    <section className="dark:bg-zinc-900 dark:text-white pt-9 flex flex-col sm:flex-row-reverse overflow-hidden">
       <div className="sm:my-36 max-w-[40%] px-10">
         <h1 className="text-4xl font-bold text-center px-3 mb-24 sm:mb-5 ">
           Problemas medioambientales
@@ -24,7 +24,7 @@ function Screen2Index() {
       </div>
       <div className="sm:grid sm:grid-cols-2 ">
         <CardsIndex
-          title="Es que"
+          title="Titulo 1"
           foto={foto1}
           className="bg-red-500"
           margin="mt-2"
@@ -36,7 +36,7 @@ function Screen2Index() {
         </CardsIndex>
 
         <CardsIndex
-          title="Es que"
+          title="Titulo 2"
           foto={foto2}
           className="bg-green-600 "
           margin="-mt-4"
@@ -48,7 +48,7 @@ function Screen2Index() {
         </CardsIndex>
 
         <CardsIndex
-          title="Es que"
+          title="Titulo 3"
           foto={foto4}
           className="bg-blue-600"
           margin="mt-5"
@@ -59,11 +59,23 @@ function Screen2Index() {
           tenetur. Unde necessitatibus ex rem esse?
         </CardsIndex>
 
-        <CardsIndex title="Es que" foto={foto3} className="bg-yellow-400">
+        <CardsIndex
+          title="Titulo 4"
+          foto={foto3}
+          className="bg-yellow-400"
+          margin="mt-0"
+        >
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem
           impedit exercitationem, modi ex itaque qui mollitia esse tempore
           molestias temporibus eum fugiat, inventore explicabo obcaecati culpa,
-          ut doloribus dignissimos necessitatibus.
+          ut doloribus dignissimos necessitatibus. Lorem ipsum dolor, sit amet
+          consectetur adipisicing elit. Labore, nesciunt modi quaerat odio cum
+          earum veniam repudiandae architecto voluptates nam facilis nihil,
+          accusantium quas impedit ad aliquam sapiente ratione mollitia? Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Totam vero
+          molestias maiores natus. Cupiditate optio eius iusto consequatur,
+          laborum enim similique vel consectetur tempore ullam numquam eveniet
+          excepturi molestias dolores!lorem
         </CardsIndex>
       </div>
     </section>

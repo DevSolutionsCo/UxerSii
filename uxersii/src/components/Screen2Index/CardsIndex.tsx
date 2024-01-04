@@ -17,10 +17,7 @@ function CardsIndex(props: props) {
         props.margin
       )}
     >
-      <picture
-        className="col-span-2 mx-auto sm:col-span-1 sm:row-span-2 mt-3
-      "
-      >
+      <picture className="col-span-2 mx-auto sm:col-span-1 sm:row-span-2 mt-3">
         <div
           className={clsx(
             "w-24 h-24 flex items-center justify-center rounded-xl sm:w-16 sm:h-16 ",
@@ -34,9 +31,11 @@ function CardsIndex(props: props) {
           />
         </div>
       </picture>
-      <div className="col-span-3">
+      <div className="col-span-3 overflow-y-auto max-h-[18rem]">
         <h2 className="text-2xl font-bold">{props.title} </h2>
-        <p>{props.children}</p>
+        <div className="max-h-[12rem] overflow-y-auto overflow-x-hidden scrollbar-none">
+          <p>{props.children}</p>
+        </div>
       </div>
     </article>
   );
