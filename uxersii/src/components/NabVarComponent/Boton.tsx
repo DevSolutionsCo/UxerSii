@@ -5,16 +5,15 @@ import { ReactNode } from "react";
 interface BotonIndexProps {
   // La propiedad 'children' debe ser de tipo ReactNode
   children: ReactNode;
-  newClassName?: string; 
+  className?: string;
   onClick?: () => void;
 }
 
-
 function BotonIndex(props: BotonIndexProps) {
   return (
-  
     <button
-      className={`border-2 px-6 py-3 relative rounded-xl  font-bold  ${props.newClassName}`}onClick={props.onClick}
+      className={`border-2 px-6 py-3 relative rounded-xl  font-bold  ${props.className}`}
+      onClick={props.onClick}
     >
       {props.children}
     </button>

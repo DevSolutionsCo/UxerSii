@@ -8,9 +8,9 @@ function MainScreen() {
     <>
       <Background>
         <div
-          className="dark:bg-gradient-to-tl dark:from-transparent dark:via-zinc-900/50 dark:to-zinc-900/80 
-          bg-gradient-to-tl from-transparent via-gray-400/30 to-gray-300/80
-        h-screen sm:flex sm:flex-row overflow-hidden sm:items-center sm:-mt-24 px-10"
+          className="dark:bg-gradient-to-t dark:from-transparent dark:via-zinc-900/50 dark:to-zinc-900/80 
+          bg-gradient-to-t from-transparent via-gray-400/30 to-gray-300/80
+         sm:flex sm:flex-row overflow-hidden sm:items-center sm:-mt-24 px-10 sm:h-screen py-24"
         >
           <div>
             <h1 className="text-4xl font-semibold text-center p-6 lg:p-12 dark:text-white lg:text-6xl">

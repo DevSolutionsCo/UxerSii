@@ -62,14 +62,14 @@ function Nabvar() {
         >
           {theme === "light" ? (
             <BotonIndex
-              newClassName="text-ms text-black px-4 py-1 dark:text-white border-0 dark:border-0 "
+              className="text-ms text-black px-4 py-1 dark:text-white dark:border-0 border-transparent"
               onClick={handleChangeTheme}
             >
               <span className="material-symbols-outlined">dark_mode</span>
             </BotonIndex>
           ) : (
             <BotonIndex
-              newClassName="text-ms text-black px-4 py-1 dark:text-white border-0 dark:border-0 "
+              className="text-ms text-black px-4 py-1 dark:text-white border-0 dark:border-0 "
               onClick={handleChangeTheme}
             >
               <span className="material-symbols-outlined">brightness_7</span>
@@ -77,14 +77,14 @@ function Nabvar() {
           )}
           <div>
             <BotonIndex
-              newClassName="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
+              className="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
           dark:text-white dark:bg-zinc-800
           "
             >
               Log in
             </BotonIndex>
             <BotonIndex
-              newClassName="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
+              className="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
           dark:hover:bg-zinc-800 dark:hover:text-white
           "
             >
