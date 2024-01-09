@@ -21,6 +21,6 @@ import uxerSiitoBack
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('uxersiiPruebas/', include('uxerSiitoBack.urls'))
+    #path('uxersiiPruebas/', include('uxerSiitoBack.urls'))
 ]
 

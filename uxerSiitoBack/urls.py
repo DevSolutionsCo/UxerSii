@@ -9,5 +9,5 @@ router.register(r'uxerSiitoBack', views.uxersiiPruebas, 'uxersiiPruebas')
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
-  #  path("docs/", include_docs_urls(title="UxersiiPruebas API"))
+    path("docs/", include_docs_urls(title="UxersiiPruebas API"))
 ]
