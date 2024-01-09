@@ -1,22 +1,17 @@
-import MainScreen from "./components/MainScreen/MainScreen";
-import Nabvar from "./components/NabVarComponent/Nabvar";
-import Screen2Index from "./components/Screen2Index/Screen2Index";
-
-import { BrowserRouter, Routes, Route} from "react-router-dom";
-import { PruebasBack  }  from "./PruebaBack/PruebasBack";
-import { PruebasBackForm  }  from "./PruebaBack/pruebasBackForm";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PruebasBack } from "./PruebaBack/PruebasBack";
+import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
+import Index from "./components/Index/Index";
 
 function App() {
   return (
     <>
-     <BrowserRouter>
-      <Nabvar />
-      <Routes>
-        <Route path="/" element={<MainScreen />} />
-        <Route path="/" element={<Screen2Index />} />
-        <Route path="/pruebasBack" element={<PruebasBack />} />
-        <Route path="/pruebasBack-create" element={< PruebasBackForm />} 
-        />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+
+          <Route path="/pruebasBack" element={<PruebasBack />} />
+          <Route path="/pruebasBack-create" element={<PruebasBackForm />} />
         </Routes>
       </BrowserRouter>
     </>
