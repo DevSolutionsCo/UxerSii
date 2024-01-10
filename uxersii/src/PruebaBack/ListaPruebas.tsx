@@ -1,10 +1,11 @@
-import React from 'react';  // Importa React si aún no lo has hecho
 import { useEffect, useState } from 'react';
 import { getAll } from '../apis/PruebasFunciones.api';
+import { TareaCard } from './TareaCard'
 
 interface Tarea {
     titulo: string;
     descripcion: string;
+    id: number;
 }
 
 export function ListaPruebas() {
@@ -26,12 +27,8 @@ export function ListaPruebas() {
 
     return (
         <div>
-            {tareas.map((tarea, index) => (
-                <div key={index}>
-                    <h1>{tarea.titulo}</h1>
-                    <p>{tarea.descripcion}</p>
-                    <p>---------------</p>
-                </div>
+            {tareas.map((tarea) => (
+                <TareaCard key={tarea.id} tarea={tarea}/>
             ))}
         </div>
     );
