@@ -1,7 +1,8 @@
+import {ListaPruebas} from './ListaPruebas'
 
 export function PruebasBack() {
   return (
-    <div>Pruebitas del backend</div>
+    <ListaPruebas/>
   )
 }
 
