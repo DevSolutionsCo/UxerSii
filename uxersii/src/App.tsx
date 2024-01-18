@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PruebasBack } from "./PruebaBack/PruebasBack";
 import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
+import { PruebasSignUp } from './PruebaBack/PruebasSignUp'
 import Index from "./components/Index/Index";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           <Route path="/pruebasBack" element={<PruebasBack />} />
           <Route path="/pruebasBack-create" element={<PruebasBackForm />} />
           <Route path="/pruebasBack/:id" element={<PruebasBackForm />} />
+          <Route path="/pruebaSignUp" element={<PruebasSignUp/>} />
+          <Route path="/pruebaSignUp/:id" element={<PruebasSignUp />} />
+          
 
         </Routes>
       </BrowserRouter>

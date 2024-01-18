@@ -6,6 +6,8 @@ from rest_framework.documentation import include_docs_urls
 
 router = routers.DefaultRouter()
 router.register(r'uxerSiitoBack', views.uxersiiPruebas, 'uxersiiPruebas') 
+router.register(r'signUp', views.signUp, 'signUp') 
+
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),

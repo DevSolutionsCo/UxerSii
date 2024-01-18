@@ -18,6 +18,9 @@ class Administrador(models.Model):
         managed = False
         db_table = 'administrador'
 
+    def __str__(self) -> str:
+        return self.nombre_admin # type: ignore
+
 
 class AdministradorEst(models.Model):
     id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
@@ -381,7 +384,7 @@ class UsuarioHogar(models.Model):
     contra_hog = models.CharField(max_length=25, db_collation='utf8mb3_general_ci', blank=True, null=True)
     desc_hog = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
     genero = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    nombuserh = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
+    nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
     codigopostal = models.IntegerField(db_column='codigoPostal', blank=True, null=True)  # Field name made lowercase.
     fotoh = models.TextField(db_column='fotoH', blank=True, null=True)  # Field name made lowercase.
 
