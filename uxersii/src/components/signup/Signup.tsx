@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import FotoRight from "../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg";
-import BotonLogin from "./BotonLogin";
-import Inputs from "./Inputs";
-import "./inecesario.css";
+import BotonLogin from "../login/BotonLogin";
+import Inputs from "../login/Inputs";
+import "../login/inecesario.css";
 
-function Login() {
+function Signup() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -17,11 +17,16 @@ function Login() {
       <div className="flex h-screen overflow-hidden">
         <div className="flex-1 flex-col justify-center mx-auto p-4 flex items-center">
           <form className="w-7/12" action="#" method="POST">
-            <h2 className="text-4xl font-semibold">Bienvenido de regreso</h2>
+            <h2 className="text-4xl font-semibold">Crear una cuenta ahora</h2>
             <p className="text-2xl font-semibold py-10">
               Ingresa tus credenciales
             </p>
-
+            <Inputs
+              placeholder="Ingresa tu nombre"
+              labelsito="Nombre"
+              type="text"
+              required
+            />
             <Inputs
               placeholder="Ingresa tu correo electronico"
               labelsito="Correo electronico"
@@ -47,9 +52,9 @@ function Login() {
             <div className="w-full">
               <BotonLogin type="submit">Iniciar sesion</BotonLogin>
               <p className="text-center mt-12">
-                No tienes una cuenta?{" "}
+                Ya tienes una cuenta?{" "}
                 <span className="text-indigo-700 font-semibold">
-                  <Link to="/signup">crear una</Link>
+                  <Link to="/login">Inicia sesion</Link>
                 </span>
               </p>
             </div>
@@ -69,4 +74,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

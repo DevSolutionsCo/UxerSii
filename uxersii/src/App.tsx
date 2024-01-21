@@ -3,7 +3,8 @@ import { PruebasBack } from "./PruebaBack/PruebasBack";
 import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
 import { PruebasSignUp } from "./PruebaBack/PruebasSignUp";
 import Index from "./components/Index/Index";
-import Login from "./components/login/login";
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/pruebasBack" element={<PruebasBack />} />
           <Route path="/pruebasBack-create" element={<PruebasBackForm />} />
