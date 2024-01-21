@@ -1,0 +1,4 @@
+.inutil::-ms-clear,
+.inutil::-ms-reveal {
+  display: none;
+}

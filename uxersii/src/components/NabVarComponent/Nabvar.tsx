@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import darklogo from "../../assets/logoDarkMode.svg";
 import logo from "../../assets/logoLightTheme.svg";
 import BotonIndex from "./Boton";
 import LinksNav from "./LinksNav";
-
-import { useEffect, useState } from "react";
 
 function Nabvar() {
   const [isOpen, setIsOpen] = useState(false); //El useState te genera dos cosas, en este caso mi variable se llama "isOpen" que hace referencia a cuando el menu esta abierto, aqui en la propiedad que esta despues "useState(false)" se declara la variable isOpen como un valor false predeterminado, esto con el fin de que el menu al inicio este cerrado, y con la funcion de la linea 38  "onClick={() => setIsOpen(!isOpen)}" se le cambia el estado para que en vez de ser false, sea true, en la linea 24 "${isOpen ? 'flex' : 'hidden'}" eso es equivalente a un ifelse, lo que esta despues del ? es lo que se ejecuta en la parte del if y lo que esta despues de : es lo que se ejecuta en el else, poniendo al inicio "isOpen" significa que isOpen === true, es practicamente lo mismo
@@ -76,20 +76,25 @@ function Nabvar() {
             </BotonIndex>
           )}
           <div>
-            <BotonIndex
-              className="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
+            <Link to="/login">
+              <BotonIndex
+                className="border-green-500 text-green-500 bg-white hover:bg-green-500 hover:text-white z-10
           dark:text-white dark:bg-zinc-800
           "
-            >
-              Log in
-            </BotonIndex>
-            <BotonIndex
-              className="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
+              >
+                Log in
+              </BotonIndex>
+            </Link>
+
+            <Link to="/signup">
+              <BotonIndex
+                className="border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500 -ml-5
           dark:hover:bg-zinc-800 dark:hover:text-white
           "
-            >
-              Register
-            </BotonIndex>
+              >
+                Register
+              </BotonIndex>
+            </Link>
           </div>
         </div>
       </div>
