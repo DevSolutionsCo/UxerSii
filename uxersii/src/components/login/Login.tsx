@@ -7,39 +7,34 @@ import "./inecesario.css";
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
-function Login() {
-
+export default function Login() {
   const [correo_hog, setCorreoH] = useState('');
   const [contra_hog, setContraHog] = useState('');
-  const navigate = useNavigate()
-    const handleLogin = async () => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleLogin = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    try {
       const response = await axios.post('http://127.0.0.1:8000/uxersiiPruebas/api/v1/login/', {
         correo_hog,
         contra_hog,
-    });
-        try {
-           
-           // console.log(response.data.mensaje);
-            // Maneja la respuesta según tus necesidades
-            if(response.data.mensaje === "Inicio de sesion exitoso"){
-              navigate('/')
-              navigate('/')
-            }
-           
-            //window.alert("keeeeeeeeeeeeeeeeeeeeeee")
-            
-            //console.log(response.data);
-            //console.log("si te hacemos el autenticado");
-        } catch (error) {
-            // Manejo de errores
-            window.alert("ke2")
-            //console.error('Error al iniciar sesión:', error);
-           // console.log("no te hacemos el autenticado");
-        }
-    };
+      });
 
-  const [showPassword, setShowPassword] = useState(false);
+      console.log(response.data.mensaje);
+      // Maneja la respuesta según tus necesidades
 
+      // Solo navega si la autenticación fue exitosa
+      navigate('/');
+    } catch (error) {
+      // Manejo de errores
+      window.alert("Error al iniciar sesión");
+      console.error('Error al iniciar sesión:', error);
+    }
+  }
+  
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -48,7 +43,7 @@ function Login() {
     <>
       <div className="flex h-screen overflow-hidden">
         <div className="flex-1 flex-col justify-center mx-auto p-4 flex items-center">
-          <form className="w-7/12" >
+          <form className="w-7/12" onSubmit={handleLogin}>
             <h2 className="text-4xl font-semibold">Bienvenido de regreso</h2>
             <p className="text-2xl font-semibold py-10">
               Ingresa tus credenciales
@@ -79,7 +74,7 @@ function Login() {
               value={contra_hog} onChange={(e) => setContraHog(e.target.value)}
             />
             <div className="w-full">
-              <BotonLogin onClick={handleLogin}>Iniciar sesion</BotonLogin>
+              <BotonLogin type="submit" >Iniciar sesion</BotonLogin>
               <p className="text-center mt-12">
                 No tienes una cuenta?{" "}
                 <span className="text-indigo-700 font-semibold">
@@ -103,4 +98,3 @@ function Login() {
   );
 }
 
-export default Login;
