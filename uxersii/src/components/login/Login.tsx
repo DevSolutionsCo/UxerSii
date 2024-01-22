@@ -6,6 +6,7 @@ import Inputs from "./Inputs";
 import "./inecesario.css";
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import { Usuario, DatosUsuario } from '../../DatosUsuario'
 
 export default function Login() {
   const [correo_hog, setCorreoH] = useState('');
@@ -23,11 +24,17 @@ export default function Login() {
         contra_hog,
       });
 
-      console.log(response.data.mensaje);
+      console.log(response.data);
+      const datosUsuario: DatosUsuario = response.data;
+      
+      const usuario = new Usuario(datosUsuario);
+      console.log(usuario);
+      localStorage.setItem('usuario', JSON.stringify(response.data));
+
       // Maneja la respuesta según tus necesidades
 
       // Solo navega si la autenticación fue exitosa
-      navigate('/');
+      navigate('/pruebasBack');
     } catch (error) {
       // Manejo de errores
       window.alert("Error al iniciar sesión");
@@ -35,11 +42,13 @@ export default function Login() {
     }
   }
   
+  
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
+    
     <>
       <div className="flex h-screen overflow-hidden">
         <div className="flex-1 flex-col justify-center mx-auto p-4 flex items-center">

@@ -45,7 +45,20 @@ def custom_login(request):
             if (contra == user.contra_hog): 
                 # Autenticación exitosa
                 print("inicio valido")
-                return JsonResponse({'mensaje': 'Inicio de sesion exitoso'})
+                request.session['nombUserH'] = user.nombUserH
+                request.session['nombre_hog'] = user.nombre_hog
+                request.session['correo_hog'] = user.correo_hog
+                request.session['contra_hog'] = user.contra_hog
+                request.session['id_hog'] = user.id_hog
+                return JsonResponse({'mensaje': 'Inicio de sesion exitoso', 
+                                     'nombUserH': user.nombUserH,
+                                     'nombre': user.nombre_hog,
+                                     'correoH': user.correo_hog,
+                                     #'contra': user.contra_hog,
+                                     'apellidoPat': user.apellido_pat,
+                                     'id_hog': user.id_hog
+                                    })
+                
             else:
                 # Autenticación fallida
                 print("inicio invalido")
@@ -60,6 +73,19 @@ def custom_login(request):
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
+def obtenerdatosuserh(request):
+    if request.method == 'GET':
+        nombUserH = request.session.get('nombUserH')
+        nombre_hog = request.session.get('nombre_hog')
+        correo_hog = request.session.get('correo_hog')
+        contra_hog = request.session.get('contra_hog')
+        id_hog = request.session.get('id_hog')
+        return JsonResponse({'nombUserH': nombUserH,
+                            'nombre_hog': nombre_hog,
+                            'correo_hog': correo_hog,
+                            'contra_hog': contra_hog,
+                            'id_hog': id_hog
+                            })
 """
 class LoginView(APIView):
     permission_classes = [AllowAny]

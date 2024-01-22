@@ -97,7 +97,7 @@ function Signup() {
               {...register("usuario.contra_hog", { required: true })}
             />
 
-            <BotonLogin type="submit">Iniciar sesion</BotonLogin>
+            <BotonLogin type="submit">Crear Cuenta</BotonLogin>
           
            
           </form>
