@@ -393,7 +393,7 @@ class UsuarioHogar(models.Model):
         db_table = 'usuario_hogar'
 
     def __str__(self) -> str:
-        return self.nombre_hog # type: ignore
+        return self.nombUserH # type: ignore
 
 
 class UsuarioOrganizacion(models.Model):
