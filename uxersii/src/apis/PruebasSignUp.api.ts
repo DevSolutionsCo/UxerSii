@@ -37,9 +37,16 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
   try {
     const response = await pruebasAPI.post("/", usuario);
     return response.data;
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("Error al crear usuario:", error);
+
+    if (error.response && error.response.data && typeof error.response.data.detail === 'string') {
+      throw new Error(error.response.data.detail);
+    }
+
     throw error;
   }
 };
+
 

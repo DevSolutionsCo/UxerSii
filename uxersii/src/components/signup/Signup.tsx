@@ -41,12 +41,31 @@ function Signup() {
   const onSubmit: SubmitHandler<UsuarioInterface> = async (data) => {
     console.log("Enviando formulario...");
     try {
-      await createUsuario(data);
-      console.log("Usuario creado exitosamente.");
+      const response = await createUsuario(data);
+
+    if (response && response.detail) {
+      console.error("Error al crear usuario:", response.detail);
+
+      if(response.detail==='Este correo ya está registrado'){
+        window.alert("Este correo ya está registrado")
+      }
+      // Manejar el error específico, por ejemplo, mostrar un mensaje al usuario
+    } else {
+      console.log("Usuario creado exitosamente:", response.usuario);
       navigate('/');
-    } catch (error) {
-      console.error("Error al crear usuario:", error);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+      console.log(error)
       // Manejar el error según sea necesario
+
+      if ('message' in error && typeof error.message === 'string') {
+        // Mostrar alert con el mensaje de error
+        alert(error.message);
+      } else {
+        // Manejar otros errores según sea necesario
+        console.error("Error desconocido:", error);
+      }
     }
   };
   

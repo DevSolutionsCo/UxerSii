@@ -15,9 +15,37 @@ class uxersiiPruebas(viewsets.ModelViewSet):
     serializer_class = uxeriiSerializer
     queryset = userSiitoBack.objects.all()
 
+
 class signUp(viewsets.ModelViewSet):
     serializer_class = UsuarioHogarSerializer
     queryset = UsuarioHogar.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        dataU = json.loads(request.body)
+        email = dataU.get('correo_hog')
+        print(email)
+        # Obtener datos del request
+        #usuario_data = request.data.get('usuario', {})
+        #print(usuario_data.get('correo_hog'))
+        # Verificar si ya existe un usuario con el mismo correo
+        existing_email = UsuarioHogar.objects.filter(correo_hog=dataU.get('correo_hog')).exists()
+        if existing_email:
+            print("Correo existente, registro fallido")
+            return JsonResponse({"detail": "Este correo ya está registrado"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Verificar si ya existe un usuario con el mismo nombre de usuario
+        existing_username = UsuarioHogar.objects.filter(nombUserH=dataU.get('nombUserH')).exists()
+        if existing_username:
+            print("Nombre existente, registro fallido")
+            return JsonResponse({"detail": "Este nombre de usuario ya está en uso"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Si no hay conflictos, proceder con la creación del usuario
+        serializer = self.get_serializer(data=dataU)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 from django.http import JsonResponse
@@ -86,34 +114,3 @@ def obtenerdatosuserh(request):
                             'contra_hog': contra_hog,
                             'id_hog': id_hog
                             })
-"""
-class LoginView(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request, *args, **kwargs):
-        try:
-            email = request.data.get('correo_hog')
-            contra = request.data.get('contra_hog')
-            
-            from django.contrib.auth.hashers import make_password
-
-            print(f'Nombre de usuario: {email}')
-            print(f'Contraseña: {contra}')
-
-            user = authenticate(request, modelo_usuario=UsuarioHogar, correo_hog=email, contra_hog=make_password(contra))
-
-            if user:
-                # Puedes personalizar el payload de respuesta según tus necesidades
-                print("inicio valido")
-                return Response({'mensaje': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
-                
-            else:
-                print("inicio invalido")
-                return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
-        except OperationalError as e:
-            # Manejar excepciones de base de datos
-            return Response({'error': f'Error de base de datos: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        except Exception as e:
-            # Manejar otras excepciones
-            return Response({'error': f'Error inesperado: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-"""
