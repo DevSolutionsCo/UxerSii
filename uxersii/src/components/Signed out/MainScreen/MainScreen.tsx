@@ -1,4 +1,4 @@
-import caja from "../../assets/Pasted-20240101-153552.svg";
+import caja from "../../../assets/Pasted-20240101-153552.svg";
 import Background from "./Background";
 
 function MainScreen() {

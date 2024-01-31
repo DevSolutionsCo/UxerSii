@@ -1,8 +1,8 @@
-import foto2 from "../../assets/pics/Group 238.png";
-import foto4 from "../../assets/pics/Group 369.png";
-import foto3 from "../../assets/pics/Group 372.png";
-import foto1 from "../../assets/pics/Group 374.png";
-import hand from "../../assets/pics/box-hand.png";
+import foto2 from "../../../assets/pics/Group 238.png";
+import foto4 from "../../../assets/pics/Group 369.png";
+import foto3 from "../../../assets/pics/Group 372.png";
+import foto1 from "../../../assets/pics/Group 374.png";
+import hand from "../../../assets/pics/box-hand.png";
 import CardsIndex from "./CardsIndex";
 function Screen2Index() {
   return (

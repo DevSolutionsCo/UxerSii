@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import FotoRight from "../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import FotoRight from "../../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg";
 import BotonLogin from "../login/BotonLogin";
 import Inputs from "../login/Inputs";
-import {useForm} from 'react-hook-form'
-import {SubmitHandler} from 'react-hook-form';
-import {useNavigate} from 'react-router-dom'
 import "../login/inecesario.css";
 
-import { createUsuario } from '../../apis/PruebasSignUp.api'
+import { createUsuario } from "../../../apis/PruebasSignUp.api";
 
 interface Usuario {
   //nombre_hog: string;
@@ -28,10 +26,10 @@ interface UsuarioInterface {
 }
 
 function Signup() {
-  const { register, handleSubmit} = useForm<UsuarioInterface>();
+  const { register, handleSubmit } = useForm<UsuarioInterface>();
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   /*const onSubmit: SubmitHandler<UsuarioInterface> =  (data) => {
     createUsuario(data);
@@ -43,23 +41,23 @@ function Signup() {
     try {
       const response = await createUsuario(data);
 
-    if (response && response.detail) {
-      console.error("Error al crear usuario:", response.detail);
+      if (response && response.detail) {
+        console.error("Error al crear usuario:", response.detail);
 
-      if(response.detail==='Este correo ya está registrado'){
-        window.alert("Este correo ya está registrado")
+        if (response.detail === "Este correo ya está registrado") {
+          window.alert("Este correo ya está registrado");
+        }
+        // Manejar el error específico, por ejemplo, mostrar un mensaje al usuario
+      } else {
+        console.log("Usuario creado exitosamente:", response.usuario);
+        navigate("/");
       }
-      // Manejar el error específico, por ejemplo, mostrar un mensaje al usuario
-    } else {
-      console.log("Usuario creado exitosamente:", response.usuario);
-      navigate('/');
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
-      console.log(error)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error);
       // Manejar el error según sea necesario
 
-      if ('message' in error && typeof error.message === 'string') {
+      if ("message" in error && typeof error.message === "string") {
         // Mostrar alert con el mensaje de error
         alert(error.message);
       } else {
@@ -68,7 +66,6 @@ function Signup() {
       }
     }
   };
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -78,20 +75,18 @@ function Signup() {
     <>
       <div className="flex h-screen overflow-hidden">
         <div className="flex-1 flex-col justify-center mx-auto p-4 flex items-center">
-        <h2 className="text-4xl font-semibold">Crear una cuenta ahora</h2>
-            <p className="text-2xl font-semibold py-10">
-              Ingresa tus credenciales
-            </p>
+          <h2 className="text-4xl font-semibold">Crear una cuenta ahora</h2>
+          <p className="text-2xl font-semibold py-10">
+            Ingresa tus credenciales
+          </p>
           <form className="w-7/12" onSubmit={handleSubmit(onSubmit)}>
             <Inputs
-              
               placeholder="Ingresa tu nombre"
               labelsito="Nombre"
               type="text"
               {...register("usuario.nombUserH", { required: true })}
             />
             <Inputs
-              
               placeholder="Ingresa tu correo electronico"
               labelsito="Correo electronico"
               type="email"
@@ -110,18 +105,14 @@ function Signup() {
               </button>
             </div>
             <Inputs
-              
               placeholder="Contraseña"
               type={showPassword ? "text" : "password"}
               {...register("usuario.contra_hog", { required: true })}
             />
 
             <BotonLogin type="submit">Crear Cuenta</BotonLogin>
-          
-           
           </form>
           <div className="w-full">
-            
             <p className="text-center mt-12">
               Ya tienes una cuenta?{" "}
               <span className="text-indigo-700 font-semibold">
