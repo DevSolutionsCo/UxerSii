@@ -26,6 +26,11 @@ interface UsuarioInterface {
 }
 
 function Signup() {
+  localStorage.removeItem('usuarioL');
+  localStorage.removeItem('usuarioS');
+
+
+
   const { register, handleSubmit } = useForm<UsuarioInterface>();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -50,7 +55,9 @@ function Signup() {
         // Manejar el error específico, por ejemplo, mostrar un mensaje al usuario
       } else {
         console.log("Usuario creado exitosamente:", response.usuario);
-        navigate("/");
+        localStorage.setItem("usuarioS", JSON.stringify(data));
+        console.log(data)
+        navigate("/main");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

@@ -81,7 +81,7 @@ def custom_login(request):
                 return JsonResponse({'mensaje': 'Inicio de sesion exitoso', 
                                      'nombUserH': user.nombUserH,
                                      'nombre': user.nombre_hog,
-                                     'correoH': user.correo_hog,
+                                     'correo_hog': user.correo_hog,
                                      #'contra': user.contra_hog,
                                      'apellidoPat': user.apellido_pat,
                                      'id_hog': user.id_hog

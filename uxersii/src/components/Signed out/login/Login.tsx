@@ -8,6 +8,9 @@ import Inputs from "./Inputs";
 import "./inecesario.css";
 
 export default function Login() {
+  localStorage.removeItem('usuarioL');
+  localStorage.removeItem('usuarioS');
+
   const [correo_hog, setCorreoH] = useState("");
   const [contra_hog, setContraHog] = useState("");
   const navigate = useNavigate();
@@ -31,12 +34,12 @@ export default function Login() {
 
       const usuario = new Usuario(datosUsuario);
       console.log(usuario);
-      localStorage.setItem("usuario", JSON.stringify(response.data));
+      localStorage.setItem("usuarioL", JSON.stringify(response.data));
 
       // Maneja la respuesta según tus necesidades
 
       // Solo navega si la autenticación fue exitosa
-      navigate("/pruebasBack");
+      navigate("/main");
     } catch (error) {
       // Manejo de errores
       window.alert("Error al iniciar sesión");

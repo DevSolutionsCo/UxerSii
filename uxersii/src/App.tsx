@@ -2,17 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PruebasBack } from "./PruebaBack/PruebasBack";
 import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
 import { PruebasSignUp } from "./PruebaBack/PruebasSignUp";
-<<<<<<< HEAD
-import Index from "./components/Index/Index";
-import Login from "./components/login/Login";
-import Signup from "./components/signup/Signup";
 import Donacion from './components/Donacion/Donacion';
-=======
 import Bento from "./components/LogedUp/BentoGrid/Bento";
 import Index from "./components/Signed out/Index/Index";
 import Login from "./components/Signed out/login/Login";
 import Signup from "./components/Signed out/signup/Signup";
->>>>>>> e6c46cf306e2b8e720181794696ac70ea1a24cbc
 
 function App() {
   return (
