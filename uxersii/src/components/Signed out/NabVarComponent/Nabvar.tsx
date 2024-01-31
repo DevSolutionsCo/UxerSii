@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import darklogo from "../../assets/logoDarkMode.svg";
-import logo from "../../assets/logoLightTheme.svg";
+import darklogo from "../../../assets/logoDarkMode.svg";
+import logo from "../../../assets/logoLightTheme.svg";
 import BotonIndex from "./Boton";
 import LinksNav from "./LinksNav";
 
