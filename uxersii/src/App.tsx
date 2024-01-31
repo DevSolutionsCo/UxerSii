@@ -5,6 +5,7 @@ import { PruebasSignUp } from "./PruebaBack/PruebasSignUp";
 import Index from "./components/Index/Index";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
+import Donacion from './components/Donacion/Donacion';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/pruebasBack/:id" element={<PruebasBackForm />} />
           <Route path="/pruebaSignUp" element={<PruebasSignUp />} />
           <Route path="/pruebaSignUp/:id" element={<PruebasSignUp />} />
+          <Route path="/donaciones" element={<Donacion/>}/>
         </Routes>
       </BrowserRouter>
     </>
