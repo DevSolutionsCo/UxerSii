@@ -1,32 +1,33 @@
+import clsx from "clsx";
+import { ReactNode, useEffect, useState } from "react";
 import "./styleepopup.css";
-import { ReactNode } from "react";
-import { useEffect, useState } from "react";
 
 interface Props {
   children?: ReactNode;
   titulo?: ReactNode;
   texbtn?: ReactNode;
+  isOpen?: boolean;
+  onClose: () => void;
 }
 
 function Popup(props: Props) {
-  const [modalAbierto, setModalAbierto] = useState(false);
+  const [modalAbierto, setModalAbierto] = useState(!!props.isOpen);
+
 
   useEffect(() => {
-    console.log(`El modal está ${modalAbierto ? "abierto" : "cerrado"}`);
-  }, [modalAbierto]);
-
-  const abrirModal = () => {
-     setModalAbierto(true);
-   };
+    setModalAbierto(!!props.isOpen);
+  }, [props.isOpen]);
 
   const cerrarModal = () => {
     setModalAbierto(false);
+    props.onClose();
   };
+
   return (
     <>
-      <button className="btn-ope px-8 py-5 relative rounded-xl font-bold text-black w-full" onClick={abrirModal}>Abrir Modal</button>
+
       {modalAbierto && (
-        <div className="popup" id="abrir-pop">
+         <div className={clsx("popup", { "abrir-pop": modalAbierto })}>
           <div className="nav-popup font-bold">
             <div className="text-navbar-popup">
               <p className="titulo-popup">{props.titulo}</p>
@@ -37,7 +38,7 @@ function Popup(props: Props) {
               </button>
             </div>
           </div>
-          {props.children}
+          <div className="p-6">{props.children}</div>
           <div>
             <button className="btn-seguir px-6 py-3 relative rounded-xl font-bold text-black w-full">
               {props.texbtn}

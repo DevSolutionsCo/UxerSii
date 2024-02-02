@@ -24,3 +24,8 @@ body{
     font-family: 'Nunito', sans-serif;
     font-size: xxx-large;
 }
+.btn-ope{
+    margin-top: 100%;
+    min-width:60%;
+    background-color:#B9F0D1 ;
+}
