@@ -22,7 +22,7 @@ function App() {
           <Route path="/pruebasBack/:id" element={<PruebasBackForm />} />
           <Route path="/pruebaSignUp" element={<PruebasSignUp />} />
           <Route path="/pruebaSignUp/:id" element={<PruebasSignUp />} />
-          <Route path="/donaciones" element={<Donacion/>}/>
+          <Route path="/main/donaciones" element={<Donacion/>}/>
         </Routes>
       </BrowserRouter>
     </>
