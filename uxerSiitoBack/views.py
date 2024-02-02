@@ -101,6 +101,7 @@ def custom_login(request):
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
+
 def obtenerdatosuserh(request):
     if request.method == 'GET':
         nombUserH = request.session.get('nombUserH')
@@ -114,3 +115,51 @@ def obtenerdatosuserh(request):
                             'contra_hog': contra_hog,
                             'id_hog': id_hog
                             })
+    
+@csrf_exempt
+def actualizardatosh(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('correoUser')
+            contra = data.get('passwUser')
+            nombreUser = data.get('nombreUser')
+            emailAnt = data.get('correoUserAn')
+            
+
+            print(f'Nombre de usuario: {nombreUser}')
+            print(f'Contraseña: {contra}')
+            print(f"Correo Nuevo: {email}")
+            print(f"Correo Anterior: {emailAnt}")
+
+
+            # Busca al usuario en la base de datos
+            user = UsuarioHogar.objects.get(correo_hog=emailAnt)
+            print(user.contra_hog)
+
+            # Cambia valores
+            user.contra_hog = contra
+            user.nombUserH = nombreUser
+            user.correo_hog = email
+
+            # Guarda los cambios
+            user.save()
+
+            return JsonResponse({'mensaje': 'Inicio de sesion exitoso', 
+                                     'nombUserH': user.nombUserH,
+                                     'nombre': user.nombre_hog,
+                                     'correo_hog': user.correo_hog,
+                                     #'contra': user.contra_hog,
+                                     'apellidoPat': user.apellido_pat,
+                                     'id_hog': user.id_hog
+                                    })
+            
+
+        except UsuarioHogar.DoesNotExist:
+            # Usuario no encontrado
+            return JsonResponse({'error': 'Usuario no encontrado'}, status=401)
+        except Exception as e:
+            # Otro error
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)

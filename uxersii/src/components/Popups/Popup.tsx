@@ -40,7 +40,7 @@ function Popup(props: Props) {
           </div>
           <div className="p-6">{props.children}</div>
           <div>
-            <button className="btn-seguir px-6 py-3 relative rounded-xl font-bold text-black w-full">
+            <button type="submit" className="btn-seguir px-6 py-3 relative rounded-xl font-bold text-black w-full">
               {props.texbtn}
             </button>
           </div>
