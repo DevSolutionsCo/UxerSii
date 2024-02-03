@@ -6,6 +6,7 @@ import Popup from "../../Popups/Popup";
 import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
+import ProfilePicSelector from "./ProfilePicSelector";
 
 function Bento() {
   const [nombreUser, setNombreUser] = useState("");
@@ -88,10 +89,16 @@ function Bento() {
     }
   };
   // En Bento.tsx
-  const [fotoPerfil, setFotoPerfil] = useState(foto); // Asigna la foto inicial
+  const [showProfilePicSelector, setShowProfilePicSelector] = useState(false); // Nuevo estado para controlar la visibilidad de ProfilePicSelector
+  const [fotoPerfil, setFotoPerfil] = useState(foto);
+  const handleSelectProfilePic = () => {
+    // Muestra el componente ProfilePicSelector al hacer clic en el botón
+    setShowProfilePicSelector(true);
+  };
 
   const handleFotoPerfilChange = (nuevaFoto: string) => {
     setFotoPerfil(nuevaFoto);
+    setShowProfilePicSelector(false); // Cierra ProfilePicSelector después de la selección
   };
 
   return (
@@ -127,8 +134,12 @@ function Bento() {
             isOpen={showPopup}
             onClose={handleClosePopup}
           >
-            <button>
-              <img src={foto} alt="" />
+            <button
+              type="button"
+              onClick={handleSelectProfilePic}
+              className="h-52 w-52"
+            >
+              <img src={fotoPerfil} alt="" />
             </button>
             <div className="">
               <Inputs
@@ -150,6 +161,18 @@ function Bento() {
             </div>
           </Popup>
         </form>
+      )}
+
+      {showProfilePicSelector && (
+        <ProfilePicSelector
+          isOpen={showProfilePicSelector}
+          onClose={() => setShowProfilePicSelector(false)}
+          handlePicSelection={(selectedPic: string) => {
+            handleFotoPerfilChange(selectedPic);
+            // Puedes realizar cualquier acción adicional aquí
+          }}
+          handleFotoPerfilChange={handleFotoPerfilChange}
+        />
       )}
     </Backgroundx2>
   );
