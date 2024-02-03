@@ -1,16 +1,12 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import foto from "../../../assets/profile-pics/perf3.jpeg";
 import Popup from "../../Popups/Popup";
 import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
-
-import axios from "axios";
-import {useParams} from 'react-router-dom'
-
-
-  
- 
+import ProfilePicSelector from "./ProfilePicSelector";
 
 function Bento() {
   const [nombreUser, setNombreUser] = useState("");
@@ -20,6 +16,7 @@ function Bento() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [passwUser, setPasswUser] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     const obtenerDatosUsuario = () => {
       const datosUsuarioStringS: string | null =
@@ -49,7 +46,6 @@ function Bento() {
 
     obtenerDatosUsuario();
   }, []);
-
   const handleShowPopup = () => {
     setShowPopup(true);
   };
@@ -58,12 +54,9 @@ function Bento() {
     setShowPopup(false);
   };
 
-
- // const navigate = useNavigate()
-  const params = useParams()
-  console.log(params)
-
-  
+  // const navigate = useNavigate()
+  const params = useParams();
+  console.log(params);
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault(); // Evita que el formulario se envíe automáticamente
@@ -80,7 +73,7 @@ function Bento() {
       );
 
       console.log(response.data);
-      console.log("SI lo actualice vv")
+      console.log("SI lo actualice vv");
       //const usuario = new Usuario(datosUsuario);
       //console.log(usuario);
       localStorage.setItem("usuarioL", JSON.stringify(response.data));
@@ -95,7 +88,18 @@ function Bento() {
       console.error("Error al iniciar sesión:", error);
     }
   };
+  // En Bento.tsx
+  const [showProfilePicSelector, setShowProfilePicSelector] = useState(false); // Nuevo estado para controlar la visibilidad de ProfilePicSelector
+  const [fotoPerfil, setFotoPerfil] = useState(foto);
+  const handleSelectProfilePic = () => {
+    // Muestra el componente ProfilePicSelector al hacer clic en el botón
+    setShowProfilePicSelector(true);
+  };
 
+  const handleFotoPerfilChange = (nuevaFoto: string) => {
+    setFotoPerfil(nuevaFoto);
+    setShowProfilePicSelector(false); // Cierra ProfilePicSelector después de la selección
+  };
 
   return (
     <Backgroundx2>
@@ -104,8 +108,9 @@ function Bento() {
           className="col-span-10 md:col-span-4 "
           title={nombreUser}
           correoUser={correoUser}
-          fotoUser={foto}
+          fotoUser={fotoPerfil}
           clickbutton={handleShowPopup}
+          handleFotoPerfilChange={handleFotoPerfilChange}
         ></BentoItem>
         <BentoItem
           className="col-span-10 md:col-span-6"
@@ -123,20 +128,51 @@ function Bento() {
 
       {showPopup && (
         <form onSubmit={handleLogin}>
-        <Popup
-          titulo="Edita la informacion de tu perfil"
-          texbtn="Guardar cambios"
-          isOpen={showPopup}
-          onClose={handleClosePopup}
-        >
-          {/* Contenido del Popup */}
-          
-          <Inputs labelsito="Nombre del usuario" placeholder={nombreUser} onChange={(e) => setNombreUser(e.target.value)}/>
-          <Inputs labelsito="Correo del usuario" placeholder={correoUser} onChange={(e) => setCorreoH(e.target.value)}/>
-          <Inputs labelsito="Contraseña" placeholder={ "Ingresa tu nueva contraseña"} onChange={(e) => setPasswUser(e.target.value)}/>
-          
-        </Popup>
+          <Popup
+            titulo="Edita la informacion de tu perfil"
+            texbtn="Guardar cambios"
+            isOpen={showPopup}
+            onClose={handleClosePopup}
+          >
+            <button
+              type="button"
+              onClick={handleSelectProfilePic}
+              className="h-52 w-52"
+            >
+              <img src={fotoPerfil} alt="" />
+            </button>
+            <div className="">
+              <Inputs
+                labelsito="Nombre del usuario"
+                placeholder={nombreUser}
+                onChange={(e) => setNombreUser(e.target.value)}
+                className=""
+              />
+              <Inputs
+                labelsito="Correo del usuario"
+                placeholder={correoUser}
+                onChange={(e) => setCorreoH(e.target.value)}
+              />
+              <Inputs
+                labelsito="Contraseña"
+                placeholder={"Ingresa tu nueva contraseña"}
+                onChange={(e) => setPasswUser(e.target.value)}
+              />
+            </div>
+          </Popup>
         </form>
+      )}
+
+      {showProfilePicSelector && (
+        <ProfilePicSelector
+          isOpen={showProfilePicSelector}
+          onClose={() => setShowProfilePicSelector(false)}
+          handlePicSelection={(selectedPic: string) => {
+            handleFotoPerfilChange(selectedPic);
+            // Puedes realizar cualquier acción adicional aquí
+          }}
+          handleFotoPerfilChange={handleFotoPerfilChange}
+        />
       )}
     </Backgroundx2>
   );
