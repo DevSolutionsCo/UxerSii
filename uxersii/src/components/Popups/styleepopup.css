@@ -10,6 +10,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
+    
 }
 .nav-popup{
     display: flex;
@@ -40,4 +41,6 @@
     padding-right: 12%;
     padding-top: 3%;
 }
-
+.btn-seguir{
+    background-color: #B9F0D1;
+}
