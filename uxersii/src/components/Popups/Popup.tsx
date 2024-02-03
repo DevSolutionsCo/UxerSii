@@ -13,7 +13,6 @@ interface Props {
 function Popup(props: Props) {
   const [modalAbierto, setModalAbierto] = useState(!!props.isOpen);
 
-
   useEffect(() => {
     setModalAbierto(!!props.isOpen);
   }, [props.isOpen]);
@@ -25,9 +24,8 @@ function Popup(props: Props) {
 
   return (
     <>
-
       {modalAbierto && (
-         <div className={clsx("popup", { "abrir-pop": modalAbierto })}>
+        <div className={clsx("popup", { "abrir-pop": modalAbierto })}>
           <div className="nav-popup font-bold">
             <div className="text-navbar-popup">
               <p className="titulo-popup">{props.titulo}</p>
@@ -40,7 +38,10 @@ function Popup(props: Props) {
           </div>
           <div className="p-6">{props.children}</div>
           <div>
-            <button type="submit" className="btn-seguir px-6 py-3 relative rounded-xl font-bold text-black w-full">
+            <button
+              type="submit"
+              className="btn-seguir px-6 py-3 relative rounded-xl font-bold text-black w-full"
+            >
               {props.texbtn}
             </button>
           </div>
@@ -51,3 +52,4 @@ function Popup(props: Props) {
 }
 
 export default Popup;
+export type { Props as PopupProps };
