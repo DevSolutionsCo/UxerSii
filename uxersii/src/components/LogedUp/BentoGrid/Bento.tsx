@@ -104,9 +104,9 @@ function Bento() {
 
   return (
     <Backgroundx2>
-      <section className="w-full min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 mx-auto p-20 ">
+      <section className="w-full min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 mx-auto lg:p-20 p-4 ">
         <BentoItem
-          className="col-span-10 sm:col-span-4 "
+          className="col-span-10 lg:col-span-4 "
           title={nombreUser}
           correoUser={correoUser}
           fotoUser={fotoPerfil}
@@ -114,11 +114,11 @@ function Bento() {
           handleFotoPerfilChange={handleFotoPerfilChange}
         ></BentoItem>
         <BentoItem
-          className="col-span-10 sm:col-span-6"
+          className="col-span-10 lg:col-span-6"
           title="Ranking donadores"
         >
           <div className="flex flex-row justify-between">
-            <div className="hidden sm:flex flex-col gap-7">
+            <div className="hidden lg:flex flex-col gap-7">
               <div className="p-6 flex flex-row items-center">
                 <picture className="pr-8">
                   <img src={foto} className="w-24 h-24 rounded-full" />
@@ -142,11 +142,11 @@ function Bento() {
           </div>
         </BentoItem>
         <BentoItem
-          className="col-span-10 sm:col-span-6"
+          className="col-span-10 lg:col-span-6"
           title="Puntos moviles"
         ></BentoItem>
         <BentoItem
-          className="col-span-10 sm:col-span-4"
+          className="col-span-10 lg:col-span-4"
           title="Soporte tecnico"
         >
           <div className="w-full h-[20rem] items-center text-wrap justify-center ">

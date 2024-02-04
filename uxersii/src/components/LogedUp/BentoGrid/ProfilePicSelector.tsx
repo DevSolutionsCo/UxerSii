@@ -46,7 +46,7 @@ function ProfilePicSelector(props: Props) {
             <img
               src={pic}
               alt={`Profile Pic ${index + 1}`}
-              className="w-44 h-44 object-cover rounded-md cursor-pointer"
+              className="lg:w-44 lg:h-44 object-cover rounded-md cursor-pointer w-28 h-28"
             />
           </button>
         ))}

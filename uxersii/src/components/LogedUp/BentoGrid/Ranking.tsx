@@ -3,7 +3,7 @@ function Ranking() {
   const data = [
     { name: "dsds", donaciones: "200" },
     { name: "Pedro", donaciones: "555" },
-    { name: "Vegetta77", donaciones: "222" },
+    { name: "Vegetta777", donaciones: "222" },
   ];
   console.log("flhjhkjfhk");
 
