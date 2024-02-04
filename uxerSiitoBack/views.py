@@ -84,6 +84,7 @@ def custom_login(request):
                                      'correo_hog': user.correo_hog,
                                      #'contra': user.contra_hog,
                                      'apellidoPat': user.apellido_pat,
+                                     'fotoPerfil': user.fotoh,
                                      'id_hog': user.id_hog
                                     })
                 
@@ -125,12 +126,15 @@ def actualizardatosh(request):
             contra = data.get('passwUser')
             nombreUser = data.get('nombreUser')
             emailAnt = data.get('correoUserAn')
+            fotoPerfil = data.get('fotoPerfil')
             
 
             print(f'Nombre de usuario: {nombreUser}')
             print(f'Contraseña: {contra}')
             print(f"Correo Nuevo: {email}")
             print(f"Correo Anterior: {emailAnt}")
+            print(f"Foto Perfil: {fotoPerfil}")
+
 
 
             # Busca al usuario en la base de datos
@@ -141,6 +145,7 @@ def actualizardatosh(request):
             user.contra_hog = contra
             user.nombUserH = nombreUser
             user.correo_hog = email
+            user.fotoh = fotoPerfil
 
             # Guarda los cambios
             user.save()
@@ -151,6 +156,7 @@ def actualizardatosh(request):
                                      'correo_hog': user.correo_hog,
                                      #'contra': user.contra_hog,
                                      'apellidoPat': user.apellido_pat,
+                                     'fotoPerfil': user.fotoh,
                                      'id_hog': user.id_hog
                                     })
             
@@ -163,3 +169,22 @@ def actualizardatosh(request):
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+
+@csrf_exempt
+def getranking(request):
+    campo = 'numDonaciones'  # Reemplaza con el nombre del campo que estás utilizando
+    cantidad_a_mostrar = 3
+
+    usuarios = UsuarioHogar.objects.order_by(f'-{campo}')[:cantidad_a_mostrar]
+
+    data = [{'nombreUser': usuario.nombUserH,
+             'correoUser': usuario.correo_hog,
+             #'passwUser': usuario.passwUser,
+             'numDonaciones': usuario.numDonaciones,
+             'fotoPerfil': usuario.fotoh if usuario.fotoh else None,
+             campo: getattr(usuario, campo)}
+            for usuario in usuarios]
+
+    return JsonResponse({'usuarios': data})
+        

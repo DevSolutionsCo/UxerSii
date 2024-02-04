@@ -355,6 +355,9 @@ class PuntosColecta(models.Model):
     class Meta:
         managed = False
         db_table = 'puntos_colecta'
+    
+    def __str__(self) -> str:
+        return self.nomb_punto # type: ignore
 
 
 class UsuarioEstablecimiento(models.Model):
@@ -387,6 +390,7 @@ class UsuarioHogar(models.Model):
     nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
     codigopostal = models.IntegerField(db_column='codigoPostal', blank=True, null=True)  # Field name made lowercase.
     fotoh = models.TextField(db_column='fotoH', blank=True, null=True)  # Field name made lowercase.
+    numDonaciones = models.IntegerField(db_column='numDonaciones', blank=True, null=True)
 
     class Meta:
         managed = True

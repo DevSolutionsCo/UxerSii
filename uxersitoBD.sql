@@ -38,7 +38,8 @@ desc_hog nvarchar(100),
 genero nvarchar(20),
 nombUserH nvarchar(15),
 codigoPostal int(8),
-fotoH text);
+fotoH text,
+numDonaciones int(5));
 
 create table hogar_eve(
 id_eve int,

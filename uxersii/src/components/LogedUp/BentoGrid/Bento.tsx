@@ -13,6 +13,7 @@ function Bento() {
   const [nombreUser, setNombreUser] = useState("");
   const [correoUser, setCorreoH] = useState("");
   const [correoUserAn, setCorreoHAnt] = useState("");
+  
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [passwUser, setPasswUser] = useState("");
@@ -33,6 +34,7 @@ function Bento() {
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
+        setFotoPerfil(datosUsuario.fotoPerfil)
         //setPasswUser(datosUsuario.contra_hog);
       } else if (datosUsuarioStringS !== null) {
         const datosUsuario = JSON.parse(datosUsuarioStringS);
@@ -70,6 +72,7 @@ function Bento() {
           correoUser,
           passwUser,
           correoUserAn,
+          fotoPerfil,
         }
       );
 
@@ -118,26 +121,6 @@ function Bento() {
           title="Ranking donadores"
         >
           <div className="flex flex-row justify-between">
-            <div className="hidden lg:flex flex-col gap-7">
-              <div className="p-6 flex flex-row items-center">
-                <picture className="pr-8">
-                  <img src={foto} className="w-24 h-24 rounded-full" />
-                </picture>
-                <div>
-                  <h2 className="text-3xl font-semibold">Pedro</h2>
-                  <p>555 donations</p>
-                </div>
-              </div>
-              <div className="p-6 flex flex-row items-center">
-                <picture className="pr-8">
-                  <img src={foto} className="w-24 h-24 rounded-full" />
-                </picture>
-                <div>
-                  <h2 className="text-2xl font-semibold">Vegetta777</h2>
-                  <p>222 donations</p>
-                </div>
-              </div>
-            </div>
             <Ranking />
           </div>
         </BentoItem>
