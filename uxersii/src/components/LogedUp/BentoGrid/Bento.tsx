@@ -148,7 +148,14 @@ function Bento() {
         <BentoItem
           className="col-span-10 sm:col-span-4"
           title="Soporte tecnico"
-        ></BentoItem>
+        >
+          <div className="w-full h-[20rem] items-center text-wrap justify-center ">
+            <p className="text-[2rem] p-8 ">
+              Tienes alguna duda?. <br />
+              Contacta con nosotros para resolver tus problemas!
+            </p>
+          </div>
+        </BentoItem>
       </section>
 
       {showPopup && (
