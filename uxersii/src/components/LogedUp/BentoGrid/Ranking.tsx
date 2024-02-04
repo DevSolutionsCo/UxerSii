@@ -99,7 +99,7 @@ function Ranking() {
                 </div>
               </div>
             </div>
-
+      
       <div className="">
         <BarChart
           width={360}

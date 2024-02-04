@@ -15,7 +15,7 @@ urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/login/', custom_login, name='login'),
     path('api/v1/actuali/', actualizardatosh, name='actuali'),
-    path('api/v1/ranking/', getranking, name='actuali'),
+    path('api/v1/ranking/', getranking, name='ranking'),
     path('api/v1/datosUserH/', obtenerdatosuserh, name='datos'), # type: ignore
     #path("docs/", include_docs_urls(title="UxersiiPruebas API"))
 ]
