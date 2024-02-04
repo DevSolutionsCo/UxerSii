@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PruebasBack } from "./PruebaBack/PruebasBack";
 import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
 import { PruebasSignUp } from "./PruebaBack/PruebasSignUp";
-import Donacion from './components/Donacion/Donacion';
+import Donacion from "./components/Donacion/Donacion";
 import Bento from "./components/LogedUp/BentoGrid/Bento";
+import Ranking from "./components/LogedUp/BentoGrid/Ranking";
 import Index from "./components/Signed out/Index/Index";
 import Login from "./components/Signed out/login/Login";
 import Signup from "./components/Signed out/signup/Signup";
@@ -13,6 +14,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/graph" element={<Ranking />} />
           <Route path="/" element={<Index />} />
           <Route path="/main" element={<Bento />} />
           <Route path="/signup" element={<Signup />} />
@@ -22,7 +24,7 @@ function App() {
           <Route path="/pruebasBack/:id" element={<PruebasBackForm />} />
           <Route path="/pruebaSignUp" element={<PruebasSignUp />} />
           <Route path="/pruebaSignUp/:id" element={<PruebasSignUp />} />
-          <Route path="/main/donaciones" element={<Donacion/>}/>
+          <Route path="/main/donaciones" element={<Donacion />} />
         </Routes>
       </BrowserRouter>
     </>

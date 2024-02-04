@@ -50,9 +50,9 @@ function BentoItem(props: props) {
             >
               Configuración de la cuenta
             </button>
-            {props.children}
           </>
         )}
+        {props.children}
       </div>
       {showPopup && (
         <ProfilePicSelector

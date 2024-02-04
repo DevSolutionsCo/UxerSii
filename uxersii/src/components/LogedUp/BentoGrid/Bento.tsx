@@ -7,6 +7,7 @@ import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
 import ProfilePicSelector from "./ProfilePicSelector";
+import Ranking from "./Ranking";
 
 function Bento() {
   const [nombreUser, setNombreUser] = useState("");
@@ -105,7 +106,7 @@ function Bento() {
     <Backgroundx2>
       <section className="w-full min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 mx-auto p-20 ">
         <BentoItem
-          className="col-span-10 md:col-span-4 "
+          className="col-span-10 sm:col-span-4 "
           title={nombreUser}
           correoUser={correoUser}
           fotoUser={fotoPerfil}
@@ -113,15 +114,39 @@ function Bento() {
           handleFotoPerfilChange={handleFotoPerfilChange}
         ></BentoItem>
         <BentoItem
-          className="col-span-10 md:col-span-6"
+          className="col-span-10 sm:col-span-6"
           title="Ranking donadores"
-        ></BentoItem>
+        >
+          <div className="flex flex-row justify-between">
+            <div className="hidden sm:flex flex-col gap-7">
+              <div className="p-6 flex flex-row items-center">
+                <picture className="pr-8">
+                  <img src={foto} className="w-24 h-24 rounded-full" />
+                </picture>
+                <div>
+                  <h2 className="text-3xl font-semibold">Pedro</h2>
+                  <p>555 donations</p>
+                </div>
+              </div>
+              <div className="p-6 flex flex-row items-center">
+                <picture className="pr-8">
+                  <img src={foto} className="w-24 h-24 rounded-full" />
+                </picture>
+                <div>
+                  <h2 className="text-2xl font-semibold">Vegetta777</h2>
+                  <p>222 donations</p>
+                </div>
+              </div>
+            </div>
+            <Ranking />
+          </div>
+        </BentoItem>
         <BentoItem
-          className="col-span-10 md:col-span-6"
+          className="col-span-10 sm:col-span-6"
           title="Puntos moviles"
         ></BentoItem>
         <BentoItem
-          className="col-span-10 md:col-span-4"
+          className="col-span-10 sm:col-span-4"
           title="Soporte tecnico"
         ></BentoItem>
       </section>
