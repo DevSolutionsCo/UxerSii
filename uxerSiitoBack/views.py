@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializer import uxeriiSerializer, UsuarioHogarSerializer
-from .models import userSiitoBack, UsuarioHogar
+from .models import userSiitoBack, UsuarioHogar, PuntosColecta
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from django.db.utils import OperationalError
+from django.core.serializers import serialize
+
 
 
 # Create your views here.
@@ -173,7 +175,7 @@ def actualizardatosh(request):
 
 @csrf_exempt
 def getranking(request):
-    campo = 'numDonaciones'  # Reemplaza con el nombre del campo que estás utilizando
+    campo = 'numDonaciones' 
     cantidad_a_mostrar = 3
 
     usuarios = UsuarioHogar.objects.order_by(f'-{campo}')[:cantidad_a_mostrar]
@@ -187,4 +189,18 @@ def getranking(request):
             for usuario in usuarios]
 
     return JsonResponse({'usuarios': data})
+
+@csrf_exempt
+def getpuntos(request):
+      
+
+    puntos = PuntosColecta.objects.all()
+
+    # Convertir el QuerySet a una lista de diccionarios
+    puntos_lista = list(puntos.values())
+
+    # Serializar la lista a JSON
+    #puntos_json = serialize('json', puntos_lista) # type: ignore
+
+    return JsonResponse({'puntosmoviles': puntos_lista})
         
