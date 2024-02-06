@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import foto from "../../../assets/profile-pics/perf3.jpeg";
+import foto from "../../../assets/profile-pics/default-img.jpg";
 import Popup from "../../Popups/Popup";
 import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
 import Inputs from "../../Signed out/login/Inputs";
@@ -34,13 +34,20 @@ function Bento() {
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
-        setFotoPerfil(datosUsuario.fotoPerfil)
+
+        if(datosUsuario.fotoPerfil !== null){
+          setFotoPerfil(datosUsuario.fotoPerfil)
+        }else{
+          setFotoPerfil("/src/assets/profile-pics/default-img.jpg")
+        }
+        
         //setPasswUser(datosUsuario.contra_hog);
       } else if (datosUsuarioStringS !== null) {
         const datosUsuario = JSON.parse(datosUsuarioStringS);
         setNombreUser(datosUsuario.usuario.nombUserH);
         setCorreoH(datosUsuario.usuario.correo_hog);
         setCorreoHAnt(datosUsuario.usuario.correo_hog);
+        //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
         //setPasswUser(datosUsuario.usuario.contra_hog);
       } else {
         console.error("Los datos del usuario no están disponibles.");

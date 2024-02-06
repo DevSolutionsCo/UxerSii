@@ -48,15 +48,28 @@ function Ranking() {
         const tercero = usuarios[2];
         console.log(primero.nombreUser);
         setNomb1(primero.nombreUser);
-        setFotoP1(primero.fotoPerfil);
+
+        if(primero.fotoPerfil !== null){
+          setFotoP1(primero.fotoPerfil);
+        }else{
+          setFotoP1("/src/assets/profile-pics/default-img.jpg")
+        }
         setNumD1(primero.numDonaciones);
 
         setNomb2(segundo.nombreUser);
-        setFotoP2(segundo.fotoPerfil);
+        if(segundo.fotoPerfil !== null){
+          setFotoP2(segundo.fotoPerfil);
+        }else{
+          setFotoP2("/src/assets/profile-pics/default-img.jpg")
+        }
         setNumD2(segundo.numDonaciones);
 
         setNomb3(tercero.nombreUser);
-        setFotoP3(tercero.fotoPerfil);
+        if(tercero.fotoPerfil !== null){
+          setFotoP3(tercero.fotoPerfil);
+        }else{
+          setFotoP3("/src/assets/profile-pics/default-img.jpg")
+        }
         setNumD3(tercero.numDonaciones);
 
 

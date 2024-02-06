@@ -144,7 +144,9 @@ def actualizardatosh(request):
             print(user.contra_hog)
 
             # Cambia valores
-            user.contra_hog = contra
+            if contra != "":
+                user.contra_hog = contra
+            
             user.nombUserH = nombreUser
             user.correo_hog = email
             user.fotoh = fotoPerfil
