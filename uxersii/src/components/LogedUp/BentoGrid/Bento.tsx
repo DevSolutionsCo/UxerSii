@@ -13,7 +13,6 @@ function Bento() {
   const [nombreUser, setNombreUser] = useState("");
   const [correoUser, setCorreoH] = useState("");
   const [correoUserAn, setCorreoHAnt] = useState("");
-  
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [passwUser, setPasswUser] = useState("");
@@ -35,12 +34,12 @@ function Bento() {
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
 
-        if(datosUsuario.fotoPerfil !== null){
-          setFotoPerfil(datosUsuario.fotoPerfil)
-        }else{
-          setFotoPerfil("/src/assets/profile-pics/default-img.jpg")
+        if (datosUsuario.fotoPerfil !== null) {
+          setFotoPerfil(datosUsuario.fotoPerfil);
+        } else {
+          setFotoPerfil("/src/assets/profile-pics/default-img.jpg");
         }
-        
+
         //setPasswUser(datosUsuario.contra_hog);
       } else if (datosUsuarioStringS !== null) {
         const datosUsuario = JSON.parse(datosUsuarioStringS);
@@ -114,7 +113,7 @@ function Bento() {
 
   return (
     <Backgroundx2>
-      <section className="w-full min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 mx-auto lg:p-20 p-4 ">
+      <section className="w-[90%] min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 lg:pl-20 p-4 m-auto">
         <BentoItem
           className="col-span-10 lg:col-span-4 "
           title={nombreUser}
