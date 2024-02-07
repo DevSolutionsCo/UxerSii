@@ -33,8 +33,12 @@ body{
 .pop-don-hog-1{
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .zip-code{
     border-radius: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }

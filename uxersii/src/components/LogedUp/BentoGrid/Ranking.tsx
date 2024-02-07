@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+ //import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"; 
 import axios from "axios";
 import { useEffect, useState } from "react";
 
