@@ -26,7 +26,7 @@ function Popup(props: Props) {
   return (
     <div >
       {modalAbierto && (
-         <div className={clsx("popup","shadow-xl shadow-black" , { "abrir-pop": modalAbierto })} >
+         <div className={clsx("popup","shadow-xl shadow-black ", { "abrir-pop": modalAbierto })} >
           <div className="nav-popup font-bold">
             <div className="text-navbar-popup">
               <p className="titulo-popup">{props.titulo}</p>
@@ -38,8 +38,8 @@ function Popup(props: Props) {
             </div>
           </div>
           <div className="p-6">{props.children}</div>
-          <div>
-            <button className="btn-seguir px-6 py-3  rounded-xl font-bold text-black w-full"> 
+          <div className="flex justify-center">
+            <button className="btn-seguir px-6 py-3  rounded-xl font-bold text-black w-11/12" onClick={cerrarModal}> 
               {props.texbtn}
             </button>
           </div>
