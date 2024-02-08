@@ -8,6 +8,8 @@ interface Props {
   texbtn?: ReactNode;
   isOpen?: boolean;
   onClose: () => void;
+  onOpenNextModal?: () => void;
+
 }
 
 function Popup(props: Props) {
@@ -21,6 +23,13 @@ function Popup(props: Props) {
   const cerrarModal = () => {
     setModalAbierto(false);
     props.onClose();
+  };
+
+  
+  const abrirSiguienteModal = () => {
+    if (props.onOpenNextModal) {
+      props.onOpenNextModal();
+    }
   };
 
   return (
@@ -39,7 +48,7 @@ function Popup(props: Props) {
           </div>
           <div className="p-6">{props.children}</div>
           <div className="flex justify-center">
-            <button type="submit" className="btn-seguir px-6 py-3  rounded-xl font-bold text-black w-11/12" > 
+            <button type="submit" className="btn-seguir px-6 py-3  rounded-xl font-bold text-black w-11/12" onClick={abrirSiguienteModal}> 
               {props.texbtn}
             </button>
           </div>

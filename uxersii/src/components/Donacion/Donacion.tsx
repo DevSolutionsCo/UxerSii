@@ -137,11 +137,21 @@ function Donacion() {
   });
 
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopup2, setShowPopup2] = useState(false);
+
   const handleClosePopup = () => {
     setShowPopup(false);
   };
   const handleShowPopup = () => {
     setShowPopup(true);
+  };
+
+  const handleClosePopup2 = () => {
+    setShowPopup2(false);
+  };
+
+  const handleShowPopup2 = () => {
+    setShowPopup2(true);
   };
 
   return (
@@ -164,6 +174,7 @@ function Donacion() {
         texbtn="Confirmar seleccion de punto movil"
         onClose={handleClosePopup}
         isOpen={showPopup}
+        onOpenNextModal={handleShowPopup2}
       >
         <article className="pop-don-hog-1 p-5 relative rounded-xl border bg-white/40 h-full shadow-xl shadow-black flex flex-col justify-between">
           <input
@@ -187,11 +198,11 @@ function Donacion() {
           </article>
         </article>
       </Popup>
-
       <Popup
-        titulo="Escoge un punto movil"
-        texbtn="Confirmar seleccion de punto"
-        onClose={handleClosePopup}
+        titulo="Título del segundo modal"
+        texbtn="Texto del botón del segundo modal"
+        onClose={handleClosePopup2}
+        isOpen={showPopup2}
       ></Popup>
     </div>
   );
