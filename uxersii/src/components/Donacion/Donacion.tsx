@@ -154,6 +154,35 @@ function Donacion() {
     setShowPopup2(true);
   };
 
+//Esto genera los folios 
+
+function generarFolio() {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let folio = '';
+  for (let i = 0; i < 12; i++) {
+    const randomIndex = Math.floor(Math.random() * caracteres.length);
+    folio += caracteres[randomIndex];
+    if (i === 3 ){
+      folio += "-"
+    } 
+    if ( i === 7){
+      folio += "-"
+    }
+  }
+  return folio;
+}
+const foliosGenerados = [""];
+
+const generarYGuardarFolio = () =>  {
+  const nuevoFolio = generarFolio();
+  foliosGenerados.push(nuevoFolio);
+  console.log('Nuevo folio generado:', nuevoFolio);
+  console.log('Folios generados:', foliosGenerados);
+  return nuevoFolio;
+}
+
+
+
   return (
     <div className="content">
       <div className="texto">
@@ -199,11 +228,28 @@ function Donacion() {
         </article>
       </Popup>
       <Popup
-        titulo="Título del segundo modal"
-        texbtn="Texto del botón del segundo modal"
+        titulo="Puedes realizar tu donacion"
+        texbtn="Confirmar Inicio de Donacion"
         onClose={handleClosePopup2}
         isOpen={showPopup2}
-      ></Popup>
+      >
+        
+        <div className="pop-don-hog-2 p-5  h-full  flex flex-col justify-center items-center">
+          <section className="flex flex-col justify-center items-center ">
+            <p className="font-bold">Este es tu folio de donacion:</p>
+            {/* <p className="font-extrabold folio-don-hog">ASAS-8ASD-KDJA-AJS0</p> */}
+            <p className="font-extrabold folio-don-hog">{generarYGuardarFolio()}</p>
+          </section>
+          <section>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15048.009001214345!2d-99.18562161345817!3d19.455469791869128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8bd9777a765%3A0x57501a5479751d18!2sCentro%20de%20Estudios%20Cient%C3%ADficos%20y%20Tecnol%C3%B3gicos%20N%C2%B0%209%20%22Juan%20de%20Dios%20B%C3%A1tiz%22%20IPN!5e0!3m2!1ses-419!2smx!4v1707369519421!5m2!1ses-419!2smx"
+              width="450"
+              height="250"
+              loading="lazy"
+            ></iframe>
+          </section>
+        </div>
+      </Popup>
     </div>
   );
 }
