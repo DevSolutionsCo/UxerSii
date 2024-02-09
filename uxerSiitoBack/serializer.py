@@ -2,7 +2,7 @@ from dataclasses import field
 from pyexpat import model
 from rest_framework import serializers
 from .models import userSiitoBack
-from .models import UsuarioHogar, Administrador, PuntosColecta
+from .models import UsuarioHogar, Administrador, PuntosColecta, Donaciones
 
 
 class uxeriiSerializer(serializers.ModelSerializer):
@@ -25,3 +25,10 @@ class PuntosSerializer(serializers.ModelSerializer):
     class Meta:
         model = PuntosColecta
         fields = "__all__"
+
+class DonacionesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Donaciones
+        fields = "__all__"
+
+

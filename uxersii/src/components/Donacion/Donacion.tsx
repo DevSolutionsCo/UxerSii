@@ -25,8 +25,8 @@ function Donacion() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [nombMas, setNombMas] = useState("");
   const [horarioMas, setHorarioMas] = useState("");
-  const [codigo, setCodigo] = useState("");
-  const [nombreUser, setNombreUser] = useState("");
+  const [id_dona, setCodigo] = useState("");
+  const [nombUserH, setNombreUser] = useState("");
   const [correoUser, setCorreoH] = useState("");
   const [correoUserAn, setCorreoHAnt] = useState("");
 
@@ -46,6 +46,30 @@ function Donacion() {
     } else {
       console.error("Geolocalización no está soportada por este navegador");
     }
+
+    const datosUsuarioStringS: string | null =
+          localStorage.getItem("usuarioS");
+        const datosUsuarioStringL: string | null =
+          localStorage.getItem("usuarioL");
+  
+        // Verificar si el valor no es null antes de usarlo
+        if (datosUsuarioStringL !== null) {
+          const datosUsuario = JSON.parse(datosUsuarioStringL);
+          //console.log(datosUsuario)
+          // Actualizar el estado con el nuevo valor
+          setNombreUser(datosUsuario.nombUserH);
+          console.log(nombUserH)
+          //setPasswUser(datosUsuario.contra_hog);
+        } else if (datosUsuarioStringS !== null) {
+          const datosUsuario = JSON.parse(datosUsuarioStringS);
+          setNombreUser(datosUsuario.usuario.nombUserH);
+          console.log(nombUserH)
+          //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
+          //setPasswUser(datosUsuario.usuario.contra_hog);
+        } else {
+          console.error("Los datos del usuario no están disponibles.");
+        }
+
   }, []);
 
   useEffect(() => {
@@ -198,35 +222,14 @@ function generarYGuardarFolio() {
 const handleLogin = async (e: { preventDefault: () => void }) => {
   e.preventDefault(); // Evita que el formulario se envíe automáticamente
 
-  const datosUsuarioStringS: string | null =
-          localStorage.getItem("usuarioS");
-        const datosUsuarioStringL: string | null =
-          localStorage.getItem("usuarioL");
   
-        // Verificar si el valor no es null antes de usarlo
-        if (datosUsuarioStringL !== null) {
-          const datosUsuario = JSON.parse(datosUsuarioStringL);
-          //console.log(datosUsuario)
-          // Actualizar el estado con el nuevo valor
-          setNombreUser(datosUsuario.nombUserH);
-  
-          //setPasswUser(datosUsuario.contra_hog);
-        } else if (datosUsuarioStringS !== null) {
-          const datosUsuario = JSON.parse(datosUsuarioStringS);
-          setNombreUser(datosUsuario.usuario.nombUserH);
-          //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
-          //setPasswUser(datosUsuario.usuario.contra_hog);
-        } else {
-          console.error("Los datos del usuario no están disponibles.");
-        }
-
   try {
     const response = await axios.post(
       "http://127.0.0.1:8000/uxersiiPruebas/api/v1/donacion/",
       {
-        nombreUser,
+        nombUserH,
         id_punto,
-        codigo,
+        id_dona,
       }
     );
 
@@ -304,7 +307,7 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
             <p className="font-bold">Este es tu folio de donacion:</p>
             {/* <p className="font-extrabold folio-don-hog">ASAS-8ASD-KDJA-AJS0</p> */}
        
-            <p className="font-extrabold folio-don-hog">{codigo || generarYGuardarFolio()}</p>
+            <p className="font-extrabold folio-don-hog">{id_dona || generarYGuardarFolio()}</p>
           </section>
 
           <section>

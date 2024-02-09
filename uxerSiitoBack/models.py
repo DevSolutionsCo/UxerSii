@@ -218,6 +218,7 @@ class Donaciones(models.Model):
     fecha_cad_dona = models.DateField(db_column='fecha_Cad_dona', blank=True, null=True)  # Field name made lowercase.
     estatus = models.IntegerField(blank=True, null=True)
     id_punto = models.IntegerField(blank=True, null=True)
+    nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
