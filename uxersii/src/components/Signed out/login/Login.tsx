@@ -22,7 +22,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/uxersiiPruebas/api/v1/login/",
+        "http://localhost:8000/uxersiiPruebas/api/v1/login/",
         {
           correo_hog,
           contra_hog,
