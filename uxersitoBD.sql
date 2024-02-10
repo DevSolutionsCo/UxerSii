@@ -18,12 +18,26 @@ nomb_alim nvarchar(100),
 fecha_cad date,
 cantidad int);
 
+create table puntos_colecta (
+id_punto int auto_increment primary key not null,
+nomb_punto nvarchar(255),
+latitud decimal(10,6),
+longitud decimal(10,6),
+responsable nvarchar(255),
+almacenamiento decimal(10,2),
+horario time,
+fecha_de_creacion date,
+estado nvarchar(10),
+descripcion TEXT);
+
 create table donaciones(
-id_dona int auto_increment primary key not null,
+id_dona nvarchar(100) primary key not null,
 catn_adon int,
 nomb_alim_dona nvarchar(100),
 fecha_Cad_dona date,
-estatus boolean
+estatus boolean,
+nombUserH nvarchar(15),
+id_punto int
 );
 
 create table usuario_hogar(
@@ -55,12 +69,6 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
 
-create table hogar_dona(
-id_hog int,
-id_dona int,
-foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
-);
 
 create table usuario_establecimiento(
 id_est int auto_increment primary key not null,
@@ -86,13 +94,6 @@ id_est int,
 id_alim int,
 foreign key (id_est) references usuario_establecimiento (id_est) on delete cascade on update cascade,
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
-);
-
-create table estable_dona(
-id_est int,
-id_dona int,
-foreign key (id_est) references usuario_establecimiento (id_est) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
 );
 
 create table usuario_organizacion(
@@ -487,13 +488,6 @@ foreign key (id_ofc) references usuario_organizacion (id_ofc) on delete cascade 
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
 
-create table org_dona(
-id_ofc nvarchar (15),
-id_dona int,
-foreign key (id_ofc) references usuario_organizacion (id_ofc) on delete cascade on update cascade,
-foreign key (id_dona) references donaciones (id_dona) on delete cascade on update cascade
-);
-
 create table insignias(
 id_ins int auto_increment primary key not null,
 tipo_ins nvarchar(100)
@@ -576,17 +570,7 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade
 );
 
-create table puntos_colecta (
-id_punto int auto_increment primary key not null,
-nomb_punto nvarchar(255),
-latitud decimal(10,6),
-longitud decimal(10,6),
-responsable nvarchar(255),
-almacenamiento decimal(10,2),
-horario time,
-fecha_de_creacion date,
-estado nvarchar(10),
-descripcion TEXT);
+
 
 INSERT INTO puntos_colecta (nomb_punto, latitud, longitud, responsable, almacenamiento, horario, fecha_de_creacion, estado, descripcion)
 VALUES 

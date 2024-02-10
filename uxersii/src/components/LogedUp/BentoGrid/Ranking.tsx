@@ -20,7 +20,7 @@ function Ranking() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/uxersiiPruebas/api/v1/ranking/",
+          "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/ranking/",
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }
@@ -33,10 +33,10 @@ function Ranking() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const datosUsuarios = usuarios.map(
           (usuario: {
-            nombreUser: any;
-            correoUser: any;
-            fotoPerfil: any;
-            numDonaciones: any;
+            nombreUser: unknown;
+            correoUser: unknown;
+            fotoPerfil: unknown;
+            numDonaciones: unknown;
           }) => {
             return {
               nombre: usuario.nombreUser,

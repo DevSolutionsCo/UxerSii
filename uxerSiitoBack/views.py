@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializer import uxeriiSerializer, UsuarioHogarSerializer
+from .serializer import uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer
 from .models import userSiitoBack, UsuarioHogar, PuntosColecta
 from rest_framework import status
 from rest_framework.response import Response
@@ -53,7 +53,7 @@ class signUp(viewsets.ModelViewSet):
 from django.http import JsonResponse
 from django.contrib.auth.hashers import check_password
 from django.views.decorators.csrf import csrf_exempt
-from .models import UsuarioHogar
+from .models import UsuarioHogar, Donaciones
 import json
 
 @csrf_exempt
@@ -194,15 +194,29 @@ def getranking(request):
 
 @csrf_exempt
 def getpuntos(request):
-      
-
     puntos = PuntosColecta.objects.all()
-
     # Convertir el QuerySet a una lista de diccionarios
     puntos_lista = list(puntos.values())
-
     # Serializar la lista a JSON
     #puntos_json = serialize('json', puntos_lista) # type: ignore
-
     return JsonResponse({'puntosmoviles': puntos_lista})
         
+
+@csrf_exempt
+def postdonacion(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        id_dona = data.get('id_dona')
+        nombreUser = data.get('nombreUser')
+        id_punto = data.get('id_punto')
+        print(f"Codigo: {id_dona}")
+        print(f"nombreUser: {nombreUser}")
+        print(f"id_punto: {id_punto}")
+        serializer = DonacionesSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        if serializer.is_valid():
+            
+            return JsonResponse(serializer.data, status=201)
+        else:
+            return JsonResponse(serializer.errors, status=400)

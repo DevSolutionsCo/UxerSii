@@ -191,17 +191,41 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+class PuntosColecta(models.Model):
+    id_punto = models.AutoField(primary_key=True)
+    nomb_punto = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    latitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    longitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    responsable = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    almacenamiento = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    horario = models.TimeField(blank=True, null=True)
+    fecha_de_creacion = models.DateField(blank=True, null=True)
+    estado = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'puntos_colecta'
+    
+    def __str__(self) -> str:
+        return self.nomb_punto # type: ignore
+
 
 class Donaciones(models.Model):
-    id_dona = models.AutoField(primary_key=True)
+    id_dona = models.CharField(primary_key=True, max_length=100)
     catn_adon = models.IntegerField(blank=True, null=True)
     nomb_alim_dona = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
     fecha_cad_dona = models.DateField(db_column='fecha_Cad_dona', blank=True, null=True)  # Field name made lowercase.
     estatus = models.IntegerField(blank=True, null=True)
+    id_punto = models.IntegerField(blank=True, null=True)
+    nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'donaciones'
+
+    def __str__(self) -> str:
+        return self.id_dona # type: ignore
 
 
 class EstableAlim(models.Model):
@@ -213,13 +237,6 @@ class EstableAlim(models.Model):
         db_table = 'estable_alim'
 
 
-class EstableDona(models.Model):
-    id_est = models.ForeignKey('UsuarioEstablecimiento', models.DO_NOTHING, db_column='id_est', blank=True, null=True)
-    id_dona = models.ForeignKey(Donaciones, models.DO_NOTHING, db_column='id_dona', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'estable_dona'
 
 
 class EstableEve(models.Model):
@@ -253,14 +270,6 @@ class HogarAlim(models.Model):
         managed = False
         db_table = 'hogar_alim'
 
-
-class HogarDona(models.Model):
-    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
-    id_dona = models.ForeignKey(Donaciones, models.DO_NOTHING, db_column='id_dona', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'hogar_dona'
 
 
 class HogarEve(models.Model):
@@ -322,13 +331,6 @@ class OrgAlim(models.Model):
         db_table = 'org_alim'
 
 
-class OrgDona(models.Model):
-    id_ofc = models.ForeignKey('UsuarioOrganizacion', models.DO_NOTHING, db_column='id_ofc', blank=True, null=True)
-    id_dona = models.ForeignKey(Donaciones, models.DO_NOTHING, db_column='id_dona', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'org_dona'
 
 
 class OrgEve(models.Model):
@@ -340,24 +342,6 @@ class OrgEve(models.Model):
         db_table = 'org_eve'
 
 
-class PuntosColecta(models.Model):
-    id_punto = models.AutoField(primary_key=True)
-    nomb_punto = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    latitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
-    longitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
-    responsable = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    almacenamiento = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    horario = models.TimeField(blank=True, null=True)
-    fecha_de_creacion = models.DateField(blank=True, null=True)
-    estado = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    descripcion = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'puntos_colecta'
-    
-    def __str__(self) -> str:
-        return self.nomb_punto # type: ignore
 
 
 class UsuarioEstablecimiento(models.Model):

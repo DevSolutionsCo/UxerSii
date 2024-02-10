@@ -72,7 +72,7 @@ function Bento() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/uxersiiPruebas/api/v1/actuali/",
+        "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/actuali/",
         {
           nombreUser,
           correoUser,

@@ -11,6 +11,7 @@ interface PuntoMovil {
   latitud: number;
   longitud: number;
   almacenamiento: number;
+  id_punto: number;
   // Agrega otras propiedades según la estructura real de tus datos
 }
 
@@ -19,10 +20,15 @@ function Donacion() {
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
   const [puntoMasCercano, setPuntoMas] = useState<PuntoMovil[]>([]);
   const [latitud, setLatitud] = useState<number>(0);
+  const [id_punto, setIdPunto] = useState<number>(0);
   const [longitud, setLongitud] = useState<number>(0);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [nombMas, setNombMas] = useState("");
   const [horarioMas, setHorarioMas] = useState("");
+  const [id_dona, setCodigo] = useState("");
+  const [nombUserH, setNombreUser] = useState("");
+  const [correoUser, setCorreoH] = useState("");
+  const [correoUserAn, setCorreoHAnt] = useState("");
 
   const puntoMasCercanoRef = useRef<PuntoMovil | undefined>(undefined);
 
@@ -40,6 +46,30 @@ function Donacion() {
     } else {
       console.error("Geolocalización no está soportada por este navegador");
     }
+
+    const datosUsuarioStringS: string | null =
+          localStorage.getItem("usuarioS");
+        const datosUsuarioStringL: string | null =
+          localStorage.getItem("usuarioL");
+  
+        // Verificar si el valor no es null antes de usarlo
+        if (datosUsuarioStringL !== null) {
+          const datosUsuario = JSON.parse(datosUsuarioStringL);
+          //console.log(datosUsuario)
+          // Actualizar el estado con el nuevo valor
+          setNombreUser(datosUsuario.nombUserH);
+          console.log(nombUserH)
+          //setPasswUser(datosUsuario.contra_hog);
+        } else if (datosUsuarioStringS !== null) {
+          const datosUsuario = JSON.parse(datosUsuarioStringS);
+          setNombreUser(datosUsuario.usuario.nombUserH);
+          console.log(nombUserH)
+          //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
+          //setPasswUser(datosUsuario.usuario.contra_hog);
+        } else {
+          console.error("Los datos del usuario no están disponibles.");
+        }
+
   }, []);
 
   useEffect(() => {
@@ -50,6 +80,8 @@ function Donacion() {
 
   useEffect(() => {
     async function fetchData() {
+
+
       try {
         const response = await axios.get(
           "http://127.0.0.1:8000/uxersiiPruebas/api/v1/puntosm/",
@@ -131,6 +163,7 @@ function Donacion() {
       setPuntoMas(puntoMasCercano ? [puntoMasCercano] : []);
       setNombMas(puntoMasCercano ? puntoMasCercano.nomb_punto : "");
       setHorarioMas(puntoMasCercano ? puntoMasCercano.horario : "");
+      setIdPunto(puntoMasCercano ? puntoMasCercano.id_punto: 0)
     }
 
     puntoMasCercanoRef.current = puntoMasCercano;
@@ -169,19 +202,53 @@ function generarFolio() {
       folio += "-"
     }
   }
+  //setCodigo(folio)
   return folio;
 }
 const foliosGenerados = [""];
 
-const generarYGuardarFolio = () =>  {
+
+function generarYGuardarFolio() {
   const nuevoFolio = generarFolio();
+  setCodigo(nuevoFolio);
   foliosGenerados.push(nuevoFolio);
   console.log('Nuevo folio generado:', nuevoFolio);
   console.log('Folios generados:', foliosGenerados);
-  return nuevoFolio;
+  
+  return nuevoFolio
 }
 
 
+const handleLogin = async (e: { preventDefault: () => void }) => {
+  e.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+  
+  try {
+    const response = await axios.post(
+      "http://127.0.0.1:8000/uxersiiPruebas/api/v1/donacion/",
+      {
+        nombUserH,
+        id_punto,
+        id_dona,
+      }
+    );
+
+    console.log(response.data);
+    console.log("SI lo actualice vv");
+    //const usuario = new Usuario(datosUsuario);
+    //console.log(usuario);
+    localStorage.setItem("usuarioL", JSON.stringify(response.data));
+    location.reload();
+    // Maneja la respuesta según tus necesidades
+
+    // Solo navega si la autenticación fue exitosa
+    //navigate("/main");
+  } catch (error) {
+    // Manejo de errores
+    window.alert("Error al iniciar sesión");
+    console.error("Error al iniciar sesión:", error);
+  }
+};
 
   return (
     <div className="content">
@@ -227,6 +294,7 @@ const generarYGuardarFolio = () =>  {
           </article>
         </article>
       </Popup>
+      <form onSubmit={handleLogin}>
       <Popup
         titulo="Puedes realizar tu donacion"
         texbtn="Confirmar Inicio de Donacion"
@@ -238,8 +306,10 @@ const generarYGuardarFolio = () =>  {
           <section className="flex flex-col justify-center items-center ">
             <p className="font-bold">Este es tu folio de donacion:</p>
             {/* <p className="font-extrabold folio-don-hog">ASAS-8ASD-KDJA-AJS0</p> */}
-            <p className="font-extrabold folio-don-hog">{generarYGuardarFolio()}</p>
+       
+            <p className="font-extrabold folio-don-hog">{id_dona || generarYGuardarFolio()}</p>
           </section>
+
           <section>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15048.009001214345!2d-99.18562161345817!3d19.455469791869128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8bd9777a765%3A0x57501a5479751d18!2sCentro%20de%20Estudios%20Cient%C3%ADficos%20y%20Tecnol%C3%B3gicos%20N%C2%B0%209%20%22Juan%20de%20Dios%20B%C3%A1tiz%22%20IPN!5e0!3m2!1ses-419!2smx!4v1707369519421!5m2!1ses-419!2smx"
@@ -250,6 +320,7 @@ const generarYGuardarFolio = () =>  {
           </section>
         </div>
       </Popup>
+      </form>
     </div>
   );
 }
