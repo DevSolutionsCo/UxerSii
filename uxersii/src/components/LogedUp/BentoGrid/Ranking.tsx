@@ -20,7 +20,7 @@ function Ranking() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/ranking/",
+          "http://127.0.0.1:8000/uxersiiPruebas/api/v1/ranking/",
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }

@@ -54,10 +54,15 @@ class Alimentos(models.Model):
     nomb_alim = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
     fecha_cad = models.DateField(blank=True, null=True)
     cantidad = models.IntegerField(blank=True, null=True)
+    id_punto = models.IntegerField(blank=True, null=True)
+
 
     class Meta:
         managed = False
         db_table = 'alimentos'
+
+    def __str__(self) -> str:
+        return self.nomb_alim # type: ignore
 
 
 class AuthGroup(models.Model):
@@ -216,7 +221,7 @@ class Donaciones(models.Model):
     catn_adon = models.IntegerField(blank=True, null=True)
     nomb_alim_dona = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
     fecha_cad_dona = models.DateField(db_column='fecha_Cad_dona', blank=True, null=True)  # Field name made lowercase.
-    estatus = models.IntegerField(blank=True, null=True)
+    estatus = models.CharField(db_column='estatus', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
     id_punto = models.IntegerField(blank=True, null=True)
     nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
 

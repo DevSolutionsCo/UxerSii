@@ -27,8 +27,9 @@ function Donacion() {
   const [horarioMas, setHorarioMas] = useState("");
   const [id_dona, setCodigo] = useState("");
   const [nombUserH, setNombreUser] = useState("");
-  const [correoUser, setCorreoH] = useState("");
-  const [correoUserAn, setCorreoHAnt] = useState("");
+  const [estatus, setEstatus] = useState("En proceso");
+  //const [correoUser, setCorreoH] = useState("");
+  //const [correoUserAn, setCorreoHAnt] = useState("");
 
   const puntoMasCercanoRef = useRef<PuntoMovil | undefined>(undefined);
 
@@ -230,11 +231,12 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
         nombUserH,
         id_punto,
         id_dona,
+        estatus,
       }
     );
 
     console.log(response.data);
-    console.log("SI lo actualice vv");
+    console.log("SI lo done vv");
     //const usuario = new Usuario(datosUsuario);
     //console.log(usuario);
     localStorage.setItem("usuarioL", JSON.stringify(response.data));

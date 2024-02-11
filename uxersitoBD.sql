@@ -16,6 +16,7 @@ create table alimentos(
 id_alim int auto_increment primary key not null,
 nomb_alim nvarchar(100),
 fecha_cad date,
+id_punto int,
 cantidad int);
 
 create table puntos_colecta (
@@ -35,10 +36,12 @@ id_dona nvarchar(100) primary key not null,
 catn_adon int,
 nomb_alim_dona nvarchar(100),
 fecha_Cad_dona date,
-estatus boolean,
+estatus nvarchar(15),
 nombUserH nvarchar(15),
 id_punto int
 );
+
+
 
 create table usuario_hogar(
 id_hog int auto_increment primary key not null,
@@ -585,7 +588,8 @@ VALUES
   ('Bosque de Chapultepec', 19.4200, -99.1919, 'Responsable9', 130.25, '16:00:00', '2023-11-27', 'Activo', 'Un área verde extensa y muy visitada.'),
   ('Plaza de las Tres Culturas, Tlatelolco', 19.4550, -99.1320, 'Responsable10', 160.50, '17:00:00', '2023-11-27', 'Activo', 'Un lugar histórico y de gran importancia cultural.');
 
-    
+INSERT INTO alimentos (nomb_alim, fecha_cad, id_punto, cantidad) VALUES ('Arroz', '2024-02-20', 1, 10);
+
     
 insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fecha_nac, genero, contra_hog, nombUserH, codigoPostal) values
 ("javisrey26@gmail.com", "Javier", "Reyna", "Juarez", "2006-03-26", "Masculino", "holamoon", "corcho", 54954),
