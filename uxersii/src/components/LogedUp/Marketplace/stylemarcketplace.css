@@ -7,7 +7,6 @@
     flex-direction: column;
     margin-left: 9rem;
     width: 20%;
-    border-radius: 1rem;
     padding: 1rem;
     justify-content: center;
     align-items: center;
@@ -23,7 +22,7 @@
 .select-car{
     height: 4rem;
     width: 20rem;
-    border-radius: 1.5rem;
+    border-radius: 0.5rem;
     background-color: #93bfa6;
     padding: 1rem;
     font-weight: bold;
@@ -77,7 +76,7 @@ option{
     background-color: #93bfa6;
     height: 2rem;
     width: 2rem;
-    border-radius: .5rem;
+    border-radius: .2rem;
     margin-right: 1rem;
 }
 
@@ -85,5 +84,5 @@ option{
     background-color: rgb(222, 60, 60);
     height: 2rem;
     width: 2rem;
-    border-radius: .5rem;
+    border-radius: .2rem;
 }
