@@ -52,7 +52,7 @@ function Donacion() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/puntosm/",
+          "http://localhost:8000/uxersiiPruebas/api/v1/puntosm/",
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }
@@ -72,7 +72,7 @@ function Donacion() {
 
     fetchData(); // Llama a la función al cargar el componente
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const deg2rad = (deg: number) => {

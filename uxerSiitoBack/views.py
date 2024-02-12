@@ -1,7 +1,8 @@
+from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializer import uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer
-from .models import userSiitoBack, UsuarioHogar, PuntosColecta
+from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -220,3 +221,25 @@ def postdonacion(request):
             return JsonResponse(serializer.data, status=201)
         else:
             return JsonResponse(serializer.errors, status=400)
+
+import base64
+
+@csrf_exempt
+def getalimentos(request, id_punto):
+    try:
+        productos = Alimentos.objects.filter(id_punto=id_punto)
+        productos_lista = []
+        for producto in productos:
+            producto_dict = model_to_dict(producto)
+            if producto.imagen:
+                # Convertir el nombre del archivo a una cadena antes de construir la ruta
+                nombre_archivo = producto.imagen.decode('utf-8') if isinstance(producto.imagen, bytes) else producto.imagen
+                ruta_imagen = str(f"/{nombre_archivo}")
+                #print(ruta_imagen)
+                nombre_archivoF = ruta_imagen.split('/', 2)[2]
+                print(nombre_archivoF)
+                producto_dict["imagen"] = '/' + nombre_archivoF
+            productos_lista.append(producto_dict)
+        return JsonResponse({'productos': productos_lista})
+    except Alimentos.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)

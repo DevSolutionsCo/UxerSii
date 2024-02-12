@@ -3,7 +3,12 @@ from django.urls import include, path
 from rest_framework import routers
 from uxerSiitoBack import views
 from rest_framework.documentation import include_docs_urls
-from .views import custom_login, obtenerdatosuserh, actualizardatosh, getranking, getpuntos, postdonacion
+from .views import custom_login, obtenerdatosuserh, actualizardatosh, getranking, getpuntos, postdonacion, getalimentos
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path
+from django.views.static import serve
+from django.conf import settings
 
 
 router = routers.DefaultRouter()
@@ -18,7 +23,9 @@ urlpatterns = [
     path('api/v1/ranking/', getranking, name='ranking'),
     path('api/v1/donacion/', postdonacion, name='donacion'), # type: ignore
     path('api/v1/puntosm/', getpuntos, name='puntosm'),
+    path('api/v1/alimentos/<int:id_punto>/', getalimentos, name='alimentos'),
+    #path('alimentos/<str:nombre_archivo>', serve, {'document_root': settings.STATIC_ROOT + '/alimentos/'}),
     path('api/v1/datosUserH/', obtenerdatosuserh, name='datos'), # type: ignore
     #path("docs/", include_docs_urls(title="UxersiiPruebas API"))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

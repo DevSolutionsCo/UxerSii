@@ -17,7 +17,9 @@ id_alim int auto_increment primary key not null,
 nomb_alim nvarchar(100),
 fecha_cad date,
 id_punto int,
+imagen longblob,
 cantidad int);
+
 
 create table puntos_colecta (
 id_punto int auto_increment primary key not null,
@@ -596,6 +598,7 @@ insert into usuario_hogar(correo_hog, nombre_hog, apellido_pat, apellido_mat, fe
 ("cris26@gmail.com", "Cris", "Molina", "Fernandez", "2006-03-26", "Masculino", "holamoon", "crisito", 54954),
 ("vic26@gmail.com", "Vic", "Ruiz", "Lopez", "2006-03-26", "Masculino", "holamoon", "vicsito", 54954),
 ("jara26@gmail.com", "Jara", "Hernandez", "Carlos", "2006-03-26", "Masculino", "holamoon", "jarita", 54954);
+
 
 
 
