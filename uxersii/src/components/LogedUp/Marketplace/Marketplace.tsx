@@ -10,13 +10,13 @@ function Marketplace() {
               Av. Nacional S/n
             </option>
             <option value="valor1" className="seconds-option options">
-              Av. Nacional S/n
+               S/n
             </option>
             <option value="valor1" className="seconds-option options">
-              Av. Nacional S/n
+               Nacional S/n
             </option>
             <option value="valor1" className="seconds-option options">
-              Av. Nacional S/n
+              Av. Nacional 
             </option>
           </select>
         </div>

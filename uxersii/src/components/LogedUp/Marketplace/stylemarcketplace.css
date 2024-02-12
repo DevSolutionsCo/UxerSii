@@ -25,6 +25,12 @@
     width: 20rem;
     border-radius: 1.5rem;
     background-color: #93bfa6;
+    padding: 1rem;
+    font-weight: bold;
+}
+option{
+    padding: 0.5rem;
+    font-size: larger;
 }
 
 .first-option{
