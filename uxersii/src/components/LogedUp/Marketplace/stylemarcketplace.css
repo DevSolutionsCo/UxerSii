@@ -1,14 +1,83 @@
-body{
+*{
     font-family: 'Nunito', sans-serif;
 }
 
 .pro-conten{
     display: flex;
     flex-direction: column;
-    margin-left: 7rem;
+    margin-left: 9rem;
     width: 20%;
     border-radius: 1rem;
     padding: 1rem;
     justify-content: center;
     align-items: center;
+}
+
+.nav-market{
+    background-color: #ffffff00 !important;
+    padding: 2rem;
+    min-height: 10%;
+    margin-left: 5%;
+}
+
+.select-car{
+    height: 4rem;
+    width: 20rem;
+    border-radius: 1.5rem;
+    background-color: #93bfa6;
+}
+
+.first-option{
+    background-color:#93bfa6 ;
+}
+
+.seconds-option{
+    background-color: #B9F0D1;
+}
+
+.img-carrito{
+    height: 3rem;
+    margin-right: 2rem;
+    align-self: center;
+}
+
+.w-car{
+    font-size: 1.4rem;
+}
+.carrito{
+    align-items: center;
+}
+
+.show-prod{
+    margin-bottom: 3rem;
+}
+.img-prod{
+    height: 10rem;
+    margin-bottom: 1rem;
+}
+
+.time-cad{
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
+.name-prod{
+    font-size: 1.4rem;
+}
+.price{
+    margin-top: 0.5rem;
+}
+
+.btn-agregar{
+    background-color: #93bfa6;
+    height: 2rem;
+    width: 2rem;
+    border-radius: .5rem;
+    margin-right: 1rem;
+}
+
+.btn-rest{
+    background-color: rgb(222, 60, 60);
+    height: 2rem;
+    width: 2rem;
+    border-radius: .5rem;
 }
