@@ -1,7 +1,7 @@
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializer import uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer
+from .serializer import AlimentosSerializer, uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer
 from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta
 from rest_framework import status
 from rest_framework.response import Response
@@ -243,3 +243,32 @@ def getalimentos(request, id_punto):
         return JsonResponse({'productos': productos_lista})
     except Alimentos.DoesNotExist:
         return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)
+
+
+@csrf_exempt
+def postalimentos(request):
+    if request.method == 'POST':
+        # Parsea los datos JSON de la solicitud POST
+        data = json.loads(request.body)
+
+        # Crea un nuevo objeto User con los datos recibidos
+        alimento = Alimentos.objects.create(
+            nomb_alim=data.get('nomAlim'),
+            cantidad=data.get('cantidad'),
+            fecha_cad='2024-02-09',
+            id_punto=1,
+            imagen='src/assets/alimentos/naranja.jpg'
+            # Otros campos según sea necesario
+        )
+
+        # Serializa el nuevo usuario en formato JSON
+        serializer = AlimentosSerializer(data=alimento)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        # Devuelve una respuesta JSON con el nuevo usuario
+        return JsonResponse(serializer.data, status=201)
+
+    else:
+        # Si no se recibe una solicitud POST, devuelve un error 405 (Método no permitido)
+        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)

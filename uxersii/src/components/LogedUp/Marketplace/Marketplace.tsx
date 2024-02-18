@@ -1,6 +1,6 @@
   import "./stylemarcketplace.css";
   import axios from "axios";
-  import { useEffect, useState } from "react";
+  import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 
   function Marketplace() {
 
@@ -91,31 +91,38 @@
       </nav>
 
 
-      {productosPunto.map((producto, index) => (
-      <section className=" flex flex-row show-prod">
-        <div className="pro-conten shadow-md shadow-black" key={index}>
-          <div className="prod">
-            <img
-              src={producto.imagen}
-              alt="Producto"
-              className="w-44  img-prod"
-            />
-            <div className="desc">
-              <span className="font-extralight time-cad">{producto.fecha_cad}</span>
-              <h5 className="font-bold name-prod">{producto.nomb_alim}</h5>
-              <span className="font-medium">{producto.cantidad}kg</span>
-              <div className="flex flex-row justify-between items-center">
-              <h4 className="price font-semibold">$120</h4>
-              <div>
+      {productosPunto.reduce((groups, producto, index) => {
+  if (index % 3 === 0) groups.push([]);
+  groups[groups.length - 1].push(
+    <div className="pro-conten shadow-md shadow-black" key={index}>
+      <div className="prod">
+        <img
+          src={producto.imagen}
+          alt="Producto"
+          className="w-44 img-prod"
+        />
+        <div className="desc">
+          <span className="font-extralight time-cad">{producto.fecha_cad}</span>
+          <h5 className="font-bold name-prod">{producto.nomb_alim}</h5>
+          <span className="font-medium">{producto.cantidad}kg</span>
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="price font-semibold">$120</h4>
+            <div>
               <button className="font-extrabold btn-agregar">+</button>
               <button className="font-bold btn-rest">-</button>
-              </div>
-              </div>
             </div>
           </div>
-        </div> 
+        </div>
+      </div>
+    </div>
+      );
+      return groups;
+    }, []).map((group: string | number | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
+      <section className="flex flex-row show-prod" key={index}>
+        {group}
       </section>
-      ))}
+    ))}
+
 
 
     </>

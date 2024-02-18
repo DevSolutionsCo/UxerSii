@@ -13,8 +13,8 @@ import retrofit2.http.Path;
 public interface retroService {
     @GET("api/v1/alimentos/<int: id_punto>/")
     Call<List<Productos>> obtenerProductos();
-    @POST("api/v1/alimentosP/")
-    Call<Void> crearProducto(@Body Productos producto);
+    @POST("api/v1/alimentosp/")
+    Call<Productos> crearProducto(@Body Productos producto);
     @PUT("api/v1/alimentosE")
     Call<Void> actualizarProducto(@Path("id") int id, @Body Productos producto);
     @DELETE("api/v1/alimentosD")
