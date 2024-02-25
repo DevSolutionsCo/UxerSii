@@ -42,6 +42,6 @@ model.fit(X_train, y_train, epochs=10, validation_data=(X_val, y_val))
 test_loss, test_acc = model.evaluate(X_test, y_test)
 print('Test accuracy:', test_acc)
 
-model.save(r"C:\Users\L13Yoga\Desktop\UxerSii\uxerSiitoBack\ia\modelo.keras")
+#model.save(r"C:\Users\L13Yoga\Desktop\UxerSii\uxerSiitoBack\ia\modelo.keras")
  
  
