@@ -1,14 +1,53 @@
-import PlaceIcon from "@mui/icons-material/Place";
-import { FormControl, InputLabel, MenuItem } from "@mui/material";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import React from "react";
+// SelectPuntos.tsx
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-function SelectPuntos() {
-  const [punto, setPunto] = React.useState("");
+export interface PuntoMovil {
+  nomb_punto: string;
+  id_punto: number;
+}
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setPunto(event.target.value as string);
+interface SelectPuntosProps {
+  onSelectPunto: (punto: PuntoMovil) => void;
+}
+
+const SelectPuntos: React.FC<SelectPuntosProps> = ({ onSelectPunto }) => {
+  const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
+  const [punto, setPunto] = useState<string>("");
+
+  const handleSelectChange = async (event: SelectChangeEvent) => {
+    const selectedId = parseInt(event.target.value as string);
+    const selectedPunto = puntosMoviles.find(
+      (punto) => punto.id_punto === selectedId
+    );
+    if (selectedPunto) {
+      onSelectPunto(selectedPunto);
+      setPunto(String(selectedId)); // Actualizar con el ID del punto
+    }
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/uxersiiPruebas/api/v1/puntosm/"
+        );
+        setPuntosMoviles(response.data.puntosmoviles);
+      } catch (error) {
+        console.error("Error al realizar la solicitud GET:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <FormControl className="w-72 h-10 ">
       <InputLabel
@@ -16,25 +55,25 @@ function SelectPuntos() {
         className="text-white "
         color="primary"
       >
-        <PlaceIcon />
-        Puntos moviles
+        Puntos móviles
       </InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={punto}
-        label="‎ ‎ ‎ ‎ ‎ Puntos moviles"
-        onChange={handleChange}
+        label="Puntos móviles"
+        onChange={handleSelectChange}
         className=" text-white"
         variant="outlined"
       >
-        <MenuItem value={0}>Aqui van los puntos</MenuItem>
-        {/* En value creo que debe  */}
-        <MenuItem value={1}>Twenty</MenuItem>
-        {/* <MenuItem value={30}>Thirty</MenuItem> */}
+        {puntosMoviles.map((punto) => (
+          <MenuItem value={punto.id_punto} key={punto.id_punto}>
+            {punto.nomb_punto}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
-}
+};
 
 export default SelectPuntos;
