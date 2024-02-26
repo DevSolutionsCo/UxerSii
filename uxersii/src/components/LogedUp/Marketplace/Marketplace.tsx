@@ -29,7 +29,7 @@ function Marketplace() {
     <>
       <section className="mx-32 my-10">
         <SelectPuntos onSelectPunto={handleSelectPunto} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1 auto-rows-[20rem] mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 auto-rows-[20rem] mt-10">
   {productosPunto.map((producto: any, index: number) => (
     
       <CardAlim
@@ -42,10 +42,6 @@ function Marketplace() {
     
   ))}
 </div>
-
-
-
-
       </section>
     </>
   );

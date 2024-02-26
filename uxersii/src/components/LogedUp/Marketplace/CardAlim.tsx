@@ -9,7 +9,7 @@ precio:string;
 } 
 function CardAlim(props: props) {
     return (
-      <div className="my-4 p-2 border border-black rounded-md flex flex-col h-full">
+      <div className="my-4 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full">
         <img src={props.img} className="w-full h-24 object-cover rounded-t-md" alt="Imagen del producto" />
         <div className="flex-grow flex flex-col justify-between p-2">
           <div className='py-7'>
