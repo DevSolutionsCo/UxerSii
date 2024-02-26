@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useState } from "react";
 import SelectPuntos, { PuntoMovil } from "./SelectPuntos";
-
+import CardAlim from "./CardAlim";
 interface Producto {
   imagen: string;
   fecha_cad: string;
@@ -29,31 +29,23 @@ function Marketplace() {
     <>
       <section className="mx-32 my-10">
         <SelectPuntos onSelectPunto={handleSelectPunto} />
-        {productosPunto.map((producto: Producto, index: number) => (
-          <div className="w-56 h-56 my-10" key={index}>
-            <div className="prod">
-              <img
-                src={producto.imagen}
-                alt="Producto"
-                className="w-44 img-prod"
-              />
-              <div className="desc">
-                <span className="font-extralight time-cad">
-                  {producto.fecha_cad}
-                </span>
-                <h5 className="font-bold name-prod">{producto.nomb_alim}</h5>
-                <span className="font-medium">{producto.cantidad}kg</span>
-                <div className="flex flex-row justify-between items-center">
-                  <h4 className="price font-semibold">$120</h4>
-                  <div>
-                    <button className="font-extrabold btn-agregar">+</button>
-                    <button className="font-bold btn-rest">-</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1 auto-rows-[20rem]">
+  {productosPunto.map((producto: any, index: number) => (
+    
+      <CardAlim
+        img={producto.imagen}
+        fecha={producto.fecha_cad}
+        title={producto.nomb_alim}
+        peso={producto.cantidad}
+        precio="22"
+      />
+    
+  ))}
+</div>
+
+
+
+
       </section>
     </>
   );
