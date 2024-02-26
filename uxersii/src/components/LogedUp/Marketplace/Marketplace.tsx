@@ -3,8 +3,15 @@ import axios from "axios";
 import { useState } from "react";
 import SelectPuntos, { PuntoMovil } from "./SelectPuntos";
 
+interface Producto {
+  imagen: string;
+  fecha_cad: string;
+  nomb_alim: string;
+  cantidad: number;
+}
+
 function Marketplace() {
-  const [productosPunto, setProductosPunto] = useState<any[]>([]);
+  const [productosPunto, setProductosPunto] = useState<Producto[]>([]);
 
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
@@ -22,7 +29,7 @@ function Marketplace() {
     <>
       <section className="mx-32 my-10">
         <SelectPuntos onSelectPunto={handleSelectPunto} />
-        {productosPunto.map((producto: any, index: number) => (
+        {productosPunto.map((producto: Producto, index: number) => (
           <div className="w-56 h-56 my-10" key={index}>
             <div className="prod">
               <img
