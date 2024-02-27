@@ -14,10 +14,6 @@ interface props {
 function BentoItem(props: props) {
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleShowPopup = () => {
-    setShowPopup(true);
-  };
-
   const handleClosePopup = () => {
     setShowPopup(false);
   };
@@ -30,13 +26,7 @@ function BentoItem(props: props) {
       )}
     >
       {props.fotoUser && (
-        <button
-          type="button"
-          onClick={handleShowPopup}
-          className="cursor-pointer  h-44 w-44"
-        >
-          <img src={props.fotoUser} className="rounded-full h-44 w-44" />
-        </button>
+        <img src={props.fotoUser} className="rounded-full h-44 w-44" />
       )}
       <div>
         <h2 className="text-3xl text-black font-bold ">{props.title}</h2>

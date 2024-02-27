@@ -1,8 +1,9 @@
 // Marketplace.tsx
 import axios from "axios";
 import { useState } from "react";
-import SelectPuntos, { PuntoMovil } from "./SelectPuntos";
 import CardAlim from "./CardAlim";
+import SelectPuntos, { PuntoMovil } from "./SelectPuntos";
+
 interface Producto {
   imagen: string;
   fecha_cad: string;
@@ -30,18 +31,17 @@ function Marketplace() {
       <section className="mx-32 my-10">
         <SelectPuntos onSelectPunto={handleSelectPunto} />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 auto-rows-[20rem] mt-10">
-  {productosPunto.map((producto: any, index: number) => (
-    
-      <CardAlim
-        img={producto.imagen}
-        fecha={producto.fecha_cad}
-        title={producto.nomb_alim}
-        peso={producto.cantidad}
-        precio="22"
-      />
-    
-  ))}
-</div>
+          {productosPunto.map((producto: Producto, index: number) => (
+            <CardAlim
+              key={index}
+              img={producto.imagen}
+              fecha={producto.fecha_cad}
+              title={producto.nomb_alim}
+              peso={producto.cantidad.toString()} // Convertir a cadena si es necesario
+              precio="22"
+            />
+          ))}
+        </div>
       </section>
     </>
   );
