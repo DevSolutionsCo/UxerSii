@@ -20,8 +20,8 @@ public interface retroService {
     @Multipart
     @POST("api/v1/alimentosp/")
     Call<Productos> crearProducto(
-            @Part("nombre") RequestBody nombre,
-            @Part("descripcion") RequestBody descripcion,
+            @Part("nomAlim") RequestBody nomAlim,
+            @Part("cantidad") RequestBody cantidad,
             @Part MultipartBody.Part imagen
     );
     @PUT("api/v1/alimentosE")
