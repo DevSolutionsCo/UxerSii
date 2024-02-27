@@ -6,22 +6,21 @@ import java.util.Date;
 public class Productos {
     @SerializedName("nomAlim")
     private String nomAlim;
-    //private Date fechaCad;
     @SerializedName("cantidad")
     private int cantidad;
-    //private int idPunto;
-    //private Byte[] imgByte;
-    //private int idProd;
 
-    /*public int getIdProd() {
-        return idProd;
-    }*/
+    @SerializedName("fechaCad")
+    private String fechaCad;
+    @SerializedName("precio")
+    private int precio;
 
-    /*public void setIdProd(int idProd) {
-        this.idProd = idProd;
-    }*/
+    public int getPrecio() {
+        return precio;
+    }
 
-
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
 
     public String getNomAlim() {
         return nomAlim;
@@ -31,13 +30,13 @@ public class Productos {
         this.nomAlim = nomAlim;
     }
 
-    /*public Date getFechaCad() {
+    public String getFechaCad() {
         return fechaCad;
-    }*/
+    }
 
-    /*public void setFechaCad(Date fechaCad) {
+    public void setFechaCad(String fechaCad) {
         this.fechaCad = fechaCad;
-    }*/
+    }
 
     public int getCantidad() {
         return cantidad;
@@ -55,12 +54,5 @@ public class Productos {
         this.idPunto = idPunto;
     }*/
 
-    /*public Byte[] getImgByte() {
-        return imgByte;
-    }*/
-
-    /*public void setImgByte(Byte[] imgByte) {
-        this.imgByte = imgByte;
-    }*/
 
 }

@@ -27,9 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-
+import java.util.Date;
+import java.util.Locale;
 
 
 public class altas extends AppCompatActivity implements View.OnClickListener{
@@ -42,6 +43,7 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
 
     private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms//uxersiiPruebas/";
     Retrofit retrofit;
+    private String fechaFormateada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,12 +131,20 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String fechaSeleccionada = dayOfMonth + "/" + (month + 1) + "/" + year;
-                        fechaCadu.setText(fechaSeleccionada);
+                        // Obtener la fecha seleccionada como un objeto Date
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(year, month, dayOfMonth);
+                        Date fechaSeleccionada = selectedDate.getTime();
+
+                        // Formatear la fecha seleccionada en el formato deseado
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        fechaFormateada = sdf.format(fechaSeleccionada);
+                        fechaCadu.setText(fechaFormateada);
                     }
                 }, year, mes, dia);
         datePickerDialog.show();
     }
+
 
     @Override
     public void onClick(View view) {
@@ -144,6 +154,8 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
             Productos producto = new Productos();
             producto.setNomAlim(nombAli.getText().toString());
             producto.setCantidad(Integer.parseInt(cantidad.getText().toString()));
+            producto.setPrecio(Integer.parseInt(precio.getText().toString()));
+            producto.setFechaCad(fechaFormateada);
 
             // Convertir la imagen a bytes
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -159,20 +171,24 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
             retroService alimentoService = retrofit.create(retroService.class);
 
             // Hacer la llamada para crear el producto
-            Call<Productos> call = alimentoService.crearProducto(
-                    RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim()),
-                    RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getCantidad())), // Agregar una descripción vacía por ahora
-                    imagenParte
-            );
+            RequestBody nomAlimPart = RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim());
+            RequestBody cantidadPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getCantidad()));
+            RequestBody precioPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getPrecio()));
+            RequestBody fechaCadPart = RequestBody.create(MediaType.parse("text/plain"), producto.getFechaCad());
+
+            Call<Productos> call = alimentoService.crearProducto(nomAlimPart, cantidadPart, precioPart, fechaCadPart, imagenParte);
+
 
             call.enqueue(new Callback<Productos>() {
                 @Override
                 public void onResponse(Call<Productos> call, Response<Productos> response) {
                     if (response.isSuccessful()) {
                         Productos createdProducto = response.body();
-                        // Haz algo con el producto creado (p.ej., muestra un mensaje de éxito)
+                        Toast.makeText(com.example.uxersiipm.altas.this, "Producto agregado",Toast.LENGTH_SHORT).show();
+                        limpito();
                     } else {
-                        // Maneja el caso de respuesta no exitosa
+                        Toast.makeText(com.example.uxersiipm.altas.this, "El producto no se pudó agregar correctamente",Toast.LENGTH_SHORT).show();
+
                     }
                 }
 
@@ -183,5 +199,13 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
             });
         }
 
+    }
+
+    public void limpito(){
+        nombAli.setText("");
+        precio.setText("");
+        cantidad.setText("");
+        fechaCadu.setText("");
+        imgProduc.setImageResource(R.drawable.camara);
     }
 }
