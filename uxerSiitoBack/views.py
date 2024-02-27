@@ -248,25 +248,24 @@ def getalimentos(request, id_punto):
 @csrf_exempt
 def postalimentos(request):
     if request.method == 'POST':
-        # Parsea los datos JSON de la solicitud POST
-        data = json.loads(request.body)
+        # Verifica si la solicitud tiene datos multipart (por ejemplo, una imagen)
+        if request.FILES:
+            imagen = request.FILES['imagen']
+        else:
+            return JsonResponse({'error': 'No image provided'}, status=400)
 
-        # Crea un nuevo objeto User con los datos recibidos
+        # Crea un nuevo objeto Alimentos con los datos recibidos
         alimento = Alimentos.objects.create(
-            nomb_alim=data.get('nomAlim'),
-            cantidad=data.get('cantidad'),
+            nomb_alim=request.POST.get('nomAlim'),
+            cantidad=request.POST.get('cantidad'),
             fecha_cad='2024-02-09',
             id_punto=1,
-            imagen='src/assets/alimentos/naranja.jpg'
+            imagen=imagen
             # Otros campos según sea necesario
         )
 
-        # Serializa el nuevo usuario en formato JSON
-        serializer = AlimentosSerializer(data=alimento)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        # Devuelve una respuesta JSON con el nuevo usuario
+        # Serializa el nuevo alimento en formato JSON
+        serializer = AlimentosSerializer(alimento)
         return JsonResponse(serializer.data, status=201)
 
     else:
