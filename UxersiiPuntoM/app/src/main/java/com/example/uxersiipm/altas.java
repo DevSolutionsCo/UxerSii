@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,6 +15,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 
@@ -34,7 +40,7 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
     private static final int REQUEST_IMAGE_PICK = 2;
     private ImageView imgProduc;
 
-    private static final String BASE_URL = "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/";
+    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms//uxersiiPruebas/";
     Retrofit retrofit;
 
     @Override
@@ -134,21 +140,37 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         String cadenita = ((Button)view).getText().toString();
         if (cadenita.equals("Añadir Producto")){
-            // Supongamos que tienes un objeto User con la información del nuevo usuario
+            // Supongamos que tienes un objeto Productos con la información del nuevo producto
             Productos producto = new Productos();
             producto.setNomAlim(nombAli.getText().toString());
             producto.setCantidad(Integer.parseInt(cantidad.getText().toString()));
-            //**Nose como es que traes la cadena de bytes de la imagen
-            // producto.setImgByte(nombAli.getText().toString());
-            // Otros campos según sea necesario
+
+            // Convertir la imagen a bytes
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap bitmap = ((BitmapDrawable) imgProduc.getDrawable()).getBitmap(); // Obtén la imagen de tu ImageView
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] imagenBytes = stream.toByteArray();
+
+            // Construir la parte de la imagen para enviarla con Retrofit
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imagenBytes);
+            MultipartBody.Part imagenParte = MultipartBody.Part.createFormData("imagen", "nombre_imagen.jpg", requestFile);
+
+            // Crear la instancia de retrofitService
             retroService alimentoService = retrofit.create(retroService.class);
-            Call<Productos> call = alimentoService.crearProducto(producto);
+
+            // Hacer la llamada para crear el producto
+            Call<Productos> call = alimentoService.crearProducto(
+                    RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim()),
+                    RequestBody.create(MediaType.parse("text/plain"), ""), // Agregar una descripción vacía por ahora
+                    imagenParte
+            );
+
             call.enqueue(new Callback<Productos>() {
                 @Override
                 public void onResponse(Call<Productos> call, Response<Productos> response) {
                     if (response.isSuccessful()) {
-                        Productos createdUser = response.body();
-                        // Haz algo con el usuario creado (p.ej., muestra un mensaje de éxito)
+                        Productos createdProducto = response.body();
+                        // Haz algo con el producto creado (p.ej., muestra un mensaje de éxito)
                     } else {
                         // Maneja el caso de respuesta no exitosa
                     }
@@ -160,5 +182,6 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
                 }
             });
         }
+
     }
 }
