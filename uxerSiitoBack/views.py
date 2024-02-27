@@ -258,8 +258,8 @@ def postalimentos(request):
         alimento = Alimentos.objects.create(
             nomb_alim=request.POST.get('nomAlim'),
             cantidad=request.POST.get('cantidad'),
-            fecha_cad='2024-02-09',
-            id_punto=1,
+            fecha_cad=request.POST.get('fechaCad'),
+            id_punto=2,
             imagen=imagen
             # Otros campos según sea necesario
         )
