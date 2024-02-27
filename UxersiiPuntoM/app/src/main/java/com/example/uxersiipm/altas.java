@@ -153,7 +153,7 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
 
             // Construir la parte de la imagen para enviarla con Retrofit
             RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imagenBytes);
-            MultipartBody.Part imagenParte = MultipartBody.Part.createFormData("imagen", "nombre_imagen.jpg", requestFile);
+            MultipartBody.Part imagenParte = MultipartBody.Part.createFormData("imagen", "alimento.jpg", requestFile);
 
             // Crear la instancia de retrofitService
             retroService alimentoService = retrofit.create(retroService.class);
@@ -161,7 +161,7 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
             // Hacer la llamada para crear el producto
             Call<Productos> call = alimentoService.crearProducto(
                     RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim()),
-                    RequestBody.create(MediaType.parse("text/plain"), ""), // Agregar una descripción vacía por ahora
+                    RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getCantidad())), // Agregar una descripción vacía por ahora
                     imagenParte
             );
 
