@@ -1,3 +1,4 @@
+from email.mime import image
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
@@ -244,16 +245,40 @@ def getalimentos(request, id_punto):
     except Alimentos.DoesNotExist:
         return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)
 
+from django.http import JsonResponse
+from keras.models import load_model
+from keras.preprocessing import image
+import numpy as np
+
+    # Ruta al archivo .h5 del modelo
+model_path = 'fruit_model_v3.h5'
+
+    # Cargar el modelo
+#model = load_model(model_path)
+model = load_model(model_path)
+
 
 @csrf_exempt
 def postalimentos(request):
+
+
     if request.method == 'POST':
         # Verifica si la solicitud tiene datos multipart (por ejemplo, una imagen)
         if request.FILES:
             imagen = request.FILES['imagen']
         else:
             return JsonResponse({'error': 'No image provided'}, status=400)
+        
+        img = image.load_img(imagen, target_size=(224, 224))
+        img_array = image.img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0)
 
+        if model is not None:
+            prediction = model(img_array)
+        else:
+            return JsonResponse({'error': 'Model not loaded'}, status=500)
+
+        print(prediction)
         # Crea un nuevo objeto Alimentos con los datos recibidos
         alimento = Alimentos.objects.create(
             nomb_alim=request.POST.get('nomAlim'),
@@ -271,3 +296,5 @@ def postalimentos(request):
     else:
         # Si no se recibe una solicitud POST, devuelve un error 405 (Método no permitido)
         return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+
+
