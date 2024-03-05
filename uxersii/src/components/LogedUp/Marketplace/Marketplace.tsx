@@ -2,7 +2,8 @@
 import axios from "axios";
 import { useState } from "react";
 import CardAlim from "./CardAlim";
-import SelectPuntos, { PuntoMovil } from "./SelectPuntos";
+import CarritoNav from "./CarritoNav";
+import SelectPuntos from "./SelectPuntos";
 
 interface Producto {
   imagen: string;
@@ -11,8 +12,13 @@ interface Producto {
   cantidad: number;
 }
 
+interface PuntoMovil {
+  id_punto: number;
+}
+
 function Marketplace() {
   const [productosPunto, setProductosPunto] = useState<Producto[]>([]);
+  const [cantidadEnCarrito, setCantidadEnCarrito] = useState(0);
 
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
@@ -29,6 +35,7 @@ function Marketplace() {
   return (
     <>
       <section className="mx-32 my-10">
+        <CarritoNav cantidadCarrito={cantidadEnCarrito} />
         <SelectPuntos onSelectPunto={handleSelectPunto} />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 auto-rows-[20rem] mt-10">
           {productosPunto.map((producto: Producto, index: number) => (
@@ -39,6 +46,7 @@ function Marketplace() {
               title={producto.nomb_alim}
               peso={producto.cantidad.toString()} // Convertir a cadena si es necesario
               precio="22"
+              onAddToCart={() => setCantidadEnCarrito(cantidadEnCarrito + 1)}
             />
           ))}
         </div>

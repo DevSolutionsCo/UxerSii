@@ -251,11 +251,11 @@ from keras.preprocessing import image
 import numpy as np
 
     # Ruta al archivo .h5 del modelo
-model_path = 'fruit_model_v3.h5'
+#model_path = 'fruit_model_v3.h5'
 
     # Cargar el modelo
 #model = load_model(model_path)
-model = load_model(model_path)
+#model = load_model(model_path)
 
 
 @csrf_exempt
@@ -268,7 +268,7 @@ def postalimentos(request):
             imagen = request.FILES['imagen']
         else:
             return JsonResponse({'error': 'No image provided'}, status=400)
-        
+        """
         img = image.load_img(imagen, target_size=(224, 224))
         img_array = image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
@@ -278,7 +278,7 @@ def postalimentos(request):
         else:
             return JsonResponse({'error': 'Model not loaded'}, status=500)
 
-        print(prediction)
+        print(prediction)"""
         # Crea un nuevo objeto Alimentos con los datos recibidos
         alimento = Alimentos.objects.create(
             nomb_alim=request.POST.get('nomAlim'),
