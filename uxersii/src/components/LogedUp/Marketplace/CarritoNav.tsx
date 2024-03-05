@@ -11,7 +11,7 @@ const StyledBadge = styled(Badge)({
     border: "2px solid #fff", // Border color
     padding: "0 4px",
     backgroundColor: "#C3DDFF", // Custom background color
-    color: "#fff", // Custom text color
+    color: "#000", // Custom text color
   },
 });
 
