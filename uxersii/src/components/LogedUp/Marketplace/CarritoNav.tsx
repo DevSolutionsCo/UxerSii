@@ -3,6 +3,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const StyledBadge = styled(Badge)({
   "& .MuiBadge-badge": {
@@ -21,11 +22,15 @@ interface CarritoNavProps {
 
 function CarritoNav({ cantidadCarrito }: CarritoNavProps) {
   return (
-    <IconButton aria-label="cart">
-      <StyledBadge badgeContent={cantidadCarrito}>
-        <ShoppingCartIcon fontSize="large" />
-      </StyledBadge>
-    </IconButton>
+    <Link to="carrito">
+      <nav className="w-auto flex justify-end">
+        <IconButton aria-label="cart">
+          <StyledBadge badgeContent={cantidadCarrito}>
+            <ShoppingCartIcon fontSize="large" />
+          </StyledBadge>
+        </IconButton>
+      </nav>
+    </Link>
   );
 }
 
