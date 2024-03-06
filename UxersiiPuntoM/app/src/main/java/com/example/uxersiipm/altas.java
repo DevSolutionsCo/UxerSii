@@ -92,35 +92,35 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_IMAGE_CAPTURE) {
-                Bundle extras = data.getExtras();
-                if (extras != null && extras.containsKey("data")) {
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    if (imageBitmap != null) {
-                        imgProduc.setImageBitmap(imageBitmap);
+            if (resultCode == RESULT_OK) {
+                if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                    Bundle extras = data.getExtras();
+                    if (extras != null && extras.containsKey("data")) {
+                        Bitmap imageBitmap = (Bitmap) extras.get("data");
+                        if (imageBitmap != null) {
+                            imgProduc.setImageBitmap(imageBitmap);
+                        } else {
+                            Toast.makeText(this, "No se pudo capturar la imagen", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(this, "No se pudo capturar la imagen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "No se pudo obtener la imagen capturada", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(this, "No se pudo obtener la imagen capturada", Toast.LENGTH_SHORT).show();
+                } else if (requestCode == REQUEST_IMAGE_PICK) {
+                    Uri selectedImage = data.getData();
+                    if (selectedImage != null) {
+                        imgProduc.setImageURI(selectedImage);
+                    } else {
+                        Toast.makeText(this, "No se pudo obtener la imagen seleccionada", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else if (requestCode == REQUEST_IMAGE_PICK) {
-                Uri selectedImage = data.getData();
-                if (selectedImage != null) {
-                    imgProduc.setImageURI(selectedImage);
-                } else {
-                    Toast.makeText(this, "No se pudo obtener la imagen seleccionada", Toast.LENGTH_SHORT).show();
-                }
+            } else {
+                Toast.makeText(this, "Se canceló la operación", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(this, "Se canceló la operación", Toast.LENGTH_SHORT).show();
         }
-    }
     private void mostrarCalendario() {
         final Calendar calendario = Calendar.getInstance();
         int year = calendario.get(Calendar.YEAR);

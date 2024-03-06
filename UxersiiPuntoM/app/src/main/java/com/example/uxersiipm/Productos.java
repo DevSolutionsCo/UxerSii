@@ -13,6 +13,16 @@ public class Productos {
     private String fechaCad;
     @SerializedName("precio")
     private int precio;
+    @SerializedName("imagen")
+    private String urlimg;
+
+    public String getUrlimg() {
+        return urlimg;
+    }
+
+    public void setUrlimg(String urlimg) {
+        this.urlimg = urlimg;
+    }
 
     public int getPrecio() {
         return precio;
@@ -46,13 +56,16 @@ public class Productos {
         this.cantidad = cantidad;
     }
 
-    /*public int getIdPunto() {
-        return idPunto;
-    }*/
+    public Productos() {
+    }
 
-    /*public void setIdPunto(int idPunto) {
-        this.idPunto = idPunto;
-    }*/
+    public Productos(String nomAlim, int cantidad, String fechaCad, int precio, String urlimg) {
+        this.nomAlim = nomAlim;
+        this.cantidad = cantidad;
+        this.fechaCad = fechaCad;
+        this.precio = precio;
+        this.urlimg = urlimg;
+    }
 
 
 }

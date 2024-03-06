@@ -15,8 +15,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface retroService {
-    @GET("api/v1/alimentos/<int: id_punto>/")
-    Call<List<Productos>> obtenerProductos();
+    @GET("api/v1/alimentos/{id_punto}/")
+    Call<List<Productos>> obtenerProductos(@Path("id_punto")int idPunto);
     @Multipart
     @POST("api/v1/alimentosp/")
     Call<Productos> crearProducto(
