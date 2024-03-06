@@ -1,4 +1,6 @@
 from email.mime import image
+import io
+from tkinter import Image
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
@@ -249,42 +251,61 @@ from django.http import JsonResponse
 from keras.models import load_model
 from keras.preprocessing import image
 import numpy as np
+from PIL import Image
+
 
     # Ruta al archivo .h5 del modelo
-#model_path = 'fruit_model_v3.h5'
+model_path = 'uxerSiitoBack/fruit_model_v6.h5'
 
     # Cargar el modelo
 #model = load_model(model_path)
-#model = load_model(model_path)
+model = load_model(model_path)
 
 
 @csrf_exempt
 def postalimentos(request):
+    # Categorías de frutas
+    categorias = ['freshapples', 'freshbanana', 'freshcucumber', 
+             'freshoranges', 'freshtomato',
+              'rottenapples', 'rottenbanana', 'rottencucumber',
+             'rottenoranges', 'rottentomato']
 
 
     if request.method == 'POST':
         # Verifica si la solicitud tiene datos multipart (por ejemplo, una imagen)
         if request.FILES:
             imagen = request.FILES['imagen']
+            # Lee los bytes de la imagen
+            image_bytes = imagen.read()
+            # Crea un objeto BytesIO para envolver los bytes de la imagen
+            image_stream = io.BytesIO(image_bytes)
+            # Abre la imagen con PIL
+            img = Image.open(image_stream)
         else:
             return JsonResponse({'error': 'No image provided'}, status=400)
-        """
-        img = image.load_img(imagen, target_size=(224, 224))
+        
+        # Convierte la imagen en un formato compatible con Keras
+        img = img.resize((224, 224))  # Redimensiona la imagen si es necesario
         img_array = image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
 
+
         if model is not None:
             prediction = model(img_array)
+            indice_maximo = np.argmax(prediction)
+            print(indice_maximo)
+            categoria_predicha = categorias[indice_maximo]
+            print("Nuestra fruta es: ", categoria_predicha)
         else:
             return JsonResponse({'error': 'Model not loaded'}, status=500)
 
-        print(prediction)"""
+        
         # Crea un nuevo objeto Alimentos con los datos recibidos
         alimento = Alimentos.objects.create(
             nomb_alim=request.POST.get('nomAlim'),
             cantidad=request.POST.get('cantidad'),
             fecha_cad=request.POST.get('fechaCad'),
-            id_punto=2,
+            id_punto=1,
             imagen=imagen
             # Otros campos según sea necesario
         )
@@ -298,3 +319,20 @@ def postalimentos(request):
         return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
 
 
+
+@csrf_exempt
+def valcod(request, codigo):
+    try:
+        # Busca al usuario en la base de datos
+        user = PuntosColecta.objects.get(valcod=codigo)
+
+    
+        return JsonResponse({'mensaje': 'Inicio de sesion exitoso'
+                            })
+        
+    except PuntosColecta.DoesNotExist:
+        # Usuario no encontrado
+        return JsonResponse({'error': 'Usuario no encontrado'}, status=401)
+    except Exception as e:
+        # Otro error
+        return JsonResponse({'error': str(e)}, status=500)
