@@ -2,14 +2,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import BotonLogin from "../../Signed out/login/BotonLogin";
-
+interface Producto {
+  img: string;
+  fecha: string;
+  title: string;
+  peso: string;
+  precio: string;
+  cantidad: number; // Agregar este campo si lo necesitas
+}
 interface Props {
   img: string;
   fecha: string;
   title: string;
   peso: string;
   precio: string;
-  onAddToCart: () => void;
+  onAddToCart: (producto: Producto) => void; // Modificar el tipo de la función onAddToCart
 }
 
 function CardAlim(props: Props) {
@@ -17,7 +24,14 @@ function CardAlim(props: Props) {
 
   const handleClickAgregar = () => {
     setCantidadEnCarrito(cantidadEnCarrito + 1);
-    props.onAddToCart(); // Llama a la función para actualizar el estado del carrito
+    props.onAddToCart({
+      img: props.img,
+      fecha: props.fecha,
+      title: props.title,
+      peso: props.peso,
+      precio: props.precio,
+      cantidad: cantidadEnCarrito + 1, // Agregar cantidad al objeto del producto
+    });
   };
 
   return (
