@@ -1,15 +1,5 @@
 // Marketplace.tsx
-import CloseIcon from "@mui/icons-material/Close";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import axios from "axios";
-import * as React from "react";
 import { useState } from "react";
 import CardAlim from "./CardAlim";
 import CarritoNav from "./CarritoNav";
@@ -24,18 +14,10 @@ interface Producto {
 interface PuntoMovil {
   id_punto: number;
 }
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
+
 function Marketplace() {
   const [productosPunto, setProductosPunto] = useState<Producto[]>([]);
   const [carrito, setCarrito] = useState<Producto[]>([]);
-  const [alerta, setAlerta] = useState<boolean>(false);
 
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
@@ -50,17 +32,24 @@ function Marketplace() {
   };
 
   const handleAgregarAlCarrito = (producto: Producto) => {
-    if (producto.cantidad > 0) {
-      setCarrito([...carrito, producto]);
+    const productoExistente = carrito.find(
+      (item) => item.nomb_alim === producto.nomb_alim
+    );
+    if (productoExistente) {
+      // Si el producto ya está en el carrito, incrementa su cantidad en 1
+      setCarrito(
+        carrito.map((item) =>
+          item.nomb_alim === producto.nomb_alim
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        )
+      );
     } else {
-      setAlerta(true); // Mostrar alerta cuando no hay más elementos disponibles
+      // Si el producto no está en el carrito, agrégalo con una cantidad de 1
+      setCarrito([...carrito, { ...producto, cantidad: 1 }]);
     }
   };
-  const [open, setOpen] = React.useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <>
       <section className="mx-32 my-10">
@@ -80,51 +69,6 @@ function Marketplace() {
             />
           ))}
         </div>
-        {alerta && (
-          <BootstrapDialog
-            onClose={handleClose}
-            aria-labelledby="customized-dialog-title"
-            open={open}
-          >
-            <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-              Modal title
-            </DialogTitle>
-            <IconButton
-              aria-label="close"
-              onClick={handleClose}
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-            <DialogContent dividers>
-              <Typography gutterBottom>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo
-                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-                risus, porta ac consectetur ac, vestibulum at eros.
-              </Typography>
-              <Typography gutterBottom>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-                dolor auctor.
-              </Typography>
-              <Typography gutterBottom>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-                cursus magna, vel scelerisque nisl consectetur et. Donec sed
-                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-              </Typography>
-            </DialogContent>
-            <DialogActions>
-              <Button autoFocus onClick={handleClose}>
-                Save changes
-              </Button>
-            </DialogActions>
-          </BootstrapDialog>
-        )}
       </section>
     </>
   );
