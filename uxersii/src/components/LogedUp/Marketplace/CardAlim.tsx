@@ -1,37 +1,61 @@
-// CardAlim.tsx
+import CloseIcon from "@mui/icons-material/Close";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import BotonLogin from "../../Signed out/login/BotonLogin";
+
 interface Producto {
   img: string;
   fecha: string;
   title: string;
   peso: string;
   precio: string;
-  cantidad: number; // Agregar este campo si lo necesitas
+  cantidad: number;
 }
-interface Props {
-  img: string;
-  fecha: string;
-  title: string;
-  peso: string;
-  precio: string;
-  onAddToCart: (producto: Producto) => void; // Modificar el tipo de la función onAddToCart
+
+interface Props extends Producto {
+  onAddToCart: (producto: Producto) => void;
 }
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 
 function CardAlim(props: Props) {
-  const [cantidadEnCarrito, setCantidadEnCarrito] = useState(0);
+  const [agregado, setAgregado] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleClickAgregar = () => {
-    setCantidadEnCarrito(cantidadEnCarrito + 1);
-    props.onAddToCart({
-      img: props.img,
-      fecha: props.fecha,
-      title: props.title,
-      peso: props.peso,
-      precio: props.precio,
-      cantidad: cantidadEnCarrito + 1, // Agregar cantidad al objeto del producto
-    });
+    if (props.cantidad > 0 && !agregado) {
+      props.onAddToCart({
+        img: props.img,
+        fecha: props.fecha,
+        title: props.title,
+        peso: props.peso,
+        precio: props.precio,
+        cantidad: 1, // Siempre agregar solo una unidad
+      });
+      setAgregado(true);
+    } else {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+    }
+  };
+
+  const handleClose = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -39,7 +63,6 @@ function CardAlim(props: Props) {
       <Link
         to={`item?img=${props.img}&fecha=${props.fecha}&title=${props.title}&peso=${props.peso}&precio=${props.precio}`}
       >
-        {" "}
         <img
           src={props.img}
           className="w-full h-24 object-cover rounded-t-md"
@@ -62,6 +85,34 @@ function CardAlim(props: Props) {
       >
         Agregar
       </BotonLogin>
+      {showAlert && (
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={showAlert}
+        >
+          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            Error
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              No existen más unidades de este producto.
+            </Typography>
+          </DialogContent>
+        </BootstrapDialog>
+      )}
     </div>
   );
 }

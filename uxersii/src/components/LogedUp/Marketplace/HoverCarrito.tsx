@@ -1,5 +1,8 @@
+import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import RemoveIcon from "@mui/icons-material/Remove";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 interface Props {
   imagen?: string;
   title?: string;
@@ -18,7 +21,17 @@ function HoverCarrito(props: Props) {
         <h2 className="text-xl font-semibold">{props.title}</h2>
         <p>Precio: {props.precio} </p>
         <p>Fecha de caducidad: {props.fecha} </p>
-        <p>Cantidad: {props.cantidad} </p>
+        <p className="flex gap-8 items-center">
+          <span>Cantidad: {props.cantidad}</span>
+          <ButtonGroup
+            variant="text"
+            aria-label="Basic button group"
+            color="inherit"
+          >
+            <Button startIcon={<AddIcon />} color="success"></Button>
+            <Button startIcon={<RemoveIcon />} color="error"></Button>
+          </ButtonGroup>
+        </p>
       </div>
       <div className="font-black m-auto px-1">
         <DeleteIcon sx={{ fontSize: 30 }} />
