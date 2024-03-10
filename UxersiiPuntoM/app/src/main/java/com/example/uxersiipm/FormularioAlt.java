@@ -36,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FormularioAlt extends DialogFragment {
 
@@ -48,10 +49,14 @@ public class FormularioAlt extends DialogFragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
     private String fechaFormateada;
-    Retrofit retrofit;
-    private resCaptura listener;
-    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms//uxersiiPruebas/";
 
+    private resCaptura listener;
+    private static final String BASE_URL = "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/";
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = new Dialog(requireContext());
@@ -94,6 +99,7 @@ public class FormularioAlt extends DialogFragment {
                 RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imagenBytes);
                 MultipartBody.Part imagenParte = MultipartBody.Part.createFormData("imagen", "alimento.jpg", requestFile);
                 retroService alimentoService = retrofit.create(retroService.class);
+                Toast.makeText(requireContext(), "si jala",Toast.LENGTH_SHORT).show();
                 RequestBody nomAlimPart = RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim());
                 RequestBody cantidadPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getCantidad()));
                 RequestBody precioPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getPrecio()));

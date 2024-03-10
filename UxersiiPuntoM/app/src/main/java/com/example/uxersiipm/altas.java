@@ -41,7 +41,7 @@ public class altas extends AppCompatActivity implements View.OnClickListener{
     private static final int REQUEST_IMAGE_PICK = 2;
     private ImageView imgProduc;
 
-    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms//uxersiiPruebas/";
+    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms//uxersiiPruebas/" ;
     Retrofit retrofit;
     private String fechaFormateada;
 
