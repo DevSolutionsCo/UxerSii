@@ -1,9 +1,10 @@
 package com.example.uxersiipm;
+import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class Productos {
+public class Productos extends JsonElement {
     @SerializedName("nomAlim")
     private String nomAlim;
     @SerializedName("cantidad")
@@ -15,6 +16,17 @@ public class Productos {
     private int precio;
     @SerializedName("imagen")
     private String urlimg;
+
+    @SerializedName("fruta")
+    private String fruta;
+
+    public String getFruta() {
+        return fruta;
+    }
+
+    public void setFruta(String fruta) {
+        this.fruta = fruta;
+    }
 
     public String getUrlimg() {
         return urlimg;
@@ -57,6 +69,11 @@ public class Productos {
     }
 
     public Productos() {
+    }
+
+    @Override
+    public JsonElement deepCopy() {
+        return null;
     }
 
     public Productos(String nomAlim, int cantidad, String fechaCad, int precio, String urlimg) {

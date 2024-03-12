@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,10 +54,10 @@ public class FormularioAlt extends DialogFragment {
     private String fechaFormateada;
 
     private resCaptura listener;
-    private static final String BASE_URL = "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/";
+    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/";
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/")
+            .baseUrl("https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     @Override
@@ -99,7 +102,6 @@ public class FormularioAlt extends DialogFragment {
                 RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imagenBytes);
                 MultipartBody.Part imagenParte = MultipartBody.Part.createFormData("imagen", "alimento.jpg", requestFile);
                 retroService alimentoService = retrofit.create(retroService.class);
-                Toast.makeText(requireContext(), "si jala",Toast.LENGTH_SHORT).show();
                 RequestBody nomAlimPart = RequestBody.create(MediaType.parse("text/plain"), producto.getNomAlim());
                 RequestBody cantidadPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getCantidad()));
                 RequestBody precioPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(producto.getPrecio()));
@@ -110,7 +112,8 @@ public class FormularioAlt extends DialogFragment {
                     public void onResponse(Call<Productos> call, Response<Productos> response) {
                         if (response.isSuccessful()) {
                             Productos createdProducto = response.body();
-                            Toast.makeText(requireContext(), "Producto agregado",Toast.LENGTH_SHORT).show();
+                            String mensaje = createdProducto != null ? createdProducto.getFruta() : "";
+                            Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
                             dismiss();
                             limpito();
                         } else {

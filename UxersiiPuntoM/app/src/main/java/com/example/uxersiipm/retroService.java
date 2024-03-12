@@ -35,4 +35,8 @@ public interface retroService {
     Call<Void> actualizarProducto(@Path("id") int id, @Body Productos producto);
     @DELETE("api/v1/alimentosD")
     Call<Void> eliminarProducto(@Path("id") int id);
+
+    @GET("api/v1/valcod/{codigo}/")
+    Call<Void> validarCodigo(@Path("codigo") String codigo);
+
 }

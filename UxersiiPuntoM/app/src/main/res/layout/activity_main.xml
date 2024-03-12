@@ -20,7 +20,7 @@
         tools:layout_editor_absoluteY="539dp" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/cod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
