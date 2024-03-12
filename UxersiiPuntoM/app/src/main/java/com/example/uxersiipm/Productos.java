@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class Productos extends JsonElement {
-    @SerializedName("nomAlim")
+public class Productos {
+    @SerializedName("nom_alim")
     private String nomAlim;
     @SerializedName("cantidad")
     private int cantidad;
 
-    @SerializedName("fechaCad")
+    @SerializedName("fecha_cad")
     private String fechaCad;
     @SerializedName("precio")
     private int precio;
@@ -71,10 +71,6 @@ public class Productos extends JsonElement {
     public Productos() {
     }
 
-    @Override
-    public JsonElement deepCopy() {
-        return null;
-    }
 
     public Productos(String nomAlim, int cantidad, String fechaCad, int precio, String urlimg) {
         this.nomAlim = nomAlim;

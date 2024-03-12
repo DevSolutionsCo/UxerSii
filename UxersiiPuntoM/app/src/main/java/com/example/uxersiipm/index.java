@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,7 +72,15 @@ public class index extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Productos>> call, Response<List<Productos>> response) {
                 if (response.isSuccessful()){
+
                     List<Productos> productos = response.body();
+                    for (Productos producto : productos) {
+                        Log.d("DatosProducto", "Nombre: " + producto.getNomAlim() +
+                                ", Cantidad: " + producto.getCantidad() +
+                                ", Precio: " + producto.getPrecio() +
+                                ", Fecha de caducidad: " + producto.getFechaCad() +
+                                ", URL de imagen: " + producto.getUrlimg());
+                    }
                     adap = new ProductosAdapter(index.this, productos);
                     lista.setAdapter(adap);
                 }

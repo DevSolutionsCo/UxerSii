@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductosAdapter extends BaseAdapter {
 
@@ -56,9 +58,16 @@ public class ProductosAdapter extends BaseAdapter {
        }
        Productos produc= productos.get(position);
        holder.nombTxt.setText(produc.getNomAlim());
-       holder.presTxt.setText(produc.getPrecio());
-       holder.cantTxt.setText(produc.getCantidad());
-       holder.fechTxt.setText(produc.getFechaCad());
+       int pres = produc.getPrecio();
+       if (pres != 0){
+           holder.presTxt.setText(String.valueOf(pres));
+       }else{
+           holder.presTxt.setText("Precio no disponible");
+       }
+       holder.cantTxt.setText(String.valueOf(produc.getCantidad()));
+       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+       String fechaCadStr = sdf.format(produc.getFechaCad());
+       holder.fechTxt.setText(fechaCadStr);
        Picasso.get().load(produc.getUrlimg()).into(holder.imgVis);
        return convertView;
     }
