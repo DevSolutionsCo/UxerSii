@@ -8,8 +8,35 @@ import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
 import ProfilePicSelector from "./ProfilePicSelector";
 import Ranking from "./Ranking";
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
+
+function getCookie(name: string): string | null {
+  const cookieName = name + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+
+  for (let i = 0; i < cookieArray.length; i++) {
+      const cookie = cookieArray[i].trim();
+      if (cookie.indexOf(cookieName) == 0) {
+          return JSON.parse(cookie.substring(cookieName.length, cookie.length));
+      }
+  }
+
+  return null;
+}
+
+function setCookie(name: string, value: unknown, days: number = 30): void {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+}
 
 function Bento() {
+  const datosUsuarioStringL = getCookie("usuarioL");
+
   const [nombreUser, setNombreUser] = useState("");
   const [correoUser, setCorreoH] = useState("");
   const [correoUserAn, setCorreoHAnt] = useState("");
@@ -20,10 +47,6 @@ function Bento() {
 
   useEffect(() => {
     const obtenerDatosUsuario = () => {
-      const datosUsuarioStringS: string | null =
-        localStorage.getItem("usuarioS");
-      const datosUsuarioStringL: string | null =
-        localStorage.getItem("usuarioL");
 
       // Verificar si el valor no es null antes de usarlo
       if (datosUsuarioStringL !== null) {
@@ -33,21 +56,14 @@ function Bento() {
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
-
-        if (datosUsuario.fotoPerfil !== null) {
+        console.log(datosUsuario.fotoPerfil + " hola")
+        if (datosUsuario.fotoPerfil) {
           setFotoPerfil(datosUsuario.fotoPerfil);
         } else {
           setFotoPerfil("/src/assets/profile-pics/default-img.jpg");
         }
 
         //setPasswUser(datosUsuario.contra_hog);
-      } else if (datosUsuarioStringS !== null) {
-        const datosUsuario = JSON.parse(datosUsuarioStringS);
-        setNombreUser(datosUsuario.usuario.nombUserH);
-        setCorreoH(datosUsuario.usuario.correo_hog);
-        setCorreoHAnt(datosUsuario.usuario.correo_hog);
-        //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
-        //setPasswUser(datosUsuario.usuario.contra_hog);
       } else {
         console.error("Los datos del usuario no están disponibles.");
       }
@@ -72,7 +88,7 @@ function Bento() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/uxersiiPruebas/api/v1/actuali/",
+        `${url}actuali/`,
         {
           nombreUser,
           correoUser,
@@ -86,7 +102,7 @@ function Bento() {
       console.log("SI lo actualice vv");
       //const usuario = new Usuario(datosUsuario);
       //console.log(usuario);
-      localStorage.setItem("usuarioL", JSON.stringify(response.data));
+      setCookie('usuarioL', JSON.stringify(response.data))
       location.reload();
       // Maneja la respuesta según tus necesidades
 

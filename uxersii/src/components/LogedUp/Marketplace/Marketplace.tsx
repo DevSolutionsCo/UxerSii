@@ -4,6 +4,12 @@ import { useState } from "react";
 import CardAlim from "./CardAlim";
 import CarritoNav from "./CarritoNav";
 import SelectPuntos from "./SelectPuntos";
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
+
+
+
 interface Producto {
   imagen: string;
   fecha_cad: string;
@@ -22,7 +28,7 @@ function Marketplace() {
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/uxersiiPruebas/api/v1/alimentos/${punto.id_punto}/`
+        `${url}alimentos/${punto.id_punto}/`
       );
 
       setProductosPunto(response.data.productos);

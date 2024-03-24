@@ -211,10 +211,10 @@ def postdonacion(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         id_dona = data.get('id_dona')
-        nombreUser = data.get('nombreUser')
+        nombUserH = data.get('nombUserH')
         id_punto = data.get('id_punto')
         print(f"Codigo: {id_dona}")
-        print(f"nombreUser: {nombreUser}")
+        print(f"nombreUser: {nombUserH}")
         print(f"id_punto: {id_punto}")
         serializer = DonacionesSerializer(data=data)
         serializer.is_valid(raise_exception=True)

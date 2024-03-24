@@ -49,4 +49,11 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
   }
 };
 
+// urlGenerator.ts
+
+export function generateUrl(): string {
+  const baseUrl = 'http://localhost:8000/uxersiiPruebas/api/v1/';
+
+  return `${baseUrl}`;
+}
 

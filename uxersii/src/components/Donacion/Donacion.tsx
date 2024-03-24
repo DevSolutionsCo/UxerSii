@@ -15,6 +15,26 @@ interface PuntoMovil {
   // Agrega otras propiedades según la estructura real de tus datos
 }
 
+import { generateUrl } from '../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
+
+function getCookie(name: string): string | null {
+  const cookieName = name + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+
+  for (let i = 0; i < cookieArray.length; i++) {
+      const cookie = cookieArray[i].trim();
+      if (cookie.indexOf(cookieName) == 0) {
+          return JSON.parse(cookie.substring(cookieName.length, cookie.length));
+      }
+  }
+
+  return null;
+}
+
+
 function Donacion() {
   const [puntos, setPuntos] = useState<PuntoMovil[]>([]);
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
@@ -47,12 +67,8 @@ function Donacion() {
     } else {
       console.error("Geolocalización no está soportada por este navegador");
     }
-
-    const datosUsuarioStringS: string | null =
-          localStorage.getItem("usuarioS");
-        const datosUsuarioStringL: string | null =
-          localStorage.getItem("usuarioL");
-  
+    const datosUsuarioStringL = getCookie("usuarioL");
+    
         // Verificar si el valor no es null antes de usarlo
         if (datosUsuarioStringL !== null) {
           const datosUsuario = JSON.parse(datosUsuarioStringL);
@@ -61,12 +77,6 @@ function Donacion() {
           setNombreUser(datosUsuario.nombUserH);
           console.log(nombUserH)
           //setPasswUser(datosUsuario.contra_hog);
-        } else if (datosUsuarioStringS !== null) {
-          const datosUsuario = JSON.parse(datosUsuarioStringS);
-          setNombreUser(datosUsuario.usuario.nombUserH);
-          console.log(nombUserH)
-          //setFotoPerfil("/src/assets/profile-pics/default-img.jpeg")
-          //setPasswUser(datosUsuario.usuario.contra_hog);
         } else {
           console.error("Los datos del usuario no están disponibles.");
         }
@@ -82,10 +92,10 @@ function Donacion() {
   useEffect(() => {
     async function fetchData() {
 
-
+      console.log(nombUserH + ' hola')
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/uxersiiPruebas/api/v1/puntosm/",
+          `${url}puntosm/`,
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }
@@ -226,7 +236,7 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
   
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/uxersiiPruebas/api/v1/donacion/",
+      `${url}donacion/`,
       {
         nombUserH,
         id_punto,

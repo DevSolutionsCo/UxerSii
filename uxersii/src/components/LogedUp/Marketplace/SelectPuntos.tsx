@@ -8,6 +8,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
 
 export interface PuntoMovil {
   nomb_punto: string;
@@ -37,7 +40,7 @@ const SelectPuntos: React.FC<SelectPuntosProps> = ({ onSelectPunto }) => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "http://localhost:8000/uxersiiPruebas/api/v1/puntosm/"
+          `${url}puntosm/`
         );
         setPuntosMoviles(response.data.puntosmoviles);
       } catch (error) {

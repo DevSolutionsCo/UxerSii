@@ -25,11 +25,14 @@ interface UsuarioInterface {
   usuario: Usuario;
 }
 
+function setCookie(name: string, value: unknown, days: number = 30): void {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+}
+
 function Signup() {
-  localStorage.removeItem('usuarioL');
-  localStorage.removeItem('usuarioS');
-
-
 
   const { register, handleSubmit } = useForm<UsuarioInterface>();
   const [showPassword, setShowPassword] = useState(false);
@@ -55,7 +58,7 @@ function Signup() {
         // Manejar el error específico, por ejemplo, mostrar un mensaje al usuario
       } else {
         console.log("Usuario creado exitosamente:", response.usuario);
-        localStorage.setItem("usuarioS", JSON.stringify(data));
+        setCookie('usuarioL', JSON.stringify(data.usuario))
         console.log(data)
         navigate("/main");
       }

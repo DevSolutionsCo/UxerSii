@@ -2,6 +2,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
 
 function Ranking() {
   const [nomb1, setNomb1] = useState("");
@@ -20,7 +23,8 @@ function Ranking() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/uxersiiPruebas/api/v1/ranking/",
+          `${url}ranking/`,
+
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }

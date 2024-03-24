@@ -14,6 +14,10 @@ interface PuntoMovil {
   // Agrega otras propiedades según la estructura real de tus datos
 }
 
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
+
 function Donacion() {
   const [puntos, setPuntos] = useState<PuntoMovil[]>([]);
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
@@ -52,7 +56,7 @@ function Donacion() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "http://localhost:8000/uxersiiPruebas/api/v1/puntosm/",
+          `${url}puntosm/`,
           {
             // Puedes incluir parámetros de consulta aquí si es necesario
           }

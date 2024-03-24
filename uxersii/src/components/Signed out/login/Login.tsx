@@ -6,6 +6,17 @@ import FotoRight from "../../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg
 import BotonLogin from "./BotonLogin";
 import Inputs from "./Inputs";
 import "./inecesario.css";
+import { generateUrl } from '../../../apis/PruebasSignUp.api';
+
+const url = generateUrl();
+
+function setCookie(name: string, value: unknown, days: number = 30): void {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+}
+
 
 export default function Login() {
   localStorage.removeItem('usuarioL');
@@ -16,13 +27,14 @@ export default function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
+  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault(); // Evita que el formulario se envíe automáticamente
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/uxersiiPruebas/api/v1/login/",
+        `${url}login/`,
         {
           correo_hog,
           contra_hog,
@@ -34,7 +46,8 @@ export default function Login() {
 
       const usuario = new Usuario(datosUsuario);
       console.log(usuario);
-      localStorage.setItem("usuarioL", JSON.stringify(response.data));
+      //localStorage.setItem("usuarioL", JSON.stringify(response.data));
+      setCookie('usuarioL', JSON.stringify(response.data))
 
       // Maneja la respuesta según tus necesidades
 
