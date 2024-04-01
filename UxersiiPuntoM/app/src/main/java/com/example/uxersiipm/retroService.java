@@ -29,7 +29,7 @@ public interface retroService {
     Call<Productos> crearProducto(
             @Part("nomAlim") RequestBody nomAlim,
             @Part("cantidad") RequestBody cantidad,
-            @Part("precio") RequestBody precio,
+            @Part("costo") RequestBody precio,
             @Part("fechaCad") RequestBody fechaCad,
             @Part MultipartBody.Part imagen
     );

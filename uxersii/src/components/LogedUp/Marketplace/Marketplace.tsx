@@ -15,6 +15,7 @@ interface Producto {
   fecha_cad: string;
   nomb_alim: string;
   cantidad: number;
+  costo: number;
 }
 
 interface PuntoMovil {
@@ -69,7 +70,7 @@ function Marketplace() {
               fecha={producto.fecha_cad}
               title={producto.nomb_alim}
               peso={producto.cantidad.toString()}
-              precio="22"
+              precio={producto.costo.toString()}
               cantidad={producto.cantidad} // Asegúrate de pasar la propiedad cantidad
               onAddToCart={() => handleAgregarAlCarrito(producto)} // Pasar producto como argumento
             />

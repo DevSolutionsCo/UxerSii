@@ -39,7 +39,7 @@ function Item() {
       <p>Fecha: {producto.fecha}</p>
       <p>Titulo: {producto.title}</p>
       <p>Peso: {producto.peso}</p>
-      <p>Precio: {producto.precio}</p>
+      <p>Precio: ${producto.precio}</p>
     </div>
   );
 }

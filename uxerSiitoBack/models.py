@@ -55,6 +55,7 @@ class Alimentos(models.Model):
     fecha_cad = models.DateField(blank=True, null=True)
     cantidad = models.IntegerField(blank=True, null=True)
     id_punto = models.IntegerField(blank=True, null=True)
+    costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     imagen = models.ImageField(upload_to='uxersii/src/assets/alimentos/', blank=True, null=True)
 
 

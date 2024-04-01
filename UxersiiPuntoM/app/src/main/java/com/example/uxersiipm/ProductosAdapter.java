@@ -58,7 +58,7 @@ public class ProductosAdapter extends BaseAdapter {
        }
        Productos produc= productos.get(position);
        holder.nombTxt.setText(produc.getNomAlim());
-       int pres = produc.getPrecio();
+       float pres = produc.getPrecio();
        if (pres != 0){
            holder.presTxt.setText(String.valueOf(pres));
        }else{

@@ -75,7 +75,7 @@ function CardAlim(props: Props) {
             <h2 className="text-sm">
               Cantidad: <span className="font-bold">{props.peso}</span>
             </h2>
-            <h2 className="text-sm">{props.precio}</h2>
+            <h2 className="text-sm">${props.precio}</h2>
           </div>
         </div>
       </Link>

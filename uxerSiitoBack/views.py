@@ -313,8 +313,11 @@ def postalimentos(request):
             cantidad=request.POST.get('cantidad'),
             fecha_cad=request.POST.get('fechaCad'),
             id_punto=1,
+            costo=request.POST.get('costo'),
             # Otros campos según sea necesario
         )
+
+        print(request.POST.get('costo'))
         # Guarda la imagen convertida en el campo imagen
         alimento.imagen.save(f"{os.path.basename(imagen.name).split('.')[0]}.webp", output_stream, save=True) # type: ignore
 
