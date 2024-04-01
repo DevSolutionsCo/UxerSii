@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/v1/donacion/', postdonacion, name='donacion'), # type: ignore
     path('api/v1/puntosm/', getpuntos, name='puntosm'),
     path('api/v1/alimentos/<int:id_punto>/', getalimentos, name='alimentos'),
-    path('api/v1/valcod/<int:codigo>/', valcod, name='valcod'),
+    path('api/v1/valcod/<str:codigo>/', valcod, name='valcod'),
     path('api/v1/alimentosp/', postalimentos, name='alimentosp'),
     #path('alimentos/<str:nombre_archivo>', serve, {'document_root': settings.STATIC_ROOT + '/alimentos/'}),
     path('api/v1/datosUserH/', obtenerdatosuserh, name='datos'), # type: ignore

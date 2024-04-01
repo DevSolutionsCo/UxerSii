@@ -1,5 +1,7 @@
 package com.example.uxersiipm;
 
+import com.google.gson.JsonObject;
+
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -21,7 +23,7 @@ public interface retroService {
 
 
     @GET("api/v1/alimentos/{id_punto}/")
-    Call<List<Productos>> obtenerProductos(@Path("id_punto")int idPunto);
+    Call<JsonObject> obtenerProductos(@Path("id_punto")int idPunto);
     @Multipart
     @POST("api/v1/alimentosp/")
     Call<Productos> crearProducto(
@@ -37,6 +39,6 @@ public interface retroService {
     Call<Void> eliminarProducto(@Path("id") int id);
 
     @GET("api/v1/valcod/{codigo}/")
-    Call<Void> validarCodigo(@Path("codigo") String codigo);
+    Call<JsonObject> validarCodigo(@Path("codigo") String codigo);
 
 }

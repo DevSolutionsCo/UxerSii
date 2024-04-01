@@ -12,9 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,27 +72,50 @@ public class index extends AppCompatActivity {
         });
         lista=findViewById(R.id.inv);
         retro=retroClient.getRetrofitInstance().create(retroService.class);
-        Call<List<Productos>> call = retro.obtenerProductos(1);
-        call.enqueue(new Callback<List<Productos>>() {
+        Call<JsonObject> call = retro.obtenerProductos(1);
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<List<Productos>> call, Response<List<Productos>> response) {
-                if (response.isSuccessful()){
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        JsonObject jsonObject = response.body();
 
-                    List<Productos> productos = response.body();
-                    for (Productos producto : productos) {
-                        Log.d("DatosProducto", "Nombre: " + producto.getNomAlim() +
-                                ", Cantidad: " + producto.getCantidad() +
-                                ", Precio: " + producto.getPrecio() +
-                                ", Fecha de caducidad: " + producto.getFechaCad() +
-                                ", URL de imagen: " + producto.getUrlimg());
+                        if (jsonObject.has("productos")) {
+                            Gson gson = new Gson();
+                            Type productListType = new TypeToken<List<Productos>>(){}.getType();
+                            List<Productos> productos = gson.fromJson(jsonObject.get("productos"), productListType);
+
+                            for (Productos producto : productos) {
+                                try {
+                                    String fechaCadFormateada = producto.getFechaCad();  // La fecha ya está en formato String
+                                    Log.d("DatosProducto", "Nombre: " + producto.getNomAlim() +
+                                            ", Cantidad: " + producto.getCantidad() +
+                                            ", Precio: " + producto.getPrecio() +
+                                            ", Fecha de caducidad: " + fechaCadFormateada +  // Mostrar fecha directamente
+                                            ", URL de imagen: " + "https://781hhnms-5173.usw3.devtunnels.ms/" + producto.getUrlimg());;
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.e("Fecha", "Error al obtener la fecha: " + producto.getFechaCad());
+                                }
+                            }
+
+                            adap = new ProductosAdapter(index.this, productos);
+                            lista.setAdapter(adap);
+                        } else {
+                            Toast.makeText(index.this, "Respuesta del servidor sin productos", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(index.this, "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
                     }
-                    adap = new ProductosAdapter(index.this, productos);
-                    lista.setAdapter(adap);
+                } else {
+                    Toast.makeText(index.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
                 }
             }
 
+
             @Override
-            public void onFailure(Call<List<Productos>> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
 
             }
         });

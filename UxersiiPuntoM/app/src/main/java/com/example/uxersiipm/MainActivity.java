@@ -9,11 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     Button iniciarB;
@@ -37,20 +37,35 @@ public class MainActivity extends AppCompatActivity {
     }
     private void validarcod(String codigo){
         retroService retro = retroClient.getRetrofitInstance().create(retroService.class);
-        Call<Void> call=retro.validarCodigo(codigo);
-        call.enqueue(new Callback<Void>() {
+        Call<JsonObject> call=retro.validarCodigo(codigo);
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Intent intent = new Intent(MainActivity.this, index.class);
-                    startActivity(intent);
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        JsonObject jsonObject = response.body();
+
+                        if (jsonObject.has("mensaje")) {
+                            String mensaje = jsonObject.get("mensaje").getAsString();
+                            Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(MainActivity.this, index.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Respuesta del servidor sin mensaje", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Código inválido", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+
+
+        }
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });

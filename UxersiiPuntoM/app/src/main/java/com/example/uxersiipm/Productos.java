@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class Productos {
-    @SerializedName("nom_alim")
+    @SerializedName("nomb_alim")
     private String nomAlim;
     @SerializedName("cantidad")
     private int cantidad;

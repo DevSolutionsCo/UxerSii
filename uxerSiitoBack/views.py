@@ -1,5 +1,6 @@
 from email.mime import image
 import io
+import os
 from tkinter import Image
 from django.forms import model_to_dict
 from django.shortcuts import render
@@ -265,14 +266,15 @@ model = load_model(model_path)
 @csrf_exempt
 def postalimentos(request):
     # Categorías de frutas
-    categorias = ['freshapples', 'freshbanana', 'freshcucumber', 
-             'freshoranges', 'freshtomato',
-              'rottenapples', 'rottenbanana', 'rottencucumber',
-             'rottenoranges', 'rottentomato']
+    categorias = ['Manzana Fresca', 'Banana Fresca', 'Pepino Frezco', 
+             'Naranja Fresca', 'Tomate Fresco',
+              'Manzana Podrida', 'Banana Podrida', 'Pepino Podrido',
+             'Naranja Podrida', 'Tomate Podrido']
 
 
     if request.method == 'POST':
         # Verifica si la solicitud tiene datos multipart (por ejemplo, una imagen)
+        output_stream = io.BytesIO()
         if request.FILES:
             imagen = request.FILES['imagen']
             # Lee los bytes de la imagen
@@ -281,6 +283,11 @@ def postalimentos(request):
             image_stream = io.BytesIO(image_bytes)
             # Abre la imagen con PIL
             img = Image.open(image_stream)
+            imgGua = Image.open(image_stream)
+
+            # Convierte la imagen a formato .webp
+            imgGua.save(output_stream, format="WEBP", quality=50)
+            output_stream.seek(0)
         else:
             return JsonResponse({'error': 'No image provided'}, status=400)
         
@@ -306,9 +313,10 @@ def postalimentos(request):
             cantidad=request.POST.get('cantidad'),
             fecha_cad=request.POST.get('fechaCad'),
             id_punto=1,
-            imagen=imagen
             # Otros campos según sea necesario
         )
+        # Guarda la imagen convertida en el campo imagen
+        alimento.imagen.save(f"{os.path.basename(imagen.name).split('.')[0]}.webp", output_stream, save=True) # type: ignore
 
         # Serializa el nuevo alimento en formato JSON
         serializer = AlimentosSerializer(alimento)
@@ -325,9 +333,10 @@ def valcod(request, codigo):
     try:
         # Busca al usuario en la base de datos
         user = PuntosColecta.objects.get(valcod=codigo)
-
+        
     
-        return JsonResponse({'mensaje': 'Inicio de sesion exitoso'
+        return JsonResponse({'mensaje': 'Inicio de sesion exitoso',
+                             'id_punto': user.id_punto
                             })
         
     except PuntosColecta.DoesNotExist:
