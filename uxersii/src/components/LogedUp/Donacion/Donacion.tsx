@@ -19,8 +19,12 @@ import { generateUrl } from '../../../apis/PruebasSignUp.api';
 const url = generateUrl();
 
 function Donacion() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [puntos, setPuntos] = useState<PuntoMovil[]>([]);
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [puntoMasCercano, setPuntoMas] = useState<PuntoMovil[]>([]);
   const [latitud, setLatitud] = useState<number>(0);
   const [longitud, setLongitud] = useState<number>(0);

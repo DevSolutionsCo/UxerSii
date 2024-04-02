@@ -38,6 +38,8 @@ function getCookie(name: string): string | null {
 function Donacion() {
   const [puntos, setPuntos] = useState<PuntoMovil[]>([]);
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [puntoMasCercano, setPuntoMas] = useState<PuntoMovil[]>([]);
   const [latitud, setLatitud] = useState<number>(0);
   const [id_punto, setIdPunto] = useState<number>(0);
@@ -47,6 +49,8 @@ function Donacion() {
   const [horarioMas, setHorarioMas] = useState("");
   const [id_dona, setCodigo] = useState("");
   const [nombUserH, setNombreUser] = useState("");
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [estatus, setEstatus] = useState("En proceso");
   //const [correoUser, setCorreoH] = useState("");
   //const [correoUserAn, setCorreoHAnt] = useState("");
@@ -105,6 +109,7 @@ function Donacion() {
         console.log(response.data);
         // Maneja la respuesta según tus necesidades
         setPuntos(response.data.puntosmoviles);
+        console.log(puntos)
         console.log(puntosMoviles);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error) {

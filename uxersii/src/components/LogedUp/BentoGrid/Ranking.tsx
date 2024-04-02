@@ -13,6 +13,8 @@ function Ranking() {
 
   const [fotoP1, setFotoP1] = useState("");
   const [fotoP2, setFotoP2] = useState("");
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [fotoP3, setFotoP3] = useState("");
 
   const [numD1, setNumD1] = useState("");
@@ -34,7 +36,8 @@ function Ranking() {
         // Maneja la respuesta según tus necesidades
         const usuarios = response.data.usuarios;
         console.log(usuarios);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const datosUsuarios = usuarios.map(
           (usuario: {
             nombreUser: unknown;

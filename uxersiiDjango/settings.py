@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-sda*8joa^(8v42l1ul-99u%@4_c4())-u+#o6*=iah!pw@-@(=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "uxersii.up.railway.app"]
+ALLOWED_HOSTS = ["localhost", "uxersii.up.railway.app", "127.0.0.1", "127.0.0.1:8000"]
 
 
 # Application definition
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'uxersiiDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'uxersii', 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,6 +144,8 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'uxersii', 'dist')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -153,11 +155,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS Authorization
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
     'https://781hhnms-5173.usw3.devtunnels.ms',
-    'https://k91n550s-5173.usw3.devtunnels.ms'
+    'https://k91n550s-5173.usw3.devtunnels.ms',
+    'https://uxersii.up.railway.app'
 ]
 
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ["http://*", "https://uxersii.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://uxersii.up.railway.app", "http://127.0.0.1:8000/"]
