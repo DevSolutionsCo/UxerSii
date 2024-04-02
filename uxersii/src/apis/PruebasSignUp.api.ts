@@ -54,7 +54,7 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
 export function generateUrl(): string {
 
 
-  const baseUrl = `http://localhost:8000/uxersiiPruebas/api/v1/`;
+  const baseUrl = `https://uxersii.up.railway.app/uxersiiPruebas/api/v1/`;
 
   return `${baseUrl}`;
 }
