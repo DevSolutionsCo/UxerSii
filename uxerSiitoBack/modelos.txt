@@ -15,13 +15,38 @@ class Administrador(models.Model):
     nombre_admin = models.CharField(max_length=30, db_collation='utf8mb3_general_ci', blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'administrador'
 
     def __str__(self) -> str:
         return self.nombre_admin # type: ignore
 
 
+class AdministradorEst(models.Model):
+    id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
+    id_est = models.ForeignKey('UsuarioEstablecimiento', models.DO_NOTHING, db_column='id_est', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'administrador_est'
+
+
+class AdministradorHog(models.Model):
+    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+    id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'administrador_hog'
+
+
+class AdministradorOrg(models.Model):
+    id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
+    id_ofc = models.ForeignKey('UsuarioOrganizacion', models.DO_NOTHING, db_column='id_ofc', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'administrador_org'
 
 
 class Alimentos(models.Model):
@@ -33,8 +58,10 @@ class Alimentos(models.Model):
     costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     imagen = models.ImageField(upload_to='uxersii/src/assets/alimentos/', blank=True, null=True)
 
+
+
     class Meta:
-        managed = True
+        managed = False
         db_table = 'alimentos'
 
     def __str__(self) -> str:
@@ -110,6 +137,23 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class CompraHog(models.Model):
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'compra_hog'
+
+
+class CompraOrg(models.Model):
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+    id_ofc = models.ForeignKey('UsuarioOrganizacion', models.DO_NOTHING, db_column='id_ofc', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'compra_org'
+
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
@@ -169,7 +213,7 @@ class PuntosColecta(models.Model):
     valcod = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'puntos_colecta'
     
     def __str__(self) -> str:
@@ -186,13 +230,73 @@ class Donaciones(models.Model):
     nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'donaciones'
 
     def __str__(self) -> str:
         return self.id_dona # type: ignore
 
 
+class EstableAlim(models.Model):
+    id_est = models.ForeignKey('UsuarioEstablecimiento', models.DO_NOTHING, db_column='id_est', blank=True, null=True)
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'estable_alim'
+
+
+
+
+class EstableEve(models.Model):
+    id_est = models.ForeignKey('UsuarioEstablecimiento', models.DO_NOTHING, db_column='id_est', blank=True, null=True)
+    id_eve = models.ForeignKey('Eventos', models.DO_NOTHING, db_column='id_eve', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'estable_eve'
+
+
+class Eventos(models.Model):
+    id_eve = models.AutoField(primary_key=True)
+    nombre_eve = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    fecha_eve = models.DateField(blank=True, null=True)
+    desc_eve = models.TextField(blank=True, null=True)
+    cp_eve = models.CharField(max_length=6, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    tipo_eve = models.CharField(max_length=30, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    num_asist = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'eventos'
+
+
+class HogarAlim(models.Model):
+    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hogar_alim'
+
+
+
+class HogarEve(models.Model):
+    id_eve = models.ForeignKey(Eventos, models.DO_NOTHING, db_column='id_eve', blank=True, null=True)
+    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hogar_eve'
+
+
+class Insignias(models.Model):
+    id_ins = models.AutoField(primary_key=True)
+    tipo_ins = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'insignias'
 
 
 class Mensajes(models.Model):
@@ -205,9 +309,65 @@ class Mensajes(models.Model):
     id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'mensajes'
 
+
+class ObtieneEst(models.Model):
+    id_ins = models.ForeignKey(Insignias, models.DO_NOTHING, db_column='id_ins', blank=True, null=True)
+    id_est = models.ForeignKey('UsuarioEstablecimiento', models.DO_NOTHING, db_column='id_est', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'obtiene_est'
+
+
+class ObtieneHog(models.Model):
+    id_ins = models.ForeignKey(Insignias, models.DO_NOTHING, db_column='id_ins', blank=True, null=True)
+    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'obtiene_hog'
+
+
+class OrgAlim(models.Model):
+    id_ofc = models.ForeignKey('UsuarioOrganizacion', models.DO_NOTHING, db_column='id_ofc', blank=True, null=True)
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'org_alim'
+
+
+
+
+class OrgEve(models.Model):
+    id_ofc = models.ForeignKey('UsuarioOrganizacion', models.DO_NOTHING, db_column='id_ofc', blank=True, null=True)
+    id_eve = models.ForeignKey(Eventos, models.DO_NOTHING, db_column='id_eve', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'org_eve'
+
+
+
+
+class UsuarioEstablecimiento(models.Model):
+    id_est = models.AutoField(primary_key=True)
+    nombre_est = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    cp_est = models.CharField(max_length=6, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    contra_est = models.CharField(max_length=25, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    correo_est = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    tel_est = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    desc_est = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    tipo_redest = models.CharField(max_length=12, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    link_redest = models.CharField(max_length=250, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    fotoest = models.TextField(db_column='fotoEst', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'usuario_establecimiento'
 
 
 class UsuarioHogar(models.Model):
@@ -233,32 +393,21 @@ class UsuarioHogar(models.Model):
         return self.nombUserH # type: ignore
 
 
-class AdministradorHog(models.Model):
-    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
-    id_admin = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='id_admin', blank=True, null=True)
+class UsuarioOrganizacion(models.Model):
+    id_ofc = models.CharField(primary_key=True, max_length=15, db_collation='utf8mb3_general_ci')
+    nombre_org = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    cp_org = models.CharField(max_length=6, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    contra_org = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    correo_org = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    desc_org = models.TextField(blank=True, null=True)
+    tel_org = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    tipo_redorg = models.CharField(max_length=12, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    link_org = models.CharField(max_length=250, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    fotoorg = models.TextField(db_column='fotoOrg', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = True
-        db_table = 'administrador_hog'
-
-class HogarAlim(models.Model):
-    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
-    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'hogar_alim'
-
-
-
-class CompraHog(models.Model):
-    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
-    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'compra_hog'
-
+        managed = False
+        db_table = 'usuario_organizacion'
 
 
 class userSiitoBack(models.Model):
@@ -269,3 +418,11 @@ class userSiitoBack(models.Model):
     def __str__(self) -> str:
         return self.titulo
     
+
+class VentaEst(models.Model):
+    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
+    id_est = models.ForeignKey(UsuarioEstablecimiento, models.DO_NOTHING, db_column='id_est', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'venta_est'
