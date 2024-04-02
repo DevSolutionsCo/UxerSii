@@ -12,8 +12,8 @@ public class Productos {
 
     @SerializedName("fecha_cad")
     private String fechaCad;
-    @SerializedName("precio")
-    private int precio;
+    @SerializedName("costo")
+    private float precio;
     @SerializedName("imagen")
     private String urlimg;
 
@@ -36,11 +36,11 @@ public class Productos {
         this.urlimg = urlimg;
     }
 
-    public int getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
@@ -72,7 +72,7 @@ public class Productos {
     }
 
 
-    public Productos(String nomAlim, int cantidad, String fechaCad, int precio, String urlimg) {
+    public Productos(String nomAlim, int cantidad, String fechaCad, float precio, String urlimg) {
         this.nomAlim = nomAlim;
         this.cantidad = cantidad;
         this.fechaCad = fechaCad;

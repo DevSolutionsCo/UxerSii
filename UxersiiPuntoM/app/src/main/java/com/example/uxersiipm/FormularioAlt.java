@@ -93,7 +93,7 @@ public class FormularioAlt extends DialogFragment {
                 Productos producto = new Productos();
                 producto.setNomAlim(nombAli.getText().toString());
                 producto.setCantidad(Integer.parseInt(cantidad.getText().toString()));
-                producto.setPrecio(Integer.parseInt(precio.getText().toString()));
+                producto.setPrecio(Float.parseFloat(precio.getText().toString()));
                 producto.setFechaCad(fechaFormateada);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 Bitmap bitmap = ((BitmapDrawable) imgProduc.getDrawable()).getBitmap(); // Obtén la imagen de tu ImageView
