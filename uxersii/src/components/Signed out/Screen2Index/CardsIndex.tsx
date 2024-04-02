@@ -33,7 +33,7 @@ function CardsIndex(props: props) {
       </picture>
       <div className="col-span-3 overflow-y-auto max-h-[18rem]">
         <h2 className="text-2xl font-bold">{props.title} </h2>
-        <div className="max-h-[12rem] overflow-y-auto overflow-x-hidden scrollbar-none">
+        <div className="max-h-[12rem] overflow-y-auto overflow-x-hidden no-scrollbar">
           <p>{props.children}</p>
         </div>
       </div>
