@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sda*8joa^(8v42l1ul-99u%@4_c4())-u+#o6*=iah!pw@-@(=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "uxersii.up.railway.app"]
 
 
 # Application definition
@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'uxersiiDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'uxersii',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',  # Si tu MySQL está en la misma máquina
-        'PORT': '3306',       # Ajusta el puerto según tu configuración de MySQL
+        'PASSWORD': 'KMvROFfWYdyXYcFrRjYLrmbTpRXHZuoa',
+        'HOST': 'roundhouse.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
+        'PORT': '54428',       # Ajusta el puerto según tu configuración de MySQL
     }
 }
 
