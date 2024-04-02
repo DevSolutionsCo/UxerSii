@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+import pymysql
+
+pymysql.install_as_MySQLdb()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,7 +92,11 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'KMvROFfWYdyXYcFrRjYLrmbTpRXHZuoa',
         'HOST': 'roundhouse.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
-        'PORT': '54428',       # Ajusta el puerto según tu configuración de MySQL
+        'PORT': '54428',  
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },     # Ajusta el puerto según tu configuración de MySQL
     }
 }
 
