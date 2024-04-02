@@ -1,7 +1,5 @@
-import BarChartIcon from "@mui/icons-material/BarChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import HomeIcon from "@mui/icons-material/Home";
-import LayersIcon from "@mui/icons-material/Layers";
 import PeopleIcon from "@mui/icons-material/People";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -39,18 +37,6 @@ export const mainListItems = (
         <ListItemText primary="Donaciones" />
       </ListItemButton>
     </Link>
-    <ListItemButton onClick={handleItemClick}>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton onClick={handleItemClick}>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
   </React.Fragment>
 );
 

@@ -60,7 +60,7 @@ function CarritoNav({ productosCarrito }: CarritoNavProps) {
           </StyledBadge>
         </IconButton>
         {hoverCarritoVisible && (
-          <div className="absolute top-12 -right-9 bg-white rounded shadow-md p-2 w-[470px]">
+          <div className="absolute top-12 -right-9 bg-white rounded shadow-md p-2 w-[470px] overflow-auto max-h-[50vh] scrollbar-thin ">
             {Object.entries(cantidades).map(([nombre, cantidad], index) => {
               const producto = productosCarrito.find(
                 (p) => p.nomb_alim === nombre

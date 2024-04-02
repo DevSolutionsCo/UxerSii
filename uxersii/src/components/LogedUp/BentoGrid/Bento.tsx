@@ -1,27 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import foto from "../../../assets/profile-pics/default-img.jpg";
 import Popup from "../../Popups/Popup";
 import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
+import Carouselsillo from "./Carousel";
 import ProfilePicSelector from "./ProfilePicSelector";
 import Ranking from "./Ranking";
-import { generateUrl } from '../../../apis/PruebasSignUp.api';
 
 const url = generateUrl();
 
 function getCookie(name: string): string | null {
   const cookieName = name + "=";
   const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(';');
+  const cookieArray = decodedCookie.split(";");
 
   for (let i = 0; i < cookieArray.length; i++) {
-      const cookie = cookieArray[i].trim();
-      if (cookie.indexOf(cookieName) == 0) {
-          return JSON.parse(cookie.substring(cookieName.length, cookie.length));
-      }
+    const cookie = cookieArray[i].trim();
+    if (cookie.indexOf(cookieName) == 0) {
+      return JSON.parse(cookie.substring(cookieName.length, cookie.length));
+    }
   }
 
   return null;
@@ -29,9 +30,10 @@ function getCookie(name: string): string | null {
 
 function setCookie(name: string, value: unknown, days: number = 30): void {
   const date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
   const expires = "expires=" + date.toUTCString();
-  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+  document.cookie =
+    name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
 }
 
 function Bento() {
@@ -47,7 +49,6 @@ function Bento() {
 
   useEffect(() => {
     const obtenerDatosUsuario = () => {
-
       // Verificar si el valor no es null antes de usarlo
       if (datosUsuarioStringL !== null) {
         const datosUsuario = JSON.parse(datosUsuarioStringL);
@@ -56,7 +57,7 @@ function Bento() {
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
-        console.log(datosUsuario.fotoPerfil + " hola")
+        console.log(datosUsuario.fotoPerfil + " hola");
         if (datosUsuario.fotoPerfil) {
           setFotoPerfil(datosUsuario.fotoPerfil);
         } else {
@@ -87,22 +88,19 @@ function Bento() {
     e.preventDefault(); // Evita que el formulario se envíe automáticamente
 
     try {
-      const response = await axios.post(
-        `${url}actuali/`,
-        {
-          nombreUser,
-          correoUser,
-          passwUser,
-          correoUserAn,
-          fotoPerfil,
-        }
-      );
+      const response = await axios.post(`${url}actuali/`, {
+        nombreUser,
+        correoUser,
+        passwUser,
+        correoUserAn,
+        fotoPerfil,
+      });
 
       console.log(response.data);
       console.log("SI lo actualice vv");
       //const usuario = new Usuario(datosUsuario);
       //console.log(usuario);
-      setCookie('usuarioL', JSON.stringify(response.data))
+      setCookie("usuarioL", JSON.stringify(response.data));
       location.reload();
       // Maneja la respuesta según tus necesidades
 
@@ -146,10 +144,9 @@ function Bento() {
             <Ranking />
           </div>
         </BentoItem>
-        <BentoItem
-          className="col-span-10 lg:col-span-6"
-          title="Puntos moviles"
-        ></BentoItem>
+        <BentoItem className="col-span-10 lg:col-span-6" title="Puntos moviles">
+          <Carouselsillo></Carouselsillo>
+        </BentoItem>
         <BentoItem
           className="col-span-10 lg:col-span-4"
           title="Soporte tecnico"

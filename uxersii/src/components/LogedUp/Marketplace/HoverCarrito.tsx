@@ -28,7 +28,7 @@ function HoverCarrito(props: Props) {
   };
 
   return (
-    <div className="border border-black/5 flex justify-start w-full h-full items-center rounded-lg">
+    <div className="border border-black/5 flex justify-start w-full h-full items-center rounded-lg mb-4">
       <div className="p-2 ">
         <img src={props.imagen} className="w-auto h-20" alt="Product" />
       </div>
