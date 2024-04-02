@@ -144,7 +144,10 @@ function Bento() {
             <Ranking />
           </div>
         </BentoItem>
-        <BentoItem className="col-span-10 lg:col-span-6" title="Puntos moviles">
+        <BentoItem
+          className="col-span-10 lg:col-span-6 py-3"
+          title="Puntos moviles"
+        >
           <Carouselsillo />
         </BentoItem>
         <BentoItem
