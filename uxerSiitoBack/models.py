@@ -179,11 +179,11 @@ class PuntosColecta(models.Model):
 class Donaciones(models.Model):
     id_dona = models.CharField(primary_key=True, max_length=100)
     catn_adon = models.IntegerField(blank=True, null=True)
-    nomb_alim_dona = models.CharField(max_length=100, blank=True, null=True)
-    fecha_cad_dona = models.DateField(blank=True, null=True)  # Field name made lowercase.
-    estatus = models.CharField(max_length=15, blank=True, null=True)  # Field name made lowercase.
+    nomb_alim_dona = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    fecha_cad_dona = models.DateField(db_column='fecha_cad_dona', blank=True, null=True)  # Field name made lowercase.
+    estatus = models.CharField(db_column='estatus', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
     id_punto = models.IntegerField(blank=True, null=True)
-    nombUserH = models.CharField(max_length=15, blank=True, null=True)  # Field name made lowercase.
+    nombUserH = models.CharField(db_column='nombUserH', max_length=15, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True

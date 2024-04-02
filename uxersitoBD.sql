@@ -32,7 +32,7 @@ create table donaciones(
 id_dona nvarchar(100) primary key not null,
 catn_adon int,
 nomb_alim_dona nvarchar(100),
-fecha_Cad_dona date,
+fecha_cad_dona date,
 estatus nvarchar(15),
 nombUserH nvarchar(15),
 id_punto int
