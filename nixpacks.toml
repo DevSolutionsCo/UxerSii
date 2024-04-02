@@ -4,7 +4,7 @@ providers = ["node", "python"]
 NODE_ENV = 'production'
 
 [deploy]
-startCommand = "cd uxersii && npm install && cd .. && python manage.py migrate && python manage.py collectstatic && gunicorn uxersiiDjango.wsgi"
+startCommand = "cd uxersii && npm install && cd .. && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn uxersiiDjango.wsgi"
 sleepApplication = false
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10

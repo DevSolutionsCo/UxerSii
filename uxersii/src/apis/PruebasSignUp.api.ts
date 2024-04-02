@@ -53,9 +53,8 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
 
 export function generateUrl(): string {
 
-  const url = process.env.NODE_ENV === "production" ? import.meta.env.VITE_BACKEND_URL : "https://uxersii.up.railway.app/"
 
-  const baseUrl = `${url}uxersiiPruebas/api/v1/`;
+  const baseUrl = `http://localhost:8000/uxersiiPruebas/api/v1/`;
 
   return `${baseUrl}`;
 }
