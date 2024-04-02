@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             old_name='nombuserh',
             new_name='nombUserH',
         ),
-        migrations.AddField(
-            model_name='usuariohogar',
-            name='numDonaciones',
-            field=models.IntegerField(blank=True, db_column='numDonaciones', null=True),
-        ),
     ]
