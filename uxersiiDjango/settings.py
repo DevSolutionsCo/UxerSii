@@ -160,3 +160,4 @@ CORS_ALLOWED_ORIGINS = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://uxersii.up.railway.app"]
