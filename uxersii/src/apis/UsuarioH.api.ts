@@ -19,7 +19,7 @@ interface Usuario {
     }
 
 const usuarioH = axios.create({
-    baseURL: "http://127.0.0.1:8000/uxersiiPruebas/api/v1/update/"
+    baseURL: "https://uxersii.up.railway.app/uxersiiPruebas/api/v1/update/"
 })
 
 //export const getUsuario = (id: number) => usuarioH.get(`/${id}`)
