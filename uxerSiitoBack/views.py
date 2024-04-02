@@ -1,6 +1,8 @@
 from email.mime import image
+import gzip
 import io
 import os
+import shutil
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
@@ -254,16 +256,24 @@ import numpy as np
 from PIL import Image
 
 
-    # Ruta al archivo .h5 del modelo
-model_path = 'uxerSiitoBack/fruit_model_v6.h5'
+ # Ruta al archivo .h5 comprimido del modelo
+model_path_compressed = 'uxerSiitoBack/fruit_model_v6.h5.gz'
+model_path_decompressed = 'uxerSiitoBack/fruit_model_v6.h5'
 
-    # Cargar el modelo
-#model = load_model(model_path)
-model = load_model(model_path)
+    # Descomprimir el modelo
+with gzip.open(model_path_compressed, 'rb') as f_in:
+    with open(model_path_decompressed, 'wb') as f_out:
+        shutil.copyfileobj(f_in, f_out)
 
+    # Cargar el modelo descomprimido
+model = load_model(model_path_decompressed)
 
 @csrf_exempt
 def postalimentos(request):
+
+
+   
+
     # Categorías de frutas
     categorias = ['Manzana Fresca', 'Banana Fresca', 'Pepino Frezco', 
              'Naranja Fresca', 'Tomate Fresco',
