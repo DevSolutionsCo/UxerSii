@@ -90,9 +90,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': 'FKXINsxFYWTxxnZHNtjySFwjINJDJiIM',
-        'HOST': 'roundhouse.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
-        'PORT': '58481',  
+        'PASSWORD': 'GAwCdRcEmIrzgWRuFLdjGPPvWzmbNAQp',
+        'HOST': 'monorail.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
+        'PORT': '56865',  
         'OPTIONS': {
             'charset': 'utf8mb4',
             'use_unicode': True,
