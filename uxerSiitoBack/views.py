@@ -1,7 +1,6 @@
 from email.mime import image
 import io
 import os
-from tkinter import Image
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
