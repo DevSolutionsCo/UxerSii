@@ -3,14 +3,14 @@
     "build": {
       "builder": "NIXPACKS",
       "nixpacksPlan": {
-          "providers": ["python", "nodejs", "staticfile"],
+          "providers": ["python", "staticfile"],
           "phases": {
               "setup": {
                   "nixPkgs": ["...", "nodejs"]
               }
           }
       },
-      "buildCommand": "npm ci && pip install -r requirements.txt"
+      "buildCommand": "npm ci"
     },
     "deploy": {
       "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn uxersiiDjango.wsgi",
@@ -18,4 +18,3 @@
       "restartPolicyMaxRetries": 10
     }
   }
-  
