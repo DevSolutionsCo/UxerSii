@@ -34,9 +34,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function CardAlim(props: Props) {
   const [agregado, setAgregado] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [unidadesDisponibles, setUnidadesDisponibles] = useState(
+    props.cantidad
+  );
 
   const handleClickAgregar = () => {
-    if (props.cantidad > 0 && !agregado) {
+    if (unidadesDisponibles > 0) {
       props.onAddToCart({
         img: props.img,
         fecha: props.fecha,
@@ -45,9 +48,10 @@ function CardAlim(props: Props) {
         precio: props.precio,
         cantidad: 1, // Siempre agregar solo una unidad
       });
-      setAgregado(true);
+      setAgregado(true); // Solo modificar el estado si se agregó correctamente
+      setUnidadesDisponibles(unidadesDisponibles - 1); // Actualizar unidades disponibles
     } else {
-      setShowAlert(true);
+      setShowAlert(true); // Mostrar la alerta si no hay suficiente cantidad
       setTimeout(() => {
         setShowAlert(false);
       }, 3000);
@@ -82,10 +86,11 @@ function CardAlim(props: Props) {
       <BotonLogin
         className="mt-2 bg-[#C3DDFF] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full"
         onClick={handleClickAgregar}
+        disabled={!unidadesDisponibles} // Deshabilitar el botón cuando no hay unidades disponibles
       >
-        Agregar
+        {unidadesDisponibles > 0 ? "Agregar" : "Sin mas existencias"}
       </BotonLogin>
-      {showAlert && (
+      {showAlert && unidadesDisponibles === 0 && (
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
