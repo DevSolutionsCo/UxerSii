@@ -1,14 +1,12 @@
 // Marketplace.tsx
 import axios from "axios";
 import { useState } from "react";
+import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import CardAlim from "./CardAlim";
 import CarritoNav from "./CarritoNav";
 import SelectPuntos from "./SelectPuntos";
-import { generateUrl } from '../../../apis/PruebasSignUp.api';
 
 const url = generateUrl();
-
-
 
 interface Producto {
   imagen: string;
@@ -28,16 +26,13 @@ function Marketplace() {
 
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
-      const response = await axios.get(
-        `${url}alimentos/${punto.id_punto}/`
-      );
+      const response = await axios.get(`${url}alimentos/${punto.id_punto}/`);
 
       setProductosPunto(response.data.productos);
     } catch (error) {
       console.error("Error al realizar la solicitud GET:", error);
     }
   };
-
   const handleAgregarAlCarrito = (producto: Producto) => {
     const productoExistente = carrito.find(
       (item) => item.nomb_alim === producto.nomb_alim

@@ -12,6 +12,7 @@ interface Producto {
   fecha_cad: string;
   nomb_alim: string;
   cantidad: number;
+  costo: number;
 }
 
 interface CarritoNavProps {
@@ -69,11 +70,11 @@ function CarritoNav({ productosCarrito }: CarritoNavProps) {
               return (
                 <HoverCarrito
                   key={index}
-                  precio="22"
+                  precio={"$" + producto.costo.toString()} // Pasa el precio del producto al HoverCarrito
                   title={nombre}
                   fecha={producto.fecha_cad}
                   cantidad={cantidad.toString()}
-                  imagen={producto.imagen} // Pasar la URL de la imagen al HoverCarrito
+                  imagen={producto.imagen}
                 />
               );
             })}
