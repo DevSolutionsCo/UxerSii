@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 import pymysql
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 pymysql.install_as_MySQLdb()
 
@@ -104,7 +107,11 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-
+cloudinary.config(
+    cloud_name='dgrhyyuef',
+    api_key='558458217323361',
+    api_secret='iASRayB6_pHpr3zOsitcQsQ2xG0'
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

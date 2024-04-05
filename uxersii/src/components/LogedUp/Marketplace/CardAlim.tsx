@@ -32,6 +32,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 function CardAlim(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [agregado, setAgregado] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [unidadesDisponibles, setUnidadesDisponibles] = useState(

@@ -15,6 +15,10 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from django.db.utils import OperationalError
 from django.core.serializers import serialize
+import cloudinary
+from cloudinary.uploader import upload
+from cloudinary.utils import cloudinary_url
+
 
 
 
@@ -229,8 +233,15 @@ def postdonacion(request):
 
 import base64
 
+import cloudinary.uploader
+
 @csrf_exempt
 def getalimentos(request, id_punto):
+    
+    #uploaded_url = upload_image_to_cloudinary(image_file="https://m.media-amazon.com/images/I/610byFhCSJL.__AC_SX300_SY300_QL70_ML2_.jpg")
+
+  
+    #print(uploaded_url)
     try:
         productos = Alimentos.objects.filter(id_punto=id_punto)
         productos_lista = []
@@ -238,12 +249,10 @@ def getalimentos(request, id_punto):
             producto_dict = model_to_dict(producto)
             if producto.imagen:
                 # Convertir el nombre del archivo a una cadena antes de construir la ruta
-                nombre_archivo = producto.imagen.decode('utf-8') if isinstance(producto.imagen, bytes) else producto.imagen
-                ruta_imagen = str(f"/{nombre_archivo}")
+                nombre_archivo = producto.imagen
                 #print(ruta_imagen)
-                nombre_archivoF = ruta_imagen.split('/', 2)[2]
-                print(nombre_archivoF)
-                producto_dict["imagen"] = '/' + nombre_archivoF
+                print(nombre_archivo)
+                producto_dict["imagen"] = nombre_archivo
             productos_lista.append(producto_dict)
         return JsonResponse({'productos': productos_lista})
     except Alimentos.DoesNotExist:
@@ -268,11 +277,15 @@ with gzip.open(model_path_compressed, 'rb') as f_in:
     # Cargar el modelo descomprimido
 model = load_model(model_path_decompressed)
 
+
+def upload_image_to_cloudinary(image_file):
+    upload_result = upload(image_file)
+    public_id = upload_result['public_id']
+    url, options = cloudinary_url(public_id, format=upload_result['format'])
+    return url
+
 @csrf_exempt
 def postalimentos(request):
-
-
-   
 
     # Categorías de frutas
     categorias = ['Manzana Fresca', 'Banana Fresca', 'Pepino Frezco', 
@@ -317,19 +330,17 @@ def postalimentos(request):
 
         
         # Crea un nuevo objeto Alimentos con los datos recibidos
+        uploaded_url = upload_image_to_cloudinary(image_file=output_stream)
+            
         alimento = Alimentos.objects.create(
-            nomb_alim=request.POST.get('nomAlim'),
-            cantidad=request.POST.get('cantidad'),
-            fecha_cad=request.POST.get('fechaCad'),
-            id_punto=1,
-            costo=request.POST.get('costo'),
-            # Otros campos según sea necesario
-        )
-
-        print(request.POST.get('costo'))
-        # Guarda la imagen convertida en el campo imagen
-        alimento.imagen.save(f"{os.path.basename(imagen.name).split('.')[0]}.webp", output_stream, save=True) # type: ignore
-
+                nomb_alim=request.POST.get('nomAlim'),
+                cantidad=request.POST.get('cantidad'),
+                fecha_cad=request.POST.get('fechaCad'),
+                id_punto=1,
+                costo=request.POST.get('costo'),
+                imagen=uploaded_url  # Aquí guardamos la URL pública de Cloudinary
+            )
+        
         # Serializa el nuevo alimento en formato JSON
         serializer = AlimentosSerializer(alimento)
         return JsonResponse(serializer.data, status=201)

@@ -8,7 +8,7 @@ id_alim int auto_increment primary key not null,
 nomb_alim nvarchar(100),
 fecha_cad date,
 id_punto int,
-imagen longblob,
+imagen nvarchar(500),
 costo decimal(10, 2),
 cantidad int);
 

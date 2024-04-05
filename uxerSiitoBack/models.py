@@ -31,7 +31,7 @@ class Alimentos(models.Model):
     cantidad = models.IntegerField(blank=True, null=True)
     id_punto = models.IntegerField(blank=True, null=True)
     costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    imagen = models.ImageField(upload_to='uxersiiDjango/alimentos', blank=True, null=True)
+    imagen = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = True
