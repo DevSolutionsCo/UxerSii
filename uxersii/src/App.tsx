@@ -11,6 +11,8 @@ import { default as Sidebar } from "./components/LogedUp/Sidebar/Dashboard";
 import Index from "./components/Signed out/Index/Index";
 import Login from "./components/Signed out/login/Login";
 import Signup from "./components/Signed out/signup/Signup";
+import ListaCompras from "./components/LogedUp/VerCarrito/listaCompras";
+
 function App() {
   return (
     <>
@@ -22,9 +24,9 @@ function App() {
             <Route path="marketplace" element={<Marketplace />} />
             <Route path="marketplace/carrito" element={<Carrito />} />
             <Route path="marketplace/item" element={<Item />} />
+            <Route path="/main/marketplace/listcarro" element={<ListaCompras />} />
           </Route>
           <Route path="/" element={<Index />} />
-
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/pruebasBack" element={<PruebasBack />} />
