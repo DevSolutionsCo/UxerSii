@@ -92,7 +92,7 @@ public class index extends AppCompatActivity {
                                             ", Cantidad: " + producto.getCantidad() +
                                             ", Precio: " + producto.getPrecio() +
                                             ", Fecha de caducidad: " + fechaCadFormateada +  // Mostrar fecha directamente
-                                            ", URL de imagen: " + "https://781hhnms-5173.usw3.devtunnels.ms/" + producto.getUrlimg());;
+                                            ", URL de imagen: " + producto.getUrlimg());;
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     Log.e("Fecha", "Error al obtener la fecha: " + producto.getFechaCad());

@@ -11,7 +11,7 @@ import { default as Sidebar } from "./components/LogedUp/Sidebar/Dashboard";
 import Index from "./components/Signed out/Index/Index";
 import Login from "./components/Signed out/login/Login";
 import Signup from "./components/Signed out/signup/Signup";
-import ListaCompras from "./components/LogedUp/VerCarrito/listaCompras";
+import ListaCompras from "./components/LogedUp/VerCarrito/ListaCompras";
 
 function App() {
   return (

@@ -54,10 +54,10 @@ public class FormularioAlt extends DialogFragment {
     private String fechaFormateada;
 
     private resCaptura listener;
-    private static final String BASE_URL = "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/";
+    private static final String BASE_URL = "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/";
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/")
+            .baseUrl("https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     @Override

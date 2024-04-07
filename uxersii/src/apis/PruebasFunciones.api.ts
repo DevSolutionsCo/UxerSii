@@ -13,7 +13,7 @@ interface Tarea {
   
 
 const pruebasAPI = axios.create({
-    baseURL: "https://uxersii.up.railway.app/uxersiiPruebas/api/v1/uxerSiitoBack/"
+    baseURL: "https://k91n550s-8000.usw3.devtunnels.ms/api/v1/uxerSiitoBack/"
 })
 
 export const getAll = () => pruebasAPI.get("/")

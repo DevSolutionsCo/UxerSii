@@ -67,7 +67,7 @@ public class ProductosAdapter extends BaseAdapter {
        holder.cantTxt.setText(String.valueOf(produc.getCantidad()));
        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
        holder.fechTxt.setText(produc.getFechaCad());
-        Picasso.get().load("https://781hhnms-5173.usw3.devtunnels.ms/" + produc.getUrlimg()).into(holder.imgVis);
+        Picasso.get().load(produc.getUrlimg()).into(holder.imgVis);
         return convertView;
     }
 
