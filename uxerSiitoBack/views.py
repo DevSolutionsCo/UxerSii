@@ -402,7 +402,10 @@ def getcarrito(request, id_hog):
             # Agregar el alimento a la lista de productos
             productos_lista.append({
                 'id_alim': alimento.id_alim,
-                'nombre': alimento.nomb_alim,  
+                'nomb_alim': alimento.nomb_alim,  
+                'imagen': alimento.imagen,
+                'cantidad': alimento.cantidad,
+                'fecha_cad': alimento.fecha_cad,
                 'costo': alimento.costo  # Agrega otros campos que necesites
             })
             

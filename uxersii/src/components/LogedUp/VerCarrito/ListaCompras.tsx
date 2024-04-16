@@ -62,6 +62,7 @@ function ListaCompras() {
           const response = await axios.get(`${url}carritog/${id_hog}/`);
 
           setCarrito(response.data.productos);
+          console.log(response.data.productos)
         } catch (error) {
           console.error("Error al realizar la solicitud GET:", error);
         }
@@ -79,8 +80,11 @@ function ListaCompras() {
           <CarritoNav productosCarrito={carrito} />
         </div>
         <div className="flex flex-col md:flex-row items-start">
+        
+
           <div className="w-full md:w-3/4 mb-4 md:mb-0">
-            <CardAlimSelec />
+            <CardAlimSelec 
+              productosCarrito={carrito}/>
           </div>
           <div className="w-full md:w-1/4">
             <CardTotalTicket />

@@ -68,6 +68,7 @@ function CarritoNav({ productosCarrito }: CarritoNavProps) {
               );
               if (!producto) return null;
               return (
+              
                 <HoverCarrito
                   key={index}
                   precio={"$" + producto.costo.toString()} // Pasa el precio del producto al HoverCarrito
