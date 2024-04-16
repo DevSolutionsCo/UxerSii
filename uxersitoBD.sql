@@ -110,7 +110,13 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_admin) references administrador (id_admin) on delete cascade on update cascade
 );
 
-
+create table carrito(
+id_carrito int auto_increment primary key not null,
+id_hog int,
+id_alim int,
+foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
+foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
+);
 
 INSERT INTO puntos_colecta (nomb_punto, latitud, longitud, responsable, almacenamiento, horario, fecha_de_creacion, estado, descripcion, valcod)
 VALUES 

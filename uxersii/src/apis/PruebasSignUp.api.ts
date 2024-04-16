@@ -54,7 +54,7 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
 export function generateUrl(): string {
 
 
-  const baseUrl = `https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/`;
+  const baseUrl = `https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/`;
 
   return `${baseUrl}`;
 }

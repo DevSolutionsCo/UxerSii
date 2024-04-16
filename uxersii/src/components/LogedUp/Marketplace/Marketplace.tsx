@@ -1,6 +1,6 @@
 // Marketplace.tsx
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import CardAlim from "./CardAlim";
 import CarritoNav from "./CarritoNav";
@@ -14,15 +14,54 @@ interface Producto {
   nomb_alim: string;
   cantidad: number;
   costo: number;
+  id_alim: number;
 }
 
 interface PuntoMovil {
   id_punto: number;
 }
 
+
+
+
+
 function Marketplace() {
   const [productosPunto, setProductosPunto] = useState<Producto[]>([]);
   const [carrito, setCarrito] = useState<Producto[]>([]);
+  const [id_hog, setIdHogar] = useState("");
+
+
+  function getCookie(name: string): string | null {
+    const cookieName = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+  
+    for (let i = 0; i < cookieArray.length; i++) {
+        const cookie = cookieArray[i].trim();
+        if (cookie.indexOf(cookieName) == 0) {
+            return JSON.parse(cookie.substring(cookieName.length, cookie.length));
+        }
+    }
+  
+    return null;
+  }
+  
+useEffect(() => {
+  const datosUsuarioStringL = getCookie("usuarioL");
+  
+      // Verificar si el valor no es null antes de usarlo
+      if (datosUsuarioStringL !== null) {
+        const datosUsuario = JSON.parse(datosUsuarioStringL);
+        //console.log(datosUsuario)
+        // Actualizar el estado con el nuevo valor
+        setIdHogar(datosUsuario.id_hog);
+        console.log(id_hog)
+        //setPasswUser(datosUsuario.contra_hog);
+      } else {
+        console.error("Los datos del usuario no están disponibles.");
+      }
+
+}, []);
 
   const handleSelectPunto = async (punto: PuntoMovil) => {
     try {
@@ -33,7 +72,9 @@ function Marketplace() {
       console.error("Error al realizar la solicitud GET:", error);
     }
   };
-  const handleAgregarAlCarrito = (producto: Producto) => {
+  const handleAgregarAlCarrito = async (producto: Producto) => {
+    const id_alim = producto.id_alim
+    console.log(id_alim)
     const productoExistente = carrito.find(
       (item) => item.nomb_alim === producto.nomb_alim
     );
@@ -46,9 +87,23 @@ function Marketplace() {
             : item
         )
       );
+      
     } else {
       // Si el producto no está en el carrito, agrégalo con una cantidad de 1
       setCarrito([...carrito, { ...producto, cantidad: 1 }]);
+    }
+
+    try {
+      const response = await axios.post(
+        `${url}carritop/`,
+        {
+          id_alim,
+          id_hog,
+        }
+      );  
+      console.log(response)
+    } catch (error) {
+      console.error("Error al realizar la solicitud GET:", error);
     }
   };
 

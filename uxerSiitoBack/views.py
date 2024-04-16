@@ -6,8 +6,8 @@ import shutil
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializer import AlimentosSerializer, uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer
-from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta
+from .serializer import AlimentosSerializer, uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer, CarritoSerializer
+from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta, Carrito
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -240,7 +240,6 @@ def getalimentos(request, id_punto):
     
     #uploaded_url = upload_image_to_cloudinary(image_file="https://m.media-amazon.com/images/I/610byFhCSJL.__AC_SX300_SY300_QL70_ML2_.jpg")
 
-  
     #print(uploaded_url)
     try:
         productos = Alimentos.objects.filter(id_punto=id_punto)
@@ -368,3 +367,61 @@ def valcod(request, codigo):
     except Exception as e:
         # Otro error
         return JsonResponse({'error': str(e)}, status=500)
+    
+
+
+@csrf_exempt
+def postcarrito(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        serializer = CarritoSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        if serializer.is_valid():
+            
+            return JsonResponse(serializer.data, status=201)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+
+
+
+@csrf_exempt
+def getcarrito(request, id_hog):
+    try:
+        # Obtener todos los productos (id_alim) para el id_hog dado
+        productos = Carrito.objects.filter(id_hog=id_hog)
+        productos_lista = []
+        print(productos)
+
+        for carrito in productos:
+            print(carrito.id_alim)
+            # Buscar el alimento correspondiente al id_alim
+            alimento = Alimentos.objects.get(id_alim=carrito.id_alim)
+            
+            # Agregar el alimento a la lista de productos
+            productos_lista.append({
+                'id_alim': alimento.id_alim,
+                'nombre': alimento.nomb_alim,  
+                'costo': alimento.costo  # Agrega otros campos que necesites
+            })
+            
+        return JsonResponse({'productos': productos_lista})
+    
+    except Carrito.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)
+    
+    except Alimentos.DoesNotExist:
+        return JsonResponse({'error': 'No se encontró el alimento especificado'}, status=404)
+    
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+        for producto in productos:
+            alimentos = Alimentos.objects.filter(id_alim=producto.id_alim)
+            productos_lista.append(alimentos)
+            
+        return JsonResponse({'productos': productos_lista})
+    except Alimentos.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)

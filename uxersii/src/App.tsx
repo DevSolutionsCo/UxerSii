@@ -4,7 +4,6 @@ import { PruebasBackForm } from "./PruebaBack/PruebasBackForm";
 import { PruebasSignUp } from "./PruebaBack/PruebasSignUp";
 import Donacion from "./components/Donacion/Donacion";
 import Bento from "./components/LogedUp/BentoGrid/Bento";
-import Carrito from "./components/LogedUp/Carrito/Carrito";
 import Item from "./components/LogedUp/Marketplace/Item";
 import Marketplace from "./components/LogedUp/Marketplace/Marketplace";
 import { default as Sidebar } from "./components/LogedUp/Sidebar/Dashboard";
@@ -22,9 +21,8 @@ function App() {
             <Route index element={<Bento />} />
             <Route path="donaciones" element={<Donacion />} />
             <Route path="marketplace" element={<Marketplace />} />
-            <Route path="marketplace/carrito" element={<Carrito />} />
             <Route path="marketplace/item" element={<Item />} />
-            <Route path="/main/marketplace/listcarro" element={<ListaCompras />} />
+            <Route path="/main/marketplace/carrito" element={<ListaCompras />} />
           </Route>
           <Route path="/" element={<Index />} />
           <Route path="/signup" element={<Signup />} />

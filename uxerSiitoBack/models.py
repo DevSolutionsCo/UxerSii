@@ -230,7 +230,7 @@ class UsuarioHogar(models.Model):
         db_table = 'usuario_hogar'
 
     def __str__(self) -> str:
-        return self.nombUserH # type: ignore
+        return self.id_hog # type: ignore
 
 
 class AdministradorHog(models.Model):
@@ -258,6 +258,18 @@ class CompraHog(models.Model):
     class Meta:
         managed = True
         db_table = 'compra_hog'
+
+
+class Carrito(models.Model):
+    id_carrito = models.AutoField(primary_key=True)
+    id_hog = models.IntegerField(blank=True, null=True)
+    id_alim = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'carrito'
+
+    
 
 
 
