@@ -1,10 +1,10 @@
-providers = ["node", "python"]
+providers = ["node"]
 
 [variables]
 NODE_ENV = 'production'
 
 [deploy]
-startCommand = "cd uxersii && npm install"
+startCommand = "cd uxersii && npm install && npm start"
 sleepApplication = false
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
