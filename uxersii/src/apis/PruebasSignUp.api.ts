@@ -20,7 +20,7 @@ interface Usuario {
   
 
 const pruebasAPI = axios.create({
-    baseURL: "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/signUp/"
+    baseURL: "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/signUp/"
 })
 
 export const getAll = () => pruebasAPI.get("/")
