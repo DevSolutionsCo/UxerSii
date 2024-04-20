@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import CarritoNav from "../Marketplace/CarritoNav";

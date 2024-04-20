@@ -3,7 +3,6 @@
 //   carrito: Props[];
 // }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ReactNode } from "react";
 import InfoAlim from "./infoAlim";
 interface Producto {
   imagen: string;
