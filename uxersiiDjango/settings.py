@@ -91,11 +91,15 @@ WSGI_APPLICATION = 'uxersiiDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'uxersii',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',  # Si tu MySQL está en la misma máquina
-        'PORT': '3306',     # Ajusta el puerto según tu configuración de MySQL
+        'PASSWORD': 'GAwCdRcEmIrzgWRuFLdjGPPvWzmbNAQp',
+        'HOST': 'monorail.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
+        'PORT': '56865',  
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },     # Ajusta el puerto según tu configuración de MySQL
     }
 }
 

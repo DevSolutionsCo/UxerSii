@@ -13,7 +13,7 @@ interface TareaInterface {
 
 const pruebasAPI = axios.create({
   baseURL:
-    "https://chb1gpkx-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/uxerSiitoBack/",
+    "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/uxerSiitoBack/",
 });
 
 export const getAll = () => pruebasAPI.get("/");

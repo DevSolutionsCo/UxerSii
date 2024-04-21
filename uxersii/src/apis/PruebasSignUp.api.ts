@@ -19,7 +19,7 @@ interface UsuarioInterface {
 
 const pruebasAPI = axios.create({
   baseURL:
-    "https://chb1gpkx-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/signUp/",
+    "https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/signUp/",
 });
 
 export const getAll = () => pruebasAPI.get("/");
@@ -56,7 +56,7 @@ export const createUsuario = async ({ usuario }: UsuarioInterface) => {
 // urlGenerator.ts
 
 export function generateUrl(): string {
-  const baseUrl = `https://chb1gpkx-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/`;
+  const baseUrl = `https://k91n550s-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/`;
 
   return `${baseUrl}`;
 }
