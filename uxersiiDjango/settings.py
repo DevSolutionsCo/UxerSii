@@ -65,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'uxersiiDjango.urls'
-
+ 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -91,15 +91,11 @@ WSGI_APPLICATION = 'uxersiiDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
+        'NAME': 'uxersii',
         'USER': 'root',
-        'PASSWORD': 'GAwCdRcEmIrzgWRuFLdjGPPvWzmbNAQp',
-        'HOST': 'monorail.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
-        'PORT': '56865',  
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'use_unicode': True,
-        },     # Ajusta el puerto según tu configuración de MySQL
+        'PASSWORD': '1234',
+        'HOST': 'localhost',  # Si tu MySQL está en la misma máquina
+        'PORT': '3306',     # Ajusta el puerto según tu configuración de MySQL
     }
 }
 
@@ -166,7 +162,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'https://781hhnms-5173.usw3.devtunnels.ms',
     'https://k91n550s-5173.usw3.devtunnels.ms',
-    'https://uxersii.up.railway.app'
+    'https://uxersii.up.railway.app',
+    
 ]
 
 

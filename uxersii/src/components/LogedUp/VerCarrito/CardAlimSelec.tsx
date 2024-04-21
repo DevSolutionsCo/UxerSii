@@ -1,4 +1,3 @@
-
 // interface Carrito {
 //   carrito: Props[];
 // }
@@ -17,12 +16,12 @@ interface CarritoNavProps {
   productosCarrito: Producto[];
 }
 
-
 function setCookie(name: string, value: unknown, days: number = 30): void {
   const date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
   const expires = "expires=" + date.toUTCString();
-  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+  document.cookie =
+    name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
 }
 
 function CardAlimSelec({ productosCarrito }: CarritoNavProps) {
@@ -32,9 +31,10 @@ function CardAlimSelec({ productosCarrito }: CarritoNavProps) {
 
   productosCarrito.forEach((producto) => {
     total += Number(producto.costo) || 0; // Sumar el costo del producto al total
-    cantidadPorId[producto.id_alim] = (cantidadPorId[producto.id_alim] || 0) + 1;
+    cantidadPorId[producto.id_alim] =
+      (cantidadPorId[producto.id_alim] || 0) + 1;
     productosUnicos[producto.id_alim] = producto;
-    setCookie('totalCarrito', total)
+    setCookie("totalCarrito", total);
   });
 
   return (
@@ -52,13 +52,14 @@ function CardAlimSelec({ productosCarrito }: CarritoNavProps) {
             fecha_cad={producto.fecha_cad}
             costo={producto.costo}
             cantidadPorId={cantidadPorId[producto.id_alim]}
-            id_alim={producto.id_alim}         />
+            id_alim={producto.id_alim}
+          />
         ))}
         <hr />
         <div className="my-5 mx-2">
           <p className="text-lg sm:text-xl font-medium">
             Subtotal (x Productos){" "}
-            <span className="font-extrabold">${total.toFixed(2)}</span>
+            <span className="font-bold">${total.toFixed(2)}</span>
           </p>
         </div>
       </section>

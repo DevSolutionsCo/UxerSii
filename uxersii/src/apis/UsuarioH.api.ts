@@ -1,28 +1,31 @@
-import axios from 'axios'
+import axios from "axios";
 
 interface Usuario {
-    //nombre_hog: string;
-    //apellido_mat: string;
-    //apellido_pat: string;
-    correo_hog: string;
-    contra_hog: string;
-    //desc_hog: string;
-    //genero: string;
-    nombUserH: string;
-    id_hog: number;
-    fotoH: string;
-    // Agrega cualquier otra propiedad necesaria
-  }
-    
-    interface UsuarioInterface {
-      usuario: Usuario;
-    }
+  //nombre_hog: string;
+  //apellido_mat: string;
+  //apellido_pat: string;
+  correo_hog: string;
+  contra_hog: string;
+  //desc_hog: string;
+  //genero: string;
+  nombUserH: string;
+  id_hog: number;
+  fotoH: string;
+  // Agrega cualquier otra propiedad necesaria
+}
+
+interface UsuarioInterface {
+  usuario: Usuario;
+}
 
 const usuarioH = axios.create({
-    baseURL: "https://781hhnms-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/update/"
-})
+  baseURL:
+    "https://chb1gpkx-8000.usw3.devtunnels.ms/uxersiiPruebas/api/v1/update/",
+});
 
 //export const getUsuario = (id: number) => usuarioH.get(`/${id}`)
 
-export const updateUsuario = (nombUserH: string, { usuario }: UsuarioInterface) => usuarioH.put(`/${nombUserH}/`, usuario)
-
+export const updateUsuario = (
+  nombUserH: string,
+  { usuario }: UsuarioInterface
+) => usuarioH.put(`/${nombUserH}/`, usuario);

@@ -1,5 +1,4 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
@@ -8,32 +7,12 @@ import List from "@mui/material/List";
 import Toolbar from "@mui/material/Toolbar";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
-import { Outlet } from "react-router";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import darklogo from "../../../assets/logoLightTheme.svg";
 import { mainListItems, secondaryListItems } from "./listItems";
 
 const drawerWidth: number = 230;
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -70,11 +49,10 @@ export default function Sidebar() {
   const handleItemClick = () => {
     setOpen(false); // Cierra la barra lateral cuando se hace clic en un elemento de la lista
   };
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <AppBar position="absolute" open={open}></AppBar>
+      <div className="hidden lg:flex">
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
@@ -95,22 +73,66 @@ export default function Sidebar() {
             {secondaryListItems(handleItemClick)}
           </List>
         </Drawer>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
+      </div>
+
+      <nav className="flex flex-col justify-between items-center px-4 lg:px-10 lg:flex-row bg-slate-50 dark:bg-zinc-800 w-screen lg:hidden">
+        <div className="flex items-center mt-4">
+          <img
+            className="h-24 w-24 cursor-pointer"
+            src={darklogo}
+            alt="Dark Logo"
+          />
+        </div>
+
+        <div
+          className={`lg:flex ${
+            isOpen ? "flex" : "hidden"
+          } flex-col lg:flex-row items-center `}
         >
-          <section className="h-screen w-screen overflow-x-hidden">
-            <Outlet />
-          </section>
-        </Box>
+          <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 sm:space-x-4 gap-6 items-center font-semibold text-lg dark:text-white">
+            <List component="nav">
+              {mainListItems(handleItemClick)}
+              <Divider sx={{ my: 1 }} />
+              {secondaryListItems(handleItemClick)}
+            </List>
+          </ul>
+        </div>
+        <div
+          className={`lg:flex  ${
+            isOpen ? "flex" : "hidden"
+          } flex-col lg:flex-row items-center`}
+        >
+          <div
+            className="mt-4 lg:mt-0 flex lg:flex-row lg:justify-between lg:items-center flex-col
+        "
+          ></div>
+        </div>
+
+        {/* Icono de menú para dispositivos móviles */}
+        <div
+          className="lg:hidden cursor-pointer my-5"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="material-symbols-outlined text-black">menu</span>
+        </div>
+      </nav>
+
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "hidden",
+          paddingTop: "20px",
+        }}
+      >
+        <section className="h-screen w-screen overflow-x-hidden">
+          <Outlet />
+        </section>
       </Box>
     </>
   );

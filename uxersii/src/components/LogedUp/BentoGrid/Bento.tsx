@@ -127,7 +127,7 @@ function Bento() {
 
   return (
     <Backgroundx2>
-      <section className="w-[90%] min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 lg:pl-20 p-4 m-auto">
+      <section className="w-[90%] min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 lg:pl-20  m-auto">
         <BentoItem
           className="col-span-10 lg:col-span-4 "
           title={nombreUser}
@@ -136,6 +136,7 @@ function Bento() {
           clickbutton={handleShowPopup}
           handleFotoPerfilChange={handleFotoPerfilChange}
         ></BentoItem>
+
         <BentoItem
           className="col-span-10 lg:col-span-6"
           title="Ranking donadores"
@@ -144,8 +145,9 @@ function Bento() {
             <Ranking />
           </div>
         </BentoItem>
+
         <BentoItem
-          className="col-span-10 lg:col-span-6 py-3"
+          className="col-span-10 lg:col-span-6 lg:py-3 p-0"
           title="Puntos moviles"
         >
           <Carouselsillo />

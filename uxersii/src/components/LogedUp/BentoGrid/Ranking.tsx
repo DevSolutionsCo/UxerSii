@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
-import { generateUrl } from '../../../apis/PruebasSignUp.api';
+import { generateUrl } from "../../../apis/PruebasSignUp.api";
 
 const url = generateUrl();
 
@@ -100,7 +100,7 @@ function Ranking() {
 
   return (
     <>
-      <div className="hidden lg:flex flex-col gap-7">
+      <div className="hidden lg:flex flex-col gap-7 ">
         <div className="p-6 flex flex-row items-center">
           <picture className="pr-8">
             <img src={fotoP1} className="w-24 h-24 rounded-full" />
@@ -115,13 +115,13 @@ function Ranking() {
             <img src={fotoP2} className="w-24 h-24 rounded-full" />
           </picture>
           <div>
-            <h2 className="text-2xl font-semibold">{nomb2}</h2>
+            <h2 className="text-3xl font-semibold">{nomb2}</h2>
             <p>{numD2} donations</p>
           </div>
         </div>
       </div>
 
-      <div className="">
+      <div className="-ml-10 lg:ml-0">
         <BarChart
           width={360}
           height={320}
