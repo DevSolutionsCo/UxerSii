@@ -75,7 +75,7 @@ export default function Sidebar() {
         </Drawer>
       </div>
 
-      <nav className="flex flex-col justify-between items-center px-4 lg:px-10 lg:flex-row bg-slate-50 dark:bg-zinc-800 w-screen lg:hidden">
+      <nav className="flex flex-col justify-between items-center px-4 lg:px-10 lg:flex-row bg-slate-50  w-screen lg:hidden">
         <div className="flex items-center mt-4">
           <img
             className="h-24 w-24 cursor-pointer"
@@ -89,7 +89,7 @@ export default function Sidebar() {
             isOpen ? "flex" : "hidden"
           } flex-col lg:flex-row items-center `}
         >
-          <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 sm:space-x-4 gap-6 items-center font-semibold text-lg dark:text-white">
+          <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 sm:space-x-4 gap-6 items-center font-semibold text-lg ">
             <List component="nav">
               {mainListItems(handleItemClick)}
               <Divider sx={{ my: 1 }} />
