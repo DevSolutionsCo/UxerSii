@@ -1,11 +1,16 @@
 {
   "devDependencies": {
-    "@types/node": "^20.10.0"
+    "@types/node": "^20.10.0",
+    "@types/qrcode": "^1.5.5"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "start": "serve dist -s -n -L -p $PORT"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "qrcode.react": "^3.1.0"
   }
 }
