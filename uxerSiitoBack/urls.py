@@ -4,7 +4,7 @@ from django.urls import include, path
 from rest_framework import routers
 from uxerSiitoBack import views
 from rest_framework.documentation import include_docs_urls
-from .views import custom_login, obtenerdatosuserh, actualizardatosh, getranking, getpuntos, postdonacion, getalimentos,  postalimentos, valcod, postcarrito, getcarrito
+from .views import custom_login, obtenerdatosuserh, actualizardatosh, getranking, getpuntos, postdonacion, getalimentos,  postalimentos, valcod, postcarrito, getcarrito, postcompra
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/v1/valcod/<str:codigo>/', valcod, name='valcod'),
     path('api/v1/alimentosp/', postalimentos, name='alimentosp'),
     path('api/v1/carritop/', postcarrito, name='carritop'), # type: ignore
+    path('api/v1/postcompra/', postcompra, name='comprap'), # type: ignore
     path('api/v1/carritog/<int:id_hog>/', getcarrito, name='carritop'), # type: ignore
     #path('alimentos/<str:nombre_archivo>', serve, {'document_root': settings.STATIC_ROOT + '/alimentos/'}),
     path('api/v1/datosUserH/', obtenerdatosuserh, name='datos'), # type: ignore

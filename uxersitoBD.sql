@@ -57,11 +57,14 @@ numDonaciones int(5));
 
 
 create table compra_hog(
-id_alim int,
-id_hog int,
-foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
-foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
+id_compra int auto_increment primary key not null,
+folio nvarchar(50),
+id_carrito int,
+estatus boolean,
+foreign key (id_carrito) references carrito (id_carrito) on delete cascade on update cascade
 );
+
+drop table compra_hog;
 
 
 create table administrador(
@@ -114,9 +117,13 @@ create table carrito(
 id_carrito int auto_increment primary key not null,
 id_hog int,
 id_alim int,
+estatus nvarchar(20),
 foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on update cascade,
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
+
+drop table carrito;
+
 
 INSERT INTO puntos_colecta (nomb_punto, latitud, longitud, responsable, almacenamiento, horario, fecha_de_creacion, estado, descripcion, valcod)
 VALUES 

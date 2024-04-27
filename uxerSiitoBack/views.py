@@ -6,8 +6,8 @@ import shutil
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializer import AlimentosSerializer, uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer, CarritoSerializer
-from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta, Carrito
+from .serializer import AlimentosSerializer, uxeriiSerializer, UsuarioHogarSerializer, DonacionesSerializer, CarritoSerializer, CompraSerializer
+from .models import Alimentos, userSiitoBack, UsuarioHogar, PuntosColecta, Carrito, CompraHog
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -385,12 +385,42 @@ def postcarrito(request):
             return JsonResponse(serializer.errors, status=400)
 
 
+@csrf_exempt
+def postcompra(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        serializer = CompraSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+
+
+        serializer.save()
+
+        try:
+            id_carrito = data.get('id_carrito')
+            carrito = Carrito.objects.get(id_carrito=id_carrito)
+            # Modificar el campo que deseas cambiar
+            carrito.estatus = 'En proceso'  # Reemplaza field_to_update y new_value por tus valores reales
+            # Guardar el objeto Carrito modificado
+            carrito.save()
+            print('Si se hace')
+        except Carrito.DoesNotExist:
+            return JsonResponse({'error': 'El carrito no existe'}, status=404)
+
+
+        if serializer.is_valid():
+            
+            return JsonResponse(serializer.data, status=201)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+
+
 
 @csrf_exempt
 def getcarrito(request, id_hog):
     try:
         # Obtener todos los productos (id_alim) para el id_hog dado
-        productos = Carrito.objects.filter(id_hog=id_hog)
+        productos = Carrito.objects.filter(id_hog=id_hog).exclude(estatus='En proceso')
         productos_lista = []
         print(productos)
 
@@ -398,7 +428,6 @@ def getcarrito(request, id_hog):
             print(carrito.id_alim)
             # Buscar el alimento correspondiente al id_alim
             alimento = Alimentos.objects.get(id_alim=carrito.id_alim)
-            
             # Agregar el alimento a la lista de productos
             productos_lista.append({
                 'id_alim': alimento.id_alim,
@@ -406,7 +435,8 @@ def getcarrito(request, id_hog):
                 'imagen': alimento.imagen,
                 'cantidad': alimento.cantidad,
                 'fecha_cad': alimento.fecha_cad,
-                'costo': alimento.costo  # Agrega otros campos que necesites
+                'costo': alimento.costo ,
+                'id_carrito': carrito.id_carrito # Agrega otros campos que necesites
             })
             
         return JsonResponse({'productos': productos_lista})

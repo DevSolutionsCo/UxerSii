@@ -15,6 +15,7 @@ interface Producto {
   cantidad: number;
   costo: number;
   id_alim: number;
+  id_carrito: number;
 }
 
 function ListaCompras() {
@@ -79,7 +80,7 @@ function ListaCompras() {
             <CardAlimSelec productosCarrito={carrito} />
           </div>
           <div className="w-full md:w-1/4">
-            <CardTotalTicket />
+            <CardTotalTicket productosCarrito={carrito}/>
           </div>
         </div>
       </section>

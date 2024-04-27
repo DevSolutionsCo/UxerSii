@@ -251,9 +251,12 @@ class HogarAlim(models.Model):
 
 
 
+
 class CompraHog(models.Model):
-    id_alim = models.ForeignKey(Alimentos, models.DO_NOTHING, db_column='id_alim', blank=True, null=True)
-    id_hog = models.ForeignKey('UsuarioHogar', models.DO_NOTHING, db_column='id_hog', blank=True, null=True)
+    id_compra = models.AutoField(primary_key=True)
+    folio = models.CharField(max_length=50)
+    id_carrito = models.ForeignKey('Carrito', models.DO_NOTHING, db_column='id_carrito', blank=True, null=True)
+    estatus = models.BooleanField()
 
     class Meta:
         managed = True
@@ -264,6 +267,8 @@ class Carrito(models.Model):
     id_carrito = models.AutoField(primary_key=True)
     id_hog = models.IntegerField(blank=True, null=True)
     id_alim = models.IntegerField(blank=True, null=True)
+    estatus = models.CharField(db_column='estatus', max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)  # Field name made lowercase.
+
 
     class Meta:
         managed = True

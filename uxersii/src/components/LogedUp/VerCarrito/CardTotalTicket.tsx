@@ -2,12 +2,25 @@ import React from 'react';
 import QRCode from 'qrcode';
 import { jsPDF } from 'jspdf';
 import BotonLogin from "@/components/Signed out/login/BotonLogin";
+import { generateUrl } from "../../../apis/PruebasSignUp.api";
+import axios from 'axios';
+const url = generateUrl();
 
-interface Props {
-  // Puedes definir aquí otras props si las necesitas
+interface Producto {
+  imagen: string;
+  fecha_cad: string;
+  nomb_alim: string;
+  cantidad: number;
+  costo: number;
+  id_alim: number;
+  id_carrito: number;
 }
 
-const CardTotalTicket: React.FC<Props> = () => {
+interface CarritoNavProps {
+  productosCarrito: Producto[];
+}
+
+const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
   const total = getCookie("totalCarrito");
 
   function generarFolio(): string {
@@ -19,8 +32,6 @@ const CardTotalTicket: React.FC<Props> = () => {
     }
     return folio;
   }
-
-
 
   const handleCreatePdf = async () => {
     const folio = generarFolio();
@@ -40,13 +51,27 @@ const CardTotalTicket: React.FC<Props> = () => {
     doc.addImage(qrCodeDataUri, 'PNG', imgX, 30, imgWidth, 100);
     doc.text(`Folio: ${folio}`, 105, 140, { align: 'center' });
     doc.save('ticket-de-compra.pdf');
-
+    try {
+      for (const producto of productosCarrito) {
+        const id_carrito = producto.id_carrito;
+        const response = await axios.post(
+          `${url}postcompra/`,
+          {
+            id_carrito,
+            folio,
+            estatus: false
+          }
+        );
     
+        console.log(response.data);
+      }
+      console.log("Sí lo hice");
+      location.reload();
+    } catch (error) {
+      window.alert("Error al crear la orden");
+      console.error("Error al crear la orden:", error);
+    }
   };
-
-  
-
-  
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
@@ -68,7 +93,6 @@ const CardTotalTicket: React.FC<Props> = () => {
 
 export default CardTotalTicket;
 
-// Helper function: getCookie
 function getCookie(name: string): string | null {
   const cookieName = name + "=";
   const decodedCookie = decodeURIComponent(document.cookie);
