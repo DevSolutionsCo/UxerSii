@@ -18,6 +18,8 @@ from django.core.serializers import serialize
 import cloudinary
 from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
+from django.core.mail import EmailMessage
+
 
 
 
@@ -409,11 +411,23 @@ def postcompra(request):
 
 
         if serializer.is_valid():
-            
+            send_email(data['pdf'], data['to'])
             return JsonResponse(serializer.data, status=201)
         else:
             return JsonResponse(serializer.errors, status=400)
 
+def send_email(pdf_base64, to):
+    # Decodificar el PDF Base64
+    pdf_content = base64.b64decode(pdf_base64.split(',')[1])
+
+    # Configurar y enviar el correo electrónico con el PDF adjunto
+    email = EmailMessage(
+        subject='Ticket de compra',
+        body='Adjunto encontrarás el ticket de compra.',
+        to=[to],
+    )
+    email.attach('ticket-de-compra.pdf', pdf_content, 'application/pdf')
+    email.send()
 
 
 @csrf_exempt

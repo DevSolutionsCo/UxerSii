@@ -54,6 +54,7 @@ function Bento() {
         const datosUsuario = JSON.parse(datosUsuarioStringL);
         //console.log(datosUsuario)
         // Actualizar el estado con el nuevo valor
+        console.log(datosUsuario)
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);

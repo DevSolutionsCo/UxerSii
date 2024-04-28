@@ -6,6 +6,8 @@ import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import axios from 'axios';
 const url = generateUrl();
 
+
+
 interface Producto {
   imagen: string;
   fecha_cad: string;
@@ -20,9 +22,32 @@ interface CarritoNavProps {
   productosCarrito: Producto[];
 }
 
+
+function getCookie(name: string): string | null {
+  const cookieName = name + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(";");
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    const cookie = cookieArray[i].trim();
+    if (cookie.indexOf(cookieName) == 0) {
+      return JSON.parse(cookie.substring(cookieName.length, cookie.length));
+    }
+  }
+
+  return null;
+}
+
 const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
   const total = getCookie("totalCarrito");
+  const datosUsuarioStringL = getCookie("usuarioL");
+  let datosUsuario = null
+  if (datosUsuarioStringL !== null) {
 
+    datosUsuario = JSON.parse(datosUsuarioStringL);
+    console.log(datosUsuario)
+    console.log(datosUsuario.correo_hog)
+  }
   function generarFolio(): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let folio = '';
@@ -32,6 +57,9 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     }
     return folio;
   }
+
+
+
 
   const handleCreatePdf = async () => {
     const folio = generarFolio();
@@ -50,7 +78,11 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     doc.text('Folio de Compra', 105, 20, { align: 'center' });
     doc.addImage(qrCodeDataUri, 'PNG', imgX, 30, imgWidth, 100);
     doc.text(`Folio: ${folio}`, 105, 140, { align: 'center' });
-    doc.save('ticket-de-compra.pdf');
+    // Guardar PDF localmente
+    const pdfPath = 'ticket-de-compra.pdf';
+    doc.save(pdfPath);
+    const pdfBase64 = doc.output('datauristring');
+  
     try {
       for (const producto of productosCarrito) {
         const id_carrito = producto.id_carrito;
@@ -59,7 +91,9 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
           {
             id_carrito,
             folio,
-            estatus: false
+            estatus: false,
+            pdf: pdfBase64,
+            to: datosUsuario.correo_hog
           }
         );
     
@@ -72,6 +106,7 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
       console.error("Error al crear la orden:", error);
     }
   };
+
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
@@ -92,19 +127,3 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
 };
 
 export default CardTotalTicket;
-
-function getCookie(name: string): string | null {
-  const cookieName = name + "=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(cookieName) === 0) {
-      return c.substring(cookieName.length, c.length);
-    }
-  }
-  return null;
-}
