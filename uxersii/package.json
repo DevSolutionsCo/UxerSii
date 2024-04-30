@@ -26,7 +26,10 @@
     "flowbite-react": "^0.7.6",
     "jspdf": "^2.5.1",
     "lucide-react": "^0.364.0",
+<<<<<<< HEAD
     "nodemailer": "^6.9.13",
+=======
+>>>>>>> 0f29381fbc6bcdb588222f1a7c016b2f8300df41
     "qrcode": "^1.5.3",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
@@ -43,7 +46,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.2",
-    "@types/nodemailer": "^6.4.14",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.17",

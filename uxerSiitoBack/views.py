@@ -332,7 +332,7 @@ def postalimentos(request):
         
         # Crea un nuevo objeto Alimentos con los datos recibidos
         uploaded_url = upload_image_to_cloudinary(image_file=output_stream)
-            
+
         alimento = Alimentos.objects.create(
                 nomb_alim=request.POST.get('nomAlim'),
                 cantidad=request.POST.get('cantidad'),
