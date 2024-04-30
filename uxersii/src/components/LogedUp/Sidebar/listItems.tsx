@@ -7,7 +7,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import * as React from "react";
 import { Link } from "react-router-dom";
-
+const handleLogout = () => {
+  // Aquí colocarías la lógica para cerrar sesión, por ejemplo:
+  // 1. Limpiar el estado de autenticación
+  // 2. Redirigir al usuario a la página de inicio de sesión
+  console.log("Sesión cerrada"); // Solo para propósitos de ejemplo
+};
 export const mainListItems = (
   handleItemClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 ) => (
@@ -44,11 +49,13 @@ export const secondaryListItems = (
   handleItemClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 ) => (
   <React.Fragment>
-    <ListItemButton onClick={handleItemClick}>
+    <Link to='/'>
+    <ListItemButton onClick={handleLogout}>
       <ListItemIcon>
         <ExitToAppIcon />
       </ListItemIcon>
       <ListItemText primary="Cerrar sesión" />
     </ListItemButton>
+    </Link>
   </React.Fragment>
 );
