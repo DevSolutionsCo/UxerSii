@@ -25,7 +25,6 @@ fecha_de_creacion date,
 estado nvarchar(10),
 valcod nvarchar(10),
 descripcion TEXT)
-
 ;
 
 create table donaciones(

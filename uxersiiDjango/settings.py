@@ -167,7 +167,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://781hhnms-5173.usw3.devtunnels.ms',
     'https://k91n550s-5173.usw3.devtunnels.ms',
     'https://uxersii.up.railway.app',
-    
+    'http://localhost:5174',
 ]
 
 
