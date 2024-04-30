@@ -1,12 +1,12 @@
-import React from 'react';
-import QRCode from 'qrcode';
-import { jsPDF } from 'jspdf';
 import BotonLogin from "@/components/Signed out/login/BotonLogin";
+import axios from "axios";
+import { jsPDF } from "jspdf";
+import QRCode from "qrcode";
+import React from "react";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
-import axios from 'axios';
+import PayPalButton from "./PayPalButton";
+
 const url = generateUrl();
-
-
 
 interface Producto {
   imagen: string;
@@ -21,7 +21,6 @@ interface Producto {
 interface CarritoNavProps {
   productosCarrito: Producto[];
 }
-
 
 function getCookie(name: string): string | null {
   const cookieName = name + "=";
@@ -41,16 +40,15 @@ function getCookie(name: string): string | null {
 const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
   const total = getCookie("totalCarrito");
   const datosUsuarioStringL = getCookie("usuarioL");
-  let datosUsuario = null
+  let datosUsuario = null;
   if (datosUsuarioStringL !== null) {
-
     datosUsuario = JSON.parse(datosUsuarioStringL);
-    console.log(datosUsuario)
-    console.log(datosUsuario.correo_hog)
+    console.log(datosUsuario);
+    console.log(datosUsuario.correo_hog);
   }
   function generarFolio(): string {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let folio = '';
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let folio = "";
     for (let i = 0; i < 12; i++) {
       folio += caracteres[Math.floor(Math.random() * caracteres.length)];
       if (i === 3 || i === 7) folio += "-";
@@ -58,12 +56,9 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     return folio;
   }
 
-
-
-
   const handleCreatePdf = async () => {
     const folio = generarFolio();
-    console.log('Folio generado:', folio);
+    console.log("Folio generado:", folio);
 
     // Generar QR
     const qrCodeDataUri = await QRCode.toDataURL(folio);
@@ -73,30 +68,27 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
 
     const pageWidth = doc.internal.pageSize.getWidth();
     const imgWidth = 100; // Ancho de la imagen
-    const imgX = (pageWidth / 2) - (imgWidth / 2); // Calcula la posición X para centrar la imagen
+    const imgX = pageWidth / 2 - imgWidth / 2; // Calcula la posición X para centrar la imagen
 
-    doc.text('Folio de Compra', 105, 20, { align: 'center' });
-    doc.addImage(qrCodeDataUri, 'PNG', imgX, 30, imgWidth, 100);
-    doc.text(`Folio: ${folio}`, 105, 140, { align: 'center' });
+    doc.text("Folio de Compra", 105, 20, { align: "center" });
+    doc.addImage(qrCodeDataUri, "PNG", imgX, 30, imgWidth, 100);
+    doc.text(`Folio: ${folio}`, 105, 140, { align: "center" });
     // Guardar PDF localmente
-    const pdfPath = 'ticket-de-compra.pdf';
+    const pdfPath = "ticket-de-compra.pdf";
     doc.save(pdfPath);
-    const pdfBase64 = doc.output('datauristring');
-  
+    const pdfBase64 = doc.output("datauristring");
+
     try {
       for (const producto of productosCarrito) {
         const id_carrito = producto.id_carrito;
-        const response = await axios.post(
-          `${url}postcompra/`,
-          {
-            id_carrito,
-            folio,
-            estatus: false,
-            pdf: pdfBase64,
-            to: datosUsuario.correo_hog
-          }
-        );
-    
+        const response = await axios.post(`${url}postcompra/`, {
+          id_carrito,
+          folio,
+          estatus: false,
+          pdf: pdfBase64,
+          to: datosUsuario.correo_hog,
+        });
+
         console.log(response.data);
       }
       console.log("Sí lo hice");
@@ -106,7 +98,6 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
       console.error("Error al crear la orden:", error);
     }
   };
-
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
@@ -119,9 +110,15 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
           Subtotal (x Productos): <span className="font-bold">${total}</span>
         </p>
       </div>
-      <BotonLogin onClick={handleCreatePdf} className="mt-2 bg-[#C3DDFF] border-2 px-4 py-2 rounded-md font-bold text-black w-full">
+
+      <BotonLogin
+        onClick={handleCreatePdf}
+        className="mt-2 bg-[#C3DDFF] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
+      >
         Crear Ticket de Compra
       </BotonLogin>
+
+      <PayPalButton />
     </section>
   );
 };
