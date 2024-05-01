@@ -60,6 +60,7 @@ id_compra int auto_increment primary key not null,
 folio nvarchar(50),
 id_carrito int,
 estatus boolean,
+cantidad int,
 foreign key (id_carrito) references carrito (id_carrito) on delete cascade on update cascade
 );
 

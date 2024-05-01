@@ -257,6 +257,7 @@ class CompraHog(models.Model):
     folio = models.CharField(max_length=50)
     id_carrito = models.ForeignKey('Carrito', models.DO_NOTHING, db_column='id_carrito', blank=True, null=True)
     estatus = models.BooleanField()
+    cantidad = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = True

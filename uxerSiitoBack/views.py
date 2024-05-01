@@ -1,3 +1,4 @@
+from collections import Counter
 from email.mime import image
 import gzip
 import io
@@ -390,32 +391,48 @@ def postcarrito(request):
 @csrf_exempt
 def postcompra(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        print(data)
-        serializer = CompraSerializer(data=data)
-        serializer.is_valid(raise_exception=True)
-
-
-        serializer.save()
-
         try:
-            id_carrito = data.get('id_carrito')
-            carrito = Carrito.objects.get(id_carrito=id_carrito)
-            # Modificar el campo que deseas cambiar
-            carrito.estatus = 'En proceso'  # Reemplaza field_to_update y new_value por tus valores reales
-            # Guardar el objeto Carrito modificado
-            carrito.save()
-            print('Si se hace')
-        except Carrito.DoesNotExist:
-            return JsonResponse({'error': 'El carrito no existe'}, status=404)
+            data = json.loads(request.body)
+            productos_ids = data.get('productosIds', [])
+            pdf = data.get('pdf')
+            to = data.get('to')
+            cantidad = data.get('cantidad', {})  
+            print(cantidad)
+            send_email(pdf, to)
 
+            for id_carrito in productos_ids:
+                cantidad_producto = 0  
+                for item in cantidad:
+                    if item['id_carrito'] == id_carrito:
+                        cantidad_producto = item['cantidad']
+                        break  
 
-        if serializer.is_valid():
-            send_email(data['pdf'], data['to'])
-            return JsonResponse(serializer.data, status=201)
-        else:
-            return JsonResponse(serializer.errors, status=400)
+                serializer_data = {
+                    'id_carrito': id_carrito,
+                    'folio': data.get('folio'),
+                    'estatus': False,
+                    'cantidad': cantidad_producto
+                }
+                serializer = CompraSerializer(data=serializer_data)
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
 
+                try:
+                    carrito = Carrito.objects.get(id_carrito=id_carrito)
+                    carrito.estatus = 'En proceso'
+                    carrito.save()
+                except Carrito.DoesNotExist:
+                    print('Error 1')
+                    return JsonResponse({'error': f'El carrito con id {id_carrito} no existe'}, status=404)
+
+            return JsonResponse({'message': 'Productos comprados exitosamente.'}, status=201)
+        except Exception as e:
+            print('Error 2')
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        print('Error 3')
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+    
 def send_email(pdf_base64, to):
     # Decodificar el PDF Base64
     pdf_content = base64.b64decode(pdf_base64.split(',')[1])
@@ -436,18 +453,21 @@ def getcarrito(request, id_hog):
         # Obtener todos los productos (id_alim) para el id_hog dado
         productos = Carrito.objects.filter(id_hog=id_hog).exclude(estatus='En proceso')
         productos_lista = []
+        conteo_productos = Counter(producto.id_alim for producto in productos)
         print(productos)
 
         for carrito in productos:
             print(carrito.id_alim)
             # Buscar el alimento correspondiente al id_alim
             alimento = Alimentos.objects.get(id_alim=carrito.id_alim)
+            cantidad = conteo_productos[carrito.id_alim]
+
             # Agregar el alimento a la lista de productos
             productos_lista.append({
                 'id_alim': alimento.id_alim,
                 'nomb_alim': alimento.nomb_alim,  
                 'imagen': alimento.imagen,
-                'cantidad': alimento.cantidad,
+                'cantidad': cantidad,
                 'fecha_cad': alimento.fecha_cad,
                 'costo': alimento.costo ,
                 'id_carrito': carrito.id_carrito # Agrega otros campos que necesites

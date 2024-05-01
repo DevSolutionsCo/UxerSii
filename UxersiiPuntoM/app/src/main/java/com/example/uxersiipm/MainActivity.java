@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         JsonObject jsonObject = response.body();
 
-                        if (jsonObject.has("mensaje")) {
-                            String mensaje = jsonObject.get("mensaje").getAsString();
+                        if (jsonObject.has("id_punto")) {
+                            String mensaje = jsonObject.get("id_punto").getAsString();
                             Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(MainActivity.this, index.class);

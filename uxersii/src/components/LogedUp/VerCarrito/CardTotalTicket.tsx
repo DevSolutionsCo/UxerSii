@@ -79,24 +79,29 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     const pdfBase64 = doc.output("datauristring");
 
     try {
-      for (const producto of productosCarrito) {
-        const id_carrito = producto.id_carrito;
-        const response = await axios.post(`${url}postcompra/`, {
-          id_carrito,
-          folio,
-          estatus: false,
-          pdf: pdfBase64,
-          to: datosUsuario.correo_hog,
-        });
-
-        console.log(response.data);
-      }
+      const productosIds = productosCarrito.map(producto => producto.id_carrito);
+      const cantidad = productosCarrito.map(producto => ({
+        id_carrito: producto.id_carrito,
+        cantidad: producto.cantidad
+      }));
+          console.log(cantidad)
+      const response = await axios.post(`${url}postcompra/`, {
+        productosIds,
+        folio,
+        estatus: false,
+        pdf: pdfBase64,
+        to: datosUsuario.correo_hog,
+        cantidad: cantidad
+      });
+    
+      console.log(response.data);
       console.log("Sí lo hice");
       location.reload();
     } catch (error) {
       window.alert("Error al crear la orden");
       console.error("Error al crear la orden:", error);
     }
+    
   };
 
   return (
