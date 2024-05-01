@@ -337,7 +337,7 @@ def postalimentos(request):
                 nomb_alim=request.POST.get('nomAlim'),
                 cantidad=request.POST.get('cantidad'),
                 fecha_cad=request.POST.get('fechaCad'),
-                id_punto=1,
+                id_punto=request.POST.get('id_punto'),
                 costo=request.POST.get('costo'),
                 imagen=uploaded_url  # Aquí guardamos la URL pública de Cloudinary
             )
