@@ -103,6 +103,9 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     }
     
   };
+  const alertaCompraInit = async () => {
+    // Mostrar alerta de compra en proceso
+    window.alert("Compra en proceso..."); }
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
@@ -117,8 +120,11 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
       </div>
 
       <BotonLogin
-        onClick={handleCreatePdf}
-        className="mt-2 bg-[#C3DDFF] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
+          onClick={() => {
+            handleCreatePdf(); // Primera función existente
+            alertaCompraInit(); // Segunda función que deseas agregar
+          }}
+        className="mt-2 bg-[#b9f0d1] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
       >
         Crear Ticket de Compra
       </BotonLogin>

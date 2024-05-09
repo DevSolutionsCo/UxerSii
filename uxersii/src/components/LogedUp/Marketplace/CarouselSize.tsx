@@ -38,7 +38,7 @@ export function CarouselSize(props: Props) {
                       <span className="text-sm">MXN</span>
                     </span>
                   </p>
-                  <BotonLogin className="mt-2 bg-[#C3DDFF] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full">
+                  <BotonLogin className="mt-2 bg-[#b9f0d1] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full">
                     Agregar al carrito
                   </BotonLogin>
                 </div>
