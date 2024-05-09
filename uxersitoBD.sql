@@ -136,7 +136,18 @@ VALUES
   ('Plaza Universidad', 19.3622, -99.1677, 'Responsable7', 180.75, '14:00:00', '2023-11-27', 'Activo', 'Un centro comercial grande y muy frecuentado.', 'AaBbCcDdEe'),
   ('Centro Comercial Santa Fe', 19.3599, -99.2780, 'Responsable8', 250.00, '15:00:00', '2023-11-27', 'Activo', 'En una de las zonas de negocios más importantes de la ciudad.', '1qaz2wsx3e'),
   ('Bosque de Chapultepec', 19.4200, -99.1919, 'Responsable9', 130.25, '16:00:00', '2023-11-27', 'Activo', 'Un área verde extensa y muy visitada.', '!@#abc1234'),
-  ('Plaza de las Tres Culturas, Tlatelolco', 19.4550, -99.1320, 'Responsable10', 160.50, '17:00:00', '2023-11-27', 'Activo', 'Un lugar histórico y de gran importancia cultural.', 'P4ssW0rd$');
+  ('Plaza de las Tres Culturas, Tlatelolco', 19.4550, -99.1320, 'Responsable10', 160.50, '17:00:00', '2023-11-27', 'Activo', 'Un lugar histórico y de gran importancia cultural.', 'P4ssW0rd$'),
+  ('Reforma - Ángel de la Independencia', 19.4255, -99.1669, 'Responsable11', 140.00, '08:30:00', '2023-11-27', 'Activo', 'Una ubicación icónica en la ciudad.', 'PaSsWoRd123'),
+  ('Polanco - Parque Lincoln', 19.4334, -99.1942, 'Responsable12', 190.50, '09:30:00', '2023-11-27', 'Activo', 'Una zona residencial de alta clase.', 'qwerty12345'),
+  ('Coyoacán - Jardín Hidalgo', 19.3579, -99.1624, 'Responsable13', 110.75, '10:30:00', '2023-11-27', 'Activo', 'Un lugar histórico y cultural.', 'abc123ABC'),
+  ('Condesa - Parque México', 19.4144, -99.1777, 'Responsable14', 170.25, '11:30:00', '2023-11-27', 'Activo', 'Un parque emblemático de la ciudad.', 'p@ssword!'),
+  ('Roma - Plaza Río de Janeiro', 19.4179, -99.1675, 'Responsable15', 220.00, '12:30:00', '2023-11-27', 'Activo', 'Una plaza con arquitectura única.', '123456789'),
+  ('Xochimilco - Embarcadero Nuevo Nativitas', 19.2483, -99.1020, 'Responsable16', 80.50, '13:30:00', '2023-11-27', 'Activo', 'Una zona famosa por sus trajineras.', 'password123'),
+  ('Chapultepec - Museo de Arte Moderno', 19.4223, -99.1810, 'Responsable17', 200.75, '14:30:00', '2023-11-27', 'Activo', 'Un museo de arte contemporáneo.', '987654321'),
+  ('Azcapotzalco - Parque Tezozómoc', 19.5038, -99.2033, 'Responsable18', 130.00, '15:30:00', '2023-11-27', 'Activo', 'Un gran parque con lago artificial.', 'passw0rd!'),
+  ('Tlalpan - Parque Nacional Fuentes Brotantes', 19.2635, -99.2093, 'Responsable19', 160.50, '16:30:00', '2023-11-27', 'Activo', 'Un parque con manantiales naturales.', 'qwe123rty'),
+  ('San Ángel - Plaza San Jacinto', 19.3557, -99.1861, 'Responsable20', 240.25, '17:30:00', '2023-11-27', 'Activo', 'Un lugar con arte y cultura.', '987654321qwerty');
+
 
 INSERT INTO alimentos (nomb_alim, fecha_cad, id_punto, cantidad, costo) VALUES ('Arroz', '2024-02-20', 1, 10, 100.50);
 
