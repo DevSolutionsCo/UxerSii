@@ -492,3 +492,49 @@ def getcarrito(request, id_hog):
         return JsonResponse({'productos': productos_lista})
     except Alimentos.DoesNotExist:
         return JsonResponse({'error': 'No se encontraron productos para el punto especificado'}, status=404)
+
+
+
+@csrf_exempt
+def getqr(request, qr):
+    try:
+        # Obtener los productos relacionados con el folio
+        productos = CompraHog.objects.filter(folio=qr)
+        productos_lista = []
+        alimentos_lista = []
+
+
+        # Iterar sobre cada producto para obtener sus detalles y los del carrito
+        for producto in productos:
+            producto_dict = model_to_dict(producto)
+            
+            if producto.id_carrito:
+                id_carrito = producto.id_carrito.id_carrito
+                
+                # Obtener los carritos relacionados
+                carritos = Carrito.objects.filter(id_carrito=id_carrito)
+                carritos_lista = []
+
+                for carrito in carritos:
+                    carrito_dict = model_to_dict(carrito)
+                    
+                    # Obtener los alimentos relacionados con cada id_alim en el carrito
+                    if carrito.id_alim:
+                        try:
+                            alimento = Alimentos.objects.get(id_alim=carrito.id_alim)
+                            carrito_dict['alimento'] = model_to_dict(alimento)
+
+                            alimento = Alimentos.objects.get(id_alim=carrito.id_alim)
+                            alimento_dict = model_to_dict(alimento)
+                            alimentos_lista.append(alimento_dict)
+                        except Alimentos.DoesNotExist:
+                            carrito_dict['alimento'] = None
+                                    
+            print(alimentos_lista)
+        return JsonResponse({'productos': alimentos_lista})
+    except CompraHog.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron productos para el folio especificado'}, status=404)
+    except Carrito.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron carritos para los productos especificados'}, status=404)
+    except Alimentos.DoesNotExist:
+        return JsonResponse({'error': 'No se encontraron alimentos para los carritos especificados'}, status=404)
