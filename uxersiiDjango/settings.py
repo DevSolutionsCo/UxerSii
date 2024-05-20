@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'uxersiiDjango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -96,6 +96,21 @@ DATABASES = {
         'PASSWORD': 'GAwCdRcEmIrzgWRuFLdjGPPvWzmbNAQp',
         'HOST': 'monorail.proxy.rlwy.net',  # Si tu MySQL está en la misma máquina
         'PORT': '56865',  
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },     # Ajusta el puerto según tu configuración de MySQL
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'byhdhbawhabi2j3grqnb',
+        'USER': 'umsqn2g6efen9xyt',
+        'PASSWORD': 'HniMTV7IRCDgh50PJYvK',
+        'HOST': 'byhdhbawhabi2j3grqnb-mysql.services.clever-cloud.com',  # Si tu MySQL está en la misma máquina
+        'PORT': '3306',  
         'OPTIONS': {
             'charset': 'utf8mb4',
             'use_unicode': True,

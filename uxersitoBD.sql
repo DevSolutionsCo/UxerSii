@@ -1,6 +1,6 @@
-drop database if exists uxersii;
-create database uxersii;
-use uxersii;
+drop database if exists byhdhbawhabi2j3grqnb;
+create database byhdhbawhabi2j3grqnb;
+use byhdhbawhabi2j3grqnb;
 
 
 create table alimentos(
@@ -12,7 +12,6 @@ imagen nvarchar(500),
 costo decimal(10, 2),
 cantidad int);
 
-
 create table puntos_colecta (
 id_punto int auto_increment primary key not null,
 nomb_punto nvarchar(255),
@@ -23,7 +22,7 @@ almacenamiento decimal(10,2),
 horario time,
 fecha_de_creacion date,
 estado nvarchar(10),
-valcod nvarchar(10),
+valcod nvarchar(20),
 descripcion TEXT)
 ;
 
@@ -63,8 +62,6 @@ estatus boolean,
 cantidad int,
 foreign key (id_carrito) references carrito (id_carrito) on delete cascade on update cascade
 );
-
-drop table compra_hog;
 
 
 create table administrador(
@@ -122,7 +119,6 @@ foreign key (id_hog) references usuario_hogar (id_hog) on delete cascade on upda
 foreign key (id_alim) references alimentos (id_alim) on delete cascade on update cascade
 );
 
-drop table carrito;
 
 
 INSERT INTO puntos_colecta (nomb_punto, latitud, longitud, responsable, almacenamiento, horario, fecha_de_creacion, estado, descripcion, valcod)

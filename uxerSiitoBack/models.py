@@ -166,7 +166,7 @@ class PuntosColecta(models.Model):
     fecha_de_creacion = models.DateField(blank=True, null=True)
     estado = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
     descripcion = models.TextField(blank=True, null=True)
-    valcod = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    valcod = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
 
     class Meta:
         managed = True
