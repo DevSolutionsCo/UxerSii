@@ -21,7 +21,7 @@ function Nabvar() {
     
     <div><img src={Logo} className='w-32 h-32' /></div>
     <div className='border-2 border-black  my-12 w-3/5 rounded-2xl'>
-      <input type="text" />
+     
     </div>
     <div>login</div>
     <div>mexico</div>
