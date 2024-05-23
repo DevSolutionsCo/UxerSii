@@ -222,17 +222,22 @@ def postdonacion(request):
         id_dona = data.get('id_dona')
         nombUserH = data.get('nombUserH')
         id_punto = data.get('id_punto')
+        
+        # Verificar si ya existe una donación en proceso para este usuario
+        donacion_existente = Donaciones.objects.filter(nombUserH=nombUserH, estatus="En proceso").exists()
+        if donacion_existente:
+            return JsonResponse({'error': 'Ya tienes una donación en proceso'}, status=400)
+        
         print(f"Codigo: {id_dona}")
         print(f"nombreUser: {nombUserH}")
         print(f"id_punto: {id_punto}")
+        
         serializer = DonacionesSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        if serializer.is_valid():
-            
-            return JsonResponse(serializer.data, status=201)
-        else:
-            return JsonResponse(serializer.errors, status=400)
+        
+        return JsonResponse(serializer.data, status=201)
+
 
 import base64
 
@@ -398,14 +403,18 @@ def postcompra(request):
             to = data.get('to')
             cantidad = data.get('cantidad', {})  
             print(cantidad)
-            send_email(pdf, to)
+            print(productos_ids)
+            #send_email(pdf, to)
 
             for id_carrito in productos_ids:
-                cantidad_producto = 0  
+                print("ID Carrito:", id_carrito)
+                cantidad_producto = 0
                 for item in cantidad:
+                    print("Item:", item)
                     if item['id_carrito'] == id_carrito:
                         cantidad_producto = item['cantidad']
-                        break  
+                        break
+                print("Cantidad producto:", cantidad_producto)
 
                 serializer_data = {
                     'id_carrito': id_carrito,
@@ -414,8 +423,13 @@ def postcompra(request):
                     'cantidad': cantidad_producto
                 }
                 serializer = CompraSerializer(data=serializer_data)
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
+                if serializer.is_valid():
+                    serializer.save()
+                    print("Datos guardados correctamente")
+                else:
+                    print("Errores de validación:", serializer.errors)
+                    return JsonResponse(serializer.errors, status=400)
+
 
                 try:
                     carrito = Carrito.objects.get(id_carrito=id_carrito)

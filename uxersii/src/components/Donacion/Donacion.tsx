@@ -4,6 +4,10 @@ import "./Donacion.css";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+interface ErrorResponse {
+  error: string;
+}
+
 interface PuntoMovil {
   nomb_punto: string;
   direccion: string;
@@ -42,8 +46,7 @@ function Donacion() {
   // @ts-ignore
   const [puntoMasCercano, setPuntoMas] = useState<PuntoMovil[]>([]);
   const [latitud, setLatitud] = useState<number>(0);
-  const [id_puntos, setIdsPuntos] =  useState<number[]>([]);
-  const [id_punto, setIdPunto] =  useState<number>(0);
+  const [id_punto, setIdPunto] = useState<number>(0);
   const [longitud, setLongitud] = useState<number>(0);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [nombMas, setNombMas] = useState("");
@@ -55,7 +58,6 @@ function Donacion() {
   const [estatus, setEstatus] = useState("En proceso");
   //const [correoUser, setCorreoH] = useState("");
   //const [correoUserAn, setCorreoHAnt] = useState("");
-  const [puntosMas, setPuntosMas] = useState<PuntoMovil[]>([]);
 
   const puntoMasCercanoRef = useRef<PuntoMovil | undefined>(undefined);
 
@@ -137,58 +139,54 @@ function Donacion() {
 
     const ubicacionUsuario = { latitud, longitud };
 
-const calcularDistancia = (
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-) => {
-  const R = 6371; // Radio de la Tierra en kilómetros
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-      Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distancia = R * c; // Distancia en kilómetros
-  return distancia;
-};
+    const calcularDistancia = (
+      lat1: number,
+      lon1: number,
+      lat2: number,
+      lon2: number
+    ) => {
+      const R = 6371; // Radio de la Tierra en kilómetros
+      const dLat = deg2rad(lat2 - lat1);
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) *
+          Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distancia = R * c; // Distancia en kilómetros
+      return distancia;
+    };
 
-let puntosMasCercanos: PuntoMovil[] = [];
-let distanciasMinimas: number[] = [Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE];
+    let puntoMasCercano: PuntoMovil | undefined;
+    let distanciaMinima = Number.MAX_VALUE;
 
-puntosMoviles.forEach((punto) => {
-  const distancia = calcularDistancia(
-    ubicacionUsuario.latitud,
-    ubicacionUsuario.longitud,
-    punto.latitud,
-    punto.longitud
-  );
+    puntosMoviles.forEach((punto) => {
+      const distancia = calcularDistancia(
+        ubicacionUsuario.latitud,
+        ubicacionUsuario.longitud,
+        punto.latitud,
+        punto.longitud
+      );
 
-  for (let i = 0; i < 3; i++) {
-    if (distancia < distanciasMinimas[i]) {
-      puntosMasCercanos.splice(i, 0, punto);
-      distanciasMinimas.splice(i, 0, distancia);
-      puntosMasCercanos = puntosMasCercanos.slice(0, 3);
-      distanciasMinimas = distanciasMinimas.slice(0, 3);
-      break;
+      if (distancia < distanciaMinima) {
+        distanciaMinima = distancia;
+        puntoMasCercano = punto;
+      }
+    });
+
+    if (
+      JSON.stringify(puntoMasCercano) !==
+      JSON.stringify(puntoMasCercanoRef.current)
+    ) {
+      setPuntoMas(puntoMasCercano ? [puntoMasCercano] : []);
+      setNombMas(puntoMasCercano ? puntoMasCercano.nomb_punto : "");
+      setHorarioMas(puntoMasCercano ? puntoMasCercano.horario : "");
+      setIdPunto(puntoMasCercano ? puntoMasCercano.id_punto: 0)
     }
-  }
-});
 
-// Ahora puntosMasCercanos contiene los tres puntos más cercanos
-// y distanciasMinimas contiene las distancias correspondientes
-
-// Actualiza el estado o realiza las acciones necesarias con los tres puntos más cercanos
-    setPuntosMas(puntosMasCercanos);
-    setNombMas(puntosMasCercanos.map(punto => punto.nomb_punto).join(', '));
-    setHorarioMas(puntosMasCercanos.map(punto => punto.horario).join(', '));
-    setIdsPuntos(puntosMasCercanos.map(punto => punto.id_punto));
-
-
+    puntoMasCercanoRef.current = puntoMasCercano;
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -255,22 +253,27 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
         estatus,
       }
     );
-
+  
     console.log(response.data);
-    console.log("SI lo done vv");
-    //const usuario = new Usuario(datosUsuario);
-    //console.log(usuario);
-    localStorage.setItem("usuarioL", JSON.stringify(response.data));
+    console.log("Donación realizada correctamente");
+  
+    // Si la donación se realizó correctamente, recarga la página
     location.reload();
-    // Maneja la respuesta según tus necesidades
-
-    // Solo navega si la autenticación fue exitosa
-    //navigate("/main");
-  } catch (error) {
-    // Manejo de errores
-    window.alert("Error al iniciar sesión");
-    console.error("Error al iniciar sesión:", error);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    // Si hay un error, maneja el mensaje de error devuelto por el servidor
+    if (error.response && error.response.data && 'error' in error.response.data) {
+      const errorMessage = (error.response.data as ErrorResponse).error;
+      window.alert(errorMessage);
+      console.error("Error al realizar la donación:", error);
+    } else {
+      // Si no hay un mensaje de error específico del servidor, muestra un mensaje genérico
+      window.alert("Error al realizar la donación. Por favor, inténtalo de nuevo más tarde.");
+      console.error("Error al realizar la donación:", error);
+    }
   }
+  
+  
 };
 
   return (
@@ -304,19 +307,17 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
             maxLength={5}
           />
 
-         {puntosMas.map((punto, index) => (
-            <article key={index} className="pop-don-hog-1 p-5  relative rounded-xl border bg-white/40 h-full shadow-2xl shadow-black flex flex-col justify-between">
-              <section>
-                <p>
-                  <span className="font-extrabold">Punto móvil más cercano {index + 1}</span>
-                  <br />
-                  <p>{punto.nomb_punto}</p>
-                  <br />
-                  <span className="font-extralight">Horario: {punto.horario} </span>
-                </p>
-              </section>
-            </article>
-          ))}
+          <article className="pop-don-hog-1 p-5  relative rounded-xl border bg-white/40 h-full shadow-2xl shadow-black flex flex-col justify-between">
+            <section>
+              <p>
+                <span className="font-extrabold">Punto movil mas cercano</span>
+                <br />
+                <p>{nombMas}</p>
+                <br />
+                <span className="font-extralight">Horario: {horarioMas} </span>
+              </p>
+            </section>
+          </article>
         </article>
       </Popup>
       <form onSubmit={handleLogin}>

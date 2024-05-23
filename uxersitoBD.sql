@@ -10,7 +10,10 @@ fecha_cad date,
 id_punto int,
 imagen nvarchar(500),
 costo decimal(10, 2),
-cantidad int);
+cantidad int,
+tipo nvarchar(25));
+
+show tables;
 
 create table puntos_colecta (
 id_punto int auto_increment primary key not null,
@@ -36,6 +39,14 @@ nombUserH nvarchar(15),
 id_punto int
 );
 
+CREATE TABLE compra_hog (
+    id_compra INT AUTO_INCREMENT PRIMARY KEY,
+    folio VARCHAR(50),
+    id_carrito INT,
+    estatus TINYINT(1),
+    cantidad INT,
+    FOREIGN KEY (id_carrito) REFERENCES carrito(id_carrito)
+);
 
 
 create table usuario_hogar(

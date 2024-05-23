@@ -32,6 +32,7 @@ class Alimentos(models.Model):
     id_punto = models.IntegerField(blank=True, null=True)
     costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     imagen = models.CharField(max_length=500, blank=True, null=True)
+    tipo = models.CharField(max_length=25, db_collation='utf8mb3_general_ci', blank=True, null=True)
 
     class Meta:
         managed = True
