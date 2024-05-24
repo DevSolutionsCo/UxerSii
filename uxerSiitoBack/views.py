@@ -404,7 +404,7 @@ def postcompra(request):
             cantidad = data.get('cantidad', {})  
             print(cantidad)
             print(productos_ids)
-            #send_email(pdf, to)
+            send_email(pdf, to)
 
             for id_carrito in productos_ids:
                 print("ID Carrito:", id_carrito)
