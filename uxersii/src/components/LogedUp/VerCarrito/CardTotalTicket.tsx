@@ -104,8 +104,8 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
     
   };
   const alertaCompraInit = async () => {
-    // Mostrar alerta de compra en proceso
-    window.alert("Compra en proceso..."); }
+    
+    window.alert("Esta es la alerta mi compa..."); }
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
