@@ -12,3 +12,11 @@
 .bg-custom-pink {
   background-color: #FFE9E8;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Garet&display=swap');
+
+/* Crear una clase para la fuente "Garet" */
+.font-garet {
+  font-family: 'Garet', sans-serif;
+}

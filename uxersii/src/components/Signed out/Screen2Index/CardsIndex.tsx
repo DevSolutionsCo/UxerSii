@@ -5,7 +5,7 @@ import enl from "../../../assets/fish-food.png"
 import cere from "../../../assets/cereal.png"
 import oil from "../../../assets/oil_3982805.png"
 import drinks from "../../../assets/drinks_416013.png"
-
+import "../MainScreen/fuenteMain.css"
 // interface props {
 //   title: string;
 //   children: ReactNode;
@@ -44,7 +44,7 @@ function CardsIndex() {
     //   </div>
     // </article>
 
-<div className="flex justify-center mb-28">
+<div className="flex justify-center mb-28 font-alice">
   <div className="grid grid-cols-5 gap-4 mb-8">
     <button className="flex flex-col items-center bg-[#B3CD7B] p-3 rounded-xl focus:outline-none">
       <img src={fyv} alt="Frutas y verduras" className="w-16 h-16 mb-2" />
