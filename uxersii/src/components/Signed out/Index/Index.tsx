@@ -1,11 +1,11 @@
 import MainScreen from "../MainScreen/MainScreen";
-import Nabvar from "../NabVarComponent/Nabvar";
+import OldNabvar from "../NabVarComponent/OldNavbar";
 import Screen2Index from "../Screen2Index/Screen2Index";
 
 function Index() {
   return (
     <>
-      <Nabvar />
+      <OldNabvar />
 
       <MainScreen />
 
