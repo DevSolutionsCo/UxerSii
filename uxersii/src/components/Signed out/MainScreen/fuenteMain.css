@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+
+.font-alice {
+  font-family: 'Alice', sans-serif;
+  text-shadow: 3px 3px 5px rgba(0,0,0,0.8);
+}
+
+.text-shadow-lg {
+  text-shadow: 4px 4px 6px rgba(0,0,0,0.3);
+}
+
+.bg-custom-pink {
+  background-color: #FFE9E8;
+}
