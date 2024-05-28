@@ -13,7 +13,7 @@ costo decimal(10, 2),
 cantidad int,
 tipo nvarchar(25));
 
-show tables;
+select * from compra_hog;
 
 create table puntos_colecta (
 id_punto int auto_increment primary key not null,
@@ -43,7 +43,7 @@ CREATE TABLE compra_hog (
     id_compra INT AUTO_INCREMENT PRIMARY KEY,
     folio VARCHAR(50),
     id_carrito INT,
-    estatus TINYINT(1),
+    estatus boolean,
     cantidad INT,
     FOREIGN KEY (id_carrito) REFERENCES carrito(id_carrito)
 );

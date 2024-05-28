@@ -404,7 +404,7 @@ def postcompra(request):
             cantidad = data.get('cantidad', {})  
             print(cantidad)
             print(productos_ids)
-            send_email(pdf, to)
+            #send_email(pdf, to)
 
             for id_carrito in productos_ids:
                 print("ID Carrito:", id_carrito)
@@ -513,10 +513,10 @@ def getcarrito(request, id_hog):
 def getqr(request, qr):
     try:
         # Obtener los productos relacionados con el folio
-        productos = CompraHog.objects.filter(folio=qr)
+        productos = CompraHog.objects.filter(folio=qr, estatus=False)
         productos_lista = []
         alimentos_lista = []
-
+        print(productos)
 
         # Iterar sobre cada producto para obtener sus detalles y los del carrito
         for producto in productos:
@@ -552,3 +552,86 @@ def getqr(request, qr):
         return JsonResponse({'error': 'No se encontraron carritos para los productos especificados'}, status=404)
     except Alimentos.DoesNotExist:
         return JsonResponse({'error': 'No se encontraron alimentos para los carritos especificados'}, status=404)
+
+
+@csrf_exempt
+def getqrdon(request, qr):
+    try:
+        donacion = Donaciones.objects.get(id_dona=qr)
+        nomb_user_h = donacion.nombUserH
+
+        return JsonResponse({'nombUserH': nomb_user_h})
+
+    except Donaciones.DoesNotExist:
+        return JsonResponse({'error': 'No se encontró una donación para el código QR especificado'}, status=404)
+
+
+
+@csrf_exempt
+def postalimentosdon(request):
+
+    
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            id_dona = data.get('id_dona')  
+
+            if not id_dona:
+                return JsonResponse({'error': 'El campo id_dona es requerido.'}, status=400)
+
+            try:
+                donacion = Donaciones.objects.get(id_dona=id_dona)
+            except Donaciones.DoesNotExist:
+                return JsonResponse({'error': 'No se encontró una donación con el ID especificado.'}, status=404)
+
+            catn_adon = data.get('catn_adon')
+            nomb_alim_dona = data.get('nomb_alim_dona')
+            fecha_cad_dona = data.get('fecha_cad_dona')
+            id_punto = data.get('id_punto')
+
+            # Crear un diccionario con los datos a actualizar
+            update_data = {
+                'catn_adon': catn_adon,
+                'nomb_alim_dona': nomb_alim_dona,
+                'estatus': "En Uxersii",  
+                'fecha_cad_dona': fecha_cad_dona,
+                'id_punto': id_punto
+            }
+
+            serializer = DonacionesSerializer(donacion, data=update_data, partial=True)
+            
+            if serializer.is_valid():
+                serializer.save()
+                print("Datos actualizados correctamente")
+            else:
+                print("Errores de validación:", serializer.errors)
+                return JsonResponse(serializer.errors, status=400)
+
+            return JsonResponse({
+                'mensaje': "Donación actualizada correctamente",
+                'donacion': serializer.data
+            }, status=200)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    else:
+        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+    
+
+@csrf_exempt
+def fcompra(request, qr):
+    if request.method == 'POST':
+        try:
+            productos = CompraHog.objects.filter(folio=qr)
+
+        
+            productos.update(estatus=True)
+
+            return JsonResponse({'mensaje': 'Estatus actualizado correctamente'}, status=200)
+        
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+
