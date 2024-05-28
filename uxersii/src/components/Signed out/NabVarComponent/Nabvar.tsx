@@ -5,16 +5,17 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import Logo from '../../../assets/LogoUxersii.png'
 import SearchAppBar from './SearchBar';
-import BotonLogin from '../login/BotonLogin';
+// import BotonLogin from '../login/BotonLogin';
 import BotonIndex from './Boton';
 import { Link } from 'react-router-dom';
+import mx from "../../../assets/MX-1x1.66.png"
 
 function Nabvar() {
 
 
   return (
-  <>
-  <div className="flex bg-[#F63E4F] h-24 flex-col pb-40 ">
+    <>
+      <div className="flex bg-[#F63E4F] h-24 flex-col pb-40 ">
     <div className="py-1 flex justify-between px-28"> 
       <div className="text-white font-bold">  Devsolutions</div>
     <div className="text-white font-bold "><EmailIcon/>devsolutionsco@gmail.com</div>
@@ -48,12 +49,18 @@ function Nabvar() {
               </BotonIndex>
             </Link>
     </div>
-    <div>mexico</div>
+    <div><img
+        src={mx}
+        alt="Aceites y condimentos"
+        className="w-16 h-18 mb-2"
+      /></div>
     
     </div>
   </div>
-  </>
-  )
+
+
+    </>
+  );
 }
 
 export default Nabvar;

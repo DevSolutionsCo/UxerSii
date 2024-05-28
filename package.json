@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "@types/node": "^20.10.0",
-    "@types/qrcode": "^1.5.5"
+    "@types/qrcode": "^1.5.5",
+    "@types/react-scroll": "^1.8.10"
   },
   "scripts": {
     "dev": "vite",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "jspdf": "^2.5.1",
-    "qrcode.react": "^3.1.0"
+    "qrcode.react": "^3.1.0",
+    "react-scroll": "^1.9.0"
   }
 }
