@@ -32,7 +32,7 @@ function MainScreen() {
         </div>
         <img src={caja} alt=""className="w-48 h-48 ml-6" />
       </Background> */}
-<div className="flex items-center justify-center min-h-screen bg-white">
+<div className="flex items-center justify-center min-h-screen bg-white mt-36">
   <div className="bg-custom-pink p-6 md:p-10 lg:p-20 rounded-lg flex flex-col md:flex-row items-center justify-between shadow-lg w-full max-w-screen-2xl transform -translate-y-16 h-auto md:h-auto lg:h-auto">
     <div className="text-center md:text-left md:w-full lg:w-2/3 pl-4 md:pl-0">
       <h1
