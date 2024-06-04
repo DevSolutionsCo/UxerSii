@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
 import foto from "../../../assets/profile-pics/default-img.jpg";
 import Popup from "../../Popups/Popup";
-import Backgroundx2 from "../../Signed out/MainScreen/Backgroundx2";
+
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
 import Carouselsillo from "./Carousel";
@@ -127,7 +127,7 @@ function Bento() {
   };
 
   return (
-    <Backgroundx2>
+    <>
       <section className="w-[90%] min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 lg:pl-20  m-auto">
         <BentoItem
           className="col-span-10 lg:col-span-4 "
@@ -214,7 +214,7 @@ function Bento() {
           handleFotoPerfilChange={handleFotoPerfilChange}
         />
       )}
-    </Backgroundx2>
+    </>
   );
 }
 

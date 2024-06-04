@@ -6,14 +6,15 @@ import { Carrouselprods } from "../Carrousel/Carrouselprods";
 function Index() {
   return (
     <>
+    <div className="bg-white">
       <Navbar />
 
-      <MainScreen />
 
+      <MainScreen />
       <Screen2Index />
 
       <Carrouselprods/>
-
+      </div>
     </>
   );
 }

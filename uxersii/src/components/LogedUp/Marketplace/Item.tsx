@@ -107,7 +107,7 @@ function Item() {
         </div>
       </div>
       <div className="w-full ml-10">
-        <CarouselSize products={productos}></CarouselSize>
+        {/* <CarouselSize products={productos}></CarouselSize> */}
       </div>
     </section>
   );

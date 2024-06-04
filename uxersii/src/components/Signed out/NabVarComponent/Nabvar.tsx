@@ -47,7 +47,7 @@ function Nabvar() {
               </BotonIndex>
             </Link>
           </div>
-          <div>
+          <div className='cursor-help'>
             <img src={mx} alt="Aceites y condimentos" className="w-16 h-18 mb-2" />
           </div>
         </div>
