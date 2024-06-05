@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import FotoRight from "../../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg";
+import FotoRight from "../../../assets/pics/bruna-branco-7r1HxvVC7AY-unsplash.jpg";
 import BotonLogin from "../login/BotonLogin";
 import Inputs from "../login/Inputs";
 import "../login/inecesario.css";

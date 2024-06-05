@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/carousel";
 import { useState } from "react";
 
+import clickSound from '../../../assets/zapsplat_vehicles_aircraft_call_bell_dual_tone_44562.mp3';
+
 // Define la interfaz para Producto
 interface Producto {
   imagen: string;
@@ -65,6 +67,11 @@ export function CarouselSize(props: Props) {
     }, 3000);
   };
 
+  const playSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
+
   return (
      <Carousel className="w-[60%] ">
       <CarouselContent>
@@ -93,7 +100,9 @@ export function CarouselSize(props: Props) {
                       <span className="text-sm">MXN</span>
                     </span>
                     <BotonLogin className="bg-[#F03849] border-2 px-4 py-2 rounded-md font-bold text-white flex items-center justify-center w-auto sm:w-1/3 mt-2"
-                    onClick={() => handleAddToCart(product)}
+                    onClick={() => {
+                      playSound();
+                      handleAddToCart(product)}}
                     >
                       
                       <AddShoppingCartIcon />

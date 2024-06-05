@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DatosUsuario, Usuario } from "../../../DatosUsuario";
-import FotoRight from "../../../assets/pics/chris-lee-70l1tDAI6rM-unsplash 2.jpg";
+import FotoRight from "../../../assets/pics/bruna-branco-7r1HxvVC7AY-unsplash.jpg";
 import BotonLogin from "./BotonLogin";
 import Inputs from "./Inputs";
 import "./inecesario.css";
