@@ -8,6 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useState } from "react";
+
+// Define la interfaz para Producto
 interface Producto {
   imagen: string;
   fecha_cad: string;
@@ -21,9 +24,49 @@ interface Props {
   products: Producto[];
 }
 
+// Función para obtener las cookies
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getCookie(name: string): any {
+  const cookieArr = document.cookie.split("; ");
+  for (let i = 0; i < cookieArr.length; i++) {
+    const cookiePair = cookieArr[i].split("=");
+    if (name === cookiePair[0]) {
+      return JSON.parse(cookiePair[1]);
+    }
+  }
+  return null;
+}
+
+// Función para establecer las cookies
+function setCookie(name: string, value: unknown, days: number = 30): void {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+}
+
 export function CarouselSize(props: Props) {
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleAddToCart = (product: Producto) => {
+    const cart = getCookie("carritoProvi") || [];
+    const productIndex = cart.findIndex((item: Producto) => item.id_alim === product.id_alim);
+    console.log(cart)
+    if (productIndex !== -1) {
+      cart[productIndex].cantidad += 1; // Incrementa la cantidad si ya existe en el carrito
+    } else {
+      cart.push({ ...product, cantidad: 1 }); // Agrega el producto al carrito
+    }
+
+    setCookie("carritoProvi", cart);
+    setShowAlert(true); // Mostrar alerta o mensaje de confirmación
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
+
   return (
-    <Carousel className="w-[60%] ">
+     <Carousel className="w-[60%] ">
       <CarouselContent>
         {props.products.map((product, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
@@ -49,7 +92,10 @@ export function CarouselSize(props: Props) {
                       ${product.costo}
                       <span className="text-sm">MXN</span>
                     </span>
-                    <BotonLogin className="bg-[#F03849] border-2 px-4 py-2 rounded-md font-bold text-white flex items-center justify-center w-auto sm:w-1/3 mt-2">
+                    <BotonLogin className="bg-[#F03849] border-2 px-4 py-2 rounded-md font-bold text-white flex items-center justify-center w-auto sm:w-1/3 mt-2"
+                    onClick={() => handleAddToCart(product)}
+                    >
+                      
                       <AddShoppingCartIcon />
                     </BotonLogin>
                   </div>
