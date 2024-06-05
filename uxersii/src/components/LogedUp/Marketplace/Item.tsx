@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Breadcrumb from "./Breadcrumb";
-import { CarouselSize } from "./CarouselSize";
 import InfoText from "./InfoText";
 interface Producto {
   img: string;
@@ -36,58 +35,6 @@ function Item() {
     return <div>Cargando...</div>;
   }
 
-  const productos = [
-    {
-      img: "https://i.pinimg.com/550x/b2/38/62/b23862aabbcdc7146588c4fa641c7414.jpg",
-      price: "234",
-      name: "Naranja",
-    },
-    {
-      img: "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-      price: "242",
-      name: "Manzana",
-    },
-    {
-      img: "https://i.pinimg.com/550x/b2/38/62/b23862aabbcdc7146588c4fa641c7414.jpg",
-      price: "24",
-      name: "Naranja",
-    },
-    {
-      img: "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-      price: "24",
-      name: "Manzana",
-    },
-    {
-      img: "https://i.pinimg.com/550x/b2/38/62/b23862aabbcdc7146588c4fa641c7414.jpg",
-      price: "244",
-      name: "Naranja",
-    },
-    {
-      img: "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-      price: "24",
-      name: "Manzana",
-    },
-    {
-      img: "https://i.pinimg.com/550x/b2/38/62/b23862aabbcdc7146588c4fa641c7414.jpg",
-      price: "24",
-      name: "Naranja",
-    },
-    {
-      img: "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-      price: "24",
-      name: "Manzana",
-    },
-    {
-      img: "https://i.pinimg.com/550x/b2/38/62/b23862aabbcdc7146588c4fa641c7414.jpg",
-      price: "24",
-      name: "Naranja",
-    },
-    {
-      img: "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-      price: "24",
-      name: "Manzana",
-    },
-  ];
   return (
     <section className="mx-32 my-10 flex flex-col">
       <Breadcrumb name={producto.title}></Breadcrumb>

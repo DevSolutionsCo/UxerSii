@@ -8,16 +8,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-interface Product {
-  img: string;
-  price: string;
-  name: string;
-  date?: string;
-  quantity?: number
+interface Producto {
+  imagen: string;
+  fecha_cad: string;
+  nomb_alim: string;
+  cantidad: number;
+  costo: number;
+  id_alim: number;
 }
 
 interface Props {
-  products: Product[];
+  products: Producto[];
 }
 
 export function CarouselSize(props: Props) {
@@ -30,20 +31,20 @@ export function CarouselSize(props: Props) {
               <Card className="h-[350px] cursor-pointer">
                 <div className="flex p-4 flex-col">
                   <div className="flex justify-center items-center pb-4">
-                  <img src={product.img} className="w-32 h-32 pb-1" />
+                  <img src={product.imagen} className="w-32 h-32 pb-1" />
                   </div>
                   <div className="flex flex-col justify-start items-start">
                     <p>
-                      {product.date}
+                      {product.fecha_cad}
                       <p className="text-xl font-bold">
-                        {product.name}
+                        {product.nomb_alim}
                       </p>
-                      <span>Cantidad:{product.quantity}</span>
+                      <span>Cantidad:{product.cantidad}</span>
                     </p>
                   </div>
                   <div className="flex justify-between w-full mt-[45px] items-center">
                     <span>
-                      <span className="text-lg ml-16 font-bold ">${product.price}<span className="text-sm">MXN</span> </span>
+                      <span className="text-lg ml-16 font-bold ">${product.costo}<span className="text-sm">MXN</span> </span>
                     </span>
                     <BotonLogin className="mt-2 bg-[#F03849] border-2 px-4 py-2 rounded-md font-bold text-white self-end w-1/3">
                       <AddShoppingCartIcon />
