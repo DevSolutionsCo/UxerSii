@@ -516,7 +516,7 @@ def getqr(request, qr):
         productos = CompraHog.objects.filter(folio=qr, estatus=False)
         productos_lista = []
         alimentos_lista = []
-        print(productos)
+        #print(productos)
 
         # Iterar sobre cada producto para obtener sus detalles y los del carrito
         for producto in productos:
@@ -544,7 +544,7 @@ def getqr(request, qr):
                         except Alimentos.DoesNotExist:
                             carrito_dict['alimento'] = None
                                     
-            print(alimentos_lista)
+            #print(alimentos_lista)
         return JsonResponse({'productos': alimentos_lista})
     except CompraHog.DoesNotExist:
         return JsonResponse({'error': 'No se encontraron productos para el folio especificado'}, status=404)
@@ -568,13 +568,13 @@ def getqrdon(request, qr):
 
 
 @csrf_exempt
-def postalimentosdon(request):
+def postalimentosdon(request, qr):
 
     
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            id_dona = data.get('id_dona')  
+            id_dona = qr  
 
             if not id_dona:
                 return JsonResponse({'error': 'El campo id_dona es requerido.'}, status=400)
@@ -621,7 +621,6 @@ def postalimentosdon(request):
 
 @csrf_exempt
 def fcompra(request, qr):
-    if request.method == 'POST':
         try:
             productos = CompraHog.objects.filter(folio=qr)
 
@@ -631,7 +630,7 @@ def fcompra(request, qr):
             return JsonResponse({'mensaje': 'Estatus actualizado correctamente'}, status=200)
         
         except Exception as e:
+            print("Aqui esta el error")
             return JsonResponse({'error': str(e)}, status=500)
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+   
 
