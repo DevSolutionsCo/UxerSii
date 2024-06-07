@@ -37,6 +37,28 @@ function ListaCompras() {
     return null;
   }
 
+  function getCookie2(name: string): string | null {
+    const cookieName = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(";");
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      const cookie = cookieArray[i].trim();
+      if (cookie.indexOf(cookieName) == 0) {
+        return cookie.substring(cookieName.length, cookie.length);
+      }
+    }
+
+    return null;
+  }
+
+  function setCookie(name: string, value: unknown, days: number = 30): void {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + JSON.stringify(value) + ";" + expires + ";path=/";
+  }
+
   useEffect(() => {
     const datosUsuarioStringL = getCookie("usuarioL");
 
@@ -60,12 +82,47 @@ function ListaCompras() {
 
         setCarrito(response.data.productos);
         console.log(response.data.productos);
+              migrateProvisionalCart();
+
       } catch (error) {
         console.error("Error al realizar la solicitud GET:", error);
       }
     }
     fetchData(); // Llama a la función al cargar el componente
-    console.log(id_hog);
+
+    async function migrateProvisionalCart() {
+      const provisionalCartString = getCookie2("carritoProvi");
+      let provisionalCart: Producto[] = [];
+
+      if (provisionalCartString) {
+        try {
+          provisionalCart = JSON.parse(provisionalCartString);
+          console.log(provisionalCart)
+        } catch (error) {
+          console.error("Error parsing provisional cart cookie:", error);
+          return; // Exit if parsing fails
+        }
+      }
+
+      if (provisionalCart.length > 0) {
+        for (const product of provisionalCart) {
+          for (let i = 0; i < product.cantidad; i++) {
+            try {
+              await axios.post(`${url}carritop/`, {
+                id_alim: product.id_alim,
+                id_hog,
+                cantidad: 1
+              });
+            } catch (error) {
+              console.error("Error al migrar producto al carrito definitivo:", error);
+            }
+          }
+        }
+        // Limpiar el carrito provisional después de migrar
+        setCookie("carritoProvi", [], -1);
+      }
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id_hog]);
 

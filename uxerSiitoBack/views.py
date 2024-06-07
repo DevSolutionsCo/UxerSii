@@ -433,7 +433,7 @@ def postcompra(request):
 
                 try:
                     carrito = Carrito.objects.get(id_carrito=id_carrito)
-                    carrito.estatus = 'En proceso'
+                    carrito.estatus = 'Finalizado'
                     carrito.save()
                 except Carrito.DoesNotExist:
                     print('Error 1')
@@ -465,7 +465,7 @@ def send_email(pdf_base64, to):
 def getcarrito(request, id_hog):
     try:
         # Obtener todos los productos (id_alim) para el id_hog dado
-        productos = Carrito.objects.filter(id_hog=id_hog).exclude(estatus='En proceso')
+        productos = Carrito.objects.filter(id_hog=id_hog).exclude(estatus='Finalizado')
         productos_lista = []
         conteo_productos = Counter(producto.id_alim for producto in productos)
         print(productos)
@@ -571,7 +571,6 @@ def getqrdon(request, qr):
 def postalimentosdon(request, qr):
 
     
-    if request.method == 'POST':
         try:
             data = json.loads(request.body)
             id_dona = qr  
@@ -615,9 +614,7 @@ def postalimentosdon(request, qr):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
-    
+   
 
 @csrf_exempt
 def fcompra(request, qr):
