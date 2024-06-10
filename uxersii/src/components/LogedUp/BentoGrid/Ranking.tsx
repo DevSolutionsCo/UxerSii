@@ -100,46 +100,48 @@ function Ranking() {
 
   return (
     <>
-      <div className="hidden lg:flex flex-col gap-7 ">
-        <div className="p-6 flex flex-row items-center">
-          <picture className="pr-8">
-            <img src={fotoP1} className="w-24 h-24 rounded-full" />
-          </picture>
-          <div>
-            <h2 className="text-3xl font-semibold">{nomb1}</h2>
-            <p>{numD1} donations</p>
+      <div className="mx-52 flex flex-col lg:flex-row items-center justify-center my-[10%]">
+        <div className="lg:flex flex-col gap-7 ">
+          <div className="p-6 flex flex-row items-center">
+            <picture className="pr-8">
+              <img src={fotoP1} className="w-24 h-24 rounded-full" />
+            </picture>
+            <div>
+              <h2 className="text-3xl font-semibold">{nomb1}</h2>
+              <p>{numD1} donations</p>
+            </div>
+          </div>
+          <div className="p-6 flex flex-row items-center">
+            <picture className="pr-8">
+              <img src={fotoP2} className="w-24 h-24 rounded-full" />
+            </picture>
+            <div>
+              <h2 className="text-3xl font-semibold">{nomb2}</h2>
+              <p>{numD2} donations</p>
+            </div>
           </div>
         </div>
-        <div className="p-6 flex flex-row items-center">
-          <picture className="pr-8">
-            <img src={fotoP2} className="w-24 h-24 rounded-full" />
-          </picture>
-          <div>
-            <h2 className="text-3xl font-semibold">{nomb2}</h2>
-            <p>{numD2} donations</p>
-          </div>
+
+        <div className="-ml-10 lg:ml-0">
+          <BarChart
+            width={360}
+            height={320}
+            data={data}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+
+            <Bar dataKey="donaciones" stackId="a" fill="#A9DFE1" />
+          </BarChart>
         </div>
-      </div>
-
-      <div className="-ml-10 lg:ml-0">
-        <BarChart
-          width={360}
-          height={320}
-          data={data}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-
-          <Bar dataKey="donaciones" stackId="a" fill="#A9DFE1" />
-        </BarChart>
       </div>
     </>
   );

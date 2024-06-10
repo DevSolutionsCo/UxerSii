@@ -7,9 +7,7 @@ import Popup from "../../Popups/Popup";
 
 import Inputs from "../../Signed out/login/Inputs";
 import BentoItem from "./BentoItem";
-import Carouselsillo from "./Carousel";
 import ProfilePicSelector from "./ProfilePicSelector";
-import Ranking from "./Ranking";
 
 const url = generateUrl();
 
@@ -54,7 +52,7 @@ function Bento() {
         const datosUsuario = JSON.parse(datosUsuarioStringL);
         //console.log(datosUsuario)
         // Actualizar el estado con el nuevo valor
-        console.log(datosUsuario)
+        console.log(datosUsuario);
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
@@ -128,7 +126,7 @@ function Bento() {
 
   return (
     <>
-      <section className="w-[90%] min-h-screen grid grid-cols-10 auto-rows-[25rem] gap-10 lg:pl-20  m-auto">
+      <section className="w-[90%] min-h-screen  lg:pl-20 m-auto">
         <BentoItem
           className="col-span-10 lg:col-span-4 "
           title={nombreUser}
@@ -137,33 +135,6 @@ function Bento() {
           clickbutton={handleShowPopup}
           handleFotoPerfilChange={handleFotoPerfilChange}
         ></BentoItem>
-
-        <BentoItem
-          className="col-span-10 lg:col-span-6"
-          title="Ranking donadores"
-        >
-          <div className="flex flex-row justify-between">
-            <Ranking />
-          </div>
-        </BentoItem>
-
-        <BentoItem
-          className="col-span-10 lg:col-span-6 lg:py-3 p-0"
-          title="Puntos moviles"
-        >
-          <Carouselsillo />
-        </BentoItem>
-        <BentoItem
-          className="col-span-10 lg:col-span-4"
-          title="Soporte tecnico"
-        >
-          <div className="w-full h-[20rem] items-center text-wrap justify-center ">
-            <p className="text-[2rem] p-8 ">
-              Tienes alguna duda?. <br />
-              Contacta con nosotros para resolver tus problemas!
-            </p>
-          </div>
-        </BentoItem>
       </section>
 
       {showPopup && (
