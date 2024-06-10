@@ -558,6 +558,7 @@ def getqr(request, qr):
 def getqrdon(request, qr):
     try:
         donacion = Donaciones.objects.get(id_dona=qr)
+        donacion = Donaciones.objects.exclude(id_dona=qr, estatus='En Uxersii').get(id_dona=qr)
         nomb_user_h = donacion.nombUserH
 
         return JsonResponse({'nombUserH': nomb_user_h})
@@ -570,9 +571,10 @@ def getqrdon(request, qr):
 @csrf_exempt
 def postalimentosdon(request, qr):
 
-    
+    if request.method == 'POST':
+
         try:
-            data = json.loads(request.body)
+
             id_dona = qr  
 
             if not id_dona:
@@ -581,12 +583,13 @@ def postalimentosdon(request, qr):
             try:
                 donacion = Donaciones.objects.get(id_dona=id_dona)
             except Donaciones.DoesNotExist:
+                print('Fallito')
                 return JsonResponse({'error': 'No se encontró una donación con el ID especificado.'}, status=404)
 
-            catn_adon = data.get('catn_adon')
-            nomb_alim_dona = data.get('nomb_alim_dona')
-            fecha_cad_dona = data.get('fecha_cad_dona')
-            id_punto = data.get('id_punto')
+            catn_adon = request.POST.get('catn_adon')
+            nomb_alim_dona = request.POST.get('nomb_alim_dona')
+            fecha_cad_dona = request.POST.get('fecha_cad_dona')
+            id_punto = request.POST.get('id_punto')
 
             # Crear un diccionario con los datos a actualizar
             update_data = {
@@ -612,6 +615,7 @@ def postalimentosdon(request, qr):
             }, status=200)
 
         except Exception as e:
+            print("Aqui esta el fallo")
             return JsonResponse({'error': str(e)}, status=500)
 
    
