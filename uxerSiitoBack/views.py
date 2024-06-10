@@ -564,6 +564,7 @@ def getqrdon(request, qr):
         return JsonResponse({'nombUserH': nomb_user_h})
 
     except Donaciones.DoesNotExist:
+        print("QR incorrecto")
         return JsonResponse({'error': 'No se encontró una donación para el código QR especificado'}, status=404)
 
 
