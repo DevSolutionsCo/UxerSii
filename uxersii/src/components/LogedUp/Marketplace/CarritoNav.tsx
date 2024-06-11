@@ -25,8 +25,8 @@ const StyledBadge = styled(Badge)({
     top: 13,
     border: "2px solid #fff",
     padding: "0 4px",
-    backgroundColor: "#C3DDFF",
-    color: "#000",
+    backgroundColor: "#F63E4F",
+    color: "#fff",
   },
 });
 
@@ -83,7 +83,7 @@ function CarritoNav({ productosCarrito }: CarritoNavProps) {
               );
             })}
             <Link to="carrito">
-              <BotonLogin className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full">
+              <BotonLogin className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-white self-end w-full">
                 Ver el carrito
               </BotonLogin>
             </Link>

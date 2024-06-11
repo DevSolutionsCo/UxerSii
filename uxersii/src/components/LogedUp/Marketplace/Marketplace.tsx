@@ -1,4 +1,5 @@
 // Marketplace.tsx
+import { Carrouselprods } from "@/components/Signed out/Carrousel/Carrouselprods";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
@@ -82,7 +83,7 @@ const iframes: Iframe[] = [
     id: 10,
   },
   {
-    src: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3762.6968481705394!2d-99.1669!3d19.4255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDI1JzMxLjgiTiA5OcKwMTAnMDAuOCJX!5e0!3m2!1ses-419!2smx!4v1716864120764!5m2!1ses-419!2smx" ,
+    src: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3762.6968481705394!2d-99.1669!3d19.4255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDI1JzMxLjgiTiA5OcKwMTAnMDAuOCJX!5e0!3m2!1ses-419!2smx!4v1716864120764!5m2!1ses-419!2smx",
 
     id: 11,
   },
@@ -122,7 +123,7 @@ const iframes: Iframe[] = [
     id: 18,
   },
   {
-    src: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3766.4336298582575!2d-99.2093!3d19.2635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDE1JzQ4LjYiTiA5OcKwMTInMzMuNSJX!5e0!3m2!1ses-419!2smx!4v1716864485791!5m2!1ses-419!2smx" ,
+    src: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3766.4336298582575!2d-99.2093!3d19.2635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDE1JzQ4LjYiTiA5OcKwMTInMzMuNSJX!5e0!3m2!1ses-419!2smx!4v1716864485791!5m2!1ses-419!2smx",
 
     id: 19,
   },
@@ -244,6 +245,8 @@ function Marketplace() {
             />
           ))}
         </div>
+
+        <Carrouselprods />
       </section>
     </>
   );

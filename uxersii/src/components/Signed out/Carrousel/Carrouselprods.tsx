@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import "../MainScreen/fuenteMain.css";
 import { CarouselSize } from "@/components/LogedUp/Marketplace/CarouselSize";
-import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { generateUrl } from "../../../apis/PruebasSignUp.api";
+import "../MainScreen/fuenteMain.css";
 
 interface PuntoMovil {
   nomb_punto: string;
@@ -106,7 +106,10 @@ export function Carrouselprods() {
       const dLon = deg2rad(lon2 - lon1);
       const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        Math.cos(deg2rad(lat1)) *
+          Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return R * c; // Distancia en kilómetros
     };
@@ -115,7 +118,12 @@ export function Carrouselprods() {
     let distanciaMinima = Number.MAX_VALUE;
 
     puntosMoviles.forEach((punto) => {
-      const distancia = calcularDistancia(latitud, longitud, punto.latitud, punto.longitud);
+      const distancia = calcularDistancia(
+        latitud,
+        longitud,
+        punto.latitud,
+        punto.longitud
+      );
       if (distancia < distanciaMinima) {
         distanciaMinima = distancia;
         puntoMasCercano = punto;
@@ -146,14 +154,8 @@ export function Carrouselprods() {
 
   return (
     <>
-      <section className="my-44 ">
-        <div>
-          <p className="bg-white danfo text-center text-4xl ">
-            Los productos que ofrecemos tienen un control de calidad con el <br />
-            <span className="text-[#F63E4F]"> uso de Inteligencia artificial</span>
-          </p>
-        </div>
-        <div className="flex items-center justify-center bg-white py-10">
+      <section className="">
+        <div className="flex items-center justify-center py-10">
           <CarouselSize products={productos}></CarouselSize>
         </div>
       </section>

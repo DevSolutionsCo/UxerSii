@@ -2,7 +2,7 @@ import { Carousel } from "flowbite-react";
 
 function Carouselsillo() {
   return (
-    <div className="h-52 sm:h-64 xl:h-80 2xl:h-96 mt-36 mx-44">
+    <div className="h-52 sm:h-64 xl:h-80 2xl:h-96 mt-36 sm:mx-44 mx-5">
       <Carousel>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7524.004959764598!2d-99.18047170845563!3d19.455459893575757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8bd9777a765%3A0x57501a5479751d18!2sCentro%20de%20Estudios%20Cient%C3%ADficos%20y%20Tecnol%C3%B3gicos%20N%C2%B0%209%20%22Juan%20de%20Dios%20B%C3%A1tiz%22%20IPN!5e0!3m2!1ses-419!2smx!4v1711947813208!5m2!1ses-419!2smx"
