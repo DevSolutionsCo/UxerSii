@@ -285,7 +285,7 @@ const handleLogin = async (e: { preventDefault: () => void }) => {
       </div>
       <div>
         <button
-          className="btn-ope px-8 py-5 relative rounded-xl font-bold text-black w-full"
+          className="bg-[#F63E4F] btn-ope px-8 py-5 relative rounded-xl font-bold text-black w-full"
           onClick={handleShowPopup}
         >
           DONAR
