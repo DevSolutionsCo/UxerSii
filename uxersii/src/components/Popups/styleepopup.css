@@ -17,7 +17,7 @@
     flex-direction: row;
     min-height: 50px;
     min-width: 100%;
-    background-color:#B9F0D1 ;
+    background-color:#F63E4F ;
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 3%;
 }
@@ -42,6 +42,6 @@
     padding-top: 3%;
 }
 .btn-seguir{
-    background-color: #B9F0D1;
+    background-color: #F63E4F;
     margin-top: 1rem;
 }

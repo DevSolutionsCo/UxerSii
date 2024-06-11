@@ -124,7 +124,7 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
             handleCreatePdf(); // Primera función existente
             alertaCompraInit(); // Segunda función que deseas agregar
           }}
-        className="mt-2 bg-[#b9f0d1] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
+        className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
       >
         Crear Ticket de Compra
       </BotonLogin>

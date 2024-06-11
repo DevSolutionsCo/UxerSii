@@ -26,7 +26,7 @@ function InfoText(props: Props) {
         <span className="text-sm font-normal">MXN</span>
       </h2>
 
-      <BotonLogin className="mt-2 bg-[#b9f0d1] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full">
+      <BotonLogin className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-black self-end w-full">
         Agregar al carrito
       </BotonLogin>
     </div>
