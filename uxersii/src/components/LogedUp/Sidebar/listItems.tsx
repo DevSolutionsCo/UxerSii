@@ -21,20 +21,20 @@ export const mainListItems = (
   handleItemClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 ) => (
   <React.Fragment>
-    <Link to="/main">
+    {/* <Link to="/main">
       <ListItemButton onClick={handleItemClick}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Inicio" />
       </ListItemButton>
-    </Link>
+    </Link> */}
     <Link to="marketplace">
       <ListItemButton onClick={handleItemClick}>
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Marketplace" />
+        <ListItemText primary="Inicio" />
       </ListItemButton>
     </Link>
 
