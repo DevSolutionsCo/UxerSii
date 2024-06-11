@@ -18,32 +18,50 @@ export default function Footer (){
             <div className="mb-6 md:mb-0">
               <h3 className="font-semibold">CONTACTA CON NOSOTROS</h3>
               <ul>
-                <li>Instagram</li>
+                <a href="https://www.instagram.com/uxersiii?igsh=NW9uMDczeHFkMHRo" target="_blank">Instagram</a>
                 <li>Twitter</li>
                 <li>Facebook</li>
-                <li>LinkedIn</li>
+
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold">PUNTOS MOVILES</h3>
+              <h3 className="font-semibold">UBICACIÓN DE PUNTOS MOVILES</h3>
               <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0">
                 <div className="mb-6 md:mb-0">
-                  <strong>Amsterdam</strong><br />
-                  Van Diemenstraat 38<br />
-                  1013NH Amsterdam,<br />
-                  Países Bajos
+                  <strong>Ciudad de México</strong><br />
+                  Centro Historico-Zócalo<br />
+                  UNAM<br/>
+                  Iztapalapa
                 </div>
                 <div className="mb-6 md:mb-0">
-                  <strong>OSLO</strong><br />
-                  Trondheimsveien 135<br />
-                  0570 Oslo<br />
-                  Noruega
+                  <br />
+                  Ecatepec <br />
+                  Santa Fé<br />
+                  Parque de los Venados
                 </div>
                 <div>
-                  <strong>LONDRES 23</strong><br />
-                  Englefield Rd<br />
-                  London N1 4JX<br />
-                  Reino Unido
+                  <br />
+                  Plaza Universidad<br />
+                  San Ángel<br />
+                  Bosque de Chapultepec
+                </div>
+                <div>
+                  <br />
+                  Plaza Tres Culturas<br />
+                  Reforma<br />
+                  Parque Lincón-Polanco
+                </div>
+                <div>
+                  <br />
+                  Coyoacán<br />
+                  Condesa<br />
+                  Colonia Roma
+                </div>
+                <div>
+                  <br />
+                  Xochimilco<br />
+                  Azcapotzalco<br />
+                  Tlalpan
                 </div>
               </div>
             </div>
