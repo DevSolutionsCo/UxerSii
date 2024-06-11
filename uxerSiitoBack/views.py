@@ -558,7 +558,7 @@ def getqr(request, qr):
 def getqrdon(request, qr):
     try:
         donacion = Donaciones.objects.get(id_dona=qr)
-        donacion = Donaciones.objects.exclude(id_dona=qr, estatus='En Uxersii').get(id_dona=qr)
+        donacion = Donaciones.objects.exclude(estatus='En Uxersii').get(id_dona=qr)
         nomb_user_h = donacion.nombUserH
 
         return JsonResponse({'nombUserH': nomb_user_h})
