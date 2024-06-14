@@ -83,7 +83,6 @@ function Donacion() {
           //console.log(datosUsuario)
           // Actualizar el estado con el nuevo valor
           setNombreUser(datosUsuario.nombUserH);
-          console.log(nombUserH)
           //setPasswUser(datosUsuario.contra_hog);
         } else {
           console.error("Los datos del usuario no están disponibles.");
@@ -100,7 +99,6 @@ function Donacion() {
   useEffect(() => {
     async function fetchData() {
 
-      console.log(nombUserH + ' hola')
       try {
         const response = await axios.get(
           `${url}puntosm/`,
@@ -110,11 +108,9 @@ function Donacion() {
         );
 
         setPuntosMoviles(response.data.puntosmoviles);
-        console.log(response.data);
         // Maneja la respuesta según tus necesidades
         setPuntos(response.data.puntosmoviles);
         console.log(puntos)
-        console.log(puntosMoviles);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error) {
         // Manejo de errores

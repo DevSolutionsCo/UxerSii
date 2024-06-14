@@ -15,7 +15,6 @@ const handleLogout = () => {
   // Aquí colocarías la lógica para cerrar sesión, por ejemplo:
   // 1. Limpiar el estado de autenticación
   // 2. Redirigir al usuario a la página de inicio de sesión
-  console.log("Sesión cerrada"); // Solo para propósitos de ejemplo
 };
 export const mainListItems = (
   handleItemClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void

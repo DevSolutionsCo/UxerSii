@@ -183,12 +183,13 @@ CORS_ALLOWED_ORIGINS = [
     'https://k91n550s-5173.usw3.devtunnels.ms',
     'https://uxersii.up.railway.app',
     'http://localhost:5174',
+    'https://uxersii.netlify.app',
 ]
 
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ["http://*", "https://uxersii.up.railway.app", "http://127.0.0.1:8000/"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://uxersii.up.railway.app", "http://127.0.0.1:8000/", 'https://uxersii.netlify.app']
 
 
 

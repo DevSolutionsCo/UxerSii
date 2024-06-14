@@ -52,11 +52,9 @@ function Bento() {
         const datosUsuario = JSON.parse(datosUsuarioStringL);
         //console.log(datosUsuario)
         // Actualizar el estado con el nuevo valor
-        console.log(datosUsuario);
         setNombreUser(datosUsuario.nombUserH);
         setCorreoH(datosUsuario.correo_hog);
         setCorreoHAnt(datosUsuario.correo_hog);
-        console.log(datosUsuario.fotoPerfil + " hola");
         if (datosUsuario.fotoPerfil) {
           setFotoPerfil(datosUsuario.fotoPerfil);
         } else {
@@ -95,8 +93,6 @@ function Bento() {
         fotoPerfil,
       });
 
-      console.log(response.data);
-      console.log("SI lo actualice vv");
       //const usuario = new Usuario(datosUsuario);
       //console.log(usuario);
       setCookie("usuarioL", JSON.stringify(response.data));

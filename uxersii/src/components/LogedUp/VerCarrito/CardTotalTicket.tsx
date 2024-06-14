@@ -70,7 +70,6 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
 
   const handleCreatePdf = async () => {
     const folio = generarFolio();
-    console.log("Folio generado:", folio);
 
     // Generar QR
     const qrCodeDataUri = await QRCode.toDataURL(folio);
@@ -96,7 +95,6 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
         id_carrito: producto.id_carrito,
         cantidad: producto.cantidad
       }));
-          console.log(cantidad)
           if (datosUsuario !== null) {
             const response = await axios.post(`${url}postcompra/`, {
               productosIds,
@@ -109,7 +107,6 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
             console.log(response.data);
           } 
     
-      console.log("Sí lo hice");
       location.reload();
     } catch (error) {
       window.alert("Error al crear la orden");

@@ -53,7 +53,6 @@ export function CarouselSize(props: Props) {
   const handleAddToCart = (product: Producto) => {
     const cart = getCookie("carritoProvi") || [];
     const productIndex = cart.findIndex((item: Producto) => item.id_alim === product.id_alim);
-    console.log(cart)
     if (productIndex !== -1) {
       cart[productIndex].cantidad += 1; // Incrementa la cantidad si ya existe en el carrito
     } else {

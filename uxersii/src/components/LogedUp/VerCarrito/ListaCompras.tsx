@@ -68,7 +68,6 @@ function ListaCompras() {
       //console.log(datosUsuario)
       // Actualizar el estado con el nuevo valor
       setIdHogar(datosUsuario.id_hog);
-      console.log(id_hog);
       //setPasswUser(datosUsuario.contra_hog);
     } else {
       console.error("Los datos del usuario no están disponibles.");

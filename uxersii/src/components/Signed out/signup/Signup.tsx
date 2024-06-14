@@ -45,7 +45,6 @@ function Signup() {
   };*/
 
   const onSubmit: SubmitHandler<UsuarioInterface> = async (data) => {
-    console.log("Enviando formulario...");
     try {
       const response = await createUsuario(data);
 
@@ -59,7 +58,6 @@ function Signup() {
       } else {
         console.log("Usuario creado exitosamente:", response.usuario);
         setCookie('usuarioL', JSON.stringify(data.usuario))
-        console.log(data)
         navigate("/main");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -32,10 +32,8 @@ function Ranking() {
           }
         );
 
-        console.log(response.data);
         // Maneja la respuesta según tus necesidades
         const usuarios = response.data.usuarios;
-        console.log(usuarios);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const datosUsuarios = usuarios.map(
@@ -57,7 +55,6 @@ function Ranking() {
         const primero = usuarios[0];
         const segundo = usuarios[1];
         const tercero = usuarios[2];
-        console.log(primero.nombreUser);
         setNomb1(primero.nombreUser);
 
         if (primero.fotoPerfil !== null) {
@@ -96,7 +93,6 @@ function Ranking() {
     { name: nomb2, donaciones: numD2 },
     { name: nomb3, donaciones: numD3 },
   ];
-  console.log("flhjhkjfhk");
 
   return (
     <>

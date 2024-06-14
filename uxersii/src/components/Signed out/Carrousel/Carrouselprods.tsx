@@ -74,7 +74,6 @@ export function Carrouselprods() {
 
   useEffect(() => {
     async function fetchData() {
-      console.log(nombUserH + " hola");
       try {
         const response = await axios.get(`${url}puntosm/`);
         setPuntosMoviles(response.data.puntosmoviles);
