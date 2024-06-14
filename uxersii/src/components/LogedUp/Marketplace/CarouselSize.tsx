@@ -76,7 +76,7 @@ export function CarouselSize(props: Props) {
      <Carousel className="w-[60%] ">
       <CarouselContent>
         {props.products.map((product, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card className="h-[350px] cursor-pointer">
                 <div className="flex flex-col p-4 h-full">

@@ -132,14 +132,15 @@ function ListaCompras() {
         <div className="mx-32 my-10 justify-between items-center hidden ">
           <CarritoNav productosCarrito={carrito} />
         </div>
-        <div className="flex flex-col md:flex-row items-start">
-          <div className="w-full md:w-3/4 mb-4 md:mb-0">
-            <CardAlimSelec productosCarrito={carrito} />
-          </div>
-          <div className="w-full md:w-1/4">
-            <CardTotalTicket productosCarrito={carrito}/>
-          </div>
-        </div>
+        <div className="grid grid-cols-10 gap-3">
+  <div className="col-span-10 md:col-span-6 mb-4 md:mb-0">
+    <CardAlimSelec productosCarrito={carrito} />
+  </div>
+  <div className="col-span-10 md:col-span-4">
+    <CardTotalTicket productosCarrito={carrito}/>
+  </div>
+</div>
+
       </section>
     </>
   );

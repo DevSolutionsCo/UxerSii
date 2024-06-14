@@ -18,6 +18,19 @@ interface Producto {
   id_carrito: number;
 }
 
+interface Usuario {
+  //nombre_hog: string;
+  //apellido_mat: string;
+  //apellido_pat: string;
+  correo_hog: string;
+  contra_hog: string;
+  //desc_hog: string;
+  //genero: string;
+  nombUserH: string;
+  id_hog: number;
+  // Agrega cualquier otra propiedad necesaria
+}
+
 interface CarritoNavProps {
   productosCarrito: Producto[];
 }
@@ -40,11 +53,10 @@ function getCookie(name: string): string | null {
 const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
   const total = getCookie("totalCarrito");
   const datosUsuarioStringL = getCookie("usuarioL");
-  let datosUsuario = null;
+  let datosUsuario: Usuario | null = null;
   if (datosUsuarioStringL !== null) {
     datosUsuario = JSON.parse(datosUsuarioStringL);
     console.log(datosUsuario);
-    console.log(datosUsuario.correo_hog);
   }
   function generarFolio(): string {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -85,16 +97,18 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
         cantidad: producto.cantidad
       }));
           console.log(cantidad)
-      const response = await axios.post(`${url}postcompra/`, {
-        productosIds,
-        folio,
-        estatus: false,
-        pdf: pdfBase64,
-        to: datosUsuario.correo_hog,
-        cantidad: cantidad
-      });
+          if (datosUsuario !== null) {
+            const response = await axios.post(`${url}postcompra/`, {
+              productosIds,
+              folio,
+              estatus: false,
+              pdf: pdfBase64,
+              to: datosUsuario.correo_hog,
+              cantidad: cantidad
+            });
+            console.log(response.data);
+          } 
     
-      console.log(response.data);
       console.log("Sí lo hice");
       location.reload();
     } catch (error) {
@@ -105,7 +119,9 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
   };
   const alertaCompraInit = async () => {
     
-    window.alert("Esta es la alerta mi compa..."); }
+    window.alert("Tu compra se ha realizado");
+  
+  }
 
   return (
     <section className="my-4 mx-2 sm:mx-12 p-2 border shadow-black/50 shadow-sm rounded-md flex flex-col h-full bg-white">
@@ -124,7 +140,7 @@ const CardTotalTicket: React.FC<CarritoNavProps> = ({ productosCarrito }) => {
             handleCreatePdf(); // Primera función existente
             alertaCompraInit(); // Segunda función que deseas agregar
           }}
-        className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-black w-full my-4"
+        className="mt-2 bg-[#F63E4F] border-2 px-4 py-2 rounded-md font-bold text-white w-full my-4"
       >
         Crear Ticket de Compra
       </BotonLogin>

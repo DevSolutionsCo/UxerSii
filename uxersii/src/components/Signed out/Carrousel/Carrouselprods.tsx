@@ -34,13 +34,11 @@ function getCookie(name: string): string | null {
 
 export function Carrouselprods() {
   const [productos, setProductos] = useState([]);
-  const [puntos, setPuntos] = useState<PuntoMovil[]>([]);
   const [puntosMoviles, setPuntosMoviles] = useState<PuntoMovil[]>([]);
   const [latitud, setLatitud] = useState<number>(0);
   const [id_punto, setIdPunto] = useState<number>(0);
   const [longitud, setLongitud] = useState<number>(0);
   const [nombUserH, setNombreUser] = useState("");
-  const [estatus, setEstatus] = useState("En proceso");
 
   const url = generateUrl();
   const puntoMasCercanoRef = useRef<PuntoMovil | undefined>(undefined);
@@ -80,7 +78,6 @@ export function Carrouselprods() {
       try {
         const response = await axios.get(`${url}puntosm/`);
         setPuntosMoviles(response.data.puntosmoviles);
-        setPuntos(response.data.puntosmoviles);
       } catch (error) {
         console.error("Error al realizar la solicitud GET:", error);
       }

@@ -32,6 +32,10 @@ function App() {
               path="/main/marketplace/carrito"
               element={<ListaCompras />}
             />
+            <Route
+              path="/main/carrito"
+              element={<ListaCompras />}
+            />
           </Route>
           <Route path="/" element={<Index />} />
           <Route path="/signup" element={<Signup />} />

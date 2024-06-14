@@ -77,6 +77,8 @@ export const mainListItems = (
 );
 
 export const secondaryListItems = (
+// @ts-expect-error ayaya
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleItemClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 ) => (
   <React.Fragment>
