@@ -132,7 +132,7 @@ export function Carrouselprods() {
     }
 
     puntoMasCercanoRef.current = puntoMasCercano;
-  }, [latitud, longitud, puntosMoviles]);
+  }, [id_punto, latitud, longitud, puntosMoviles]);
 
   useEffect(() => {
     const fetchProductos = async () => {
